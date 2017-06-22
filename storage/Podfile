@@ -1,0 +1,15 @@
+platform :ios, '8.0'
+use_frameworks!
+
+# [START pod_firebase_storage]
+pod 'Firebase/Storage'
+# [END pod_firebase_storage]
+# [START pod_firebaseui_storage]
+pod 'FirebaseUI/Storage'
+# [END pod_firebaseui_storage]
+
+target 'StorageReference' do
+end
+target 'StorageReferenceSwift' do
+end
+

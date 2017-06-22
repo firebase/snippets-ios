@@ -1,0 +1,7 @@
+# Firebase Database ReferenceCode
+use_frameworks!
+platform :ios, '7.0'
+pod 'Firebase/Database'
+
+target 'DatabaseReference' do
+end
