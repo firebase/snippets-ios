@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D7839395DAA58F5D8D604226 /* Pods_FiroptionConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB670D5E7A57909487765B7 /* Pods_FiroptionConfiguration.framework */; };
 		EFEC9D631E01BF310021BDF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC9D621E01BF310021BDF9 /* AppDelegate.swift */; };
 		EFEC9D651E01BF310021BDF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC9D641E01BF310021BDF9 /* ViewController.swift */; };
 		EFEC9D681E01BF310021BDF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFEC9D661E01BF310021BDF9 /* Main.storyboard */; };
@@ -24,9 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6B0DB99412F460E6BC8AAD81 /* Pods-FiroptionConfiguration.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiroptionConfiguration.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiroptionConfiguration/Pods-FiroptionConfiguration.release.xcconfig"; sourceTree = "<group>"; };
-		7CB670D5E7A57909487765B7 /* Pods_FiroptionConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiroptionConfiguration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C455C4F32862F357B7BEEA32 /* Pods-FiroptionConfiguration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiroptionConfiguration.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiroptionConfiguration/Pods-FiroptionConfiguration.debug.xcconfig"; sourceTree = "<group>"; };
 		EFEC9D5F1E01BF310021BDF9 /* FiroptionConfiguration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiroptionConfiguration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEC9D621E01BF310021BDF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFEC9D641E01BF310021BDF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,7 +41,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7839395DAA58F5D8D604226 /* Pods_FiroptionConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,31 +54,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		699C4DF4A007BA141F7C0A4C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7CB670D5E7A57909487765B7 /* Pods_FiroptionConfiguration.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		EA21295638CC534BC1F37069 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C455C4F32862F357B7BEEA32 /* Pods-FiroptionConfiguration.debug.xcconfig */,
-				6B0DB99412F460E6BC8AAD81 /* Pods-FiroptionConfiguration.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		EFEC9D561E01BF310021BDF9 = {
 			isa = PBXGroup;
 			children = (
 				EFEC9D9B1E01EEB60021BDF9 /* Dev */,
 				EFEC9D611E01BF310021BDF9 /* FiroptionConfiguration */,
 				EFEC9D601E01BF310021BDF9 /* Products */,
-				EA21295638CC534BC1F37069 /* Pods */,
-				699C4DF4A007BA141F7C0A4C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,12 +102,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EFEC9D711E01BF310021BDF9 /* Build configuration list for PBXNativeTarget "FiroptionConfiguration" */;
 			buildPhases = (
-				F1759FCC118138E97D6B85A6 /* [CP] Check Pods Manifest.lock */,
 				EFEC9D5B1E01BF310021BDF9 /* Sources */,
 				EFEC9D5C1E01BF310021BDF9 /* Frameworks */,
 				EFEC9D5D1E01BF310021BDF9 /* Resources */,
-				EDF56E5570D0068AF142B443 /* [CP] Embed Pods Frameworks */,
-				028F09BF7C3536502F1FC138 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -225,54 +198,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		028F09BF7C3536502F1FC138 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FiroptionConfiguration/Pods-FiroptionConfiguration-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EDF56E5570D0068AF142B443 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FiroptionConfiguration/Pods-FiroptionConfiguration-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F1759FCC118138E97D6B85A6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EFEC9D5B1E01BF310021BDF9 /* Sources */ = {
@@ -410,7 +335,6 @@
 		};
 		EFEC9D721E01BF310021BDF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C455C4F32862F357B7BEEA32 /* Pods-FiroptionConfiguration.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = EQHXZ8M8AV;
@@ -424,7 +348,6 @@
 		};
 		EFEC9D731E01BF310021BDF9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6B0DB99412F460E6BC8AAD81 /* Pods-FiroptionConfiguration.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = EQHXZ8M8AV;
