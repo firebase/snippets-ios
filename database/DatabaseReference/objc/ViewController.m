@@ -122,12 +122,18 @@
       // connection established (or I've reconnected after a loss of connection)
 
       // add this device to my connections list
-      // this value could contain info about the device or a timestamp instead of just true
       FIRDatabaseReference *con = [myConnectionsRef childByAutoId];
-      [con setValue:@YES];
 
       // when this device disconnects, remove it
       [con onDisconnectRemoveValue];
+
+      // The onDisconnect() call is before the call to set() itself. This is to avoid a race condition
+      // where you set the user's presence to true and the client disconnects before the
+      // onDisconnect() operation takes effect, leaving a ghost user.
+
+      // this value could contain info about the device or a timestamp instead of just true
+      [con setValue:@YES];
+
 
       // when I disconnect, update the last time I was seen online
       [lastOnlineRef onDisconnectSetValue:[FIRServerValue timestamp]];

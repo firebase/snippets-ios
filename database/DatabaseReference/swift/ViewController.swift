@@ -119,12 +119,17 @@ func combinedExample() {
     guard let connected = snapshot.value as? Bool, connected else { return }
 
     // add this device to my connections list
-    // this value could contain info about the device or a timestamp instead of just true
     let con = myConnectionsRef.childByAutoId()
-    con.setValue(true)
 
-    // when this device disconnects, remove it
+    // when this device disconnects, remove it.
     con.onDisconnectRemoveValue()
+
+    // The onDisconnect() call is before the call to set() itself. This is to avoid a race condition
+    // where you set the user's presence to true and the client disconnects before the
+    // onDisconnect() operation takes effect, leaving a ghost user.
+
+    // this value could contain info about the device or a timestamp instead of just true
+    con.setValue(true)
 
     // when I disconnect, update the last time I was seen online
     lastOnlineRef.onDisconnectSetValue(ServerValue.timestamp())
