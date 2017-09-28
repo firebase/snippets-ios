@@ -1,0 +1,1115 @@
+//
+//  Copyright (c) 2017 Google Inc.
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+import UIKit
+
+import Firebase
+import Firestore
+
+class ViewController: UIViewController {
+
+    var db: Firestore!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Access a Cloud Firestore database instance
+        // TODO(samstern): Should not hard-code project ID
+        // TODO(samstern): Should not need to use staging host
+
+        let host = "staging-firestore.sandbox.googleapis.com"
+
+        // [START setup]
+        let settings = FirestoreSettings()
+        settings.host = host
+
+        Firestore.firestore().settings = settings
+        // [END setup]
+        db = Firestore.firestore()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
+    @IBAction func didTouchSmokeTestButton(_ sender: AnyObject) {
+        // Quickstart
+        addAdaLovelace()
+        addAlanTuring()
+        getCollection()
+        listenForUsers()
+
+        // Structure Data
+        demonstrateReferences()
+
+        // Save Data
+        setDocument()
+        dataTypes()
+        setData()
+        addDocument()
+        newDocument()
+        updateDocument()
+        createIfMissing()
+        updateDocumentNested()
+        deleteDocument()
+        deleteCollection()
+        deleteField()
+        serverTimestamp()
+        simpleTransaction()
+        transaction()
+        writeBatch()
+
+        // Retrieve Data
+        exampleData()
+        getDocument()
+        customClassGetDocument()
+        listenDocument()
+        listenDocumentLocal()
+        getMultiple()
+        getMultipleAll()
+        listenMultiple()
+        listenDiffs()
+        listenState()
+        detachListener()
+        handleListenErrors()
+
+        // Query Data
+        simpleQueries()
+        exampleFilters()
+        onlyCapitals()
+        chainFilters()
+        validRangeFilters()
+
+        // Can't run this since it throws a fatal error
+        // invalidRangeFilters()
+
+        orderAndLimit()
+        orderAndLimitDesc()
+        orderMultiple()
+        filterAndOrder()
+        validFilterAndOrder()
+
+        // Can't run this since it throws a fatal error
+        // invalidFilterAndOrder()
+
+        // Enable Offline
+        // Can't run this since it throws a fatal error
+        // enableOffline()
+        listenToOffline()
+
+        // Cursors
+        simpleCursor()
+        snapshotCursor()
+        paginate()
+        multiCursor()
+    }
+
+    @IBAction func didTouchDeleteButton(_ sender: AnyObject) {
+        deleteCollection(collection: "users")
+        deleteCollection(collection: "cities")
+    }
+
+    private func deleteCollection(collection: String) {
+        db.collection(collection).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                return
+            }
+
+            for document in querySnapshot!.documents {
+                print("Deleting \(document.documentID) => \(document.data())")
+                document.reference.delete()
+            }
+        }
+    }
+
+    // =======================================================================================
+    // ======== https://firebase.google.com/preview/firestore/client/quickstart ==============
+    // =======================================================================================
+
+    private func addAdaLovelace() {
+        // [START add_ada_lovelace]
+        // Add a new document with a generated ID
+        var ref: DocumentReference? = nil
+        ref = db.collection("users").addDocument(data: [
+            "first": "Ada",
+            "last": "Lovelace",
+            "born": 1815
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+        // [END add_ada_lovelace]
+    }
+
+    private func addAlanTuring() {
+        var ref: DocumentReference? = nil
+
+        // [START add_alan_turing]
+        // Add a second document with a generated ID.
+        ref = db.collection("users").addDocument(data: [
+            "first": "Alan",
+            "middle": "Mathison",
+            "last": "Turing",
+            "born": 1912
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+        // [END add_alan_turing]
+    }
+
+    private func getCollection() {
+        // [START get_collection]
+        db.collection("users").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
+
+        // RESULT:
+        // user1 => ["first": Ada, "last": Lovelace, "born": 1815]
+        // user2 => ["first": Alan, "middle": Mathison, "last": Turing, "born": 1912]
+        // [END get_collection]
+    }
+
+    private func listenForUsers() {
+        // [START listen_for_users]
+        // Listen to a query on a collection.
+        //
+        // We will get a first snapshot with the initial results and a new
+        // snapshot each time there is a change in the results.
+        db.collection("users")
+            .whereField("born", isLessThan: 1900)
+            .addSnapshotListener { querySnapshot, error in
+                guard let snapshot = querySnapshot else {
+                    print("Error retreiving snapshots \(error!)")
+                    return
+                }
+                print("Current users born before 1900: \(snapshot.documents.map { $0.data() })")
+            }
+        // [END listen_for_users]
+    }
+
+    // =======================================================================================
+    // ======= https://firebase.google.com/preview/firestore/client/structure-data ===========
+    // =======================================================================================
+
+
+    private func demonstrateReferences() {
+        // [START doc_reference]
+        let alovelaceDocumentRef = db.collection("users").document("alovelace")
+        // [END doc_reference]
+        print(alovelaceDocumentRef)
+
+        // [START collection_reference]
+        let usersCollectionRef = db.collection("users")
+        // [END collection_reference]
+        print(usersCollectionRef)
+
+        // [START subcollection_reference]
+        let messageRef = db
+            .collection("rooms").document("roomA")
+            .collection("messages").document("message1")
+        // [END subcollection_reference]
+        print(messageRef)
+
+        // [START path_reference]
+        let aLovelaceDocumentReference = db.document("users/alovelace")
+        // [END path_reference]
+        print(aLovelaceDocumentReference)
+    }
+
+    // =======================================================================================
+    // ========= https://firebase.google.com/preview/firestore/client/save-data ==============
+    // =======================================================================================
+
+    private func setDocument() {
+        // [START set_document]
+        // Add a new document in collection "cities" with ID "DC"
+        db.collection("cities").document("DC").setData([
+            "name": "Washington D.C.",
+            "weather": "politically stormy"
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        // [END set_document]
+    }
+
+    private func dataTypes() {
+        // [START data_types]
+        let docData: [String: Any] = [
+            "stringExample": "Hello world!",
+            "booleanExample": true,
+            "numberExample": 3.14159265,
+            "dateExample": NSDate(),
+            "arrayExample": [5, true, "hello"],
+            "nullExample": NSNull(),
+            "objectExample": [
+                "a": 5,
+                "b": [
+                    "nested": "foo"
+                ]
+            ]
+        ]
+        db.collection("data").document("one").setData(docData) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        // [END data_types]
+    }
+
+    private func setData() {
+        // [START set_data]
+        db.collection("cities").document("new-city-id").setData([ "name": "Beijing" ])
+        // [END set_data]
+    }
+
+    private func addDocument() {
+        // [START add_document]
+        // Add a new document with a generated id.
+        var ref: DocumentReference? = nil
+        ref = db.collection("cities").addDocument(data: [
+            "name": "Denver",
+            "weather": "rocky"
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+        // [END add_document]
+    }
+
+    private func newDocument() {
+        // [START new_document]
+        let newCityRef = db.collection("cities").document();
+
+        // later...
+        newCityRef.setData([
+            // [START_EXCLUDE]
+            "name": "Some City Name"
+            // [END_EXCLUDE]
+        ]);
+        // [END new_document]
+    }
+
+    private func updateDocument() {
+        // [START update_document]
+        let washingtonRef = db.collection("cities").document("DC");
+
+        // Set the "isCapital" field of the city 'DC'
+        washingtonRef.updateData([
+            "isCapital": true
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        // [END update_document]
+    }
+
+    private func createIfMissing() {
+        // [START create_if_missing]
+        // Update the population, creating the document if it does not exist.
+      db.collection("cities").document("Beijing").setData([ "isCapital": true ], options: SetOptions.merge())
+        // [END create_if_missing]
+    }
+
+    private func updateDocumentNested() {
+        // [START update_document_nested]
+        // Create an initial document to update.
+        let frankDocRef = db.collection("users").document("frank");
+        frankDocRef.setData([
+            "name": "Frank",
+            "favorites": [ "food": "Pizza", "color": "Blue", "subject": "recess" ],
+            "age": 12
+            ]);
+
+        // To update age and favorite color:
+        db.collection("users").document("frank").updateData([
+            "age": 13,
+            "favorites.color": "Red"
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        // [END update_document_nested]
+    }
+
+    private func deleteDocument() {
+        // [START delete_document]
+        db.collection("cities").document("DC").delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
+        }
+        // [END delete_document]
+    }
+
+    private func deleteCollection() {
+        // [START delete_collection]
+        func delete(collection: CollectionReference, batchSize: Int = 100, completion: @escaping (Error?) -> ()) {
+            // Limit query to avoid out-of-memory errors on large collections.
+            // When deleting a collection guaranteed to fit in memory, batching can be avoided entirely.
+            collection.limit(to: batchSize).getDocuments { (docset, error) in
+                // An error occurred.
+                guard let docset = docset else {
+                    completion(error)
+                    return
+                }
+                // There's nothing to delete.
+                guard docset.count > 0 else {
+                    completion(nil)
+                    return
+                }
+
+                let batch = collection.firestore.batch()
+                docset.documents.forEach { batch.deleteDocument($0.reference) }
+
+                batch.commit { (batchError) in
+                    if let batchError = batchError {
+                        // Stop the deletion process and handle the error. Some elements
+                        // may have been deleted.
+                        completion(batchError)
+                    } else {
+                        delete(collection: collection, batchSize: batchSize, completion: completion)
+                    }
+                }
+            }
+        }
+        // [END delete_collection]
+    }
+
+    private func deleteField() {
+        // [START delete_field]
+        db.collection("users").document("frank").updateData([
+            "age": FieldValue.delete(),
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        // [END delete_field]
+    }
+
+    private func serverTimestamp() {
+        // [START server_timestamp]
+        db.collection("users").document("frank").updateData([
+            "lastUpdated": FieldValue.serverTimestamp(),
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        // [END server_timestamp]
+    }
+
+    private func simpleTransaction() {
+        // [START simple_transaction]
+        let sfReference = db.collection("cities").document("SF")
+
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            let sfDocument: DocumentSnapshot
+            do {
+                try sfDocument = transaction.getDocument(sfReference)
+            } catch let fetchError as NSError {
+                errorPointer?.pointee = fetchError
+                return nil
+            }
+
+            guard let oldPopulation = sfDocument.data()["population"] as? Int else {
+                let error = NSError(
+                    domain: "AppErrorDomain",
+                    code: -1,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Unable to retrieve population from snapshot \(sfDocument)"
+                    ]
+                )
+                errorPointer?.pointee = error
+                return nil
+            }
+
+            transaction.updateData(["population": oldPopulation + 1], forDocument: sfReference)
+            return nil
+        }) { (object, error) in
+            if let error = error {
+                print("Transaction failed: \(error)")
+            } else {
+                print("Transaction successfully committed!")
+            }
+        }
+        // [END simple_transaction]
+    }
+
+    private func transaction() {
+        // [START transaction]
+        let sfReference = db.collection("cities").document("SF")
+
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            let sfDocument: DocumentSnapshot
+            do {
+                try sfDocument = transaction.getDocument(sfReference)
+            } catch let fetchError as NSError {
+                errorPointer?.pointee = fetchError
+                return nil
+            }
+
+            guard let oldPopulation = sfDocument.data()["population"] as? Int else {
+                let error = NSError(
+                    domain: "AppErrorDomain",
+                    code: -1,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Unable to retrieve population from snapshot \(sfDocument)"
+                    ]
+                )
+                errorPointer?.pointee = error
+                return nil
+            }
+
+            let newPopulation = oldPopulation + 1
+            guard newPopulation <= 1000000 else {
+                let error = NSError(
+                    domain: "AppErrorDomain",
+                    code: -2,
+                    userInfo: [NSLocalizedDescriptionKey: "Population \(newPopulation) too big"]
+                )
+                errorPointer?.pointee = error
+                return nil
+            }
+
+            transaction.updateData(["population": newPopulation], forDocument: sfReference)
+            return newPopulation
+        }) { (object, error) in
+            if let error = error {
+                print("Error updating population: \(error)")
+            } else {
+                print("Population increased to \(object!)")
+            }
+        }
+        // [END transaction]
+    }
+
+    private func writeBatch() {
+        // [START write_batch]
+        // Get new write batch
+        let batch = db.batch()
+
+        // Set the value of 'NYC'
+        let nycRef = db.collection("cities").document("NYC")
+        batch.setData([:], forDocument: nycRef)
+
+        // Update the population of 'SF'
+        let sfRef = db.collection("cities").document("SF")
+        batch.updateData(["population": 1000000 ], forDocument: sfRef)
+
+        // Delete the city 'LA'
+        let laRef = db.collection("cities").document("LA")
+        batch.deleteDocument(laRef)
+
+        // Commit the batch
+        batch.commit() { err in
+            if let err = err {
+                print("Error writing batch \(err)")
+            } else {
+                print("Batch write succeeded.")
+            }
+        }
+        // [END write_batch]
+    }
+
+    // =======================================================================================
+    // ======= https://firebase.google.com/preview/firestore/client/retrieve-data ============
+    // =======================================================================================
+
+    private func exampleData() {
+        // [START example_data]
+        let citiesRef = db.collection("cities")
+
+        citiesRef.document("SF").setData([
+            "name": "San Francisco",
+            "state": "CA",
+            "population": 864816
+            ])
+        citiesRef.document("MTV").setData([
+            "name": "Mountain View",
+            "state": "CA",
+            "population": 74066
+            ])
+        citiesRef.document("DEN").setData([
+            "name": "Denver",
+            "state": "CO",
+            "population": 600158
+            ])
+        citiesRef.document("DC").setData([
+            "name": "Washington, D.C.",
+            "population": 672228
+            ])
+        // [END example_data]
+    }
+
+    private func getDocument() {
+        // [START get_document]
+        let docRef = db.collection("cities").document("SF");
+
+        docRef.getDocument { (document, error) in
+            if let document = document {
+                print("Document data: \(document.data())")
+            } else {
+                print("Document does not exist")
+            }
+        }
+
+        // RESULT:
+        // Document data: ["state": CA, "name": San Francisco, "population": 864816]
+        // [END get_document]
+    }
+
+    private func customClassGetDocument() {
+        // [START custom_type]
+        let docRef = db.collection("cities").document("Beijing");
+
+        docRef.getDocument { (document, error) in
+            if let city = document.flatMap({ City(dictionary: $0.data()) }) {
+                print("City: \(city)")
+            } else {
+                print("Document does not exist")
+            }
+        }
+        // [END custom_type]
+    }
+
+    private func listenDocument() {
+        // [START listen_document]
+        db.collection("cities").document("SF")
+            .addSnapshotListener { documentSnapshot, error in
+              guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+              }
+              print("Current data: \(document.data())")
+            }
+
+        // After 2 seconds, make an update so our listener will fire again.
+        let deadlineTime = DispatchTime.now() + .seconds(2)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            self.db.collection("cities").document("SF").updateData([
+                "population": 999999
+                ])
+        }
+
+        // RESULT:
+        // Current data: ["state": CA, "name": San Francisco, "population": 864816]
+        //
+        // Current data: ["state": CA, "name": San Francisco, "population": 999999]
+        // Current data: ["state": CA, "name": San Francisco, "population": 999999]
+        // [END listen_document]
+    }
+
+    private func listenDocumentLocal() {
+        // [START listen_document_local]
+        db.collection("cities").document("SF")
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                let source = document.metadata.hasPendingWrites ? "Local" : "Server"
+                print("\(source) data: \(document.data())")
+            }
+
+        // After 2 seconds, make an update so our listener will fire again.
+        let deadlineTime = DispatchTime.now() + .seconds(2)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            self.db.collection("cities").document("SF").updateData([
+                "population": 1000000
+                ])
+        }
+
+        // RESULT:
+        // Server data: ["state": CA, "name": San Francisco, "population": 999999]
+
+        // Local data: ["state": CA, "name": San Francisco, "population": 1000000]
+        // Server data: ["state": CA, "name": San Francisco, "population": 1000000]
+        // [END listen_document_local]
+    }
+
+    private func getMultiple() {
+        // [START get_multiple]
+        db.collection("cities").whereField("state", isEqualTo: "CA")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                    }
+                }
+        }
+
+        // RESULT:
+        // MTV => ["state": CA, "name": Mountain View, "population": 74066]
+        // SF => ["state": CA, "name": San Francisco, "population": 864816]
+        // [END get_multiple]
+    }
+
+    private func getMultipleAll() {
+        // [START get_multiple_all]
+        db.collection("cities").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
+
+        // RESULT:
+        // DC => ["population": 672228, "name": Washington, D.C.]
+        // DEN => ["state": CO, "name": Denver, "population": 600158]
+        // MTV => ["state": CA, "name": Mountain View, "population": 74066]
+        // SF => ["state": CA, "name": San Francisco, "population": 864816]
+        // [END get_multiple_all]
+    }
+
+    private func listenMultiple() {
+        // [START listen_multiple]
+        db.collection("cities").whereField("state", isEqualTo: "CA")
+            .addSnapshotListener { querySnapshot, error in
+                guard let documents = querySnapshot?.documents else {
+                    print("Error fetching documents: \(error!)")
+                    return
+                }
+                let cities = documents.map { $0["name"]! }
+                print("Current cities in CA: \(cities)")
+            }
+
+        // After 2 seconds, make an update so our listener will fire again.
+        let deadlineTime = DispatchTime.now() + .seconds(2)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            self.db.collection("cities").document("LA").setData([
+                "name": "Los Angeles",
+                "state": "CA",
+                "population": 4030904
+                ])
+        }
+
+        // RESULT:
+        // Current cities in CA: [Mountain View, San Francisco]
+        //
+        // Current cities in CA: [Los Angeles, Mountain View, San Francisco]
+        // [END listen_multiple]
+    }
+
+    private func listenDiffs() {
+        // [START listen_diffs]
+        db.collection("cities").whereField("state", isEqualTo: "CA")
+            .addSnapshotListener { querySnapshot, error in
+                guard let snapshot = querySnapshot else {
+                    print("Error fetching snapshots: \(error!)")
+                    return
+                }
+                snapshot.documentChanges.forEach { diff in
+                    if (diff.type == .added) {
+                        print("New city: \(diff.document.data())")
+                    }
+                    if (diff.type == .modified) {
+                        print("Modified city: \(diff.document.data())")
+                    }
+                    if (diff.type == .removed) {
+                        print("Removed city: \(diff.document.data())")
+                    }
+                }
+            }
+
+        // After 2 seconds, let's delete LA
+        let deadlineTime = DispatchTime.now() + .seconds(2)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            self.db.collection("cities").document("LA").delete()
+        }
+
+        // RESULT:
+        // New city: ["state": CA, "name": Los Angeles, "population": 4030904]
+        // New city: ["state": CA, "name": Mountain View, "population": 74066]
+        // New city: ["state": CA, "name": San Francisco, "population": 864816]
+
+        // Removed city: ["state": CA, "name": Los Angeles, "population": 4030904]
+        // [END listen_diffs]
+    }
+
+    private func listenState() {
+        // [START listen_state]
+        db.collection("cities").whereField("state", isEqualTo: "CA")
+            .addSnapshotListener { querySnapshot, error in
+                guard let snapshot = querySnapshot else {
+                    print("Error fetching documents: \(error!)")
+                    return
+                }
+                snapshot.documentChanges.forEach { diff in
+                    if (diff.type == .added) {
+                        print("New city: \(diff.document.data())")
+                    }
+                }
+
+                if !snapshot.metadata.isFromCache {
+                    print("Synced with server state.")
+                }
+            }
+
+        // RESULT:
+        // New city: ["state": CA, "name": Mountain View, "population": 74066]
+        // New city: ["state": CA, "name": San Francisco, "population": 864816]
+        // Got initial state.
+        // [END listen_state]
+    }
+
+    private func detachListener() {
+        // [START detach_listener]
+        let listener = db.collection("cities").addSnapshotListener { querySnapshot, error in
+            // [START_EXCLUDE]
+            // [END_EXCLUDE]
+        }
+
+        // ...
+
+        // Stop listening to changes
+        listener.remove()
+        // [END detach_listener]
+    }
+
+    private func handleListenErrors() {
+        // [START handle_listen_errors]
+        db.collection("cities")
+            .addSnapshotListener { querySnapshot, error in
+                if let error = error {
+                    print("Error retreiving collection: \(error)")
+                }
+            }
+        // [END handle_listen_errors]
+    }
+
+    // =======================================================================================
+    // ======== https://firebase.google.com/preview/firestore/client/query-data ==============
+    // =======================================================================================
+
+    private func simpleQueries() {
+        // [START simple_queries]
+        // Create a reference to the cities collection
+        let citiesRef = db.collection("cities")
+
+        // Create a query against the collection.
+        let query = citiesRef.whereField("state", isEqualTo: "CA")
+        // [END simple_queries]
+
+        print(query)
+    }
+
+    private func exampleFilters() {
+        let citiesRef = db.collection("cities")
+
+        // [START example_filters]
+        citiesRef.whereField("state", isEqualTo: "CA")
+        citiesRef.whereField("population", isLessThan: 100000)
+        citiesRef.whereField("name", isGreaterThanOrEqualTo: "San Francisco")
+        // [END example_filters]
+    }
+
+    private func onlyCapitals() {
+        // [START only_capitals]
+        let capitalCities = db.collection("cities").whereField("capital", isEqualTo: true)
+        // [END only_capitals]
+        print(capitalCities)
+    }
+
+    private func chainFilters() {
+        let citiesRef = db.collection("cities")
+
+        // [START chain_filters]
+        citiesRef
+            .whereField("state", isEqualTo: "CO")
+            .whereField("name", isEqualTo: "Denver")
+        citiesRef
+            .whereField("state", isEqualTo: "CA")
+            .whereField("population", isLessThan: 1000000)
+        // [END chain_filters]
+    }
+
+    private func validRangeFilters() {
+        let citiesRef = db.collection("cities")
+
+        // [START valid_range_filters]
+        citiesRef
+            .whereField("state", isGreaterThanOrEqualTo: "CA")
+            .whereField("state", isLessThanOrEqualTo: "IN")
+        citiesRef
+            .whereField("state", isEqualTo: "CA")
+            .whereField("population", isGreaterThan: 1000000)
+        // [END valid_range_filters]
+    }
+
+    private func invalidRangeFilters() throws {
+        let citiesRef = db.collection("cities")
+
+        // [START invalid_range_filters]
+        citiesRef
+            .whereField("state", isGreaterThanOrEqualTo: "CA")
+            .whereField("population", isGreaterThan: 1000000)
+        // [END invalid_range_filters]
+    }
+
+    private func orderAndLimit() {
+        let citiesRef = db.collection("cities")
+
+        // [START order_and_limit]
+        citiesRef.order(by: "name").limit(to: 3)
+        // [END order_and_limit]
+    }
+
+    private func orderAndLimitDesc() {
+        let citiesRef = db.collection("cities")
+
+        // [START order_and_limit_desc]
+        citiesRef.order(by: "name", descending: true).limit(to: 3)
+        // [END order_and_limit_desc]
+    }
+
+    private func orderMultiple() {
+        let citiesRef = db.collection("cities")
+
+        // [START order_multiple]
+        citiesRef
+            .order(by: "state")
+            .order(by: "population", descending: true)
+        // [END order_multiple]
+    }
+
+    private func filterAndOrder() {
+        let citiesRef = db.collection("cities")
+
+        // [START filter_and_order]
+        citiesRef
+            .whereField("population", isGreaterThan: 100000)
+            .order(by: "population")
+            .limit(to: 2)
+        // [END filter_and_order]
+    }
+
+    private func validFilterAndOrder() {
+        let citiesRef = db.collection("cities")
+
+        // [START valid_filter_and_order]
+        citiesRef
+            .whereField("population", isGreaterThan: 100000)
+            .order(by: "population")
+        // [END valid_filter_and_order]
+    }
+
+    private func invalidFilterAndOrder() throws {
+        let citiesRef = db.collection("cities")
+
+        // [START invalid_filter_and_order]
+        citiesRef
+            .whereField("population", isGreaterThan: 100000)
+            .order(by: "state")
+        // [END invalid_filter_and_order]
+    }
+
+
+    // =======================================================================================
+    // ====== https://firebase.google.com/preview/firestore/client/enable-offline ============
+    // =======================================================================================
+
+    private func enableOffline() {
+        // [START enable_offline]
+        let settings = FirestoreSettings()
+        settings.isPersistenceEnabled = true
+
+        // Any additional options
+        // ...
+
+        // Enable offline data persistence
+        let db = Firestore.firestore()
+        db.settings = settings
+        // [END enable_offline]
+    }
+
+    private func listenToOffline() {
+        let db = Firestore.firestore()
+        // [START listen_to_offline]
+        // Listen to metadata updates to receive a server snapshot even if
+        // the data is the same as the cached data.
+        let options = QueryListenOptions()
+        options.includeQueryMetadataChanges(true)
+
+        db.collection("cities").whereField("state", isEqualTo: "CA")
+            .addSnapshotListener(options: options) { querySnapshot, error in
+                guard let snapshot = querySnapshot else {
+                    print("Error retreiving snapshot: \(error!)")
+                    return
+                }
+
+                for diff in snapshot.documentChanges {
+                    if diff.type == .added {
+                        print("New city: \(diff.document.data())")
+                    }
+                }
+
+                let source = snapshot.metadata.isFromCache ? "local cache" : "server"
+                print("Metadata: Data fetched from \(source)")
+        }
+
+        // RESULT:
+        // New city: ["state": CA, "name": Mountain View, "population": 74066]
+        // New city: ["state": CA, "name": San Francisco, "population": 864816]
+        // Metadata: Data fetched from local cache
+        // Metadata: Data fetched from server (if online)
+        // [END listen_to_offline]
+    }
+
+    // =======================================================================================
+    // ====== https://firebase.google.com/preview/firestore/client/cursors ===================
+    // =======================================================================================
+
+    private func simpleCursor() {
+        let db = Firestore.firestore()
+
+        // [START cursor_greater_than]
+        // Get all cities with population over one million, ordered by population.
+        db.collection("cities")
+            .order(by: "population")
+            .start(at: [1000000])
+        // [END cursor_greater_than]
+
+        // [START cursor_less_than]
+        // Get all cities with population less than one million, ordered by population.
+        db.collection("cities")
+            .order(by: "population")
+            .end(at: [1000000])
+        // [END cursor_less_than]
+    }
+
+    private func snapshotCursor() {
+        let db = Firestore.firestore()
+
+        // [START snapshot_cursor]
+        db.collection("cities")
+            .document("SF")
+            .addSnapshotListener { (document, error) in
+                guard let document = document else {
+                    print("Error retreving cities: \(error.debugDescription)")
+                    return
+                }
+
+                // Get all cities with a population greater than or equal to San Francisco.
+                let sfSizeOrBigger = db.collection("cities")
+                    .order(by: "population")
+                    .start(atDocument: document)
+        }
+        // [END snapshot_cursor]
+    }
+
+    private func paginate() {
+        let db = Firestore.firestore()
+
+        // [START paginate]
+        // Construct query for first 25 cities, ordered by population
+        let first = db.collection("cities")
+            .order(by: "population")
+            .limit(to: 25)
+
+        first.addSnapshotListener { (snapshot, error) in
+            guard let snapshot = snapshot else {
+                print("Error retreving cities: \(error.debugDescription)")
+                return
+            }
+
+            guard let lastSnapshot = snapshot.documents.last else {
+                // The collection is empty.
+                return
+            }
+
+            // Construct a new query starting after this document,
+            // retrieving the next 25 cities.
+            let next = db.collection("cities")
+                .order(by: "population")
+                .start(afterDocument: lastSnapshot)
+
+            // Use the query for pagination.
+            // ...
+        }
+        // [END paginate]
+    }
+
+    private func multiCursor() {
+        let db = Firestore.firestore()
+
+        // [START multi_cursor]
+        // Will return all Springfields
+        db.collection("cities")
+            .order(by: "name")
+            .order(by: "state")
+            .start(at: ["Springfield"])
+
+        // Will return "Springfield, Missouri" and "Springfield, Wisconsin"
+        db.collection("cities")
+            .order(by: "name")
+            .order(by: "state")
+            .start(at: ["Springfield", "Missouri"])
+        // [END multi_cursor]
+    }
+}
+
+fileprivate struct City {
+
+    let name: String
+
+    init?(dictionary: [String: Any]) {
+        guard let name = dictionary["name"] as? String else { return nil }
+        self.name = name
+    }
+
+}
+

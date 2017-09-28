@@ -1,0 +1,18 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'firestore-smoketest-objc' do
+
+  use_frameworks!
+
+  # Pods for firestore-smoketest
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firestore', :podspec => 'https://storage.googleapis.com/firebase-preview-drop/ios/firestore/0.7.0/Firestore.podspec.json'
+
+  target 'firestore-smoketest-objcTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
