@@ -21,6 +21,10 @@
 @interface FSTCity : NSObject
 
 @property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSString *state;
+@property (nonatomic, readonly) NSString *country;
+@property (nonatomic, readonly) BOOL capital;
+@property (nonatomic, readonly) NSInteger population;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
 @end
@@ -33,6 +37,22 @@
       return nil;
     }
     _name = [dict[@"name"] copy];
+
+    if (dict[@"state"] != nil && [dict[@"state"] isKindOfClass:[NSString class]]) {
+      _state = [dict[@"state"] copy];
+    }
+
+    if (dict[@"country"] != nil && [dict[@"country"] isKindOfClass:[NSString class]]) {
+      _country = [dict[@"country"] copy];
+    }
+
+    if (dict[@"capital"] != nil) {
+      _capital = [dict[@"capital"] boolValue];
+    }
+
+    if (dict[@"population"] != nil) {
+      _population = [dict[@"population"] integerValue];
+    }
   }
   return self;
 }
@@ -48,16 +68,6 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
-  // Access a Cloud Firestore database instance
-  // TODO(samstern): Should not hard-code project ID
-  // TODO(samstern): Should not need to use staging host
-
-  NSString *host = @"staging-firestore.sandbox.googleapis.com";
-
-  FIRFirestoreSettings *settings = [[FIRFirestoreSettings alloc] init];
-  settings.host = host;
-  [FIRFirestore firestore].settings = settings;
 
   self.db = [FIRFirestore firestore];
 }
@@ -116,9 +126,6 @@
           }
         }
       }];
-  // RESULT:
-  // user1 => ["first": Ada, "last": Lovelace, "born": 1815]
-  // user2 => ["first": Alan, "middle": Mathison, "last": Turing, "born": 1912]
   // [END get_collection]
 }
 
@@ -177,10 +184,11 @@
 
 - (void)setDocument {
   // [START set_document]
-  // Add a new document in collection "cities" with ID "DC"
-  [[[self.db collectionWithPath:@"cities"] documentWithPath:@"DC"] setData:@{
-    @"name": @"Washington D.C",
-    @"weather": @"politically stormy"
+  // Add a new document in collection "cities"
+  [[[self.db collectionWithPath:@"cities"] documentWithPath:@"LA"] setData:@{
+    @"name": @"Los Angeles",
+    @"state": @"CA",
+    @"country": @"USA"
   } completion:^(NSError * _Nullable error) {
     if (error != nil) {
       NSLog(@"Error writing document: %@", error);
@@ -220,9 +228,10 @@
 }
 
 - (void)setData {
+  NSDictionary *data = @{ @"name": @"Beijing" };
   // [START set_data]
   [[[self.db collectionWithPath:@"cities"] documentWithPath:@"new-city-id"]
-      setData:@{ @"name": @"Beijing" }];
+      setData:data];
   // [END set_data]
 }
 
@@ -231,8 +240,8 @@
   // Add a new document with a generated id.
   __block FIRDocumentReference *ref =
       [[self.db collectionWithPath:@"cities"] addDocumentWithData:@{
-        @"name": @"Denver",
-        @"weather": @"rocky"
+        @"name": @"Tokyo",
+        @"country": @"Japan"
       } completion:^(NSError * _Nullable error) {
         if (error != nil) {
           NSLog(@"Error adding document: %@", error);
@@ -255,9 +264,9 @@
   // [START update_document]
   FIRDocumentReference *washingtonRef =
       [[self.db collectionWithPath:@"cities"] documentWithPath:@"DC"];
-  // Set the "isCapital" field of the city 'DC'
+  // Set the "capital" field of the city
   [washingtonRef updateData:@{
-    @"isCapital": @YES
+    @"capital": @YES
   } completion:^(NSError * _Nullable error) {
     if (error != nil) {
       NSLog(@"Error updating document: %@", error);
@@ -270,11 +279,11 @@
 
 - (void)createIfMissing {
   // [START create_if_missing]
-  // Update the population, creating the document if it does not exist.
-  FIRUpdateOptions *createIfMissing = [[FIRUpdateOptions options] createIfMissing:YES];
-  [[[self.db collectionWithPath:@"cities"] documentWithPath:@"Beijing"]
-       updateData:@{ @"isCapital": @YES }
-       options:createIfMissing
+  // Write to the document reference, merging data with existing
+  // if the document already exists
+  [[[self.db collectionWithPath:@"cities"] documentWithPath:@"BJ"]
+       setData:@{ @"capital": @YES }
+       options:[FIRSetOptions merge]
        completion:^(NSError * _Nullable error) {
          // ...
        }];
@@ -361,8 +370,8 @@
 
 - (void)deleteField {
   // [START delete_field]
-  [[[self.db collectionWithPath:@"users"] documentWithPath:@"frank"] updateData:@{
-    @"age": [FIRFieldValue fieldValueForDelete]
+  [[[self.db collectionWithPath:@"cities"] documentWithPath:@"BJ"] updateData:@{
+    @"capital": [FIRFieldValue fieldValueForDelete]
   } completion:^(NSError * _Nullable error) {
     if (error != nil) {
       NSLog(@"Error updating document: %@", error);
@@ -375,7 +384,7 @@
 
 - (void)serverTimestamp {
   // [START server_timestamp]
-  [[[self.db collectionWithPath:@"users"] documentWithPath:@"frank"] updateData:@{
+  [[[self.db collectionWithPath:@"objects"] documentWithPath:@"some-id"] updateData:@{
     @"lastUpdated": [FIRFieldValue fieldValueForServerTimestamp]
   } completion:^(NSError * _Nullable error) {
     if (error != nil) {
@@ -457,18 +466,22 @@
   // [START write_batch]
   // Get new write batch
   FIRWriteBatch *batch = [self.db batch];
+
   // Set the value of 'NYC'
   FIRDocumentReference *nycRef =
       [[self.db collectionWithPath:@"cities"] documentWithPath:@"NYC"];
   [batch setData:@{} forDocument:nycRef];
+
   // Update the population of 'SF'
   FIRDocumentReference *sfRef =
       [[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"];
   [batch updateData:@{ @"population": @1000000 } forDocument:sfRef];
+
   // Delete the city 'LA'
   FIRDocumentReference *laRef =
       [[self.db collectionWithPath:@"cities"] documentWithPath:@"LA"];
   [batch deleteDocument:laRef];
+
   // Commit the batch
   [batch commitWithCompletion:^(NSError * _Nullable error) {
     if (error != nil) {
@@ -490,21 +503,34 @@
   [[citiesRef documentWithPath:@"SF"] setData:@{
     @"name": @"San Francisco",
     @"state": @"CA",
-    @"population": @864816
+    @"country": @"USA",
+    @"capital": @(NO),
+    @"population": @860000
   }];
-  [[citiesRef documentWithPath:@"MTV"] setData:@{
-    @"name": @"Mountain View",
+  [[citiesRef documentWithPath:@"LA"] setData:@{
+    @"name": @"Los Angeles",
     @"state": @"CA",
-    @"population": @74066
-  }];
-  [[citiesRef documentWithPath:@"DEN"] setData:@{
-    @"name": @"Denver",
-    @"state": @"CA",
-    @"population": @600158
+    @"country": @"USA",
+    @"capital": @(NO),
+    @"population": @3900000
   }];
   [[citiesRef documentWithPath:@"DC"] setData:@{
     @"name": @"Washington D.C.",
-    @"population": @672228
+    @"country": @"USA",
+    @"capital": @(YES),
+    @"population": @680000
+  }];
+  [[citiesRef documentWithPath:@"TOK"] setData:@{
+    @"name": @"Tokyo",
+    @"country": @"Japan",
+    @"capital": @(YES),
+    @"population": @9000000
+  }];
+  [[citiesRef documentWithPath:@"BJ"] setData:@{
+    @"name": @"Beijing",
+    @"country": @"China",
+    @"capital": @(YES),
+    @"population": @21500000
   }];
   // [END example_data]
 }
@@ -520,15 +546,13 @@
       NSLog(@"Document does not exist");
     }
   }];
-  // RESULT:
-  // Document data: ["state": CA, "name": San Francisco, "population": 864816]
   // [END get_document]
 }
 
 - (void)customClassGetDocument {
   // [START custom_type]
   FIRDocumentReference *docRef =
-  [[self.db collectionWithPath:@"cities"] documentWithPath:@"Beijing"];
+  [[self.db collectionWithPath:@"cities"] documentWithPath:@"BJ"];
   [docRef getDocumentWithCompletion:^(FIRDocumentSnapshot *snapshot, NSError *error) {
     FSTCity *city = [[FSTCity alloc] initWithDictionary:snapshot.data];
     if (city != nil) {
@@ -550,18 +574,6 @@
         }
         NSLog(@"Current data: %@", snapshot.data);
       }];
-  // After 2 seconds, make an update so our listener will fire again.
-  dispatch_time_t deadline = dispatch_time(0, 2 * NSEC_PER_SEC);
-  dispatch_after(deadline, dispatch_get_main_queue(), ^{
-    [[[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"] updateData:@{
-      @"population": @999999
-    }];
-  });
-  // RESULT:
-  // Current data: ["state": CA, "name": San Francisco, "population": 864816]
-  //
-  // Current data: ["state": CA, "name": San Francisco, "population": 999999]
-  // Current data: ["state": CA, "name": San Francisco, "population": 999999]
   // [END listen_document]
 }
 
@@ -576,23 +588,12 @@
         NSString *source = snapshot.metadata.hasPendingWrites ? @"Local" : @"Server";
         NSLog(@"%@ data: %@", source, snapshot.data);
       }];
-  // After 2 seconds, make an update so our listener will fire again.
-  dispatch_time_t deadline = dispatch_time(0, 2 * NSEC_PER_SEC);
-  dispatch_after(deadline, dispatch_get_main_queue(), ^{
-    [[[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"] updateData:@{
-      @"population": @1000000
-    }];
-  });
-  // RESULT:
-  // Server data: ["state": CA, "name": San Francisco, "population": 999999]
-  // Local data: ["state": CA, "name": San Francisco, "population": 1000000]
-  // Server data: ["state": CA, "name": San Francisco, "population": 1000000]
   // [END listen_document_local]
 }
 
 - (void)getMultiple {
   // [START get_multiple]
-  [[[self.db collectionWithPath:@"cities"] queryWhereField:@"state" isEqualTo:@"CA"]
+  [[[self.db collectionWithPath:@"cities"] queryWhereField:@"capital" isEqualTo:@(YES)]
       getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
         if (error != nil) {
           NSLog(@"Error getting documents: %@", error);
@@ -602,9 +603,6 @@
           }
         }
       }];
-  // RESULT:
-  // MTV => ["state": CA, "name": Mountain View, "population": 74066]
-  // SF => ["state": CA, "name": San Francisco, "population": 864816]
   // [END get_multiple]
 }
 
@@ -620,11 +618,6 @@
           }
         }
       }];
-  // RESULT:
-  // DC => ["population": 672228, "name": Washington, D.C.]
-  // DEN => ["state": CO, "name": Denver, "population": 600158]
-  // MTV => ["state": CA, "name": Mountain View, "population": 74066]
-  // SF => ["state": CA, "name": San Francisco, "population": 864816]
   // [END get_multiple_all]
 }
 
@@ -642,19 +635,6 @@
         }
         NSLog(@"Current cities in CA: %@", cities);
       }];
-  // After 2 seconds, make an update so our listener will fire again.
-  dispatch_time_t deadline = dispatch_time(0, 2 * NSEC_PER_SEC);
-  dispatch_after(deadline, dispatch_get_main_queue(), ^{
-    [[[self.db collectionWithPath:@"cities"] documentWithPath:@"LA"] setData:@{
-      @"name": @"Los Angeles",
-      @"state": @"CA",
-      @"population": @403094
-    }];
-  });
-  // RESULT:
-  // Current cities in CA: [Mountain View, San Francisco]
-  //
-  // Current cities in CA: [Los Angeles, Mountain View, San Francisco]
   // [END listen_multiple]
 }
 
@@ -678,16 +658,6 @@
           }
         }
       }];
-  // After 2 seconds, let's delete LA
-  dispatch_time_t deadline = dispatch_time(0, 2 * NSEC_PER_SEC);
-  dispatch_after(deadline, dispatch_get_main_queue(), ^{
-    [[[self.db collectionWithPath:@"cities"] documentWithPath:@"LA"] deleteDocument];
-  });
-  // RESULT:
-  // New city: ["state": CA, "name": Los Angeles, "population": 4030904]
-  // New city: ["state": CA, "name": Mountain View, "population": 74066]
-  // New city: ["state": CA, "name": San Francisco, "population": 864816]
-  // Removed city: ["state": CA, "name": Los Angeles, "population": 4030904]
   // [END listen_diffs]
 }
 
@@ -708,10 +678,6 @@
           }
         }
       }];
-  // RESULT:
-  // New city: ["state": CA, "name": Mountain View, "population": 74066]
-  // New city: ["state": CA, "name": San Francisco, "population": 864816]
-  // Got initial state.
   // [END listen_state]
 }
 
@@ -840,7 +806,7 @@
 - (void)invalidFilterAndOrder {
   FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
   // [START invalid_filter_and_order]
-  [[citiesRef queryWhereField:@"population" isGreaterThan:@100000] queryOrderedByField:@"state"];
+  [[citiesRef queryWhereField:@"population" isGreaterThan:@100000] queryOrderedByField:@"country"];
   // [END invalid_filter_and_order]
 }
 
@@ -885,11 +851,6 @@
         NSString *source = snapshot.metadata.isFromCache ? @"local cache" : @"server";
         NSLog(@"Metadata: Data fetched from %@", source);
       }];
-  // RESULT:
-  // New city: ["state": CA, "name": Mountain View, "population": 74066]
-  // New city: ["state": CA, "name": San Francisco, "population": 864816]
-  // Metadata: Data fetched from local cache
-  // Metadata: Data fetched from server (if online)
   // [END listen_to_offline]
 }
 

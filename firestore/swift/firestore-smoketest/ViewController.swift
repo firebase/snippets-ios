@@ -26,15 +26,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Access a Cloud Firestore database instance
-        // TODO(samstern): Should not hard-code project ID
-        // TODO(samstern): Should not need to use staging host
-
-        let host = "staging-firestore.sandbox.googleapis.com"
-
         // [START setup]
         let settings = FirestoreSettings()
-        settings.host = host
 
         Firestore.firestore().settings = settings
         // [END setup]
@@ -189,10 +182,6 @@ class ViewController: UIViewController {
                 }
             }
         }
-
-        // RESULT:
-        // user1 => ["first": Ada, "last": Lovelace, "born": 1815]
-        // user2 => ["first": Alan, "middle": Mathison, "last": Turing, "born": 1912]
         // [END get_collection]
     }
 
@@ -249,10 +238,11 @@ class ViewController: UIViewController {
 
     private func setDocument() {
         // [START set_document]
-        // Add a new document in collection "cities" with ID "DC"
-        db.collection("cities").document("DC").setData([
-            "name": "Washington D.C.",
-            "weather": "politically stormy"
+        // Add a new document in collection "cities"
+        db.collection("cities").document("LA").setData([
+            "name": "Los Angeles",
+            "state": "CA",
+            "country": "USA"
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
@@ -290,8 +280,10 @@ class ViewController: UIViewController {
     }
 
     private func setData() {
+        let data: [String: Any] = [:]
+
         // [START set_data]
-        db.collection("cities").document("new-city-id").setData([ "name": "Beijing" ])
+        db.collection("cities").document("new-city-id").setData(data)
         // [END set_data]
     }
 
@@ -300,8 +292,8 @@ class ViewController: UIViewController {
         // Add a new document with a generated id.
         var ref: DocumentReference? = nil
         ref = db.collection("cities").addDocument(data: [
-            "name": "Denver",
-            "weather": "rocky"
+            "name": "Tokyo",
+            "country": "Japan"
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -314,24 +306,24 @@ class ViewController: UIViewController {
 
     private func newDocument() {
         // [START new_document]
-        let newCityRef = db.collection("cities").document();
+        let newCityRef = db.collection("cities").document()
 
         // later...
         newCityRef.setData([
             // [START_EXCLUDE]
             "name": "Some City Name"
             // [END_EXCLUDE]
-        ]);
+        ])
         // [END new_document]
     }
 
     private func updateDocument() {
         // [START update_document]
-        let washingtonRef = db.collection("cities").document("DC");
+        let washingtonRef = db.collection("cities").document("DC")
 
-        // Set the "isCapital" field of the city 'DC'
+        // Set the "capital" field of the city 'DC'
         washingtonRef.updateData([
-            "isCapital": true
+            "capital": true
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
@@ -344,20 +336,20 @@ class ViewController: UIViewController {
 
     private func createIfMissing() {
         // [START create_if_missing]
-        // Update the population, creating the document if it does not exist.
-      db.collection("cities").document("Beijing").setData([ "isCapital": true ], options: SetOptions.merge())
+        // Update one field, creating the document if it does not exist.
+        db.collection("cities").document("BJ").setData([ "capital": true ], options: SetOptions.merge())
         // [END create_if_missing]
     }
 
     private func updateDocumentNested() {
         // [START update_document_nested]
         // Create an initial document to update.
-        let frankDocRef = db.collection("users").document("frank");
+        let frankDocRef = db.collection("users").document("frank")
         frankDocRef.setData([
             "name": "Frank",
             "favorites": [ "food": "Pizza", "color": "Blue", "subject": "recess" ],
             "age": 12
-            ]);
+            ])
 
         // To update age and favorite color:
         db.collection("users").document("frank").updateData([
@@ -421,8 +413,8 @@ class ViewController: UIViewController {
 
     private func deleteField() {
         // [START delete_field]
-        db.collection("users").document("frank").updateData([
-            "age": FieldValue.delete(),
+        db.collection("cities").document("BJ").updateData([
+            "capital": FieldValue.delete(),
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
@@ -435,7 +427,7 @@ class ViewController: UIViewController {
 
     private func serverTimestamp() {
         // [START server_timestamp]
-        db.collection("users").document("frank").updateData([
+        db.collection("objects").document("some-id").updateData([
             "lastUpdated": FieldValue.serverTimestamp(),
         ]) { err in
             if let err = err {
@@ -571,28 +563,41 @@ class ViewController: UIViewController {
         citiesRef.document("SF").setData([
             "name": "San Francisco",
             "state": "CA",
-            "population": 864816
+            "country": "USA",
+            "capital": false,
+            "population": 860000
             ])
-        citiesRef.document("MTV").setData([
-            "name": "Mountain View",
+        citiesRef.document("LA").setData([
+            "name": "Los Angeles",
             "state": "CA",
-            "population": 74066
-            ])
-        citiesRef.document("DEN").setData([
-            "name": "Denver",
-            "state": "CO",
-            "population": 600158
+            "country": "USA",
+            "capital": false,
+            "population": 3900000
             ])
         citiesRef.document("DC").setData([
-            "name": "Washington, D.C.",
-            "population": 672228
+            "name": "Washington D.C.",
+            "country": "USA",
+            "capital": true,
+            "population": 680000
+            ])
+        citiesRef.document("TOK").setData([
+            "name": "Tokyo",
+            "country": "Japan",
+            "capital": true,
+            "population": 9000000
+            ])
+        citiesRef.document("BJ").setData([
+            "name": "Beijing",
+            "country": "China",
+            "capital": true,
+            "population": 21500000
             ])
         // [END example_data]
     }
 
     private func getDocument() {
         // [START get_document]
-        let docRef = db.collection("cities").document("SF");
+        let docRef = db.collection("cities").document("SF")
 
         docRef.getDocument { (document, error) in
             if let document = document {
@@ -601,15 +606,12 @@ class ViewController: UIViewController {
                 print("Document does not exist")
             }
         }
-
-        // RESULT:
-        // Document data: ["state": CA, "name": San Francisco, "population": 864816]
         // [END get_document]
     }
 
     private func customClassGetDocument() {
         // [START custom_type]
-        let docRef = db.collection("cities").document("Beijing");
+        let docRef = db.collection("cities").document("BJ")
 
         docRef.getDocument { (document, error) in
             if let city = document.flatMap({ City(dictionary: $0.data()) }) {
@@ -631,20 +633,6 @@ class ViewController: UIViewController {
               }
               print("Current data: \(document.data())")
             }
-
-        // After 2 seconds, make an update so our listener will fire again.
-        let deadlineTime = DispatchTime.now() + .seconds(2)
-        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-            self.db.collection("cities").document("SF").updateData([
-                "population": 999999
-                ])
-        }
-
-        // RESULT:
-        // Current data: ["state": CA, "name": San Francisco, "population": 864816]
-        //
-        // Current data: ["state": CA, "name": San Francisco, "population": 999999]
-        // Current data: ["state": CA, "name": San Francisco, "population": 999999]
         // [END listen_document]
     }
 
@@ -659,26 +647,12 @@ class ViewController: UIViewController {
                 let source = document.metadata.hasPendingWrites ? "Local" : "Server"
                 print("\(source) data: \(document.data())")
             }
-
-        // After 2 seconds, make an update so our listener will fire again.
-        let deadlineTime = DispatchTime.now() + .seconds(2)
-        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-            self.db.collection("cities").document("SF").updateData([
-                "population": 1000000
-                ])
-        }
-
-        // RESULT:
-        // Server data: ["state": CA, "name": San Francisco, "population": 999999]
-
-        // Local data: ["state": CA, "name": San Francisco, "population": 1000000]
-        // Server data: ["state": CA, "name": San Francisco, "population": 1000000]
         // [END listen_document_local]
     }
 
     private func getMultiple() {
         // [START get_multiple]
-        db.collection("cities").whereField("state", isEqualTo: "CA")
+        db.collection("cities").whereField("capital", isEqualTo: true)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -688,10 +662,6 @@ class ViewController: UIViewController {
                     }
                 }
         }
-
-        // RESULT:
-        // MTV => ["state": CA, "name": Mountain View, "population": 74066]
-        // SF => ["state": CA, "name": San Francisco, "population": 864816]
         // [END get_multiple]
     }
 
@@ -706,12 +676,6 @@ class ViewController: UIViewController {
                 }
             }
         }
-
-        // RESULT:
-        // DC => ["population": 672228, "name": Washington, D.C.]
-        // DEN => ["state": CO, "name": Denver, "population": 600158]
-        // MTV => ["state": CA, "name": Mountain View, "population": 74066]
-        // SF => ["state": CA, "name": San Francisco, "population": 864816]
         // [END get_multiple_all]
     }
 
@@ -726,21 +690,6 @@ class ViewController: UIViewController {
                 let cities = documents.map { $0["name"]! }
                 print("Current cities in CA: \(cities)")
             }
-
-        // After 2 seconds, make an update so our listener will fire again.
-        let deadlineTime = DispatchTime.now() + .seconds(2)
-        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-            self.db.collection("cities").document("LA").setData([
-                "name": "Los Angeles",
-                "state": "CA",
-                "population": 4030904
-                ])
-        }
-
-        // RESULT:
-        // Current cities in CA: [Mountain View, San Francisco]
-        //
-        // Current cities in CA: [Los Angeles, Mountain View, San Francisco]
         // [END listen_multiple]
     }
 
@@ -764,19 +713,6 @@ class ViewController: UIViewController {
                     }
                 }
             }
-
-        // After 2 seconds, let's delete LA
-        let deadlineTime = DispatchTime.now() + .seconds(2)
-        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-            self.db.collection("cities").document("LA").delete()
-        }
-
-        // RESULT:
-        // New city: ["state": CA, "name": Los Angeles, "population": 4030904]
-        // New city: ["state": CA, "name": Mountain View, "population": 74066]
-        // New city: ["state": CA, "name": San Francisco, "population": 864816]
-
-        // Removed city: ["state": CA, "name": Los Angeles, "population": 4030904]
         // [END listen_diffs]
     }
 
@@ -798,11 +734,6 @@ class ViewController: UIViewController {
                     print("Synced with server state.")
                 }
             }
-
-        // RESULT:
-        // New city: ["state": CA, "name": Mountain View, "population": 74066]
-        // New city: ["state": CA, "name": San Francisco, "population": 864816]
-        // Got initial state.
         // [END listen_state]
     }
 
@@ -953,7 +884,7 @@ class ViewController: UIViewController {
         // [START invalid_filter_and_order]
         citiesRef
             .whereField("population", isGreaterThan: 100000)
-            .order(by: "state")
+            .order(by: "country")
         // [END invalid_filter_and_order]
     }
 
@@ -1000,12 +931,6 @@ class ViewController: UIViewController {
                 let source = snapshot.metadata.isFromCache ? "local cache" : "server"
                 print("Metadata: Data fetched from \(source)")
         }
-
-        // RESULT:
-        // New city: ["state": CA, "name": Mountain View, "population": 74066]
-        // New city: ["state": CA, "name": San Francisco, "population": 864816]
-        // Metadata: Data fetched from local cache
-        // Metadata: Data fetched from server (if online)
         // [END listen_to_offline]
     }
 
@@ -1105,10 +1030,19 @@ class ViewController: UIViewController {
 fileprivate struct City {
 
     let name: String
+    let state: String?
+    let country: String?
+    let capital: Bool?
+    let population: Int64?
 
     init?(dictionary: [String: Any]) {
         guard let name = dictionary["name"] as? String else { return nil }
         self.name = name
+
+        self.state = dictionary["state"] as? String
+        self.country = dictionary["country"] as? String
+        self.capital = dictionary["capital"] as? Bool
+        self.population = dictionary["population"] as? Int64
     }
 
 }

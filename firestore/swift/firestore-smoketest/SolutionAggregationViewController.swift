@@ -77,8 +77,8 @@ class SolutionAggregationViewController: UIViewController {
 
                 // Compute new average rating
                 let avgRating = restaurantData["avgRating"] as! Float
-                let oldRatingTotal = avgRating * Float(numRatings);
-                let newAvgRating = (oldRatingTotal + rating) / Float(newNumRatings);
+                let oldRatingTotal = avgRating * Float(numRatings)
+                let newAvgRating = (oldRatingTotal + rating) / Float(newNumRatings)
 
                 // Set new restaurant info
                 restaurantData["numRatings"] = newNumRatings
