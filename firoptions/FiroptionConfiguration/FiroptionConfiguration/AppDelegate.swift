@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // [START default_configure_file]
     // Load a named file.
     let filePath = Bundle.main.path(forResource: "MyGoogleService", ofType: "plist")
-    guard let fileopts = FirebaseOptions.init(contentsOfFile: filePath!)
+    guard let fileopts = FirebaseOptions(contentsOfFile: filePath!)
       else { assert(false, "Couldn't load config file") }
     FirebaseApp.configure(options: fileopts)
     // [END default_configure_file]
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Note: this one is not deleted, so is the default below.
     // [START default_configure_vars]
     // Configure with manual options.
-    let secondaryOptions = FirebaseOptions.init(googleAppID: "1:27992087142:ios:2a4732a34787067a", gcmSenderID: "27992087142")
+    let secondaryOptions = FirebaseOptions(googleAppID: "1:27992087142:ios:2a4732a34787067a", gcmSenderID: "27992087142")
     secondaryOptions.bundleID = "com.google.firebase.devrel.FiroptionConfiguration"
     secondaryOptions.apiKey = "AIzaSyBicqfAZPvMgC7NZkjayUEsrepxuXzZDsk"
     secondaryOptions.clientID = "27992087142-ola6qe637ulk8780vl8mo5vogegkm23n.apps.googleusercontent.com"
