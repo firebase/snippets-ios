@@ -451,7 +451,7 @@ class ViewController: UIViewController {
                 return nil
             }
 
-            guard let oldPopulation = sfDocument.data()!["population"] as? Int else {
+            guard let oldPopulation = sfDocument.data()?["population"] as? Int else {
                 let error = NSError(
                     domain: "AppErrorDomain",
                     code: -1,
@@ -488,7 +488,7 @@ class ViewController: UIViewController {
                 return nil
             }
 
-            guard let oldPopulation = sfDocument.data()!["population"] as? Int else {
+            guard let oldPopulation = sfDocument.data()?["population"] as? Int else {
                 let error = NSError(
                     domain: "AppErrorDomain",
                     code: -1,

@@ -68,7 +68,8 @@ class SolutionAggregationViewController: UIViewController {
 
         db.runTransaction({ (transaction, errorPointer) -> Any? in
             do {
-                var restaurantData = try transaction.getDocument(restaurantRef).data()!
+                let restaurantDocument = try transaction.getDocument(restaurantRef).data()
+                guard var restaurantData = restaurantDocument else { return nil }
 
                 // Compute new number of ratings
                 let numRatings = restaurantData["numRatings"] as! Int
