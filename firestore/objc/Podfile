@@ -8,7 +8,7 @@ target 'firestore-smoketest-objc' do
   # Pods for firestore-smoketest
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
-  pod 'Firestore', :podspec => 'https://storage.googleapis.com/firebase-preview-drop/ios/firestore/0.7.0/Firestore.podspec.json'
+  pod 'Firebase/Firestore'
 
   target 'firestore-smoketest-objcTests' do
     inherit! :search_paths

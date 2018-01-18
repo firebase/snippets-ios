@@ -17,7 +17,6 @@
 import UIKit
 
 import Firebase
-import Firestore
 
 class SolutionAggregationViewController: UIViewController {
 
@@ -69,7 +68,7 @@ class SolutionAggregationViewController: UIViewController {
 
         db.runTransaction({ (transaction, errorPointer) -> Any? in
             do {
-                var restaurantData = try transaction.getDocument(restaurantRef).data()
+                var restaurantData = try transaction.getDocument(restaurantRef).data()!
 
                 // Compute new number of ratings
                 let numRatings = restaurantData["numRatings"] as! Int

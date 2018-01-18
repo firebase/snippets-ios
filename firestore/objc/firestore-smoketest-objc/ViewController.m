@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-@import Firestore;
+@import Firebase;
 
 #import "ViewController.h"
 

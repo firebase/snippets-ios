@@ -17,7 +17,6 @@
 import UIKit
 
 import Firebase
-import Firestore
 
 class SolutionCountersController: UIViewController {
 
@@ -67,7 +66,7 @@ class SolutionCountersController: UIViewController {
         // Update count in a transaction
         db.runTransaction({ (transaction, errorPointer) -> Any? in
             do {
-                let shardData = try transaction.getDocument(shardRef).data()
+                let shardData = try transaction.getDocument(shardRef).data()!
                 let shardCount = shardData["count"] as! Int
                 transaction.updateData(["count": shardCount + 1], forDocument: shardRef)
             } catch {

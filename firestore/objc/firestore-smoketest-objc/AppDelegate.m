@@ -16,7 +16,7 @@
 
 #import "AppDelegate.h"
 
-@import Firestore;
+@import Firebase;
 
 @interface AppDelegate ()
 
@@ -26,6 +26,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [FIRApp configure];
   // [START default_firestore]
   FIRFirestore *defaultFirestore = [FIRFirestore firestore];
   // [END default_firestore]

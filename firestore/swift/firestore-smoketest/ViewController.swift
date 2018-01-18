@@ -17,7 +17,6 @@
 import UIKit
 
 import Firebase
-import Firestore
 
 class ViewController: UIViewController {
 
@@ -452,7 +451,7 @@ class ViewController: UIViewController {
                 return nil
             }
 
-            guard let oldPopulation = sfDocument.data()["population"] as? Int else {
+            guard let oldPopulation = sfDocument.data()!["population"] as? Int else {
                 let error = NSError(
                     domain: "AppErrorDomain",
                     code: -1,
@@ -489,7 +488,7 @@ class ViewController: UIViewController {
                 return nil
             }
 
-            guard let oldPopulation = sfDocument.data()["population"] as? Int else {
+            guard let oldPopulation = sfDocument.data()!["population"] as? Int else {
                 let error = NSError(
                     domain: "AppErrorDomain",
                     code: -1,
@@ -614,7 +613,11 @@ class ViewController: UIViewController {
         let docRef = db.collection("cities").document("BJ")
 
         docRef.getDocument { (document, error) in
-            if let city = document.flatMap({ City(dictionary: $0.data()) }) {
+            if let city = document.flatMap({
+              $0.data().flatMap({ (data) in
+                return City(dictionary: data)
+              })
+            }) {
                 print("City: \(city)")
             } else {
                 print("Document does not exist")
