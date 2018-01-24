@@ -60,6 +60,7 @@ class ViewController: UIViewController {
         deleteCollection()
         deleteField()
         serverTimestamp()
+        serverTimestampOptions()
         simpleTransaction()
         transaction()
         writeBatch()
@@ -101,6 +102,7 @@ class ViewController: UIViewController {
         // Can't run this since it throws a fatal error
         // enableOffline()
         listenToOffline()
+        toggleOffline()
 
         // Cursors
         simpleCursor()
@@ -436,6 +438,24 @@ class ViewController: UIViewController {
             }
         }
         // [END server_timestamp]
+    }
+
+    private func serverTimestampOptions() {
+        // [START server_timestamp_options]
+        let options = SnapshotOptions.serverTimestampBehavior(.estimate)
+
+        // Perform an update followed by an immediate read without waiting for the update to
+        // complete. Due to the snapshot options we will get two results: one with an estimated
+        // timestamp and one with a resolved server timestamp.
+        let docRef = db.collection("objects").document("some-id")
+        docRef.updateData(["timestamp": FieldValue.serverTimestamp()])
+
+        docRef.addSnapshotListener { (snapshot, error) in
+            guard let timestamp = snapshot?.data(with: options)?["timestamp"] else { return }
+            guard let pendingWrites = snapshot?.metadata.hasPendingWrites else { return }
+            print("Timestamp: \(timestamp), pending: \(pendingWrites)")
+        }
+        // [END server_timestamp_options]
     }
 
     private func simpleTransaction() {
@@ -935,6 +955,22 @@ class ViewController: UIViewController {
                 print("Metadata: Data fetched from \(source)")
         }
         // [END listen_to_offline]
+    }
+
+    private func toggleOffline() {
+        // [START disable_network]
+        Firestore.firestore().disableNetwork { (error) in
+            // Do offline things
+            // ...
+        }
+        // [END disable_network]
+
+        // [START enable_network]
+        Firestore.firestore().enableNetwork { (error) in
+            // Do online things
+            // ...
+        }
+        // [END enable_network]
     }
 
     // =======================================================================================
