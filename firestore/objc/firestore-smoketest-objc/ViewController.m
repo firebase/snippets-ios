@@ -396,6 +396,29 @@
   // [END server_timestamp]
 }
 
+- (void)serverTimestampOptions {
+  // [START server_timestamp_options]
+  FIRSnapshotOptions *options =
+      [FIRSnapshotOptions serverTimestampBehavior:FIRServerTimestampBehaviorEstimate];
+  FIRDocumentReference *docRef =
+      [[self.db collectionWithPath:@"objects"] documentWithPath:@"some-id"];
+
+  // Perform an update followed by an immediate read without waiting for the update to complete.
+  // Due to the snapshot options we will get two results: one with an estimated timestamp and
+  // one with the resolved server timestamp.
+  [docRef updateData:@{
+    @"timestamp": [FIRFieldValue fieldValueForServerTimestamp],
+  }];
+  [docRef addSnapshotListener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
+    NSDictionary<NSString *, id> *data = [snapshot dataWithOptions:options];
+    NSDate *timestamp = data[@"timestamp"];
+    NSLog(@"Timestamp: %@, pending: %@",
+          timestamp,
+          snapshot.metadata.hasPendingWrites ? @"YES" : @"NO");
+  }];
+  // [END server_timestamp_options]
+}
+
 - (void)simpleTransaction {
   // [START simple_transaction]
   FIRDocumentReference *sfReference =
@@ -852,6 +875,22 @@
         NSLog(@"Metadata: Data fetched from %@", source);
       }];
   // [END listen_to_offline]
+}
+
+- (void)toggleOffline {
+  // [START disable_network]
+  [[FIRFirestore firestore] disableNetworkWithCompletion:^(NSError *_Nullable error) {
+    // Do offline actions
+    // ...
+  }];
+  // [END disable_network]
+
+  // [START enable_network]
+  [[FIRFirestore firestore] enableNetworkWithCompletion:^(NSError *_Nullable error) {
+    // Do online actions
+    // ...
+  }];
+  // [END enable_network]
 }
 
 // =======================================================================================
