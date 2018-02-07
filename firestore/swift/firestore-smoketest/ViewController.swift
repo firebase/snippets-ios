@@ -71,7 +71,7 @@ class ViewController: UIViewController {
         customClassGetDocument()
         listenDocument()
         listenDocumentLocal()
-        listenDocumentOptions()
+        listenWithMetadata()
         getMultiple()
         getMultipleAll()
         listenMultiple()
@@ -674,7 +674,7 @@ class ViewController: UIViewController {
         // [END listen_document_local]
     }
 
-    private func listenDocumentOptions() {
+    private func listenWithMetadata() {
       // [START listen_with_metadata]
       // Listen to document metadata.
       let options = DocumentListenOptions().includeMetadataChanges(true);
