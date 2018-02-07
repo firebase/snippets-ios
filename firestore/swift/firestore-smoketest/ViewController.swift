@@ -71,6 +71,7 @@ class ViewController: UIViewController {
         customClassGetDocument()
         listenDocument()
         listenDocumentLocal()
+        listenDocumentOptions()
         getMultiple()
         getMultipleAll()
         listenMultiple()
@@ -671,6 +672,18 @@ class ViewController: UIViewController {
                 print("\(source) data: \(document.data())")
             }
         // [END listen_document_local]
+    }
+
+    private func listenDocumentOptions() {
+      // [START listen_with_metadata]
+      // Listen to document metadata.
+      let options = DocumentListenOptions().includeMetadataChanges(true);
+
+      db.collection("cities").document("SF")
+        .addSnapshotListener(options:options, listener: { documentSnapshot, error in
+          // ...
+      })
+      // [END listen_with_metadata]
     }
 
     private func getMultiple() {
