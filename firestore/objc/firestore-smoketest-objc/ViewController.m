@@ -614,6 +614,18 @@
   // [END listen_document_local]
 }
 
+- (void)listenWithMetadata {
+  // [START listen_with_metadata]
+  // Listen for metadata changes.
+  FIRDocumentListenOptions *options = [[FIRDocumentListenOptions init] includeMetadataChanges:true]
+
+  [[[[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"]
+   addSnapshotListenerWithOptions:options listener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
+     // ...
+   }]];
+  // [END listen_with_metadata]
+}
+
 - (void)getMultiple {
   // [START get_multiple]
   [[[self.db collectionWithPath:@"cities"] queryWhereField:@"capital" isEqualTo:@(YES)]
