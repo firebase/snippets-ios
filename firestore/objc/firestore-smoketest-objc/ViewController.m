@@ -617,7 +617,7 @@
 - (void)listenWithMetadata {
   // [START listen_with_metadata]
   // Listen for metadata changes.
-  FIRDocumentListenOptions *options = [[FIRDocumentListenOptions init] includeMetadataChanges: true]
+  FIRDocumentListenOptions *options = [[FIRDocumentListenOptions init] includeMetadataChanges:true]
 
   [[[[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"]
    addSnapshotListenerWithOptions:options listener:^(FIRDocumentSnapshot *snapshot, NSError *error) {

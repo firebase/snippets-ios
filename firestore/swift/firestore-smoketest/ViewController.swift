@@ -675,15 +675,15 @@ class ViewController: UIViewController {
     }
 
     private func listenWithMetadata() {
-      // [START listen_with_metadata]
-      // Listen to document metadata.
-      let options = DocumentListenOptions().includeMetadataChanges(true);
+        // [START listen_with_metadata]
+        // Listen to document metadata.
+        let options = DocumentListenOptions().includeMetadataChanges(true);
 
-      db.collection("cities").document("SF")
-        .addSnapshotListener(options:options, listener: { documentSnapshot, error in
-          // ...
-      })
-      // [END listen_with_metadata]
+        db.collection("cities").document("SF")
+            .addSnapshotListener(options: options) { documentSnapshot, error in
+                // ...
+            }
+        // [END listen_with_metadata]
     }
 
     private func getMultiple() {
