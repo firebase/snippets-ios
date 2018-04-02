@@ -2,6 +2,7 @@
 use_frameworks!
 platform :ios, '7.0'
 pod 'Firebase/Database'
+pod 'Firebase/Auth'
 
 target 'DatabaseReference' do
 end

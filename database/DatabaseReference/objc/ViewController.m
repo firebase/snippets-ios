@@ -13,12 +13,13 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
 @import Firebase;
 
 #import "ViewController.h"
 
 @interface ViewController ()
+
+@property (strong, nonatomic) FIRDatabaseReference *ref;
 
 @end
 
@@ -140,6 +141,24 @@
     }
   }];
   // [END combined]
+}
+
+- (void)writeNewUser:(FIRUser *)user withName:(NSString *)username {
+  // [START rtdb_write_new_user]
+  [[[_ref child:@"users"] child:user.uid] setValue:@{@"username": username}];
+  // [END rtdb_write_new_user]
+}
+
+- (void)writeNewUserWithCompletion:(FIRUser *)user withName:(NSString *)username {
+  // [START rtdb_write_new_user_completion]
+  [[[_ref child:@"users"] child:user.uid] setValue:@{@"username": username} withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
+    if (error) {
+      NSLog(@"Data could not be saved.");
+    } else {
+      NSLog(@"Data saved successfully.");
+    }
+  }];
+  // [END rtdb_write_new_user_completion]
 }
 
 @end
