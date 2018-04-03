@@ -105,20 +105,20 @@ class ViewController: UIViewController {
 
   func writeNewUser(_ user: Firebase.User, withUsername username: String) {
     // [START rtdb_write_new_user]
-    self.ref.child("users").child(user.uid).setValue(["username": username])
+    ref.child("users").child(user.uid).setValue(["username": username])
     // [END rtdb_write_new_user]
   }
 
   func writeNewUserWithCompletion(_ user: Firebase.User, withUsername username: String) {
     // [START rtdb_write_new_user_completion]
-    self.ref.child("users").child(user.uid).setValue(["username": username], withCompletionBlock: {
+    ref.child("users").child(user.uid).setValue(["username": username]) {
       (error:Error?, ref:DatabaseReference) in
-      if (error != nil) {
-        print("Data could not be saved.")
+      if let error = error {
+        print("Data could not be saved: \(error).")
       } else {
-        print("Data saved successfull!")
+        print("Data saved successfully!")
       }
-    })
+    }
     // [END rtdb_write_new_user_completion]
   }
 }

@@ -153,7 +153,7 @@
   // [START rtdb_write_new_user_completion]
   [[[_ref child:@"users"] child:user.uid] setValue:@{@"username": username} withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
     if (error) {
-      NSLog(@"Data could not be saved.");
+      NSLog(@"Data could not be saved: %@", error);
     } else {
       NSLog(@"Data saved successfully.");
     }
