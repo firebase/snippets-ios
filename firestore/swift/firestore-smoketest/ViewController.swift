@@ -620,8 +620,9 @@ class ViewController: UIViewController {
         let docRef = db.collection("cities").document("SF")
 
         docRef.getDocument { (document, error) in
-            if let document = document {
-                print("Document data: \(document.data())")
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                print("Document data: \(dataDescription)")
             } else {
                 print("Document does not exist")
             }

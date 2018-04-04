@@ -563,7 +563,8 @@
   FIRDocumentReference *docRef =
       [[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"];
   [docRef getDocumentWithCompletion:^(FIRDocumentSnapshot *snapshot, NSError *error) {
-    if (snapshot != nil) {
+    if (snapshot.exists) {
+      // Document data may be nil if the document exists but has no keys or values.
       NSLog(@"Document data: %@", snapshot.data);
     } else {
       NSLog(@"Document does not exist");
