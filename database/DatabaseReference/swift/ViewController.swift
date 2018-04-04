@@ -20,6 +20,8 @@ import Firebase
 
 class ViewController: UIViewController {
 
+  var ref: DatabaseReference!
+
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -101,6 +103,24 @@ class ViewController: UIViewController {
     // [END clock_skew]
   }
 
+  func writeNewUser(_ user: Firebase.User, withUsername username: String) {
+    // [START rtdb_write_new_user]
+    ref.child("users").child(user.uid).setValue(["username": username])
+    // [END rtdb_write_new_user]
+  }
+
+  func writeNewUserWithCompletion(_ user: Firebase.User, withUsername username: String) {
+    // [START rtdb_write_new_user_completion]
+    ref.child("users").child(user.uid).setValue(["username": username]) {
+      (error:Error?, ref:DatabaseReference) in
+      if let error = error {
+        print("Data could not be saved: \(error).")
+      } else {
+        print("Data saved successfully!")
+      }
+    }
+    // [END rtdb_write_new_user_completion]
+  }
 }
 
 func combinedExample() {
