@@ -339,7 +339,7 @@ class ViewController: UIViewController {
     private func createIfMissing() {
         // [START create_if_missing]
         // Update one field, creating the document if it does not exist.
-        db.collection("cities").document("BJ").setData([ "capital": true ], options: SetOptions.merge())
+        db.collection("cities").document("BJ").setData([ "capital": true ], merge: true)
         // [END create_if_missing]
     }
 
@@ -443,8 +443,6 @@ class ViewController: UIViewController {
 
     private func serverTimestampOptions() {
         // [START server_timestamp_options]
-        let options = SnapshotOptions.serverTimestampBehavior(.estimate)
-
         // Perform an update followed by an immediate read without waiting for the update to
         // complete. Due to the snapshot options we will get two results: one with an estimated
         // timestamp and one with a resolved server timestamp.
@@ -452,7 +450,7 @@ class ViewController: UIViewController {
         docRef.updateData(["timestamp": FieldValue.serverTimestamp()])
 
         docRef.addSnapshotListener { (snapshot, error) in
-            guard let timestamp = snapshot?.data(with: options)?["timestamp"] else { return }
+            guard let timestamp = snapshot?.data(with: .estimate)?["timestamp"] else { return }
             guard let pendingWrites = snapshot?.metadata.hasPendingWrites else { return }
             print("Timestamp: \(timestamp), pending: \(pendingWrites)")
         }
@@ -678,10 +676,8 @@ class ViewController: UIViewController {
     private func listenWithMetadata() {
         // [START listen_with_metadata]
         // Listen to document metadata.
-        let options = DocumentListenOptions().includeMetadataChanges(true);
-
         db.collection("cities").document("SF")
-            .addSnapshotListener(options: options) { documentSnapshot, error in
+            .addSnapshotListener(includeMetadataChanges: true) { documentSnapshot, error in
                 // ...
             }
         // [END listen_with_metadata]
@@ -949,11 +945,8 @@ class ViewController: UIViewController {
         // [START listen_to_offline]
         // Listen to metadata updates to receive a server snapshot even if
         // the data is the same as the cached data.
-        let options = QueryListenOptions()
-        options.includeQueryMetadataChanges(true)
-
         db.collection("cities").whereField("state", isEqualTo: "CA")
-            .addSnapshotListener(options: options) { querySnapshot, error in
+            .addSnapshotListener(includeMetadataChanges: true) { querySnapshot, error in
                 guard let snapshot = querySnapshot else {
                     print("Error retreiving snapshot: \(error!)")
                     return
