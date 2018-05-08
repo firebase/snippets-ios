@@ -283,7 +283,7 @@
   // if the document already exists
   [[[self.db collectionWithPath:@"cities"] documentWithPath:@"BJ"]
        setData:@{ @"capital": @YES }
-       options:[FIRSetOptions merge]
+       merge:YES
        completion:^(NSError * _Nullable error) {
          // ...
        }];
@@ -398,8 +398,6 @@
 
 - (void)serverTimestampOptions {
   // [START server_timestamp_options]
-  FIRSnapshotOptions *options =
-      [FIRSnapshotOptions serverTimestampBehavior:FIRServerTimestampBehaviorEstimate];
   FIRDocumentReference *docRef =
       [[self.db collectionWithPath:@"objects"] documentWithPath:@"some-id"];
 
@@ -410,7 +408,7 @@
     @"timestamp": [FIRFieldValue fieldValueForServerTimestamp],
   }];
   [docRef addSnapshotListener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
-    NSDictionary<NSString *, id> *data = [snapshot dataWithOptions:options];
+    NSDictionary *data = [snapshot dataWithServerTimestampBehavior:FIRServerTimestampBehaviorEstimate];
     NSDate *timestamp = data[@"timestamp"];
     NSLog(@"Timestamp: %@, pending: %@",
           timestamp,
@@ -618,12 +616,13 @@
 - (void)listenWithMetadata {
   // [START listen_with_metadata]
   // Listen for metadata changes.
-  FIRDocumentListenOptions *options = [[FIRDocumentListenOptions init] includeMetadataChanges:true]
+//  FIRDocumentListenOptions *options = [[FIRDocumentListenOptions init] includeMetadataChanges:true]
 
-  [[[[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"]
-   addSnapshotListenerWithOptions:options listener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
+  [[[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"]
+      addSnapshotListenerWithIncludeMetadataChanges:YES
+                                           listener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
      // ...
-   }]];
+  }];
   // [END listen_with_metadata]
 }
 
@@ -869,10 +868,8 @@
   // [START listen_to_offline]
   // Listen to metadata updates to receive a server snapshot even if
   // the data is the same as the cached data.
-  FIRQueryListenOptions *options = [FIRQueryListenOptions options];
-  [options includeQueryMetadataChanges:YES];
   [[[db collectionWithPath:@"cities"] queryWhereField:@"state" isEqualTo:@"CA"]
-      addSnapshotListenerWithOptions:options
+      addSnapshotListenerWithIncludeMetadataChanges:YES
       listener:^(FIRQuerySnapshot *snapshot, NSError *error) {
         if (snapshot == nil) {
           NSLog(@"Error retreiving snapshot: %@", error);
