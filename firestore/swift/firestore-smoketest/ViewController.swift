@@ -628,6 +628,23 @@ class ViewController: UIViewController {
         // [END get_document]
     }
 
+    private func getDocumentWithOptions() {
+      // [START get_document_options]
+      let docRef = db.collection("cities").document("SF")
+
+      // Force the SDK to fetch the document from the cache. Could also specify
+      // FirestoreSource.server or FirestoreSource.default.
+      docRef.getDocument(source: .cache) { (document, error) in
+        if let document = document {
+          let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+          print("Cached document data: \(dataDescription)")
+        } else {
+          print("Document does not exist in cache")
+        }
+      }
+      // [END get_document_opions]
+    }
+
     private func customClassGetDocument() {
         // [START custom_type]
         let docRef = db.collection("cities").document("BJ")
