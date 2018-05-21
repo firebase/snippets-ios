@@ -634,7 +634,7 @@ class ViewController: UIViewController {
 
       // Force the SDK to fetch the document from the cache. Could also specify
       // FirestoreSource.server or FirestoreSource.default.
-      docRef.getDocument(source: FirestoreSource.cache) { (document, error) in
+      docRef.getDocument(source: .cache) { (document, error) in
         if let document = document {
           let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
           print("Cached document data: \(dataDescription)")
