@@ -571,6 +571,26 @@
   // [END get_document]
 }
 
+- (void)getDocumentWithOptions {
+  // [START get_document_options]
+  FIRDocumentReference *docRef =
+  [[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"];
+
+  // Force the SDK to fetch the document from the cache. Could also specify
+  // FIRFirestoreSourceServer or FIRFirestoreSourceDefault.
+  [docRef getDocumentWithSource:FIRFirestoreSourceCache
+                     completion:^(FIRDocumentSnapshot *snapshot, NSError *error) {
+    if (snapshot != NULL) {
+      // The document data was found in the cache.
+      NSLog(@"Cached document data: %@", snapshot.data);
+    } else {
+      // The document data was not found in the cache.
+      NSLog(@"Document does not exist in cache: %@", error);
+    }
+  }];
+  // [END get_document_options]
+}
+
 - (void)customClassGetDocument {
   // [START custom_type]
   FIRDocumentReference *docRef =
