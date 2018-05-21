@@ -642,7 +642,7 @@ class ViewController: UIViewController {
           print("Document does not exist in cache")
         }
       }
-      // [END get_document_opions]
+      // [END get_document_options]
     }
 
     private func customClassGetDocument() {
