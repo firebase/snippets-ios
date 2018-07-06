@@ -616,8 +616,6 @@
 - (void)listenWithMetadata {
   // [START listen_with_metadata]
   // Listen for metadata changes.
-//  FIRDocumentListenOptions *options = [[FIRDocumentListenOptions init] includeMetadataChanges:true]
-
   [[[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"]
       addSnapshotListenerWithIncludeMetadataChanges:YES
                                            listener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
@@ -924,6 +922,8 @@
   // [END cursor_less_than]
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable"
 - (void)snapshotCursor {
   FIRFirestore *db = self.db;
 
@@ -967,6 +967,8 @@
   }];
   // [END paginate]
 }
+
+#pragma clang diagnostic pop
 
 - (void)multiCursor {
   FIRFirestore *db = self.db;
