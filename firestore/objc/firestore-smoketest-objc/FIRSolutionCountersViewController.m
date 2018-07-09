@@ -91,12 +91,33 @@
       return nil;
     }
     NSInteger shardValue = [shardSnapshot[@"count"] integerValue];
-    [transaction updateData:@{ @"count": @(shardValue + 1)} forDocument:shardReference];
+    [transaction updateData:@{ @"count": @(shardValue + 1) } forDocument:shardReference];
     return nil;
   } completion:^(id result, NSError *error) {
     // ...
   }];
 }
 // [END increment_counter]
+
+// [START get_count]
+- (void)getCountWithReference:(FIRDocumentReference *)reference {
+  [[reference collectionWithPath:@"shards"]
+      getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot,
+                                   NSError *error) {
+        NSInteger totalCount = 0;
+        if (error != nil) {
+          // Error getting shards
+          // ...
+        } else {
+          for (FIRDocumentSnapshot *document in snapshot.documents) {
+            NSInteger count = [document[@"count"] integerValue];
+            totalCount += count;
+          }
+
+          NSLog(@"Total count is %ld", (long)totalCount);
+        }
+  }];
+}
+// [END get_count]
 
 @end
