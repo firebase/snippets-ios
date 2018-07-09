@@ -16,13 +16,13 @@
 
 @import Firebase;
 
-#import "FIRSolutionsArrayViewController.h"
+#import "FIRSolutionArraysViewController.h"
 
-@interface FIRSolutionsArrayViewController ()
+@interface FIRSolutionArraysViewController ()
 @property (nonatomic, readonly) FIRFirestore *db;
 @end
 
-@implementation FIRSolutionsArrayViewController
+@implementation FIRSolutionArraysViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];

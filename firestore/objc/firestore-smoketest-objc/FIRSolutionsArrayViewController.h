@@ -16,6 +16,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FIRSolutionsArrayViewController : UIViewController
+@interface FIRSolutionArraysViewController : UIViewController
 
 @end
