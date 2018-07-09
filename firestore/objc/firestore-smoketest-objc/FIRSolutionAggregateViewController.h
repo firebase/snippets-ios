@@ -14,26 +14,8 @@
 //  limitations under the License.
 //
 
-#import "AppDelegate.h"
+#import <UIKit/UIKit.h>
 
-@import Firebase;
-
-@interface AppDelegate ()
-
-@end
-
-@implementation AppDelegate
-
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  [FIRApp configure];
-  // [START default_firestore]
-  FIRFirestore *defaultFirestore = [FIRFirestore firestore];
-  // [END default_firestore]
-
-  NSLog(@"%@", defaultFirestore);
-  return YES;
-}
-
+@interface FIRSolutionAggregateViewController : UIViewController
 
 @end
