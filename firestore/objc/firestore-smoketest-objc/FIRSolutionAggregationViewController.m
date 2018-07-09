@@ -16,7 +16,7 @@
 
 @import Firebase;
 
-#import "FIRSolutionAggregateViewController.h"
+#import "FIRSolutionAggregationViewController.h"
 
 // [START restaurant_struct]
 @interface FIRRestaurant : NSObject
@@ -48,11 +48,11 @@
 @end
 // [END restaurant_struct]
 
-@interface FIRSolutionAggregateViewController ()
+@interface FIRSolutionAggregationViewController ()
 @property (nonatomic, readonly) FIRFirestore *db;
 @end
 
-@implementation FIRSolutionAggregateViewController
+@implementation FIRSolutionAggregationViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];

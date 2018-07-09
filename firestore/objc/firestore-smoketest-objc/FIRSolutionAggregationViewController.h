@@ -16,6 +16,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FIRSolutionAggregateViewController : UIViewController
+@interface FIRSolutionAggregationViewController : UIViewController
 
 @end
