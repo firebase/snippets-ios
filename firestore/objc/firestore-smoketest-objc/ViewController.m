@@ -526,32 +526,37 @@
     @"state": @"CA",
     @"country": @"USA",
     @"capital": @(NO),
-    @"population": @860000
+    @"population": @860000,
+    @"regions": @[@"west_coast", @"norcal"]
   }];
   [[citiesRef documentWithPath:@"LA"] setData:@{
     @"name": @"Los Angeles",
     @"state": @"CA",
     @"country": @"USA",
     @"capital": @(NO),
-    @"population": @3900000
+    @"population": @3900000,
+    @"regions": @[@"west_coast", @"socal"]
   }];
   [[citiesRef documentWithPath:@"DC"] setData:@{
     @"name": @"Washington D.C.",
     @"country": @"USA",
     @"capital": @(YES),
-    @"population": @680000
+    @"population": @680000,
+    @"regions": @[@"east_coast"]
   }];
   [[citiesRef documentWithPath:@"TOK"] setData:@{
     @"name": @"Tokyo",
     @"country": @"Japan",
     @"capital": @(YES),
-    @"population": @9000000
+    @"population": @9000000,
+    @"regions": @[@"kanto", @"honshu"]
   }];
   [[citiesRef documentWithPath:@"BJ"] setData:@{
     @"name": @"Beijing",
     @"country": @"China",
     @"capital": @(YES),
-    @"population": @21500000
+    @"population": @21500000,
+    @"regions": @[@"jingjinji", @"hebei"]
   }];
   // [END example_data]
 }
@@ -788,6 +793,13 @@
       [[self.db collectionWithPath:@"cities"] queryWhereField:@"capital" isEqualTo:@YES];
   // [END only_capitals]
   NSLog(@"%@", capitalCities);
+}
+
+-(void)arrayContainsFilter {
+  FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
+  // [START array_contains_filter]
+  [citiesRef queryWhereField:@"state" arrayContains:@"west_coast"];
+  // [END array_contains_filter]
 }
 
 - (void)chainFilters {
