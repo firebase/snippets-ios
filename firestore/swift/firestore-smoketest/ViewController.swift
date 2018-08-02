@@ -583,32 +583,37 @@ class ViewController: UIViewController {
             "state": "CA",
             "country": "USA",
             "capital": false,
-            "population": 860000
+            "population": 860000,
+            "regions": ["west_coast", "norcal"]
             ])
         citiesRef.document("LA").setData([
             "name": "Los Angeles",
             "state": "CA",
             "country": "USA",
             "capital": false,
-            "population": 3900000
+            "population": 3900000,
+            "regions": ["west_coast", "socal"]
             ])
         citiesRef.document("DC").setData([
             "name": "Washington D.C.",
             "country": "USA",
             "capital": true,
-            "population": 680000
+            "population": 680000,
+            "regions": ["east_coast"]
             ])
         citiesRef.document("TOK").setData([
             "name": "Tokyo",
             "country": "Japan",
             "capital": true,
-            "population": 9000000
+            "population": 9000000,
+            "regions": ["kanto", "honshu"]
             ])
         citiesRef.document("BJ").setData([
             "name": "Beijing",
             "country": "China",
             "capital": true,
-            "population": 21500000
+            "population": 21500000,
+            "regions": ["jingjinji", "hebei"]
             ])
         // [END example_data]
     }
@@ -843,6 +848,15 @@ class ViewController: UIViewController {
         let capitalCities = db.collection("cities").whereField("capital", isEqualTo: true)
         // [END only_capitals]
         print(capitalCities)
+    }
+
+    private func arrayContainsFilter() {
+      let citiesRef = db.collection("cities")
+
+      // [START array_contains_filter]
+      citiesRef
+        .whereField("regions", arrayContains: "west_coast")
+      // [END array_contains_filter]
     }
 
     private func chainFilters() {
