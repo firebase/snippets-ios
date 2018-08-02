@@ -153,8 +153,15 @@ class ViewController: UIViewController {
         // Uh-oh, an error occurred!
         return
       }
-      // Metadata contains file metadata such as size, content-type, and download URL.
-      let downloadURL = metadata.downloadURL
+      // Metadata contains file metadata such as size, content-type.
+      let size = metadata.size
+      // You can also access to download URL after upload.
+      riversRef.downloadURL { (url, error) in
+        guard let downloadURL = url else {
+          // Uh-oh, an error occurred!
+          return
+        }
+      }
     }
     // [END firstorage_memory]
   }
@@ -171,11 +178,18 @@ class ViewController: UIViewController {
 
     // Upload the file to the path "images/rivers.jpg"
     let uploadTask = riversRef.putFile(from: localFile, metadata: nil) { metadata, error in
-      if let error = error {
+      guard let metadata = metadata else {
         // Uh-oh, an error occurred!
-      } else {
-        // Metadata contains file metadata such as size, content-type, and download URL.
-        let downloadURL = metadata!.downloadURL()
+        return
+      }
+      // Metadata contains file metadata such as size, content-type.
+      let size = metadata.size
+      // You can also access to download URL after upload.
+      storageRef.downloadURL { (url, error) in
+        guard let downloadURL = url else {
+          // Uh-oh, an error occurred!
+          return
+        }
       }
     }
     // [END firstorage_disk]

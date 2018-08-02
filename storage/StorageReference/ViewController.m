@@ -160,7 +160,15 @@
       // Uh-oh, an error occurred!
     } else {
       // Metadata contains file metadata such as size, content-type, and download URL.
-      NSURL *downloadURL = metadata.downloadURL;
+      int size = metadata.size;
+      // You can also access to download URL after upload.
+      [riversRef downloadURLWithCompletion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
+        if (error != nil) {
+          // Uh-oh, an error occurred!
+        } else {
+          NSURL *downloadURL = URL;
+        }
+      }];
     }
   }];
   // [END firstorage_memory]
@@ -182,7 +190,15 @@
       // Uh-oh, an error occurred!
     } else {
       // Metadata contains file metadata such as size, content-type, and download URL.
-      NSURL *downloadURL = metadata.downloadURL;
+      int size = metadata.size;
+      // You can also access to download URL after upload.
+      [riversRef downloadURLWithCompletion:^(NSURL * _Nullable URL, NSError * _Nullable error) {
+        if (error != nil) {
+          // Uh-oh, an error occurred!
+        } else {
+          NSURL *downloadURL = URL;
+        }
+      }];
     }
   }];
   // [END firstorage_disk]

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		8D4F2EF2201162EE002ED308 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D4F2EF1201162EE002ED308 /* GoogleService-Info.plist */; };
+		8D669A7A20F423B200F08512 /* FIRSolutionCountersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D669A7420F423B200F08512 /* FIRSolutionCountersViewController.m */; };
+		8D669A7B20F423B200F08512 /* FIRSolutionArraysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D669A7520F423B200F08512 /* FIRSolutionArraysViewController.m */; };
+		8D669A7C20F423B200F08512 /* FIRSolutionAggregationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D669A7820F423B200F08512 /* FIRSolutionAggregationViewController.m */; };
 		8D70FC1F1F4CAE1B00C7F603 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D70FC1E1F4CAE1B00C7F603 /* main.m */; };
 		8D70FC221F4CAE1B00C7F603 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D70FC211F4CAE1B00C7F603 /* AppDelegate.m */; };
 		8D70FC251F4CAE1B00C7F603 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D70FC241F4CAE1B00C7F603 /* ViewController.m */; };
@@ -29,6 +32,12 @@
 
 /* Begin PBXFileReference section */
 		8D4F2EF1201162EE002ED308 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8D669A7420F423B200F08512 /* FIRSolutionCountersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIRSolutionCountersViewController.m; sourceTree = "<group>"; };
+		8D669A7520F423B200F08512 /* FIRSolutionArraysViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIRSolutionArraysViewController.m; sourceTree = "<group>"; };
+		8D669A7620F423B200F08512 /* FIRSolutionArraysViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIRSolutionArraysViewController.h; sourceTree = "<group>"; };
+		8D669A7720F423B200F08512 /* FIRSolutionCountersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIRSolutionCountersViewController.h; sourceTree = "<group>"; };
+		8D669A7820F423B200F08512 /* FIRSolutionAggregationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIRSolutionAggregationViewController.m; sourceTree = "<group>"; };
+		8D669A7920F423B200F08512 /* FIRSolutionAggregationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIRSolutionAggregationViewController.h; sourceTree = "<group>"; };
 		8D70FC1A1F4CAE1B00C7F603 /* firestore-smoketest-objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "firestore-smoketest-objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D70FC1E1F4CAE1B00C7F603 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D70FC201F4CAE1B00C7F603 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -88,6 +97,12 @@
 				8D70FC211F4CAE1B00C7F603 /* AppDelegate.m */,
 				8D70FC231F4CAE1B00C7F603 /* ViewController.h */,
 				8D70FC241F4CAE1B00C7F603 /* ViewController.m */,
+				8D669A7920F423B200F08512 /* FIRSolutionAggregationViewController.h */,
+				8D669A7820F423B200F08512 /* FIRSolutionAggregationViewController.m */,
+				8D669A7720F423B200F08512 /* FIRSolutionCountersViewController.h */,
+				8D669A7420F423B200F08512 /* FIRSolutionCountersViewController.m */,
+				8D669A7620F423B200F08512 /* FIRSolutionArraysViewController.h */,
+				8D669A7520F423B200F08512 /* FIRSolutionArraysViewController.m */,
 				8D70FC261F4CAE1B00C7F603 /* Main.storyboard */,
 				8D70FC291F4CAE1B00C7F603 /* Assets.xcassets */,
 				8D70FC2B1F4CAE1B00C7F603 /* LaunchScreen.storyboard */,
@@ -218,7 +233,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D70FC251F4CAE1B00C7F603 /* ViewController.m in Sources */,
+				8D669A7C20F423B200F08512 /* FIRSolutionAggregationViewController.m in Sources */,
 				8D70FC221F4CAE1B00C7F603 /* AppDelegate.m in Sources */,
+				8D669A7B20F423B200F08512 /* FIRSolutionArraysViewController.m in Sources */,
+				8D669A7A20F423B200F08512 /* FIRSolutionCountersViewController.m in Sources */,
 				8D70FC1F1F4CAE1B00C7F603 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

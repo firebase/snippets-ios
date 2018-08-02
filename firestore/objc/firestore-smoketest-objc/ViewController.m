@@ -283,7 +283,7 @@
   // if the document already exists
   [[[self.db collectionWithPath:@"cities"] documentWithPath:@"BJ"]
        setData:@{ @"capital": @YES }
-       options:[FIRSetOptions merge]
+       merge:YES
        completion:^(NSError * _Nullable error) {
          // ...
        }];
@@ -398,8 +398,6 @@
 
 - (void)serverTimestampOptions {
   // [START server_timestamp_options]
-  FIRSnapshotOptions *options =
-      [FIRSnapshotOptions serverTimestampBehavior:FIRServerTimestampBehaviorEstimate];
   FIRDocumentReference *docRef =
       [[self.db collectionWithPath:@"objects"] documentWithPath:@"some-id"];
 
@@ -410,7 +408,7 @@
     @"timestamp": [FIRFieldValue fieldValueForServerTimestamp],
   }];
   [docRef addSnapshotListener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
-    NSDictionary<NSString *, id> *data = [snapshot dataWithOptions:options];
+    NSDictionary *data = [snapshot dataWithServerTimestampBehavior:FIRServerTimestampBehaviorEstimate];
     NSDate *timestamp = data[@"timestamp"];
     NSLog(@"Timestamp: %@, pending: %@",
           timestamp,
@@ -563,13 +561,34 @@
   FIRDocumentReference *docRef =
       [[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"];
   [docRef getDocumentWithCompletion:^(FIRDocumentSnapshot *snapshot, NSError *error) {
-    if (snapshot != nil) {
+    if (snapshot.exists) {
+      // Document data may be nil if the document exists but has no keys or values.
       NSLog(@"Document data: %@", snapshot.data);
     } else {
       NSLog(@"Document does not exist");
     }
   }];
   // [END get_document]
+}
+
+- (void)getDocumentWithOptions {
+  // [START get_document_options]
+  FIRDocumentReference *docRef =
+  [[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"];
+
+  // Force the SDK to fetch the document from the cache. Could also specify
+  // FIRFirestoreSourceServer or FIRFirestoreSourceDefault.
+  [docRef getDocumentWithSource:FIRFirestoreSourceCache
+                     completion:^(FIRDocumentSnapshot *snapshot, NSError *error) {
+    if (snapshot != NULL) {
+      // The document data was found in the cache.
+      NSLog(@"Cached document data: %@", snapshot.data);
+    } else {
+      // The document data was not found in the cache.
+      NSLog(@"Document does not exist in cache: %@", error);
+    }
+  }];
+  // [END get_document_options]
 }
 
 - (void)customClassGetDocument {
@@ -617,12 +636,11 @@
 - (void)listenWithMetadata {
   // [START listen_with_metadata]
   // Listen for metadata changes.
-  FIRDocumentListenOptions *options = [[FIRDocumentListenOptions init] includeMetadataChanges:true]
-
-  [[[[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"]
-   addSnapshotListenerWithOptions:options listener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
+  [[[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"]
+      addSnapshotListenerWithIncludeMetadataChanges:YES
+                                           listener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
      // ...
-   }]];
+  }];
   // [END listen_with_metadata]
 }
 
@@ -868,10 +886,8 @@
   // [START listen_to_offline]
   // Listen to metadata updates to receive a server snapshot even if
   // the data is the same as the cached data.
-  FIRQueryListenOptions *options = [FIRQueryListenOptions options];
-  [options includeQueryMetadataChanges:YES];
   [[[db collectionWithPath:@"cities"] queryWhereField:@"state" isEqualTo:@"CA"]
-      addSnapshotListenerWithOptions:options
+      addSnapshotListenerWithIncludeMetadataChanges:YES
       listener:^(FIRQuerySnapshot *snapshot, NSError *error) {
         if (snapshot == nil) {
           NSLog(@"Error retreiving snapshot: %@", error);
@@ -926,6 +942,8 @@
   // [END cursor_less_than]
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable"
 - (void)snapshotCursor {
   FIRFirestore *db = self.db;
 
@@ -969,6 +987,8 @@
   }];
   // [END paginate]
 }
+
+#pragma clang diagnostic pop
 
 - (void)multiCursor {
   FIRFirestore *db = self.db;
