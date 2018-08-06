@@ -671,7 +671,11 @@ class ViewController: UIViewController {
                 print("Error fetching document: \(error!)")
                 return
               }
-              print("Current data: \(document.data())")
+              guard let data = document.data() else {
+                print("Document data was empty.")
+                return
+              }
+              print("Current data: \(data)")
             }
         // [END listen_document]
     }
@@ -685,7 +689,7 @@ class ViewController: UIViewController {
                     return
                 }
                 let source = document.metadata.hasPendingWrites ? "Local" : "Server"
-                print("\(source) data: \(document.data())")
+                print("\(source) data: \(document.data() ?? [:])")
             }
         // [END listen_document_local]
     }
