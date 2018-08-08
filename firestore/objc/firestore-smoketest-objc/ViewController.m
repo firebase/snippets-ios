@@ -278,20 +278,20 @@
 }
 
 - (void)updateDocumentArray {
-    // [START update_document_array]
-    FIRDocumentReference *washingtonRef =
-    [[self.db collectionWithPath:@"cities"] documentWithPath:@"DC"];
+  // [START update_document_array]
+  FIRDocumentReference *washingtonRef =
+      [[self.db collectionWithPath:@"cities"] documentWithPath:@"DC"];
 
-    // Atomically add a new region to the "regions" array field.
-    [washingtonRef updateData:@{
-      @"regions": [FIRFieldValue fieldValueForArrayUnion:@[@"greater_virginia"]]
-    }];
+  // Atomically add a new region to the "regions" array field.
+  [washingtonRef updateData:@{
+    @"regions": [FIRFieldValue fieldValueForArrayUnion:@[@"greater_virginia"]]
+  }];
 
-    // Atomically remove a new region to the "regions" array field.
-    [washingtonRef updateData:@{
-      @"regions": [FIRFieldValue fieldValueForArrayRemove:@[@"east_coast"]]
-    }];
-    // [END update_document_array]
+  // Atomically remove a new region to the "regions" array field.
+  [washingtonRef updateData:@{
+    @"regions": [FIRFieldValue fieldValueForArrayRemove:@[@"east_coast"]]
+  }];
+  // [END update_document_array]
 }
 
 - (void)createIfMissing {
