@@ -289,7 +289,7 @@
 
     // Atomically remove a new region to the "regions" array field.
     [washingtonRef updateData:@{
-      @"regions": [FIRFieldValue fieldValueForArrayRemove:@[@"greater_virginia"]]
+      @"regions": [FIRFieldValue fieldValueForArrayRemove:@[@"east_coast"]]
     }];
     // [END update_document_array]
 }
