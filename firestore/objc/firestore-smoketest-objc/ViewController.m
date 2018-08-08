@@ -277,6 +277,23 @@
   // [END update_document]
 }
 
+- (void)updateDocumentArray {
+    // [START update_document_array]
+    FIRDocumentReference *washingtonRef =
+    [[self.db collectionWithPath:@"cities"] documentWithPath:@"DC"];
+
+    // Atomically add a new region to the "regions" array field.
+    [washingtonRef updateData:@{
+      @"regions": [FIRFieldValue fieldValueForArrayUnion:@[@"greater_virginia"]]
+    }];
+
+    // Atomically remove a new region to the "regions" array field.
+    [washingtonRef updateData:@{
+      @"regions": [FIRFieldValue fieldValueForArrayRemove:@[@"greater_virginia"]]
+    }];
+    // [END update_document_array]
+}
+
 - (void)createIfMissing {
   // [START create_if_missing]
   // Write to the document reference, merging data with existing
