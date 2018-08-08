@@ -336,6 +336,22 @@ class ViewController: UIViewController {
         // [END update_document]
     }
 
+    private func updateDocumentArray() {
+        // [START update_document_array]
+        let washingtonRef = db.collection("cities").document("DC")
+
+        // Atomically add a new region to the "regions" array field.
+        washingtonRef.updateData([
+            "regions": FieldValue.arrayUnion(["greater_virginia"])
+        ])
+
+        // Atomically remove a region from the "regions" array field.
+        washingtonRef.updateData([
+            "regions": FieldValue.arrayRemove(["east_coast"])
+        ])
+        // [END update_document_array]
+    }
+
     private func createIfMissing() {
         // [START create_if_missing]
         // Update one field, creating the document if it does not exist.
