@@ -38,3 +38,5 @@ function build_sample() {
 build_sample "database" "DatabaseReference"
 build_sample "storage" "StorageReference"
 build_sample "firoptions/FiroptionConfiguration" "FiroptionConfiguration"
+build_sample "firestore/objc" "firestore-smoketest-objc"
+build_sample "firestore/swift" "firestore-smoketest"
