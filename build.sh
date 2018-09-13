@@ -25,7 +25,7 @@ function build_sample() {
     -workspace ${SAMPLE}/${WORKSPACE}.xcworkspace \
     -scheme ${WORKSPACE} \
     -sdk iphonesimulator \
-    -destination 'platform=iOS Simulator,name=iPhone 7' \
+    -destination 'platform=iOS Simulator,name=iPhone XR' \
     build \
     ONLY_ACTIVE_ARCH=YES \
     CODE_SIGNING_REQUIRED=NO \
