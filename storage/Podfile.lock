@@ -1,24 +1,26 @@
 PODS:
-  - Firebase/CoreOnly (5.6.0):
-    - FirebaseCore (= 5.1.1)
-  - Firebase/Storage (5.6.0):
+  - Firebase/CoreOnly (5.15.0):
+    - FirebaseCore (= 5.1.10)
+  - Firebase/Storage (5.15.0):
     - Firebase/CoreOnly
-    - FirebaseStorage (= 3.0.0)
-  - FirebaseCore (5.1.1):
+    - FirebaseStorage (= 3.0.3)
+  - FirebaseAuthInterop (1.0.0)
+  - FirebaseCore (5.1.10):
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseStorage (3.0.0):
-    - FirebaseCore (~> 5.0)
+  - FirebaseStorage (3.0.3):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 5.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseUI/Storage (5.2.0):
+  - FirebaseUI/Storage (5.2.2):
     - Firebase/Storage (~> 5.0)
     - SDWebImage (~> 4.0)
-  - GoogleUtilities/Environment (5.2.2)
-  - GoogleUtilities/Logger (5.2.2):
+  - GoogleUtilities/Environment (5.3.7)
+  - GoogleUtilities/Logger (5.3.7):
     - GoogleUtilities/Environment
-  - GTMSessionFetcher/Core (1.2.0)
-  - SDWebImage (4.4.2):
-    - SDWebImage/Core (= 4.4.2)
-  - SDWebImage/Core (4.4.2)
+  - GTMSessionFetcher/Core (1.2.1)
+  - SDWebImage (4.4.3):
+    - SDWebImage/Core (= 4.4.3)
+  - SDWebImage/Core (4.4.3)
 
 DEPENDENCIES:
   - Firebase/Storage
@@ -27,6 +29,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Firebase
+    - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseStorage
     - FirebaseUI
@@ -35,13 +38,14 @@ SPEC REPOS:
     - SDWebImage
 
 SPEC CHECKSUMS:
-  Firebase: 75ea9e232eefa158c1049028030b8f661a2ccb62
-  FirebaseCore: cb9ee75e0894def766167c95a4d5a14b1c138269
-  FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
-  FirebaseUI: 9dfa423b6f1b73737ae8ab62692c1c0a8886186d
-  GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
-  GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
+  FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
+  FirebaseCore: 35747502d9e8c6ee217385ad04446c7c2aaf9c5c
+  FirebaseStorage: 3d22c041370593e639fba013d1eb698a8dae2881
+  FirebaseUI: 09519bf436a055cd696bf68687d624423150e4c0
+  GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
+  GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
+  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
 
 PODFILE CHECKSUM: f0cd9d079793b24a37b713cd64dc7900bb8601af
 
