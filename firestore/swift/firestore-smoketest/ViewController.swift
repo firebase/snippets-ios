@@ -261,7 +261,7 @@ class ViewController: UIViewController {
             "stringExample": "Hello world!",
             "booleanExample": true,
             "numberExample": 3.14159265,
-            "dateExample": NSDate(),
+            "dateExample": Timestamp(Date()),
             "arrayExample": [5, true, "hello"],
             "nullExample": NSNull(),
             "objectExample": [
