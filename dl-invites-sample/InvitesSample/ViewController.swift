@@ -36,17 +36,13 @@ class ViewController: UIViewController {
     let baseURL = URL(string: "https://your-custom-name.page.link")!
     let domain = "https://your-app.page.link"
     let linkBuilder = DynamicLinkComponents(link: baseURL, domainURIPrefix: domain)
-    linkBuilder?.iOSParameters = DynamicLinkIOSParameters(bundleID: "com.firebase.uidemo")
+    linkBuilder?.iOSParameters = DynamicLinkIOSParameters(bundleID: "com.your.bundleID")
     linkBuilder?.androidParameters =
         DynamicLinkAndroidParameters(packageName: "com.your.packageName")
 
 
     // Fall back to the base url if we can't generate a dynamic link.
     return linkBuilder?.link ?? baseURL
-  }
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
   }
 
   @IBAction func shareButtonPressed(_ sender: Any) {

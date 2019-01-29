@@ -17,13 +17,14 @@
 function build_sample() {
   SAMPLE=$1
   WORKSPACE=$2
+  SCHEME=$3
 
   echo "Building $SAMPLE"
   cd $SAMPLE && pod install ; cd -
 
   set -o pipefail && xcodebuild \
     -workspace ${SAMPLE}/${WORKSPACE}.xcworkspace \
-    -scheme ${WORKSPACE} \
+    -scheme ${SCHEME} \
     -sdk iphonesimulator \
     -destination 'platform=iOS Simulator,name=iPhone XR' \
     build \
@@ -35,9 +36,10 @@ function build_sample() {
   echo "Done!"
 }
 
-build_sample "database" "DatabaseReference"
-build_sample "storage" "StorageReference"
-build_sample "firoptions/FiroptionConfiguration" "FiroptionConfiguration"
-build_sample "firestore/objc" "firestore-smoketest-objc"
-build_sample "firestore/swift" "firestore-smoketest"
-build_sample "dl-invites-sample" "InvitesSample"
+build_sample "database" "DatabaseReference" "DatabaseReference"
+build_sample "storage" "StorageReference" "StorageReference"
+build_sample "firoptions/FiroptionConfiguration" "FiroptionConfiguration" "FiroptionConfiguration"
+build_sample "firestore/objc" "firestore-smoketest-objc" "firestore-smoketest-objc"
+build_sample "firestore/swift" "firestore-smoketest" "firestore-smoketest"
+build_sample "dl-invites-sample" "InvitesSample" "InvitesSample"
+build_sample "dl-invites-sample" "InvitesSample" "InvitesSampleObjC"
