@@ -205,7 +205,7 @@
     @"stringExample": @"Hello world!",
     @"booleanExample": @YES,
     @"numberExample": @3.14,
-    @"dateExample": [NSDate date],
+    @"dateExample": [FIRTimestamp timestampWithDate:[NSDate date]],
     @"arrayExample": @[@5, @YES, @"hello"],
     @"nullExample": [NSNull null],
     @"objectExample": @{
