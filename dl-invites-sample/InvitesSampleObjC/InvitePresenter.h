@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 // [END invite_content]
 
+// [START invite_presenter]
 /// A type responsible for presenting an invite given using a specific method
 /// given the content of the invite.
 @protocol InvitePresenter <NSObject>
@@ -67,6 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)sendInvite;
 
 @end
+// [END invite_presenter]
 
 /// Returns a list of all presenters with default content configured.
 NSArray <id<InvitePresenter>> *DefaultInvitePresenters(UIViewController *controller);
