@@ -19,6 +19,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// [START invite_content]
 /// The content within an invite, with optional fields to accommodate all presenters.
 /// This type could be modified to also include an image, for sending invites over email.
 @interface InviteContent : NSObject <NSCopying>
@@ -39,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init NS_UNAVAILABLE;
 
 @end
+// [END invite_content]
 
 /// A type responsible for presenting an invite given using a specific method
 /// given the content of the invite.

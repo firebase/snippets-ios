@@ -29,6 +29,7 @@
 @implementation ViewController
 @synthesize shareController=_shareController;
 
+// [START share_controller]
 - (UIActivityViewController *)shareController {
   if (_shareController == nil) {
     NSArray *activities = @[
@@ -40,7 +41,18 @@
   }
   return _shareController;
 }
+// [END share_controller]
 
+- (IBAction)shareLinkButtonPressed:(UIView *)sender {
+  if (![sender isKindOfClass:[UIView class]]) {
+    return;
+  }
+  
+  self.shareController.popoverPresentationController.sourceView = sender;
+  [self presentViewController:self.shareController animated:YES completion:nil];
+}
+
+// [START generate_link]
 - (NSURL *)generateContentLink {
   NSURL *baseURL = [NSURL URLWithString:@"https://your-custom-name.page.link"];
   NSString *domain = @"https://your-app.page.link";
@@ -51,15 +63,7 @@
   // Fall back to the base url if we can't generate a dynamic link.
   return builder.link ?: baseURL;
 }
-
-- (IBAction)shareLinkButtonPressed:(UIView *)sender {
-  if (![sender isKindOfClass:[UIView class]]) {
-    return;
-  }
-
-  self.shareController.popoverPresentationController.sourceView = sender;
-  [self presentViewController:self.shareController animated:YES completion:nil];
-}
+// [END generate_link]
 
 - (IBAction)shareButtonPressed:(id)sender {
   UIViewController *inviteController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"InviteViewController"];

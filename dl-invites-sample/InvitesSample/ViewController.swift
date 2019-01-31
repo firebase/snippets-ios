@@ -22,6 +22,7 @@ class ViewController: UIViewController {
 
   @IBOutlet var linkLabel: UILabel!
 
+  // [START share_controller]
   lazy private var shareController: UIActivityViewController = {
     let activities: [Any] = [
       "Learn how to share content via Firebase",
@@ -31,7 +32,15 @@ class ViewController: UIViewController {
                                               applicationActivities: nil)
     return controller
   }()
+  
+  @IBAction func shareButtonPressed(_ sender: Any) {
+    let inviteController = UIStoryboard(name: "Main", bundle: nil)
+      .instantiateViewController(withIdentifier: "InviteViewController")
+    self.navigationController?.pushViewController(inviteController, animated: true)
+  }
+  // [END share_controller]
 
+  // [START generate_link]
   func generateContentLink() -> URL {
     let baseURL = URL(string: "https://your-custom-name.page.link")!
     let domain = "https://your-app.page.link"
@@ -44,12 +53,7 @@ class ViewController: UIViewController {
     // Fall back to the base url if we can't generate a dynamic link.
     return linkBuilder?.link ?? baseURL
   }
-
-  @IBAction func shareButtonPressed(_ sender: Any) {
-    let inviteController = UIStoryboard(name: "Main", bundle: nil)
-        .instantiateViewController(withIdentifier: "InviteViewController")
-    self.navigationController?.pushViewController(inviteController, animated: true)
-  }
+  // [END generate_link]
 
   @IBAction func shareLinkButtonPressed(_ sender: Any) {
     guard let item = sender as? UIView else { return }

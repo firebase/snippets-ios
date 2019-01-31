@@ -17,6 +17,7 @@
 import UIKit
 import MessageUI
 
+// [START invite_content]
 /// The content within an invite, with optional fields to accommodate all presenters.
 /// This type could be modified to also include an image, for sending invites over email.
 struct InviteContent {
@@ -31,7 +32,9 @@ struct InviteContent {
   var link: URL
 
 }
+// [END invite_content]
 
+// [START invite_presenter]
 /// A type responsible for presenting an invite given using a specific method
 /// given the content of the invite.
 protocol InvitePresenter {
@@ -57,6 +60,7 @@ protocol InvitePresenter {
   func sendInvite()
 
 }
+// [END invite_presenter]
 
 /// Returns a list of all presenters with default content configured.
 func DefaultInvitePresenters(presentingController: UIViewController) -> [InvitePresenter] {
