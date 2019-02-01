@@ -41,7 +41,6 @@
   }
   return _shareController;
 }
-// [END share_controller]
 
 - (IBAction)shareLinkButtonPressed:(UIView *)sender {
   if (![sender isKindOfClass:[UIView class]]) {
@@ -51,6 +50,7 @@
   self.shareController.popoverPresentationController.sourceView = sender;
   [self presentViewController:self.shareController animated:YES completion:nil];
 }
+// [END share_controller]
 
 // [START generate_link]
 - (NSURL *)generateContentLink {
