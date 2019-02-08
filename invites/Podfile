@@ -1,0 +1,11 @@
+use_frameworks!
+platform :ios, '8.0'
+pod 'Firebase/Core'
+pod 'Firebase/Invites'
+
+target 'InvitesExample' do
+end
+target 'InvitesExampleSwift' do
+end
+target 'InvitesExampleTests' do
+end
