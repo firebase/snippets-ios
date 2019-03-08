@@ -48,10 +48,10 @@ PODS:
     - leveldb-library (~> 1.20)
     - nanopb (~> 0.3.901)
     - Protobuf (~> 3.1)
-  - FirebaseInstanceID (3.6.0):
-    - FirebaseCore (~> 5.3)
-    - GoogleUtilities/Environment (~> 5.3)
-    - GoogleUtilities/UserDefaults (~> 5.3)
+  - FirebaseInstanceID (3.7.0):
+    - FirebaseCore (~> 5.2)
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/UserDefaults (~> 5.2)
   - GoogleAppMeasurement (5.7.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
@@ -133,7 +133,7 @@ SPEC CHECKSUMS:
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
   FirebaseCore: 52f851b30e11360f1e67cf04b1edfebf0a47a2d3
   FirebaseFirestore: ccdaffb8a73c591ff61872b8f7905ad0c237ef50
-  FirebaseInstanceID: 7221670e908b41e7ae669600db9d0d201417d0cd
+  FirebaseInstanceID: bd6fc5a258884e206fd5c474ebe4f5b00e21770e
   GoogleAppMeasurement: 6cf307834da065863f9faf4c0de0a936d81dd832
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   "gRPC-C++": e76441995900ac90e9bd98644ab4733f12521edf

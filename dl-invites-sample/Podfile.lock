@@ -23,10 +23,10 @@ PODS:
     - FirebaseAnalytics (~> 5.1)
     - FirebaseAnalyticsInterop (~> 1.0)
     - FirebaseCore (~> 5.2)
-  - FirebaseInstanceID (3.6.0):
-    - FirebaseCore (~> 5.3)
-    - GoogleUtilities/Environment (~> 5.3)
-    - GoogleUtilities/UserDefaults (~> 5.3)
+  - FirebaseInstanceID (3.7.0):
+    - FirebaseCore (~> 5.2)
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/UserDefaults (~> 5.2)
   - GoogleAppMeasurement (5.7.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
@@ -79,7 +79,7 @@ SPEC CHECKSUMS:
   FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
   FirebaseCore: 52f851b30e11360f1e67cf04b1edfebf0a47a2d3
   FirebaseDynamicLinks: f209c3caccd82102caa0e91d393e3ccc593501fd
-  FirebaseInstanceID: 7221670e908b41e7ae669600db9d0d201417d0cd
+  FirebaseInstanceID: bd6fc5a258884e206fd5c474ebe4f5b00e21770e
   GoogleAppMeasurement: 6cf307834da065863f9faf4c0de0a936d81dd832
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
