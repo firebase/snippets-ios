@@ -29,10 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [START default_firestore]
         FirebaseApp.configure()
 
-        let db = Firestore.firestore()
+        let _ = Firestore.firestore()
         // [END default_firestore]
 
-        print(db) // silence warning
+        
 
         return true
     }
