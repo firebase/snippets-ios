@@ -1,13 +1,14 @@
 PODS:
-  - Firebase/CoreOnly (5.18.0):
-    - FirebaseCore (= 5.3.1)
-  - Firebase/Storage (5.18.0):
+  - Firebase/CoreOnly (5.19.0):
+    - FirebaseCore (= 5.4.0)
+  - Firebase/Storage (5.19.0):
     - Firebase/CoreOnly
-    - FirebaseStorage (= 3.1.0)
+    - FirebaseStorage (= 3.1.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (5.3.1):
+  - FirebaseCore (5.4.0):
+    - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseStorage (3.1.0):
+  - FirebaseStorage (3.1.1):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
@@ -38,10 +39,10 @@ SPEC REPOS:
     - SDWebImage
 
 SPEC CHECKSUMS:
-  Firebase: 02f3281965c075426141a0ce1277e9de6649cab9
+  Firebase: c60d49e9c2630875a96207d15e2affb8364996d1
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: 52f851b30e11360f1e67cf04b1edfebf0a47a2d3
-  FirebaseStorage: 29075f874c2b3cf61e5221a62c4ceefc809e5412
+  FirebaseCore: 22a79a961c3951ef2f77b67bfbc99e454247b319
+  FirebaseStorage: 6162ef4322502b818d9de0ec552f5226d283de43
   FirebaseUI: 1345f778d53f9484f21474c7b10bba313b28a76b
   GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
