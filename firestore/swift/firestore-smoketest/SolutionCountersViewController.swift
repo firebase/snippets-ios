@@ -63,21 +63,9 @@ class SolutionCountersController: UIViewController {
         let shardId = Int(arc4random_uniform(UInt32(numShards)))
         let shardRef = ref.collection("shards").document(String(shardId))
 
-        // Update count in a transaction
-        db.runTransaction({ (transaction, errorPointer) -> Any? in
-            do {
-                let shardData = try transaction.getDocument(shardRef).data() ?? [:]
-                let shardCount = shardData["count"] as! Int
-                transaction.updateData(["count": shardCount + 1], forDocument: shardRef)
-            } catch {
-                // Error getting shard data
-                // ...
-            }
-
-            return nil
-        }) { (object, err) in
-            // ...
-        }
+        shardRef.updateData([
+            "count": FieldValue.increment()
+        ])
     }
     // [END increment_counter]
 

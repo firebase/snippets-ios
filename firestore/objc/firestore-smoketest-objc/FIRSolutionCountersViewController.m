@@ -83,18 +83,8 @@
   FIRDocumentReference *shardReference =
       [[reference collectionWithPath:@"shards"] documentWithPath:shardName];
 
-  // Update count in a transaction
-  [self.db runTransactionWithBlock:^id (FIRTransaction *transaction, NSError **errorPointer) {
-    FIRDocumentSnapshot *shardSnapshot =
-        [transaction getDocument:shardReference error:errorPointer];
-    if (shardSnapshot == nil) {
-      return nil;
-    }
-    NSInteger shardValue = [shardSnapshot[@"count"] integerValue];
-    [transaction updateData:@{ @"count": @(shardValue + 1) } forDocument:shardReference];
-    return nil;
-  } completion:^(id result, NSError *error) {
-    // ...
+  [shardReference updateData:@{
+    @"count": [FIRFieldValue fieldValueForIntegerIncrement:1]
   }];
 }
 // [END increment_counter]
