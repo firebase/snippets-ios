@@ -294,6 +294,19 @@
   // [END update_document_array]
 }
 
+- (void)updateDocumentIncrement {
+  // [START update_document_increment]
+  FIRDocumentReference *washingtonRef =
+      [[self.db collectionWithPath:@"cities"] documentWithPath:@"DC"];
+
+  // Atomically incrememnt the population of the city by 50.
+  // Note that increment() with no arguments increments by 1.
+  [washingtonRef updateData:@{
+    @"population": [FIRFieldValue fieldValueForIntegerIncrement:50]
+  }];
+  // [END update_document_increment]
+}
+
 - (void)createIfMissing {
   // [START create_if_missing]
   // Write to the document reference, merging data with existing
@@ -450,6 +463,8 @@
     }
     NSInteger oldPopulation = [sfDocument.data[@"population"] integerValue];
 
+    // Note: this could be done without a transaction
+    //       by updating the population using FieldValue.increment()
     [transaction updateData:@{ @"population": @(oldPopulation + 1) } forDocument:sfReference];
 
     return nil;

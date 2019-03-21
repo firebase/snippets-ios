@@ -352,6 +352,18 @@ class ViewController: UIViewController {
         // [END update_document_array]
     }
 
+    private func updateDocumentIncrement() {
+        // [START update_document-increment]
+        let washingtonRef = db.collection("cities").document("DC")
+
+        // Atomically incrememnt the population of the city by 50.
+        // Note that increment() with no arguments increments by 1.
+        washingtonRef.updateData([
+            "population": FieldValue.increment(50)
+        ])
+        // [END update_document-increment]
+    }
+
     private func createIfMissing() {
         // [START create_if_missing]
         // Update one field, creating the document if it does not exist.
@@ -498,6 +510,8 @@ class ViewController: UIViewController {
                 return nil
             }
 
+            // Note: this could be done without a transaction
+            //       by updating the population using FieldValue.increment()
             transaction.updateData(["population": oldPopulation + 1], forDocument: sfReference)
             return nil
         }) { (object, error) in
@@ -535,6 +549,8 @@ class ViewController: UIViewController {
                 return nil
             }
 
+            // Note: this could be done without a transaction
+            //       by updating the population using FieldValue.increment()
             let newPopulation = oldPopulation + 1
             guard newPopulation <= 1000000 else {
                 let error = NSError(
