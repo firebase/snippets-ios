@@ -1,7 +1,7 @@
 PODS:
-  - Firebase/CoreOnly (5.20.0):
+  - Firebase/CoreOnly (5.20.1):
     - FirebaseCore (= 5.4.1)
-  - Firebase/Storage (5.20.0):
+  - Firebase/Storage (5.20.1):
     - Firebase/CoreOnly
     - FirebaseStorage (= 3.1.1)
   - FirebaseAuthInterop (1.0.0)
@@ -39,7 +39,7 @@ SPEC REPOS:
     - SDWebImage
 
 SPEC CHECKSUMS:
-  Firebase: 5090da4bb82900179004133bb2b2178919387fd9
+  Firebase: 2f5235e62f141cb86181c3af0dfe4509706351ac
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
   FirebaseCore: f1a9a8be1aee4bf71a2fc0f4096df6788bdfda61
   FirebaseStorage: 6162ef4322502b818d9de0ec552f5226d283de43
