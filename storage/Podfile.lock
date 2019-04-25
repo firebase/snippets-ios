@@ -15,8 +15,8 @@ PODS:
   - FirebaseUI/Storage (6.2.1):
     - Firebase/Storage (~> 5.0)
     - SDWebImage (~> 4.0)
-  - GoogleUtilities/Environment (5.7.0)
-  - GoogleUtilities/Logger (5.7.0):
+  - GoogleUtilities/Environment (5.8.0)
+  - GoogleUtilities/Logger (5.8.0):
     - GoogleUtilities/Environment
   - GTMSessionFetcher/Core (1.2.1)
   - SDWebImage (4.4.6):
@@ -44,7 +44,7 @@ SPEC CHECKSUMS:
   FirebaseCore: f1a9a8be1aee4bf71a2fc0f4096df6788bdfda61
   FirebaseStorage: 6162ef4322502b818d9de0ec552f5226d283de43
   FirebaseUI: c9e227a7d44e2e422a461cb3f4ead8dc5c7326e6
-  GoogleUtilities: 273e67030e0de313e7304f6dcfa96fc5214f6c23
+  GoogleUtilities: 04fce34bcd5620c1ee76fb79172105c74a4df335
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
 
