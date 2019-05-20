@@ -16,7 +16,8 @@
 
 import UIKit
 
-import Firebase
+import FirebaseCore
+import FirebaseFirestore
 
 class SolutionCountersController: UIViewController {
 
@@ -64,7 +65,7 @@ class SolutionCountersController: UIViewController {
         let shardRef = ref.collection("shards").document(String(shardId))
 
         shardRef.updateData([
-            "count": FieldValue.increment()
+            "count": FieldValue.increment(Int64(1))
         ])
     }
     // [END increment_counter]
