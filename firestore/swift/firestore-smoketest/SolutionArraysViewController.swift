@@ -16,7 +16,8 @@
 
 import UIKit
 
-import Firebase
+import FirebaseCore
+import FirebaseFirestore
 
 class SolutionArraysViewController: UIViewController {
 

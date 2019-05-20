@@ -14,7 +14,8 @@
 //  limitations under the License.
 //
 
-@import Firebase;
+@import FirebaseCore;
+@import FirebaseFirestore;
 
 #import "ViewController.h"
 
@@ -75,6 +76,14 @@
 // =======================================================================================
 // ======== https://firebase.google.com/preview/firestore/client/quickstart ==============
 // =======================================================================================
+
+- (void)setupCacheSize {
+    // [START fs_setup_cache]
+    FIRFirestoreSettings *settings = [FIRFirestore firestore].settings;
+    settings.cacheSizeBytes = kFIRFirestoreCacheSizeUnlimited;
+    [FIRFirestore firestore].settings = settings;
+    // [END fs_setup_cache]
+}
 
 - (void)addAdaLovelace {
   // [START add_ada_lovelace]
@@ -593,6 +602,42 @@
   // [END example_data]
 }
 
+- (void)exampleDataCollectionGroup {
+    // [START fs_collection_group_query_data_setup]
+    FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
+
+    NSDictionary *data = @{@"name": @"Golden Gate Bridge", @"type": @"bridge"};
+    [[[citiesRef documentWithPath:@"SF"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+
+    data = @{@"name": @"Legion of Honor", @"type": @"museum"};
+    [[[citiesRef documentWithPath:@"SF"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+
+    data = @{@"name": @"Griffith Park", @"type": @"park"};
+    [[[citiesRef documentWithPath:@"LA"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+
+    data = @{@"name": @"The Getty", @"type": @"museum"};
+    [[[citiesRef documentWithPath:@"LA"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+
+    data = @{@"name": @"Lincoln Memorial", @"type": @"memorial"};
+    [[[citiesRef documentWithPath:@"DC"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+
+    data = @{@"name": @"National Air and Space Museum", @"type": @"museum"};
+    [[[citiesRef documentWithPath:@"DC"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+
+    data = @{@"name": @"Ueno Park", @"type": @"park"};
+    [[[citiesRef documentWithPath:@"TOK"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+
+    data = @{@"name": @"National Museum of Nature and Science", @"type": @"museum"};
+    [[[citiesRef documentWithPath:@"TOK"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+
+    data = @{@"name": @"Jingshan Park", @"type": @"park"};
+    [[[citiesRef documentWithPath:@"BJ"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+
+    data = @{@"name": @"Beijing Ancient Observatory", @"type": @"museum"};
+    [[[citiesRef documentWithPath:@"BJ"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+    // [END fs_collection_group_query_data_setup]
+}
+
 - (void)getDocument {
   // [START get_document]
   FIRDocumentReference *docRef =
@@ -1049,6 +1094,16 @@
      queryOrderedByField:@"state"]
      queryStartingAtValues:@[ @"Springfield", @"Missouri" ]];
   // [END multi_cursor]
+}
+
+- (void)collectionGroupQuery {
+    // [START fs_collection_group_query]
+    [[[self.db collectionGroupWithID:@"landmarks"] queryWhereField:@"type" isEqualTo:@"museum"]
+        getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
+        // [START_EXCLUDE]
+        // [END_EXCLUDE]
+    }];
+    // [END fs_collection_group_query]
 }
 
 @end

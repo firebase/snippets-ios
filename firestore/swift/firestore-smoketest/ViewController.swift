@@ -16,7 +16,8 @@
 
 import UIKit
 
-import Firebase
+import FirebaseCore
+import FirebaseFirestore
 
 class ViewController: UIViewController {
 
@@ -67,6 +68,7 @@ class ViewController: UIViewController {
 
         // Retrieve Data
         exampleData()
+        exampleDataCollectionGroup()
         getDocument()
         customClassGetDocument()
         listenDocument()
@@ -104,6 +106,7 @@ class ViewController: UIViewController {
         // enableOffline()
         listenToOffline()
         toggleOffline()
+        setupCacheSize()
 
         // Cursors
         simpleCursor()
@@ -129,6 +132,14 @@ class ViewController: UIViewController {
                 document.reference.delete()
             }
         }
+    }
+
+    private func setupCacheSize() {
+        // [START fs_setup_cache]
+        let settings = Firestore.firestore().settings
+        settings.cacheSizeBytes = FirestoreCacheSizeUnlimited
+        Firestore.firestore().settings = settings
+        // [END fs_setup_cache]
     }
 
     // =======================================================================================
@@ -261,7 +272,7 @@ class ViewController: UIViewController {
             "stringExample": "Hello world!",
             "booleanExample": true,
             "numberExample": 3.14159265,
-            "dateExample": Timestamp(Date()),
+            "dateExample": Timestamp(date: Date()),
             "arrayExample": [5, true, "hello"],
             "nullExample": NSNull(),
             "objectExample": [
@@ -359,7 +370,7 @@ class ViewController: UIViewController {
         // Atomically incrememnt the population of the city by 50.
         // Note that increment() with no arguments increments by 1.
         washingtonRef.updateData([
-            "population": FieldValue.increment(50)
+            "population": FieldValue.increment(Int64(50))
         ])
         // [END update_document-increment]
     }
@@ -648,6 +659,42 @@ class ViewController: UIViewController {
             "regions": ["jingjinji", "hebei"]
             ])
         // [END example_data]
+    }
+
+    private func exampleDataCollectionGroup() {
+        // [START fs_collection_group_query_data_setup]
+        let citiesRef = db.collection("cities")
+
+        var data = ["name": "Golden Gate Bridge", "type": "bridge"]
+        citiesRef.document("SF").collection("landmarks").addDocument(data: data)
+
+        data = ["name": "Legion of Honor", "type": "museum"]
+        citiesRef.document("SF").collection("landmarks").addDocument(data: data)
+
+        data = ["name": "Griffith Park", "type": "park"]
+        citiesRef.document("LA").collection("landmarks").addDocument(data: data)
+
+        data = ["name": "The Getty", "type": "museum"]
+        citiesRef.document("LA").collection("landmarks").addDocument(data: data)
+
+        data = ["name": "Lincoln Memorial", "type": "memorial"]
+        citiesRef.document("DC").collection("landmarks").addDocument(data: data)
+
+        data = ["name": "National Air and Space Museum", "type": "museum"]
+        citiesRef.document("DC").collection("landmarks").addDocument(data: data)
+
+        data = ["name": "Ueno Park", "type": "park"]
+        citiesRef.document("TOK").collection("landmarks").addDocument(data: data)
+
+        data = ["name": "National Museum of Nature and Science", "type": "museum"]
+        citiesRef.document("TOK").collection("landmarks").addDocument(data: data)
+
+        data = ["name": "Jingshan Park", "type": "park"]
+        citiesRef.document("BJ").collection("landmarks").addDocument(data: data)
+
+        data = ["name": "Beijing Ancient Observatory", "type": "museum"]
+        citiesRef.document("BJ").collection("landmarks").addDocument(data: data)
+        // [END fs_collection_group_query_data_setup]
     }
 
     private func getDocument() {
@@ -1137,6 +1184,16 @@ class ViewController: UIViewController {
             .order(by: "state")
             .start(at: ["Springfield", "Missouri"])
         // [END multi_cursor]
+    }
+
+    private func collectionGroupQuery() {
+        // [START fs_collection_group_query]
+        db.collectionGroup("landmarks").whereField("type", isEqualTo: "museum").getDocuments { (snapshot, error) in
+            // [START_EXCLUDE]
+            print(snapshot?.documents.count ?? 0)
+            // [END_EXCLUDE]
+        }
+        // [END fs_collection_group_query]
     }
 }
 
