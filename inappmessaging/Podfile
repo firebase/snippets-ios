@@ -1,0 +1,14 @@
+project 'FIAMReference/FIAMReference.xcodeproj/'
+
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'Firebase'
+pod 'Firebase/InAppMessagingDisplay'
+
+target 'FIAMReference' do
+end
+
+target 'FIAMReferenceSwift' do
+  use_frameworks!
+end
