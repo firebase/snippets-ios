@@ -19,6 +19,7 @@
 		3E64A7BE2294513E003EE93A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E64A7BC2294513E003EE93A /* Main.storyboard */; };
 		3E64A7C02294513E003EE93A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E64A7BF2294513E003EE93A /* Assets.xcassets */; };
 		3E64A7C32294513E003EE93A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E64A7C12294513E003EE93A /* LaunchScreen.storyboard */; };
+		3E64A7C9229456A3003EE93A /* CardActionFiamDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E64A7C8229456A3003EE93A /* CardActionFiamDelegate.swift */; };
 		944278F7D67EAD6C3A08CE59 /* Pods_FIAMReference.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFAA3653BD3B8617BB8004E /* Pods_FIAMReference.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		3E64A7BF2294513E003EE93A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E64A7C22294513E003EE93A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E64A7C42294513E003EE93A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E64A7C8229456A3003EE93A /* CardActionFiamDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardActionFiamDelegate.swift; sourceTree = "<group>"; };
 		6B53A70B3818B54DB0A38A8E /* Pods-FIAMReference.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIAMReference.release.xcconfig"; path = "Target Support Files/Pods-FIAMReference/Pods-FIAMReference.release.xcconfig"; sourceTree = "<group>"; };
 		79DD6F184ADADEEFE7BAEF21 /* Pods_FIAMReferenceSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FIAMReferenceSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92983C1DA227B4205161E910 /* Pods-FIAMReferenceSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIAMReferenceSwift.release.xcconfig"; path = "Target Support Files/Pods-FIAMReferenceSwift/Pods-FIAMReferenceSwift.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				3E64A7BF2294513E003EE93A /* Assets.xcassets */,
 				3E64A7C12294513E003EE93A /* LaunchScreen.storyboard */,
 				3E64A7C42294513E003EE93A /* Info.plist */,
+				3E64A7C8229456A3003EE93A /* CardActionFiamDelegate.swift */,
 			);
 			path = FIAMReferenceSwift;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E64A7BB2294513E003EE93A /* ViewController.swift in Sources */,
+				3E64A7C9229456A3003EE93A /* CardActionFiamDelegate.swift in Sources */,
 				3E64A7B92294513E003EE93A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
