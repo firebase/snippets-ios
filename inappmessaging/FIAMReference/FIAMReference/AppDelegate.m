@@ -26,6 +26,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [FIRApp configure];
+    
+    // [START fiam_register_delegate]
+    CardActionFiamDelegate *myFiamDelegate = [CardActionFiamDelegate new];
+    [FIRInAppMessaging inAppMessaging].delegate = myFiamDelegate;
+    // [END fiam_register_delegate]
     return YES;
 }
 
