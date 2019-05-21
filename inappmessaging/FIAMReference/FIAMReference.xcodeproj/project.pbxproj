@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1CD7F0CF5D698701EC16E1DC /* Pods_FIAMReferenceSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79DD6F184ADADEEFE7BAEF21 /* Pods_FIAMReferenceSwift.framework */; };
 		3E64A79D229376BB003EE93A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E64A79C229376BB003EE93A /* AppDelegate.m */; };
 		3E64A7A0229376BB003EE93A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E64A79F229376BB003EE93A /* ViewController.m */; };
 		3E64A7A3229376BB003EE93A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E64A7A1229376BB003EE93A /* Main.storyboard */; };
@@ -20,12 +19,9 @@
 		3E64A7C02294513E003EE93A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E64A7BF2294513E003EE93A /* Assets.xcassets */; };
 		3E64A7C32294513E003EE93A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E64A7C12294513E003EE93A /* LaunchScreen.storyboard */; };
 		3E64A7C9229456A3003EE93A /* CardActionFiamDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E64A7C8229456A3003EE93A /* CardActionFiamDelegate.swift */; };
-		944278F7D67EAD6C3A08CE59 /* Pods_FIAMReference.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFAA3653BD3B8617BB8004E /* Pods_FIAMReference.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		09F5004B6BA91A83A430DF0A /* Pods-FIAMReferenceSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIAMReferenceSwift.debug.xcconfig"; path = "Target Support Files/Pods-FIAMReferenceSwift/Pods-FIAMReferenceSwift.debug.xcconfig"; sourceTree = "<group>"; };
-		0AFAA3653BD3B8617BB8004E /* Pods_FIAMReference.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FIAMReference.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E64A798229376BB003EE93A /* FIAMReference.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FIAMReference.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E64A79B229376BB003EE93A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3E64A79C229376BB003EE93A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -44,10 +40,6 @@
 		3E64A7C22294513E003EE93A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E64A7C42294513E003EE93A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E64A7C8229456A3003EE93A /* CardActionFiamDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardActionFiamDelegate.swift; sourceTree = "<group>"; };
-		6B53A70B3818B54DB0A38A8E /* Pods-FIAMReference.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIAMReference.release.xcconfig"; path = "Target Support Files/Pods-FIAMReference/Pods-FIAMReference.release.xcconfig"; sourceTree = "<group>"; };
-		79DD6F184ADADEEFE7BAEF21 /* Pods_FIAMReferenceSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FIAMReferenceSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		92983C1DA227B4205161E910 /* Pods-FIAMReferenceSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIAMReferenceSwift.release.xcconfig"; path = "Target Support Files/Pods-FIAMReferenceSwift/Pods-FIAMReferenceSwift.release.xcconfig"; sourceTree = "<group>"; };
-		9713A1D987DF45FCD299994B /* Pods-FIAMReference.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FIAMReference.debug.xcconfig"; path = "Target Support Files/Pods-FIAMReference/Pods-FIAMReference.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +47,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				944278F7D67EAD6C3A08CE59 /* Pods_FIAMReference.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,7 +54,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CD7F0CF5D698701EC16E1DC /* Pods_FIAMReferenceSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,8 +66,6 @@
 				3E64A79A229376BB003EE93A /* FIAMReference */,
 				3E64A7B72294513E003EE93A /* FIAMReferenceSwift */,
 				3E64A799229376BB003EE93A /* Products */,
-				AC3ECBD9BC50C355EABD7A81 /* Pods */,
-				49B5456F8D1D7731E31F4D64 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,27 +108,6 @@
 			path = FIAMReferenceSwift;
 			sourceTree = "<group>";
 		};
-		49B5456F8D1D7731E31F4D64 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0AFAA3653BD3B8617BB8004E /* Pods_FIAMReference.framework */,
-				79DD6F184ADADEEFE7BAEF21 /* Pods_FIAMReferenceSwift.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		AC3ECBD9BC50C355EABD7A81 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9713A1D987DF45FCD299994B /* Pods-FIAMReference.debug.xcconfig */,
-				6B53A70B3818B54DB0A38A8E /* Pods-FIAMReference.release.xcconfig */,
-				09F5004B6BA91A83A430DF0A /* Pods-FIAMReferenceSwift.debug.xcconfig */,
-				92983C1DA227B4205161E910 /* Pods-FIAMReferenceSwift.release.xcconfig */,
-			);
-			name = Pods;
-			path = ../Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -148,12 +115,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E64A7AE229376BC003EE93A /* Build configuration list for PBXNativeTarget "FIAMReference" */;
 			buildPhases = (
-				A25AA6379F1E5D1671985A5A /* [CP] Check Pods Manifest.lock */,
 				3E64A794229376BB003EE93A /* Sources */,
 				3E64A795229376BB003EE93A /* Frameworks */,
 				3E64A796229376BB003EE93A /* Resources */,
-				D729F054533B6E9D0CE26935 /* [CP] Embed Pods Frameworks */,
-				A10DA591944E1703EC5FBF10 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,12 +132,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E64A7C72294513E003EE93A /* Build configuration list for PBXNativeTarget "FIAMReferenceSwift" */;
 			buildPhases = (
-				9ED271A235A20306B549A7C8 /* [CP] Check Pods Manifest.lock */,
 				3E64A7B22294513E003EE93A /* Sources */,
 				3E64A7B32294513E003EE93A /* Frameworks */,
 				3E64A7B42294513E003EE93A /* Resources */,
-				9EE05733C62B9E795533BF43 /* [CP] Embed Pods Frameworks */,
-				477C58348159230EC376EC96 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -243,145 +204,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		477C58348159230EC376EC96 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FIAMReferenceSwift/Pods-FIAMReferenceSwift-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInAppMessagingDisplay/InAppMessagingDisplayResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/InAppMessagingDisplayResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FIAMReferenceSwift/Pods-FIAMReferenceSwift-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9ED271A235A20306B549A7C8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FIAMReferenceSwift-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9EE05733C62B9E795533BF43 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FIAMReferenceSwift/Pods-FIAMReferenceSwift-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FIAMReferenceSwift/Pods-FIAMReferenceSwift-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A10DA591944E1703EC5FBF10 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FIAMReference/Pods-FIAMReference-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInAppMessagingDisplay/InAppMessagingDisplayResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/InAppMessagingDisplayResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FIAMReference/Pods-FIAMReference-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A25AA6379F1E5D1671985A5A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FIAMReference-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D729F054533B6E9D0CE26935 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FIAMReference/Pods-FIAMReference-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FIAMReference/Pods-FIAMReference-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3E64A794229376BB003EE93A /* Sources */ = {
@@ -556,7 +378,6 @@
 		};
 		3E64A7AF229376BC003EE93A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9713A1D987DF45FCD299994B /* Pods-FIAMReference.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -573,7 +394,6 @@
 		};
 		3E64A7B0229376BC003EE93A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6B53A70B3818B54DB0A38A8E /* Pods-FIAMReference.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -590,7 +410,6 @@
 		};
 		3E64A7C52294513E003EE93A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09F5004B6BA91A83A430DF0A /* Pods-FIAMReferenceSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -610,7 +429,6 @@
 		};
 		3E64A7C62294513E003EE93A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92983C1DA227B4205161E910 /* Pods-FIAMReferenceSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
