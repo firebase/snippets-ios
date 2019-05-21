@@ -26,5 +26,18 @@
     [super viewDidLoad];
 }
 
+-(void)suppressMessages {
+    // [START fiam_suppress_messages]
+    [FIRInAppMessaging inAppMessaging].messageDisplaySuppressed = YES;
+    // [END fiam_suppress_messages]
+}
+
+-(void)enableDataCollection {
+    // [START fiam_enable_data_collection]
+    // Only needed if FirebaseInAppMessagingAutomaticDataCollectionEnabled is set to NO
+    // in Info.plist
+    [FIRInAppMessaging inAppMessaging].automaticDataCollectionEnabled = YES;
+    // [END fiam_enable_data_collection]
+}
 
 @end

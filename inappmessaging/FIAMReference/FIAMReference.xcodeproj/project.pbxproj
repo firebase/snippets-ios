@@ -19,6 +19,7 @@
 		3E64A7C02294513E003EE93A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E64A7BF2294513E003EE93A /* Assets.xcassets */; };
 		3E64A7C32294513E003EE93A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E64A7C12294513E003EE93A /* LaunchScreen.storyboard */; };
 		3E64A7C9229456A3003EE93A /* CardActionFiamDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E64A7C8229456A3003EE93A /* CardActionFiamDelegate.swift */; };
+		3E64A7D522946983003EE93A /* CardActionFiamDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E64A7D422946983003EE93A /* CardActionFiamDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		3E64A7C22294513E003EE93A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E64A7C42294513E003EE93A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E64A7C8229456A3003EE93A /* CardActionFiamDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardActionFiamDelegate.swift; sourceTree = "<group>"; };
+		3E64A7D322946983003EE93A /* CardActionFiamDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardActionFiamDelegate.h; sourceTree = "<group>"; };
+		3E64A7D422946983003EE93A /* CardActionFiamDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardActionFiamDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,8 @@
 				3E64A7A6229376BC003EE93A /* LaunchScreen.storyboard */,
 				3E64A7A9229376BC003EE93A /* Info.plist */,
 				3E64A7AA229376BC003EE93A /* main.m */,
+				3E64A7D322946983003EE93A /* CardActionFiamDelegate.h */,
+				3E64A7D422946983003EE93A /* CardActionFiamDelegate.m */,
 			);
 			path = FIAMReference;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 				3E64A7A0229376BB003EE93A /* ViewController.m in Sources */,
 				3E64A7AB229376BC003EE93A /* main.m in Sources */,
 				3E64A79D229376BB003EE93A /* AppDelegate.m in Sources */,
+				3E64A7D522946983003EE93A /* CardActionFiamDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

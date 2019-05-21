@@ -14,14 +14,11 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 @import FirebaseInAppMessaging;
 
-@interface ViewController : UIViewController
+@interface CardActionFiamDelegate : NSObject <FIRInAppMessagingDisplayDelegate>
 
--(void)enableDataCollection;
 
--(void)suppressMessages;
 
 @end
-

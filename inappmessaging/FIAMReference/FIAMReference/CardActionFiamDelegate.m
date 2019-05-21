@@ -14,28 +14,28 @@
 //  limitations under the License.
 //
 
-import Foundation
-import FirebaseInAppMessaging
+#import "CardActionFiamDelegate.h"
 
 // [START fiam_card_action_delegate]
-class CardActionFiamDelegate : NSObject, InAppMessagingDisplayDelegate {
-    
-    func messageClicked(_ inAppMessage: InAppMessagingDisplayMessage) {
-        // ...
-    }
-    
-    func messageDismissed(_ inAppMessage: InAppMessagingDisplayMessage,
-                          dismissType: FIRInAppMessagingDismissType) {
-        // ...
-    }
-    
-    func impressionDetected(for inAppMessage: InAppMessagingDisplayMessage) {
-        // ...
-    }
-    
-    func displayError(for inAppMessage: InAppMessagingDisplayMessage, error: Error) {
-        // ...
-    }
+@implementation CardActionFiamDelegate
 
+- (void)displayErrorForMessage:(nonnull FIRInAppMessagingDisplayMessage *)inAppMessage
+                         error:(nonnull NSError *)error {
+    // ...
 }
+
+- (void)impressionDetectedForMessage:(nonnull FIRInAppMessagingDisplayMessage *)inAppMessage {
+    // ...
+}
+
+- (void)messageClicked:(nonnull FIRInAppMessagingDisplayMessage *)inAppMessage {
+    // ...
+}
+
+- (void)messageDismissed:(nonnull FIRInAppMessagingDisplayMessage *)inAppMessage
+             dismissType:(FIRInAppMessagingDismissType)dismissType {
+    // ...
+}
+
+@end
 // [END fiam_card_action_delegate]
