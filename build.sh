@@ -43,3 +43,4 @@ build_sample "firestore/objc" "firestore-smoketest-objc" "firestore-smoketest-ob
 build_sample "firestore/swift" "firestore-smoketest" "firestore-smoketest"
 build_sample "dl-invites-sample" "InvitesSample" "InvitesSample"
 build_sample "dl-invites-sample" "InvitesSample" "InvitesSampleObjC"
+build_sample "inappmessaging" "FIAMReference" "FIAMReferenceSwift"
