@@ -1,3 +1,98 @@
-PODFILE CHECKSUM: e1446480ad8dd999993e70e53ef954ef75ba2dc2
+PODS:
+  - Firebase/CoreOnly (6.1.0):
+    - FirebaseCore (= 6.0.1)
+  - Firebase/MLVision (6.1.0):
+    - Firebase/CoreOnly
+    - FirebaseMLVision (~> 0.16.0)
+  - Firebase/MLVisionAutoML (6.1.0):
+    - Firebase/CoreOnly
+    - FirebaseMLVisionAutoML (~> 0.16.0)
+  - FirebaseCore (6.0.1):
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/Logger (~> 6.0)
+  - FirebaseInstanceID (4.1.0):
+    - FirebaseCore (~> 6.0)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
+  - FirebaseMLCommon (0.16.0):
+    - FirebaseCore (~> 6.0)
+    - FirebaseInstanceID (~> 4.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseMLVision (0.16.0):
+    - FirebaseCore (~> 6.0)
+    - FirebaseMLCommon (~> 0.16)
+    - GoogleAPIClientForREST/Core (~> 1.3)
+    - GoogleAPIClientForREST/Vision (~> 1.3)
+    - GoogleMobileVision/Detector (~> 1.4)
+  - FirebaseMLVisionAutoML (0.16.0):
+    - FirebaseCore (~> 6.0)
+    - FirebaseMLCommon (~> 0.16)
+    - FirebaseMLVision (~> 0.16)
+    - TensorFlowLite (= 1.13.1)
+  - GoogleAPIClientForREST/Core (1.3.9):
+    - GTMSessionFetcher (>= 1.1.7)
+  - GoogleAPIClientForREST/Vision (1.3.9):
+    - GoogleAPIClientForREST/Core
+    - GTMSessionFetcher (>= 1.1.7)
+  - GoogleMobileVision/Detector (1.6.0):
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - GTMSessionFetcher/Core (~> 1.1)
+    - Protobuf (~> 3.1)
+  - GoogleToolboxForMac/Defines (2.2.1)
+  - GoogleToolboxForMac/Logger (2.2.1):
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - "GoogleToolboxForMac/NSData+zlib (2.2.1)":
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - GoogleUtilities/Environment (6.1.0)
+  - GoogleUtilities/Logger (6.1.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/UserDefaults (6.1.0):
+    - GoogleUtilities/Logger
+  - GTMSessionFetcher (1.2.2):
+    - GTMSessionFetcher/Full (= 1.2.2)
+  - GTMSessionFetcher/Core (1.2.2)
+  - GTMSessionFetcher/Full (1.2.2):
+    - GTMSessionFetcher/Core (= 1.2.2)
+  - Protobuf (3.7.0)
+  - TensorFlowLite (1.13.1)
+
+DEPENDENCIES:
+  - Firebase/MLVision
+  - Firebase/MLVisionAutoML
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Firebase
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMLCommon
+    - FirebaseMLVision
+    - FirebaseMLVisionAutoML
+    - GoogleAPIClientForREST
+    - GoogleMobileVision
+    - GoogleToolboxForMac
+    - GoogleUtilities
+    - GTMSessionFetcher
+    - Protobuf
+    - TensorFlowLite
+
+SPEC CHECKSUMS:
+  Firebase: 8d77bb33624ae9b62d745d82ec023de5f70f7e4f
+  FirebaseCore: 66bdef3b310a026880e2a5bc8aa586ab62ce4543
+  FirebaseInstanceID: 27bed93a59b6685f5c3e0c028a878a764fd75c33
+  FirebaseMLCommon: d430756ba2a16bac8fefc81ea416e7f822f052fd
+  FirebaseMLVision: 35d0a720334b141d70a55e7e817c1cac23f32285
+  FirebaseMLVisionAutoML: ce20b5b0e169cafa07f5bf61048a86aa7df6232c
+  GoogleAPIClientForREST: 44c7b678cbab11d26a47eab7309d6179b1a61f0c
+  GoogleMobileVision: 31cfb4319fd0c03d80105680abd9eae9da5e3b47
+  GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
+  GoogleUtilities: 84df567c76ca84f67b7bb40e769fdd4acc746a10
+  GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
+  Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
+  TensorFlowLite: 8b9dc4eb32eac0f8cb660c66bca7604da56dcc5a
+
+PODFILE CHECKSUM: 4b071879fc5f9391b9325777ac56ce58e70e8b8d
 
 COCOAPODS: 1.7.0

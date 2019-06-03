@@ -3,11 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		248A1B8E7EAC2788CDFEDCA2 /* Pods_swift_snippets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FCE7B41E27EFCD67955B11 /* Pods_swift_snippets.framework */; };
+		42170C9222986F6500B22418 /* AutoMLVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42170C9122986F6500B22418 /* AutoMLVision.swift */; };
+		42825ACE22987089003A4469 /* ModelManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42825ACD22987089003A4469 /* ModelManagement.swift */; };
+		42825AD022987134003A4469 /* AutoMLVision.m in Sources */ = {isa = PBXBuildFile; fileRef = 42825ACF22987134003A4469 /* AutoMLVision.m */; };
+		42B043EB229DAB0E00ABAB63 /* ModelManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B043EA229DAB0E00ABAB63 /* ModelManagement.m */; };
 		42B9833122986A18008AE4FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B9833022986A18008AE4FF /* AppDelegate.swift */; };
 		42B9833322986A18008AE4FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B9833222986A18008AE4FF /* ViewController.swift */; };
 		42B9833622986A18008AE4FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42B9833422986A18008AE4FF /* Main.storyboard */; };
@@ -24,6 +28,10 @@
 
 /* Begin PBXFileReference section */
 		2366E70AC9F3FD4CCF49A29F /* Pods-objc-snippets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-objc-snippets.release.xcconfig"; path = "Target Support Files/Pods-objc-snippets/Pods-objc-snippets.release.xcconfig"; sourceTree = "<group>"; };
+		42170C9122986F6500B22418 /* AutoMLVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoMLVision.swift; sourceTree = "<group>"; };
+		42825ACD22987089003A4469 /* ModelManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManagement.swift; sourceTree = "<group>"; };
+		42825ACF22987134003A4469 /* AutoMLVision.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoMLVision.m; sourceTree = "<group>"; };
+		42B043EA229DAB0E00ABAB63 /* ModelManagement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelManagement.m; sourceTree = "<group>"; };
 		42B9832D22986A18008AE4FF /* swift-snippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-snippets.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42B9833022986A18008AE4FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42B9833222986A18008AE4FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +114,8 @@
 				42B9833722986A19008AE4FF /* Assets.xcassets */,
 				42B9833922986A19008AE4FF /* LaunchScreen.storyboard */,
 				42B9833C22986A19008AE4FF /* Info.plist */,
+				42170C9122986F6500B22418 /* AutoMLVision.swift */,
+				42825ACD22987089003A4469 /* ModelManagement.swift */,
 			);
 			path = "swift-snippets";
 			sourceTree = "<group>";
@@ -122,6 +132,8 @@
 				42B9835122986AC8008AE4FF /* LaunchScreen.storyboard */,
 				42B9835422986AC8008AE4FF /* Info.plist */,
 				42B9835522986AC8008AE4FF /* main.m */,
+				42825ACF22987134003A4469 /* AutoMLVision.m */,
+				42B043EA229DAB0E00ABAB63 /* ModelManagement.m */,
 			);
 			path = "objc-snippets";
 			sourceTree = "<group>";
@@ -134,7 +146,6 @@
 				A9D8EE40DD8811B2054C86F9 /* Pods-swift-snippets.debug.xcconfig */,
 				DD46DDBDE6F349A2E2F18311 /* Pods-swift-snippets.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -149,6 +160,7 @@
 				42B9832922986A18008AE4FF /* Sources */,
 				42B9832A22986A18008AE4FF /* Frameworks */,
 				42B9832B22986A18008AE4FF /* Resources */,
+				E497F1495CF05428EB5B9E33 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -167,6 +179,7 @@
 				42B9834022986AC7008AE4FF /* Sources */,
 				42B9834122986AC7008AE4FF /* Frameworks */,
 				42B9834222986AC7008AE4FF /* Resources */,
+				745508E4EA12700DAA920E82 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -237,6 +250,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		745508E4EA12700DAA920E82 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-objc-snippets/Pods-objc-snippets-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-objc-snippets/Pods-objc-snippets-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-objc-snippets/Pods-objc-snippets-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AFF33E0745FD55D8E7AAB0A1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -281,6 +311,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E497F1495CF05428EB5B9E33 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-swift-snippets/Pods-swift-snippets-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-swift-snippets/Pods-swift-snippets-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-swift-snippets/Pods-swift-snippets-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -288,6 +335,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42825ACE22987089003A4469 /* ModelManagement.swift in Sources */,
+				42170C9222986F6500B22418 /* AutoMLVision.swift in Sources */,
 				42B9833322986A18008AE4FF /* ViewController.swift in Sources */,
 				42B9833122986A18008AE4FF /* AppDelegate.swift in Sources */,
 			);
@@ -297,9 +346,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42B043EB229DAB0E00ABAB63 /* ModelManagement.m in Sources */,
 				42B9834B22986AC7008AE4FF /* ViewController.m in Sources */,
 				42B9835622986AC8008AE4FF /* main.m in Sources */,
 				42B9834822986AC7008AE4FF /* AppDelegate.m in Sources */,
+				42825AD022987134003A4469 /* AutoMLVision.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
