@@ -1,16 +1,16 @@
 PODS:
-  - Firebase/CoreOnly (6.2.0):
-    - FirebaseCore (= 6.0.2)
-  - Firebase/MLVision (6.2.0):
+  - Firebase/CoreOnly (6.3.0):
+    - FirebaseCore (= 6.0.3)
+  - Firebase/MLVision (6.3.0):
     - Firebase/CoreOnly
     - FirebaseMLVision (~> 0.16.0)
-  - Firebase/MLVisionAutoML (6.2.0):
+  - Firebase/MLVisionAutoML (6.3.0):
     - Firebase/CoreOnly
     - FirebaseMLVisionAutoML (~> 0.16.0)
-  - FirebaseCore (6.0.2):
+  - FirebaseCore (6.0.3):
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/Logger (~> 6.0)
-  - FirebaseInstanceID (4.1.1):
+  - FirebaseInstanceID (4.2.0):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
@@ -79,9 +79,9 @@ SPEC REPOS:
     - TensorFlowLite
 
 SPEC CHECKSUMS:
-  Firebase: 5965bac23e7fcb5fa6d926ed429c9ecef8a2014e
-  FirebaseCore: b0f0262acebfa540e5f97b3832dbb13186980822
-  FirebaseInstanceID: cdb3827746d53ece7ae87a5c51c25c3055443366
+  Firebase: 8432d732974498afd5987e9001a05f90f1a3d625
+  FirebaseCore: 68f8a7f50cdae542715d4e86afa37c4067217dcb
+  FirebaseInstanceID: f20243a1d828e0e9a3798b995174dedc16f1b32a
   FirebaseMLCommon: d430756ba2a16bac8fefc81ea416e7f822f052fd
   FirebaseMLVision: 35d0a720334b141d70a55e7e817c1cac23f32285
   FirebaseMLVisionAutoML: ce20b5b0e169cafa07f5bf61048a86aa7df6232c
