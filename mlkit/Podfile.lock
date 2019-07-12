@@ -45,17 +45,17 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.2.1)
   - "GoogleToolboxForMac/NSData+zlib (2.2.1)":
     - GoogleToolboxForMac/Defines (= 2.2.1)
-  - GoogleUtilities/Environment (6.2.2)
-  - GoogleUtilities/Logger (6.2.2):
+  - GoogleUtilities/Environment (6.2.3)
+  - GoogleUtilities/Logger (6.2.3):
     - GoogleUtilities/Environment
-  - GoogleUtilities/UserDefaults (6.2.2):
+  - GoogleUtilities/UserDefaults (6.2.3):
     - GoogleUtilities/Logger
   - GTMSessionFetcher (1.2.2):
     - GTMSessionFetcher/Full (= 1.2.2)
   - GTMSessionFetcher/Core (1.2.2)
   - GTMSessionFetcher/Full (1.2.2):
     - GTMSessionFetcher/Core (= 1.2.2)
-  - Protobuf (3.8.0)
+  - Protobuf (3.9.0)
   - TensorFlowLite (1.13.1)
 
 DEPENDENCIES:
@@ -88,9 +88,9 @@ SPEC CHECKSUMS:
   GoogleAPIClientForREST: 44c7b678cbab11d26a47eab7309d6179b1a61f0c
   GoogleMobileVision: 31cfb4319fd0c03d80105680abd9eae9da5e3b47
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
-  GoogleUtilities: dddd0d5b60f75bbd338da76587d6f667ec353b23
+  GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
-  Protobuf: 3f617b9a6e73605565086864c9bc26b2bf2dd5a3
+  Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
   TensorFlowLite: 8b9dc4eb32eac0f8cb660c66bca7604da56dcc5a
 
 PODFILE CHECKSUM: 4b071879fc5f9391b9325777ac56ce58e70e8b8d
