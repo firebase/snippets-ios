@@ -51,6 +51,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B3979B2C8769728EE24D424 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		1090B0671EBCE02000A8F759 /* StorageReferenceSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +73,7 @@
 				8D64552F1DFF56CE00972DCE /* StorageReference */,
 				1090B0671EBCE02000A8F759 /* StorageReferenceSwift */,
 				8D64552E1DFF56CE00972DCE /* Products */,
+				0B3979B2C8769728EE24D424 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,7 +159,7 @@
 				TargetAttributes = {
 					1090B0651EBCE02000A8F759 = {
 						CreatedOnToolsVersion = 8.3.2;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					8D64552C1DFF56CD00972DCE = {
@@ -165,6 +173,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -255,7 +264,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -272,7 +281,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.referencecode.FirebaseStorageReference;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
