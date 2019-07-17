@@ -18,7 +18,7 @@
 
 @import Firebase;
 
-@import FirebaseStorageUI;
+@import FirebaseUI;
 
 @interface ViewController ()
 
@@ -621,5 +621,53 @@
   }];
   // [END firstorage_delete]
 }
+
+- (void)listAllFiles {
+  FIRStorage *storage = [FIRStorage storage];
+  // [START storage_list_all]
+  FIRStorageReference *storageReference = [storage reference];
+  [storageReference listAllWithCompletion:^(FIRStorageListResult *result, NSError *error) {
+    if (error != nil) {
+      // ...
+    }
+
+    for (FIRStorageReference *prefix in result.prefixes) {
+      // All the prefixes under storageReference.
+      // You may call listAllWithCompletion: recursively on them.
+    }
+    for (FIRStorageReference *item in result.items) {
+      // All items under storageReference.
+    }
+  }];
+  // [END storage_list_all]
+}
+
+// [START storage_list_paginated]
+- (void)paginateFilesAtReference:(FIRStorageReference *)reference
+                       pageToken:(nullable NSString *)pageToken {
+  void (^pageHandler)(FIRStorageListResult *_Nonnull, NSError *_Nullable) =
+      ^(FIRStorageListResult *result, NSError *error) {
+        if (error != nil) {
+          // ...
+        }
+        NSArray *prefixes = result.prefixes;
+        NSArray *items = result.items;
+
+        // ...
+
+        // Process next page
+        if (result.pageToken != nil) {
+          [self paginateFilesAtReference:reference pageToken:result.pageToken];
+        }
+  };
+
+  if (pageToken != nil) {
+    [reference listWithMaxResults:100 pageToken:pageToken completion:pageHandler];
+  } else {
+    [reference listWithMaxResults:100 completion:pageHandler];
+  }
+}
+// [END storage_list_paginated]
+
 
 @end

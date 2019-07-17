@@ -17,7 +17,7 @@
 import UIKit
 
 import Firebase
-import FirebaseStorageUI
+import FirebaseUI
 
 class ViewController: UIViewController {
 
@@ -617,4 +617,51 @@ class ViewController: UIViewController {
     }
     // [END firstorage_delete]
   }
+
+  func listAllFiles() {
+    let storage = Storage.storage()
+    // [START storage_list_all]
+    let storageReference = storage.reference().child("files/uid")
+    storageReference.listAll { (result, error) in
+      if let error = error {
+        // ...
+      }
+      for prefix in result.prefixes {
+        // The prefixes under storageReference.
+        // You may call listAll(completion:) recursively on them.
+      }
+      for item in result.items {
+        // The items under storageReference.
+      }
+    }
+    // [END storage_list_all]
+  }
+
+  // [START storage_list_paginated]
+  func listAllPaginated(pageToken: String? = nil) {
+    let storage = Storage.storage()
+    let storageReference = storage.reference().child("files/uid")
+
+    let pageHandler: (StorageListResult, Error?) -> Void = { (result, error) in
+      if let error = error {
+        // ...
+      }
+      let prefixes = result.prefixes
+      let items = result.items
+
+      // ...
+
+      // Process next page
+      if let token = result.pageToken {
+        self.listAllPaginated(pageToken: token)
+      }
+    }
+
+    if let pageToken = pageToken {
+      storageReference.list(withMaxResults: 100, pageToken: pageToken, completion: pageHandler)
+    } else {
+      storageReference.list(withMaxResults: 100, completion: pageHandler)
+    }
+  }
+  // [END storage_list_paginated]
 }
