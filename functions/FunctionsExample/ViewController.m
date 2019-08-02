@@ -29,5 +29,11 @@
   // Do any additional setup after loading the view.
 }
 
+- (void)emulatorSettings {
+  // [START functions_emulator_connect]
+  [[FIRFunctions functions] useFunctionsEmulatorOrigin:@"http://localhost:5001"];
+  // [END functions_emulator_connect]
+}
+
 
 @end
