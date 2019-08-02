@@ -1195,6 +1195,15 @@ class ViewController: UIViewController {
         }
         // [END fs_collection_group_query]
     }
+
+    private func emulatorSettings() {
+        // [START fs_emulator_connect]
+        let settings = Firestore.firestore().settings
+        settings.host = "localhost:8080"
+        settings.isSSLEnabled = false
+        Firestore.firestore().settings = settings
+        // [END fs_emulator_connect]
+    }
 }
 
 fileprivate struct City {
