@@ -1106,4 +1106,13 @@
     // [END fs_collection_group_query]
 }
 
+- (void)emulatorSettings {
+    // [START fs_emulator_connect]
+    FIRFirestoreSettings *settings = [FIRFirestore firestore].settings;
+    settings.host = @"localhost:8080";
+    settings.sslEnabled = false;
+    [FIRFirestore firestore].settings = settings;
+    // [END fs_emulator_connect]
+}
+
 @end
