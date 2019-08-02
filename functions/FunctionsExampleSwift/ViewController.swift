@@ -24,5 +24,11 @@ class ViewController: UIViewController {
     // Do any additional setup after loading the view.
   }
 
+  func emulatorSettings() {
+    // [START functions_emulator_connect]
+    Functions.functions().useFunctionsEmulator(origin: "http://localhost:5001")
+    // [END functions_emulator_connect]
+  }
+
 }
 
