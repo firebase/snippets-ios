@@ -34,23 +34,23 @@ PODS:
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - GoogleUtilities/AppDelegateSwizzler (6.2.3):
+  - GoogleUtilities/AppDelegateSwizzler (6.2.4):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.2.3)
-  - GoogleUtilities/Logger (6.2.3):
+  - GoogleUtilities/Environment (6.2.4)
+  - GoogleUtilities/Logger (6.2.4):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.2.3):
+  - GoogleUtilities/MethodSwizzler (6.2.4):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.2.3):
+  - GoogleUtilities/Network (6.2.4):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.2.3)"
-  - GoogleUtilities/Reachability (6.2.3):
+  - "GoogleUtilities/NSData+zlib (6.2.4)"
+  - GoogleUtilities/Reachability (6.2.4):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.2.3):
+  - GoogleUtilities/UserDefaults (6.2.4):
     - GoogleUtilities/Logger
   - leveldb-library (1.20)
   - nanopb (0.3.901):
@@ -84,7 +84,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: f48e067716864be2b855cf716b927ef375d6cfa0
   FirebaseInstanceID: 662b8108a09fe9ed01aafdedba100fde8536b0f6
   GoogleAppMeasurement: 183bd916af7f80deb67c01888368f1108d641832
-  GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
+  GoogleUtilities: 64b5e3982b1b01bda26712affd5c523ef32563cf
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
