@@ -121,6 +121,14 @@ class ViewController: UIViewController {
     }
     // [END rtdb_write_new_user_completion]
   }
+
+  func emulatorSettings() {
+
+	// [START rtbd_emulator_connect]
+	let db = Database.database(url:@"http://localhost:9000")
+	// [END rtdb_emulator_connect]
+
+  }
 }
 
 func combinedExample() {
