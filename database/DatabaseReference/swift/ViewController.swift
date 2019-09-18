@@ -132,8 +132,8 @@ class ViewController: UIViewController {
 
   func flushRealtimeDatabase(anRTDBReference: DatabaseReference) { 
         // [START rtdb_emulator_flush]
-        // With a DatabaseReference, write nil to the root node to delete the database.
-	anRTDBReference.child("/").setValue(nil);
+	// With a DatabaseReference, write nil clear the database.
+	Database.database().reference().setValue(nil);
 	// [END rtbd_emulator_flush]  
 }
 
