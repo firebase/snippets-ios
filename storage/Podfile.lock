@@ -20,15 +20,15 @@ PODS:
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseUI/Storage (8.0.4):
+  - FirebaseUI/Storage (8.1.0):
     - Firebase/Storage (~> 6.0)
     - SDWebImage (~> 5.0)
   - GoogleDataTransport (1.2.0)
   - GoogleDataTransportCCTSupport (1.0.4):
     - GoogleDataTransport (~> 1.2)
     - nanopb
-  - GoogleUtilities/Environment (6.2.5)
-  - GoogleUtilities/Logger (6.2.5):
+  - GoogleUtilities/Environment (6.3.0)
+  - GoogleUtilities/Logger (6.3.0):
     - GoogleUtilities/Environment
   - GTMSessionFetcher/Core (1.2.2)
   - nanopb (0.3.901):
@@ -67,10 +67,10 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 4c04ae09d0ab027c30179828c6bb47764df1bd13
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
   FirebaseStorage: b7c6d00997bc21d4465453bdcc5cc65513110fed
-  FirebaseUI: d92c980c1c7e553df3c5e7b0725baeb13f80f6d2
+  FirebaseUI: 41e06c5f7f6e34a8f430862d67637e36e4aa696c
   GoogleDataTransport: 8f9897b8e073687f24ca8d3c3a8013dec7d2d1cc
   GoogleDataTransportCCTSupport: 7455d07b98851aa63e4c05a34dad356ca588479e
-  GoogleUtilities: e7dc37039b19df7fe543479d3e4a02ac8d11bb69
+  GoogleUtilities: 9c2c544202301110b29f7974a82e77fdcf12bf51
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SDWebImage: 96d7f03415ccb28d299d765f93557ff8a617abd8
