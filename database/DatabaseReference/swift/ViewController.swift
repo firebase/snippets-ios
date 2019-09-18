@@ -135,7 +135,7 @@ class ViewController: UIViewController {
 	// With a DatabaseReference, write nil clear the database.
 	Database.database().reference().setValue(nil);
 	// [END rtbd_emulator_flush]  
-}
+  }
 
 }
 
