@@ -130,7 +130,7 @@ class ViewController: UIViewController {
 
   }
 
-  func flushRealtimeDatabase(anRTDBReference: DatabaseReference) { 
+  func flushRealtimeDatabase(Database: Database) { 
         // [START rtdb_emulator_flush]
 	// With a DatabaseReference, write nil clear the database.
 	Database.database().reference().setValue(nil);
