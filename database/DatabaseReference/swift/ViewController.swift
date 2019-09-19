@@ -122,7 +122,7 @@ class ViewController: UIViewController {
     // [END rtdb_write_new_user_completion]
   }
 
-  func emulatorSettings() {
+  func emulatorSettings(Database: Database) {
 
 	// [START rtbd_emulator_connect]
 	let db = Database.database(url:@"http://localhost:9000")
