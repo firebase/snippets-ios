@@ -123,11 +123,9 @@ class ViewController: UIViewController {
   }
 
   func emulatorSettings(Database: Database) {
-
 	// [START rtbd_emulator_connect]
 	let db = Database.database(url:@"http://localhost:9000")
 	// [END rtdb_emulator_connect]
-
   }
 
   func flushRealtimeDatabase(Database: Database) { 
