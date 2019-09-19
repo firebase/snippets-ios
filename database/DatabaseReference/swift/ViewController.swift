@@ -121,6 +121,21 @@ class ViewController: UIViewController {
     }
     // [END rtdb_write_new_user_completion]
   }
+
+  func emulatorSettings(Database: Database) {
+	// [START rtdb_emulator_connect]
+        // In almost all cases the ns (namespace) is your project ID.
+	let db = Database.database(url:@"http://localhost:9000?ns=YOUR_DATABASE_NAMESPACE")
+	// [END rtdb_emulator_connect]
+  }
+
+  func flushRealtimeDatabase(Database: Database) { 
+        // [START rtdb_emulator_flush]
+	// With a DatabaseReference, write nil clear the database.
+	Database.database().reference().setValue(nil);
+	// [END rtdb_emulator_flush]  
+  }
+
 }
 
 func combinedExample() {
