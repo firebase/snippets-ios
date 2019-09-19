@@ -123,7 +123,7 @@ class ViewController: UIViewController {
   }
 
   func emulatorSettings(Database: Database) {
-	// [START rtbd_emulator_connect]
+	// [START rtdb_emulator_connect]
 	let db = Database.database(url:@"http://localhost:9000")
 	// [END rtdb_emulator_connect]
   }
@@ -132,7 +132,7 @@ class ViewController: UIViewController {
         // [START rtdb_emulator_flush]
 	// With a DatabaseReference, write nil clear the database.
 	Database.database().reference().setValue(nil);
-	// [END rtbd_emulator_flush]  
+	// [END rtdb_emulator_flush]  
   }
 
 }
