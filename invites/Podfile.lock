@@ -113,7 +113,7 @@ DEPENDENCIES:
   - Firebase/Invites
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -151,4 +151,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 95b5db7fdcb60afeb38ea4713dda46fe9aa0fb56
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.0
