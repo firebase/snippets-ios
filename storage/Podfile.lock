@@ -27,8 +27,8 @@ PODS:
   - GoogleDataTransportCCTSupport (1.1.0):
     - GoogleDataTransport (~> 2.0)
     - nanopb
-  - GoogleUtilities/Environment (6.3.0)
-  - GoogleUtilities/Logger (6.3.0):
+  - GoogleUtilities/Environment (6.3.1)
+  - GoogleUtilities/Logger (6.3.1):
     - GoogleUtilities/Environment
   - GTMSessionFetcher/Core (1.2.2)
   - nanopb (0.3.901):
@@ -36,9 +36,9 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - SDWebImage (5.2.1):
-    - SDWebImage/Core (= 5.2.1)
-  - SDWebImage/Core (5.2.1)
+  - SDWebImage (5.2.2):
+    - SDWebImage/Core (= 5.2.2)
+  - SDWebImage/Core (5.2.2)
 
 DEPENDENCIES:
   - Firebase/Storage
@@ -70,10 +70,10 @@ SPEC CHECKSUMS:
   FirebaseUI: 41e06c5f7f6e34a8f430862d67637e36e4aa696c
   GoogleDataTransport: c8617c00e4f3eb9418e42ac0e8ac5241a9d555dd
   GoogleDataTransportCCTSupport: 9f352523e8785a71f6754f51eeff09f49ec19268
-  GoogleUtilities: 9c2c544202301110b29f7974a82e77fdcf12bf51
+  GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  SDWebImage: 336f6958a13d5e8347a317cd68a9f6ee9aaaaf03
+  SDWebImage: 5fcdb02cc35e05fc35791ec514b191d27189f872
 
 PODFILE CHECKSUM: f0cd9d079793b24a37b713cd64dc7900bb8601af
 
