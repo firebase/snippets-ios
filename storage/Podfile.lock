@@ -1,20 +1,21 @@
 PODS:
-  - Firebase/CoreOnly (6.9.0):
-    - FirebaseCore (= 6.3.0)
-  - Firebase/Storage (6.9.0):
+  - Firebase/CoreOnly (6.10.0):
+    - FirebaseCore (= 6.3.1)
+  - Firebase/Storage (6.10.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 3.4.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (6.3.0):
+  - FirebaseCore (6.3.1):
     - FirebaseCoreDiagnostics (~> 1.0)
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleUtilities/Environment (~> 6.2)
     - GoogleUtilities/Logger (~> 6.2)
-  - FirebaseCoreDiagnostics (1.1.0):
+  - FirebaseCoreDiagnostics (1.1.1):
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleDataTransportCCTSupport (~> 1.0)
     - GoogleUtilities/Environment (~> 6.2)
     - GoogleUtilities/Logger (~> 6.2)
+    - nanopb (~> 0.3.901)
   - FirebaseCoreDiagnosticsInterop (1.0.0)
   - FirebaseStorage (3.4.1):
     - FirebaseAuthInterop (~> 1.0)
@@ -23,10 +24,10 @@ PODS:
   - FirebaseUI/Storage (8.1.0):
     - Firebase/Storage (~> 6.0)
     - SDWebImage (~> 5.0)
-  - GoogleDataTransport (2.0.0)
-  - GoogleDataTransportCCTSupport (1.1.0):
-    - GoogleDataTransport (~> 2.0)
-    - nanopb
+  - GoogleDataTransport (3.0.0)
+  - GoogleDataTransportCCTSupport (1.2.0):
+    - GoogleDataTransport (~> 3.0)
+    - nanopb (~> 0.3.901)
   - GoogleUtilities/Environment (6.3.1)
   - GoogleUtilities/Logger (6.3.1):
     - GoogleUtilities/Environment
@@ -36,9 +37,9 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - SDWebImage (5.2.2):
-    - SDWebImage/Core (= 5.2.2)
-  - SDWebImage/Core (5.2.2)
+  - SDWebImage (5.2.3):
+    - SDWebImage/Core (= 5.2.3)
+  - SDWebImage/Core (5.2.3)
 
 DEPENDENCIES:
   - Firebase/Storage
@@ -61,19 +62,19 @@ SPEC REPOS:
     - SDWebImage
 
 SPEC CHECKSUMS:
-  Firebase: 2d750c54cda57d5a6ae31212cfe5cc813c6be7e4
+  Firebase: 5e6b7b12bf9adb90986688edc06b156c37e109cd
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: 8b2765c445d40db7137989b7146a3aa3f91b5529
-  FirebaseCoreDiagnostics: be4f7a09d02ab305f18de59a470412caddb64c2a
+  FirebaseCore: 064c2dd92a8ca5974bbdcb080df9921e46bd34cd
+  FirebaseCoreDiagnostics: af29e43048607588c050889d19204f4d7b758c9f
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
   FirebaseStorage: b7c6d00997bc21d4465453bdcc5cc65513110fed
   FirebaseUI: 41e06c5f7f6e34a8f430862d67637e36e4aa696c
-  GoogleDataTransport: c8617c00e4f3eb9418e42ac0e8ac5241a9d555dd
-  GoogleDataTransportCCTSupport: 9f352523e8785a71f6754f51eeff09f49ec19268
+  GoogleDataTransport: f6fe28f43e3a300736854260961ad485b473edc5
+  GoogleDataTransportCCTSupport: 862418a8cdda520c4dd4af83a756d04efe4a6990
   GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  SDWebImage: 5fcdb02cc35e05fc35791ec514b191d27189f872
+  SDWebImage: 46a7f73228f84ce80990c786e4372cf4db5875ce
 
 PODFILE CHECKSUM: f0cd9d079793b24a37b713cd64dc7900bb8601af
 
