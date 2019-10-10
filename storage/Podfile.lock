@@ -21,7 +21,7 @@ PODS:
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseUI/Storage (8.1.0):
+  - FirebaseUI/Storage (8.2.0):
     - Firebase/Storage (~> 6.0)
     - SDWebImage (~> 5.0)
   - GoogleDataTransport (3.0.0)
@@ -68,7 +68,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: af29e43048607588c050889d19204f4d7b758c9f
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
   FirebaseStorage: b7c6d00997bc21d4465453bdcc5cc65513110fed
-  FirebaseUI: 41e06c5f7f6e34a8f430862d67637e36e4aa696c
+  FirebaseUI: d9393ff139b2671921153c0060cf6fd154afad16
   GoogleDataTransport: f6fe28f43e3a300736854260961ad485b473edc5
   GoogleDataTransportCCTSupport: 862418a8cdda520c4dd4af83a756d04efe4a6990
   GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
