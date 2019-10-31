@@ -8,7 +8,7 @@ target 'firestore-smoketest-objc' do
   # Pods for firestore-smoketest
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestore', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'master'
 
   target 'firestore-smoketest-objcTests' do
     inherit! :search_paths

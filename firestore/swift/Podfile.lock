@@ -13,9 +13,6 @@ PODS:
     - FirebaseAnalytics (= 6.1.3)
   - Firebase/CoreOnly (6.11.0):
     - FirebaseCore (= 6.3.2)
-  - Firebase/Firestore (6.11.0):
-    - Firebase/CoreOnly
-    - FirebaseFirestore (~> 1.6.1)
   - FirebaseAnalytics (6.1.3):
     - FirebaseCore (~> 6.3)
     - FirebaseInstanceID (~> 4.2)
@@ -119,7 +116,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
-  - Firebase/Firestore
+  - FirebaseFirestore (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `master`)
 
 SPEC REPOS:
   trunk:
@@ -131,7 +128,6 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreDiagnosticsInterop
-    - FirebaseFirestore
     - FirebaseInstanceID
     - GoogleAppMeasurement
     - GoogleDataTransport
@@ -143,6 +139,16 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - Protobuf
+
+EXTERNAL SOURCES:
+  FirebaseFirestore:
+    :branch: master
+    :git: https://github.com/firebase/firebase-ios-sdk.git
+
+CHECKOUT OPTIONS:
+  FirebaseFirestore:
+    :commit: 8c0ab30279d5aa347571b8a04375b9979c96633b
+    :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
@@ -166,6 +172,6 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
 
-PODFILE CHECKSUM: 67831f10b93a19c58541fb5f3fa7845a32fd6ca9
+PODFILE CHECKSUM: fcc672135e28a19fb1e4f0de4a5d86fd61059cb8
 
 COCOAPODS: 1.8.4
