@@ -89,6 +89,10 @@ class ViewController: UIViewController {
         chainFilters()
         validRangeFilters()
 
+        // IN Queries
+        arrayContainsAnyQueries()
+        inQueries()
+
         // Can't run this since it throws a fatal error
         // invalidRangeFilters()
 
@@ -1035,6 +1039,24 @@ class ViewController: UIViewController {
         // [END invalid_filter_and_order]
     }
 
+    private func arrayContainsAnyQueries() {
+        // [START array_contains_any_filter]
+        let citiesRef = db.collection("cities")
+        citiesRef.whereField("region", arrayContains: ["west_coast", "east_coast"])
+        // [END array_contains_any_filter]
+    }
+
+    private func inQueries() {
+        // [START in_filter]
+        let citiesRef = db.collection("cities")
+
+        citiesRef.whereField("country", in: ["USA", "Japan"])
+        // [END in_filter]
+
+        // [START in_filter_with_array]
+        citiesRef.whereField("regions", in: [["west_coast"], ["east_coast"]]);
+        // [END in_filter_with_array]
+    }
 
     // =======================================================================================
     // ====== https://firebase.google.com/preview/firestore/client/enable-offline ============

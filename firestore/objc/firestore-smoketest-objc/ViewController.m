@@ -952,6 +952,26 @@
   // [END invalid_filter_and_order]
 }
 
+- (void)arrayContainsAnyQueries {
+  // [START array_contains_any_filter]
+  FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
+
+  [citiesRef queryWhereField:@"region" arrayContainsAny:@[@"west_coast", @"east_coast"]];
+  // [END array_contains_any_filter]
+}
+
+- (void)inQueries {
+  // [START in_filter]
+  FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
+
+  [citiesRef queryWhereField:@"country" in:@[@"USA", @"Japan"]];
+  // [END in_filter]
+
+  // [START in_filter_with_array]
+  [citiesRef queryWhereField:@"regions" in:@[@[@"west_coast"], @[@"east_coast"]]];
+  // [END in_filter_with_array]
+}
+
 // =======================================================================================
 // ====== https://firebase.google.com/preview/firestore/client/enable-offline ============
 // =======================================================================================
