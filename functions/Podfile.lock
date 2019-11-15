@@ -1,11 +1,11 @@
 PODS:
-  - Firebase/CoreOnly (6.12.0):
-    - FirebaseCore (= 6.3.3)
-  - Firebase/Functions (6.12.0):
+  - Firebase/CoreOnly (6.13.0):
+    - FirebaseCore (= 6.4.0)
+  - Firebase/Functions (6.13.0):
     - Firebase/CoreOnly
     - FirebaseFunctions (~> 2.5.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (6.3.3):
+  - FirebaseCore (6.4.0):
     - FirebaseCoreDiagnostics (~> 1.0)
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleUtilities/Environment (~> 6.2)
@@ -21,12 +21,12 @@ PODS:
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleDataTransport (3.0.1)
+  - GoogleDataTransport (3.1.0)
   - GoogleDataTransportCCTSupport (1.2.1):
     - GoogleDataTransport (~> 3.0)
     - nanopb (~> 0.3.901)
-  - GoogleUtilities/Environment (6.3.1)
-  - GoogleUtilities/Logger (6.3.1):
+  - GoogleUtilities/Environment (6.3.2)
+  - GoogleUtilities/Logger (6.3.2):
     - GoogleUtilities/Environment
   - GTMSessionFetcher/Core (1.3.0)
   - nanopb (0.3.9011):
@@ -53,15 +53,15 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: da031bc7012374e3bed17a6731b89327b29863b9
+  Firebase: 458d109512200d1aca2e1b9b6cf7d68a869a4a46
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: bcd6c112429249d7921e907d661e8955a3549e26
+  FirebaseCore: 307ea2508df730c5865334e41965bd9ea344b0e5
   FirebaseCoreDiagnostics: af29e43048607588c050889d19204f4d7b758c9f
   FirebaseCoreDiagnosticsInterop: e9b1b023157e3a2fc6418b5cb601e79b9af7b3a0
   FirebaseFunctions: 5af7c35d1c5e41608fecbb667eb6c4e672e318d0
-  GoogleDataTransport: 166f9b9f82cbf60a204e8fe2daa9db3e3ec1fb15
+  GoogleDataTransport: 67cc56f6280d1bc9d470285e851ec49ee9013dba
   GoogleDataTransportCCTSupport: f6ab1962e9dc05ab1fb938b795e5b310209edeec
-  GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
+  GoogleUtilities: 547a86735c6f0ee30ad17e94df4fc21f616b71cb
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
 
