@@ -371,7 +371,7 @@ class ViewController: UIViewController {
         // [START update_document-increment]
         let washingtonRef = db.collection("cities").document("DC")
 
-        // Atomically incrememnt the population of the city by 50.
+        // Atomically increment the population of the city by 50.
         // Note that increment() with no arguments increments by 1.
         washingtonRef.updateData([
             "population": FieldValue.increment(Int64(50))
