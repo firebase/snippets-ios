@@ -39,3 +39,17 @@
 
 @end
 // [END fiam_card_action_delegate]
+
+
+// [START fiam_card_action_delegate_bundles]
+@implementation CardActionFiamDelegate
+
+- (void)messageClicked:(nonnull FIRInAppMessagingDisplayMessage *)inAppMessage {
+
+	appData = inAppMessage.appData
+
+}
+
+@end
+// [END fiam_card_action_delegate_bundles]
+
