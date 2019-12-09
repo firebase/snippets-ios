@@ -46,7 +46,7 @@ class CardActionFiamDelegate : NSObject, InAppMessagingDisplayDelegate {
     
     func messageClicked(_ inAppMessage: InAppMessagingDisplayMessage) {
 	// Get data bundle from the inapp message
-         let appData: NSDictionary = inAppMessage.appData
+	let appData: NSDictionary = inAppMessage.appData
     }
 }
 // [END fiam_card_action_delegate_bundles]

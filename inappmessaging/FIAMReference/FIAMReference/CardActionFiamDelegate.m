@@ -47,6 +47,7 @@
 - (void)messageClicked:(nonnull FIRInAppMessagingDisplayMessage *)inAppMessage {
 
 	appData = inAppMessage.appData
+	// ...
 
 }
 
