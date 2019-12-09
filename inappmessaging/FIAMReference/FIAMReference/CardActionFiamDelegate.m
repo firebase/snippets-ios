@@ -45,10 +45,8 @@
 @implementation CardActionFiamDelegate
 
 - (void)messageClicked:(nonnull FIRInAppMessagingDisplayMessage *)inAppMessage {
-
 	appData = inAppMessage.appData
 	// ...
-
 }
 
 @end
