@@ -18,6 +18,7 @@ import UIKit
 
 import FirebaseCore
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class ViewController: UIViewController {
 
@@ -738,14 +739,20 @@ class ViewController: UIViewController {
         let docRef = db.collection("cities").document("BJ")
 
         docRef.getDocument { (document, error) in
-            if let city = document.flatMap({
-              $0.data().flatMap({ (data) in
-                return City(dictionary: data)
-              })
-            }) {
-                print("City: \(city)")
-            } else {
-                print("Document does not exist")
+            let result = Result {
+                try document.flatMap {
+                    try $0.data(as: City.self)
+                }
+            }
+            switch result {
+            case .success(let city):
+                if let city = city {
+                    print("City: \(city)")
+                } else {
+                    print("Document does not exist")
+                }
+            case .failure(let error):
+                print("Error decoding city: \(error)")
             }
         }
         // [END custom_type]
@@ -1229,23 +1236,28 @@ class ViewController: UIViewController {
     }
 }
 
-fileprivate struct City {
+public struct City: Decodable {
 
     let name: String
     let state: String?
     let country: String?
-    let capital: Bool?
+    let isCapital: Bool?
     let population: Int64?
 
-    init?(dictionary: [String: Any]) {
-        guard let name = dictionary["name"] as? String else { return nil }
+    init(name: String, state: String?, country: String?, isCapital: Bool?, population: Int64?) {
         self.name = name
+        self.state = state
+        self.country = country
+        self.isCapital = isCapital
+        self.population = population
+    }
 
-        self.state = dictionary["state"] as? String
-        self.country = dictionary["country"] as? String
-        self.capital = dictionary["capital"] as? Bool
-        self.population = dictionary["population"] as? Int64
+    enum CodingKeys: String, CodingKey {
+        case name
+        case state
+        case country
+        case isCapital = "capital"
+        case population
     }
 
 }
-
