@@ -1244,14 +1244,6 @@ public struct City: Decodable {
     let isCapital: Bool?
     let population: Int64?
 
-    init(name: String, state: String?, country: String?, isCapital: Bool?, population: Int64?) {
-        self.name = name
-        self.state = state
-        self.country = country
-        self.isCapital = isCapital
-        self.population = population
-    }
-
     enum CodingKeys: String, CodingKey {
         case name
         case state
