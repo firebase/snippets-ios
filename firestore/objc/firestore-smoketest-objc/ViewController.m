@@ -956,7 +956,7 @@
   // [START array_contains_any_filter]
   FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
 
-  [citiesRef queryWhereField:@"region" arrayContainsAny:@[@"west_coast", @"east_coast"]];
+  [citiesRef queryWhereField:@"regions" arrayContainsAny:@[@"west_coast", @"east_coast"]];
   // [END array_contains_any_filter]
 }
 
