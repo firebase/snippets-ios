@@ -1049,7 +1049,7 @@ class ViewController: UIViewController {
     private func arrayContainsAnyQueries() {
         // [START array_contains_any_filter]
         let citiesRef = db.collection("cities")
-        citiesRef.whereField("region", arrayContainsAny: ["west_coast", "east_coast"])
+        citiesRef.whereField("regions", arrayContainsAny: ["west_coast", "east_coast"])
         // [END array_contains_any_filter]
     }
 
