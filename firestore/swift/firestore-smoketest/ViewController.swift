@@ -271,6 +271,22 @@ class ViewController: UIViewController {
         // [END set_document]
     }
 
+    private func setDocumentWithCodable() {
+        // [START set_document_codable]
+        let city = City(name: "Los Angeles",
+                        state: "CA",
+                        country: "USA",
+                        isCapital: false,
+                        population: 5000000)
+
+        do {
+            try db.collection("cities").document("LA").setData(from: city)
+        } catch let error {
+            print("Error writing city to Firestore: \(error)")
+        }
+        // [END set_document_codable]
+    }
+
     private func dataTypes() {
         // [START data_types]
         let docData: [String: Any] = [
@@ -1236,7 +1252,8 @@ class ViewController: UIViewController {
     }
 }
 
-public struct City: Decodable {
+// [START codable_struct]
+public struct City: Codable {
 
     let name: String
     let state: String?
@@ -1253,3 +1270,4 @@ public struct City: Decodable {
     }
 
 }
+// [END codable_struct]
