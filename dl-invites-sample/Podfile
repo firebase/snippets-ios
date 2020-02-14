@@ -5,7 +5,6 @@ target 'InvitesSample' do
   use_frameworks!
 
   pod 'Firebase/DynamicLinks'
-  pod 'Firebase/Core'
 
   target 'InvitesSampleTests' do
     inherit! :search_paths
@@ -24,6 +23,5 @@ target 'InvitesSampleObjC' do
   use_frameworks!
 
   pod 'Firebase/DynamicLinks'
-  pod 'Firebase/Core'
 
 end
