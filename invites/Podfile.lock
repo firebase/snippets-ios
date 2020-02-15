@@ -1,7 +1,4 @@
 PODS:
-  - Firebase/Core (5.20.2):
-    - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.8.1)
   - Firebase/CoreOnly (5.20.2):
     - FirebaseCore (= 5.4.1)
   - Firebase/Invites (5.20.2):
@@ -106,10 +103,9 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
-  - Protobuf (3.11.3)
+  - Protobuf (3.11.4)
 
 DEPENDENCIES:
-  - Firebase/Core
   - Firebase/Invites
 
 SPEC REPOS:
@@ -147,8 +143,8 @@ SPEC CHECKSUMS:
   GTMOAuth2: e8b6512c896235149df975c41d9a36c868ab7fba
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
-  Protobuf: 0e94afe3b47cb11876eb6aee296638711a24bf75
+  Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
 
-PODFILE CHECKSUM: 95b5db7fdcb60afeb38ea4713dda46fe9aa0fb56
+PODFILE CHECKSUM: 642789e1fcae7a05996d36ee829b1b64089587bd
 
 COCOAPODS: 1.8.4
