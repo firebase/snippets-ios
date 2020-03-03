@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
 
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
     // [START default_configure]
     // Use the default GoogleService-Info.plist.
@@ -45,12 +45,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Note: this one is not deleted, so is the default below.
     // [START default_configure_vars]
     // Configure with manual options.
-    let secondaryOptions = FirebaseOptions(googleAppID: "1:27992087142:ios:2a4732a34787067a", gcmSenderID: "27992087142")
+    let secondaryOptions = FirebaseOptions(googleAppID: "1:27992087142:ios:2a4732a34787067a",
+                                           gcmSenderID: "27992087142")
     secondaryOptions.bundleID = "com.google.firebase.devrel.FiroptionConfiguration"
     secondaryOptions.apiKey = "AIzaSyBicqfAZPvMgC7NZkjayUEsrepxuXzZDsk"
+    secondaryOptions.trackingID = "UA-12345678-1"
     secondaryOptions.clientID = "27992087142-ola6qe637ulk8780vl8mo5vogegkm23n.apps.googleusercontent.com"
     secondaryOptions.databaseURL = "https://myproject.firebaseio.com"
     secondaryOptions.storageBucket = "myproject.appspot.com"
+    secondaryOptions.projectID = "projectid-12345"
+    secondaryOptions.androidClientID = "12345.apps.googleusercontent.com"
+    secondaryOptions.deepLinkURLScheme = "myapp://"
+    secondaryOptions.storageBucket = "projectid-12345.appspot.com"
+    secondaryOptions.appGroupID = nil
     // [END default_configure_vars]
 
 
