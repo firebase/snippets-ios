@@ -44,16 +44,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Note: this one is not deleted, so is the default below.
     // [START default_configure_vars]
-    // Configure with manual options.
+    // Configure with manual options. Note that projectID and apiKey, though not
+    // required by the initializer, are mandatory.
     let secondaryOptions = FirebaseOptions(googleAppID: "1:27992087142:ios:2a4732a34787067a",
                                            gcmSenderID: "27992087142")
-    secondaryOptions.bundleID = "com.google.firebase.devrel.FiroptionConfiguration"
     secondaryOptions.apiKey = "AIzaSyBicqfAZPvMgC7NZkjayUEsrepxuXzZDsk"
+    secondaryOptions.projectID = "projectid-12345"
+
+    // The other options are not mandatory, but may be required
+    // for specific Firebase products.
+    secondaryOptions.bundleID = "com.google.firebase.devrel.FiroptionConfiguration"
     secondaryOptions.trackingID = "UA-12345678-1"
     secondaryOptions.clientID = "27992087142-ola6qe637ulk8780vl8mo5vogegkm23n.apps.googleusercontent.com"
     secondaryOptions.databaseURL = "https://myproject.firebaseio.com"
     secondaryOptions.storageBucket = "myproject.appspot.com"
-    secondaryOptions.projectID = "projectid-12345"
     secondaryOptions.androidClientID = "12345.apps.googleusercontent.com"
     secondaryOptions.deepLinkURLScheme = "myapp://"
     secondaryOptions.storageBucket = "projectid-12345.appspot.com"
