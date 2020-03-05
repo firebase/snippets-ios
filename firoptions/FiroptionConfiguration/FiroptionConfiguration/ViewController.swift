@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
 
@@ -28,6 +29,17 @@ class ViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
 
+  func logInAppPurchaseEvent() {
+    // [START in_app_purchase_log]
+    Analytics.logEvent(AnalyticsEventEcommercePurchase, parameters: [
+      AnalyticsParameterCoupon: "SummerPromo",
+      AnalyticsParameterCurrency: "JPY",
+      AnalyticsParameterValue: "(10000)",
+      AnalyticsParameterShipping: "(500)",
+      AnalyticsParameterTransactionID: "192803301",
+    ])
+    // [END in_app_purchase_log]
+  }
 
 }
 
