@@ -21,7 +21,6 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
   }
 
   override func didReceiveMemoryWarning() {
@@ -34,8 +33,8 @@ class ViewController: UIViewController {
     Analytics.logEvent(AnalyticsEventEcommercePurchase, parameters: [
       AnalyticsParameterCoupon: "SummerPromo",
       AnalyticsParameterCurrency: "JPY",
-      AnalyticsParameterValue: "(10000)",
-      AnalyticsParameterShipping: "(500)",
+      AnalyticsParameterValue: 10000,
+      AnalyticsParameterShipping: 500,
       AnalyticsParameterTransactionID: "192803301",
     ])
     // [END ecommerce_purchase]

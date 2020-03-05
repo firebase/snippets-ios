@@ -26,8 +26,8 @@
                       parameters:@{
     kFIRParameterCoupon: @"SummerPromo",
     kFIRParameterCurrency: @"JPY",
-    kFIRParameterValue: @(10000),
-    kFIRParameterShipping: @(500),
+    kFIRParameterValue: @10000,
+    kFIRParameterShipping: @500,
     kFIRParameterTransactionID: @"192803301",
   }];
   // [END ecommerce_purchase]
