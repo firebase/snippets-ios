@@ -21,7 +21,7 @@
 @implementation AnalyticsHelper
 
 - (void)logInAppPurchase {
-  // [START in_app_purchase_log]
+  // [START ecommerce_purchase]
   [FIRAnalytics logEventWithName:kFIREventEcommercePurchase
                       parameters:@{
     kFIRParameterCoupon: @"SummerPromo",
@@ -30,7 +30,7 @@
     kFIRParameterShipping: @(500),
     kFIRParameterTransactionID: @"192803301",
   }];
-  // [END in_app_purchase_log]
+  // [END ecommerce_purchase]
 }
 
 @end
