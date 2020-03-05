@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8DFC20162410844B004392AD /* AnalyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC20152410844B004392AD /* AnalyticsHelper.m */; };
 		EFEC9D631E01BF310021BDF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC9D621E01BF310021BDF9 /* AppDelegate.swift */; };
 		EFEC9D651E01BF310021BDF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC9D641E01BF310021BDF9 /* ViewController.swift */; };
 		EFEC9D681E01BF310021BDF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFEC9D661E01BF310021BDF9 /* Main.storyboard */; };
@@ -23,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8DFC20132410844A004392AD /* FiroptionConfiguration-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FiroptionConfiguration-Bridging-Header.h"; sourceTree = "<group>"; };
+		8DFC20142410844B004392AD /* AnalyticsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnalyticsHelper.h; sourceTree = "<group>"; };
+		8DFC20152410844B004392AD /* AnalyticsHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnalyticsHelper.m; sourceTree = "<group>"; };
 		EFEC9D5F1E01BF310021BDF9 /* FiroptionConfiguration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiroptionConfiguration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEC9D621E01BF310021BDF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFEC9D641E01BF310021BDF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,7 +58,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		ED6A10EB90614DB4D75489DF /* Pods */ = {
+		868938E40019DC0FEF0F5F30 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -67,7 +71,7 @@
 				EFEC9D9B1E01EEB60021BDF9 /* Dev */,
 				EFEC9D611E01BF310021BDF9 /* FiroptionConfiguration */,
 				EFEC9D601E01BF310021BDF9 /* Products */,
-				ED6A10EB90614DB4D75489DF /* Pods */,
+				868938E40019DC0FEF0F5F30 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,10 +91,13 @@
 				EFEC9D951E01EE9F0021BDF9 /* MyGoogleService.plist */,
 				EFEC9D621E01BF310021BDF9 /* AppDelegate.swift */,
 				EFEC9D641E01BF310021BDF9 /* ViewController.swift */,
+				8DFC20142410844B004392AD /* AnalyticsHelper.h */,
+				8DFC20152410844B004392AD /* AnalyticsHelper.m */,
 				EFEC9D661E01BF310021BDF9 /* Main.storyboard */,
 				EFEC9D691E01BF310021BDF9 /* Assets.xcassets */,
 				EFEC9D6B1E01BF310021BDF9 /* LaunchScreen.storyboard */,
 				EFEC9D6E1E01BF310021BDF9 /* Info.plist */,
+				8DFC20132410844A004392AD /* FiroptionConfiguration-Bridging-Header.h */,
 			);
 			path = FiroptionConfiguration;
 			sourceTree = "<group>";
@@ -215,6 +222,7 @@
 			files = (
 				EFEC9D651E01BF310021BDF9 /* ViewController.swift in Sources */,
 				EFEC9D631E01BF310021BDF9 /* AppDelegate.swift in Sources */,
+				8DFC20162410844B004392AD /* AnalyticsHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,11 +370,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = EQHXZ8M8AV;
 				INFOPLIST_FILE = FiroptionConfiguration/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.devrel.FiroptionConfiguration;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FiroptionConfiguration/FiroptionConfiguration-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -375,11 +386,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = EQHXZ8M8AV;
 				INFOPLIST_FILE = FiroptionConfiguration/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.devrel.FiroptionConfiguration;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FiroptionConfiguration/FiroptionConfiguration-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

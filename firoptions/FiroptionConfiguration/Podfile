@@ -6,6 +6,8 @@ target 'FiroptionConfiguration' do
   use_frameworks!
 
   # Pods for FiroptionConfiguration
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Core'
   pod 'Firebase/Database'
 
 end
