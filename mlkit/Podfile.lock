@@ -12,9 +12,9 @@ PODS:
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/Logger (~> 6.5)
-  - FirebaseCoreDiagnostics (1.2.1):
+  - FirebaseCoreDiagnostics (1.2.2):
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
-    - GoogleDataTransportCCTSupport (~> 1.3)
+    - GoogleDataTransportCCTSupport (~> 2.0)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/Logger (~> 6.5)
     - nanopb (~> 0.3.901)
@@ -57,9 +57,9 @@ PODS:
   - GoogleAPIClientForREST/Vision (1.3.11):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleDataTransport (4.0.1)
-  - GoogleDataTransportCCTSupport (1.4.1):
-    - GoogleDataTransport (~> 4.0)
+  - GoogleDataTransport (5.0.0)
+  - GoogleDataTransportCCTSupport (2.0.0):
+    - GoogleDataTransport (~> 5.0)
     - nanopb (~> 0.3.901)
   - GoogleToolboxForMac/DebugUtils (2.2.2):
     - GoogleToolboxForMac/Defines (= 2.2.2)
@@ -124,7 +124,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Firebase: 0490eca762a72e4f1582319539153897f1508dee
   FirebaseCore: 78276943ad85e616dfa54dafa6c89512987d9d60
-  FirebaseCoreDiagnostics: 2109d10c35e8289b1ee6cabf44d9ffb055620194
+  FirebaseCoreDiagnostics: e9b4cd8ba60dee0f2d13347332e4b7898cca5b61
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
   FirebaseInstanceID: 7ee0d6777013bb952f377b41965bf132b6a075be
@@ -132,8 +132,8 @@ SPEC CHECKSUMS:
   FirebaseMLVision: 7a456009787690e3b53436092ae9b635563de8f3
   FirebaseMLVisionAutoML: ce5b5dfd1443e8c08a68f4dafa6b1c169d07a6a2
   GoogleAPIClientForREST: 0f19a8280dfe6471f76016645d26eb5dae305101
-  GoogleDataTransport: 653963cf5be60fb59cf051e070f0836fdc305f81
-  GoogleDataTransportCCTSupport: 84e4d4bbab642f2e9d83ee65d78aca2b5527d314
+  GoogleDataTransport: a857c6a002d201b524dd4bc2ed7e7355ed07e785
+  GoogleDataTransportCCTSupport: 32f75fbe904c82772fcbb6b6bd4525bfb6f2a862
   GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
@@ -145,4 +145,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 4b071879fc5f9391b9325777ac56ce58e70e8b8d
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.9.1
