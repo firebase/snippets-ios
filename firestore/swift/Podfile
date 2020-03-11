@@ -8,6 +8,7 @@ target 'firestore-smoketest' do
   # Pods for firestore-smoketest
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
 
   target 'firestore-smoketestTests' do
     inherit! :search_paths
