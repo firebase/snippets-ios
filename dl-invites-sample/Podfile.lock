@@ -1,7 +1,7 @@
 PODS:
-  - Firebase/CoreOnly (6.19.0):
+  - Firebase/CoreOnly (6.20.0):
     - FirebaseCore (= 6.6.4)
-  - Firebase/DynamicLinks (6.19.0):
+  - Firebase/DynamicLinks (6.20.0):
     - Firebase/CoreOnly
     - FirebaseDynamicLinks (~> 4.0.7)
   - FirebaseAnalyticsInterop (1.5.0)
@@ -24,8 +24,8 @@ PODS:
   - GoogleDataTransportCCTSupport (2.0.0):
     - GoogleDataTransport (~> 5.0)
     - nanopb (~> 0.3.901)
-  - GoogleUtilities/Environment (6.5.1)
-  - GoogleUtilities/Logger (6.5.1):
+  - GoogleUtilities/Environment (6.5.2)
+  - GoogleUtilities/Logger (6.5.2):
     - GoogleUtilities/Environment
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
@@ -50,7 +50,7 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: d55ddb0e0bb3207166cddc028647833d8a1b5b6f
+  Firebase: fe7f74012742ab403451dd283e6909b8f1fb348a
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
   FirebaseCore: ed0a24c758a57c2b88c5efa8e6a8195e868af589
   FirebaseCoreDiagnostics: e9b4cd8ba60dee0f2d13347332e4b7898cca5b61
@@ -58,7 +58,7 @@ SPEC CHECKSUMS:
   FirebaseDynamicLinks: b3338d0c0423ee3d409f5ecc0fb774a9baa6537b
   GoogleDataTransport: a857c6a002d201b524dd4bc2ed7e7355ed07e785
   GoogleDataTransportCCTSupport: 32f75fbe904c82772fcbb6b6bd4525bfb6f2a862
-  GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
+  GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
 
 PODFILE CHECKSUM: 7de02ed38e9465e2c05bb12085a971c35543c261
