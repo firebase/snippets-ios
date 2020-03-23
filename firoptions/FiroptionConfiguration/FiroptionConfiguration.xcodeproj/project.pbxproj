@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		758A91E0766372E406AF2712 /* Pods_FiroptionConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEE22500F394D7A0B2457D93 /* Pods_FiroptionConfiguration.framework */; };
 		8DFC20162410844B004392AD /* AnalyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC20152410844B004392AD /* AnalyticsHelper.m */; };
 		EFEC9D631E01BF310021BDF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC9D621E01BF310021BDF9 /* AppDelegate.swift */; };
 		EFEC9D651E01BF310021BDF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC9D641E01BF310021BDF9 /* ViewController.swift */; };
@@ -24,9 +25,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42A1B09F8B19C1DEE83A74D1 /* Pods-FiroptionConfiguration.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiroptionConfiguration.release.xcconfig"; path = "Target Support Files/Pods-FiroptionConfiguration/Pods-FiroptionConfiguration.release.xcconfig"; sourceTree = "<group>"; };
 		8DFC20132410844A004392AD /* FiroptionConfiguration-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FiroptionConfiguration-Bridging-Header.h"; sourceTree = "<group>"; };
 		8DFC20142410844B004392AD /* AnalyticsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnalyticsHelper.h; sourceTree = "<group>"; };
 		8DFC20152410844B004392AD /* AnalyticsHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnalyticsHelper.m; sourceTree = "<group>"; };
+		EEE22500F394D7A0B2457D93 /* Pods_FiroptionConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiroptionConfiguration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEC9D5F1E01BF310021BDF9 /* FiroptionConfiguration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiroptionConfiguration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEC9D621E01BF310021BDF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFEC9D641E01BF310021BDF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +41,7 @@
 		EFEC9D941E01EE9F0021BDF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EFEC9D951E01EE9F0021BDF9 /* MyGoogleService.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MyGoogleService.plist; sourceTree = "<group>"; };
 		EFEC9D961E01EE9F0021BDF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "FiroptionConfigurationDev/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F6682F577C2C1E55878B62E8 /* Pods-FiroptionConfiguration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiroptionConfiguration.debug.xcconfig"; path = "Target Support Files/Pods-FiroptionConfiguration/Pods-FiroptionConfiguration.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				758A91E0766372E406AF2712 /* Pods_FiroptionConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,8 +66,18 @@
 		868938E40019DC0FEF0F5F30 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				F6682F577C2C1E55878B62E8 /* Pods-FiroptionConfiguration.debug.xcconfig */,
+				42A1B09F8B19C1DEE83A74D1 /* Pods-FiroptionConfiguration.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D92FA18F6F745F65FC86CAEE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EEE22500F394D7A0B2457D93 /* Pods_FiroptionConfiguration.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EFEC9D561E01BF310021BDF9 = {
@@ -72,6 +87,7 @@
 				EFEC9D611E01BF310021BDF9 /* FiroptionConfiguration */,
 				EFEC9D601E01BF310021BDF9 /* Products */,
 				868938E40019DC0FEF0F5F30 /* Pods */,
+				D92FA18F6F745F65FC86CAEE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,9 +133,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EFEC9D711E01BF310021BDF9 /* Build configuration list for PBXNativeTarget "FiroptionConfiguration" */;
 			buildPhases = (
+				52E7C1D4CEE3BE50886D24F6 /* [CP] Check Pods Manifest.lock */,
 				EFEC9D5B1E01BF310021BDF9 /* Sources */,
 				EFEC9D5C1E01BF310021BDF9 /* Frameworks */,
 				EFEC9D5D1E01BF310021BDF9 /* Resources */,
+				2447C5AC2B7B41B09F35B304 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -214,6 +232,55 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2447C5AC2B7B41B09F35B304 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FiroptionConfiguration/Pods-FiroptionConfiguration-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FiroptionConfiguration/Pods-FiroptionConfiguration-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52E7C1D4CEE3BE50886D24F6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FiroptionConfiguration-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EFEC9D5B1E01BF310021BDF9 /* Sources */ = {
@@ -368,6 +435,7 @@
 		};
 		EFEC9D721E01BF310021BDF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6682F577C2C1E55878B62E8 /* Pods-FiroptionConfiguration.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -384,6 +452,7 @@
 		};
 		EFEC9D731E01BF310021BDF9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42A1B09F8B19C1DEE83A74D1 /* Pods-FiroptionConfiguration.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
