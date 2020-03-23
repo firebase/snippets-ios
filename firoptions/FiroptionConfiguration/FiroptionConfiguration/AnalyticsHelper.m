@@ -99,7 +99,7 @@ NSString * const kFIREventSelectPromotion = @"";
   // Add items array
   itemList[kFIRParameterItems] = @[jeggings, boots, socks];
 
-  // Log event
+  // Log view item list event
   [FIRAnalytics logEventWithName:kFIREventViewItemList parameters:itemList];
 
   // Prepare ecommerce parameters
@@ -111,8 +111,8 @@ NSString * const kFIREventSelectPromotion = @"";
   // Add items array
   selectedItem[kFIRParameterItems] = @[jeggings];
 
-  // Log event
-  [FIRAnalytics logEventWithName:kFIREventSelectItem parameters:itemList];
+  // Log select item event
+  [FIRAnalytics logEventWithName:kFIREventSelectItem parameters:selectedItem];
 
   // Viewing product details
 
@@ -125,7 +125,7 @@ NSString * const kFIREventSelectPromotion = @"";
   // Add items array
   productDetails[kFIRParameterItems] = @[jeggings];
 
-  // Log event
+  // Log view item event
   [FIRAnalytics logEventWithName:kFIREventViewItem parameters:productDetails];
 
   // Adding/Removing a product from shopping cart
@@ -133,7 +133,7 @@ NSString * const kFIREventSelectPromotion = @"";
   // Specify order quantity
   jeggings[kFIRParameterQuantity] = @2;
 
-  // Prepare ecommerce event
+  // Prepare item detail params
   NSMutableDictionary *itemDetails = [@{
     kFIRParameterCurrency: @"USD",
     kFIRParameterValue: @19.98
@@ -153,7 +153,7 @@ NSString * const kFIREventSelectPromotion = @"";
   boots[kFIRParameterQuantity] = @1;
 
   // Prepare order parameters
-  NSMutableDictionary *orderParameters = [@{
+  NSMutableDictionary *orderParams = [@{
     kFIRParameterCurrency: @"USD",
     kFIRParameterValue: @44.97
   } mutableCopy];
@@ -208,7 +208,7 @@ NSString * const kFIREventSelectPromotion = @"";
   // Log added shipping info event
   [FIRAnalytics logEventWithName:kFIREventAddShippingInfo parameters:shippingParams];
 
-  // Prepare shipping params
+  // Prepare payment params
   NSMutableDictionary *paymentParams = [@{
     kFIRParameterCurrency: @"USD",
     kFIRParameterValue: @14.98,
@@ -219,7 +219,7 @@ NSString * const kFIREventSelectPromotion = @"";
   // Add items
   paymentParams[kFIRParameterItems] = @[jeggings];
 
-  // Log added shipping info event
+  // Log added payment info event
   [FIRAnalytics logEventWithName:kFIREventAddPaymentInfo parameters:paymentParams];
 
   // Making a purchase or issuing a refund
@@ -238,10 +238,10 @@ NSString * const kFIREventSelectPromotion = @"";
   // Add items
   purchaseParams[kFIRParameterItems] = @[jeggings];
 
-  // Log added shipping info event
+  // Log purchase event
   [FIRAnalytics logEventWithName:kFIREventPurchase parameters:purchaseParams];
 
-  // Prepare purchase params
+  // Prepare refund params
   NSMutableDictionary *refundParams = [@{
     kFIRParameterTransactionID: @"T12345",
     kFIRParameterCurrency: @"USD",
@@ -257,8 +257,8 @@ NSString * const kFIREventSelectPromotion = @"";
   // Add items
   refundParams[kFIRParameterItems] = @[refundedProduct];
 
-  // Log added shipping info event
-  [FIRAnalytics logEventWithName:kFIREventPurchase parameters:refundParams];
+  // Log refund event
+  [FIRAnalytics logEventWithName:kFIREventRefund parameters:refundParams];
 
   // Applying promotions
 
