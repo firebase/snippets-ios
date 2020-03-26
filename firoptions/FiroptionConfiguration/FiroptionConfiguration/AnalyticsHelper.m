@@ -188,7 +188,7 @@ NSString * const kFIREventRefund = @"";
   } mutableCopy];
 
   // Add items
-  removeParams[kFIRParameterItems] = @[jeggings];
+  removeParams[kFIRParameterItems] = @[boots];
 
   // Log removal event
   [FIRAnalytics logEventWithName:kFIREventRemoveFromCart parameters:removeParams];
