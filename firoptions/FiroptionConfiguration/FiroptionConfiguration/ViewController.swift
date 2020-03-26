@@ -195,7 +195,7 @@ class ViewController: UIViewController {
     ]
 
     // Add items
-    removeParams[AnalyticsParameterItems] = [jeggings]
+    removeParams[AnalyticsParameterItems] = [boots]
 
     // Log removal event
     Analytics.logEvent(AnalyticsEventRemoveFromCart, parameters: removeParams)
