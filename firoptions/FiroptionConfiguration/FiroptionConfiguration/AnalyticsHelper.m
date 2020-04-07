@@ -18,24 +18,6 @@
 
 #import "AnalyticsHelper.h"
 
-// Placeholders for compilation while waiting for new SDK version
-NSString * const kFIRParameterItemPrice = @"";
-NSString * const kFIRParameterItemListID = @"";
-NSString * const kFIRParameterItemListName = @"";
-NSString * const kFIRParameterItems = @"";
-NSString * const kFIREventSelectItem = @"";
-NSString * const kFIREventViewCart = @"";
-NSString * const kFIRParameterShippingTier = @"";
-NSString * const kFIREventAddShippingInfo = @"";
-NSString * const kFIRParameterPaymentType = @"";
-NSString * const kFIREventPurchase = @"";
-NSString * const kFIRParameterPromotionID = @"";
-NSString * const kFIRParameterPromotionName = @"";
-NSString * const kFIRParameterLocationID = @"";
-NSString * const kFIREventViewPromotion = @"";
-NSString * const kFIREventSelectPromotion = @"";
-NSString * const kFIREventRefund = @"";
-
 @implementation AnalyticsHelper
 
 - (void)logInAppPurchase {

@@ -17,24 +17,6 @@
 import UIKit
 import FirebaseAnalytics
 
-// Placeholders for compilation while waiting for new SDK version
-let AnalyticsParameterItemPrice = ""
-let AnalyticsParameterItemListID = ""
-let AnalyticsParameterItemListName = ""
-let AnalyticsParameterItems = ""
-let AnalyticsEventSelectItem = ""
-let AnalyticsEventViewCart = ""
-let AnalyticsParameterShippingTier = ""
-let AnalyticsEventAddShippingInfo = ""
-let AnalyticsParameterPaymentType = ""
-let AnalyticsEventPurchase = ""
-let AnalyticsParameterPromotionID = ""
-let AnalyticsParameterPromotionName = ""
-let AnalyticsParameterLocationID = ""
-let AnalyticsEventViewPromotion = ""
-let AnalyticsEventSelectPromotion = ""
-let AnalyticsEventRefund = ""
-
 class ViewController: UIViewController {
 
   override func viewDidLoad() {
