@@ -51,7 +51,7 @@ class ViewController: UIViewController {
       AnalyticsParameterItemCategory: "pants",
       AnalyticsParameterItemVariant: "black",
       AnalyticsParameterItemBrand: "Google",
-      AnalyticsParameterItemPrice: 9.99,
+      AnalyticsParameterPrice: 9.99,
     ]
 
     // A pair of boots
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
       AnalyticsParameterItemCategory: "shoes",
       AnalyticsParameterItemVariant: "brown",
       AnalyticsParameterItemBrand: "Google",
-      AnalyticsParameterItemPrice: 24.99,
+      AnalyticsParameterPrice: 24.99,
     ]
 
     // A pair of socks
@@ -71,7 +71,7 @@ class ViewController: UIViewController {
       AnalyticsParameterItemCategory: "socks",
       AnalyticsParameterItemVariant: "red",
       AnalyticsParameterItemBrand: "Google",
-      AnalyticsParameterItemPrice: 5.99,
+      AnalyticsParameterPrice: 5.99,
     ]
     // [END create_items]
 
