@@ -44,7 +44,7 @@
     kFIRParameterItemCategory: @"pants",
     kFIRParameterItemVariant: @"black",
     kFIRParameterItemBrand: @"Google",
-    kFIRParameterItemPrice: @9.99,
+    kFIRParameterPrice: @9.99,
   } mutableCopy];
 
   // A pair of boots
@@ -54,7 +54,7 @@
     kFIRParameterItemCategory: @"shoes",
     kFIRParameterItemVariant: @"brown",
     kFIRParameterItemBrand: @"Google",
-    kFIRParameterItemPrice: @24.99,
+    kFIRParameterPrice: @24.99,
   } mutableCopy];
 
   // A pair of socks
@@ -64,7 +64,7 @@
     kFIRParameterItemCategory: @"socks",
     kFIRParameterItemVariant: @"red",
     kFIRParameterItemBrand: @"Google",
-    kFIRParameterItemPrice: @5.99,
+    kFIRParameterPrice: @5.99,
   } mutableCopy];
   // [END create_items]
 
