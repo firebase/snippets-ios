@@ -58,7 +58,7 @@ PODS:
   - GoogleAPIClientForREST/Vision (1.4.1):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleDataTransport (6.2.0)
+  - GoogleDataTransport (6.2.1)
   - GoogleDataTransportCCTSupport (3.1.0):
     - GoogleDataTransport (~> 6.1)
     - nanopb (~> 1.30905.0)
@@ -134,7 +134,7 @@ SPEC CHECKSUMS:
   FirebaseMLVision: 0e65f5fe6a0fce6c5cee55205ee698aa29342218
   FirebaseMLVisionAutoML: 03f056e68f0441087ce868fe19033d0a324e8f1e
   GoogleAPIClientForREST: e50dc3267b3131ee3a25e707c10204f6bec15ae9
-  GoogleDataTransport: 3e7daa08902c435d1c8e6cc4e2d1e24e1f368e2a
+  GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
   GoogleDataTransportCCTSupport: d70a561f7d236af529fee598835caad5e25f6d3d
   GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1

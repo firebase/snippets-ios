@@ -24,7 +24,7 @@ PODS:
   - FirebaseUI/Storage (8.4.2):
     - Firebase/Storage (~> 6.0)
     - SDWebImage (~> 5.0)
-  - GoogleDataTransport (6.2.0)
+  - GoogleDataTransport (6.2.1)
   - GoogleDataTransportCCTSupport (3.1.0):
     - GoogleDataTransport (~> 6.1)
     - nanopb (~> 1.30905.0)
@@ -72,7 +72,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseStorage: f4f39ae834a7145963b913f54e2f24a9db1d8fac
   FirebaseUI: e57e9b9c4340631151fbe67a14206d23d0974f37
-  GoogleDataTransport: 3e7daa08902c435d1c8e6cc4e2d1e24e1f368e2a
+  GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
   GoogleDataTransportCCTSupport: d70a561f7d236af529fee598835caad5e25f6d3d
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10

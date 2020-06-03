@@ -35,7 +35,7 @@ PODS:
     - FirebaseInstallations (~> 1.0)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/UserDefaults (~> 6.5)
-  - GoogleDataTransport (6.2.0)
+  - GoogleDataTransport (6.2.1)
   - GoogleDataTransportCCTSupport (3.1.0):
     - GoogleDataTransport (~> 6.1)
     - nanopb (~> 1.30905.0)
@@ -83,7 +83,7 @@ SPEC CHECKSUMS:
   FirebaseInAppMessagingDisplay: 60a65c8277f17675a8a5b92e9a97cd914b45d4ff
   FirebaseInstallations: 6f5f680e65dc374397a483c32d1799ba822a395b
   FirebaseInstanceID: cef67c4967c7cecb56ea65d8acbb4834825c587b
-  GoogleDataTransport: 3e7daa08902c435d1c8e6cc4e2d1e24e1f368e2a
+  GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
   GoogleDataTransportCCTSupport: d70a561f7d236af529fee598835caad5e25f6d3d
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
