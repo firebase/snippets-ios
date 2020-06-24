@@ -16,8 +16,8 @@ jobs:
         uses: actions/checkout@master
       - name: Build Swift snippets
         run: |
-          cp .github/GoogleService-Info-CI.plist firoptions/FiroptionConfiguration/FiroptionConfiguration/GoogleService-Info.plist
-          cd firoptions/FiroptionConfiguration
+          cp .github/GoogleService-Info-CI.plist firoptions/GoogleService-Info.plist
+          cd firoptions
           pod install --repo-update
           xcodebuild -workspace FiroptionConfiguration.xcworkspace clean build -scheme FiroptionConfiguration -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
         env: 
