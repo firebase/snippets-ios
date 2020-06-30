@@ -50,9 +50,9 @@ PODS:
     - FirebaseMLVision (~> 0.20)
     - GTMSessionFetcher/Core (~> 1.1)
     - TensorFlowLiteObjC (~> 2.1.0)
-  - GoogleAPIClientForREST/Core (1.4.1):
+  - GoogleAPIClientForREST/Core (1.4.2):
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleAPIClientForREST/Vision (1.4.1):
+  - GoogleAPIClientForREST/Vision (1.4.2):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
   - GoogleDataTransport (6.2.1)
@@ -128,7 +128,7 @@ SPEC CHECKSUMS:
   FirebaseMLCommon: 5e1184cfdddbd097f55cad75b598881d348d900f
   FirebaseMLVision: 485358b97d3332669ecc4fed55ee360aaef2813d
   FirebaseMLVisionAutoML: 03f056e68f0441087ce868fe19033d0a324e8f1e
-  GoogleAPIClientForREST: e50dc3267b3131ee3a25e707c10204f6bec15ae9
+  GoogleAPIClientForREST: 9f49df9fac7867b459187e687fed3066b2be049a
   GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
   GoogleDataTransportCCTSupport: 489c1265d2c85b68187a83a911913d190012158d
   GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
