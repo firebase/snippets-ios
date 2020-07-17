@@ -117,7 +117,7 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 3c520c951305cbf9ca54eb891ff9e6d1fd384881
   FirebaseMLCommon: d218d75dd1c6c4e447f731ac22da56b88cb79431
   FirebaseMLVision: 68dd092b4c52a7ac163ec0d4f541d5711fc9fec6
-  FirebaseMLVisionAutoML: ef4b4101f88438db02575923464389b17dcf73c6
+  FirebaseMLVisionAutoML: 869af2667c30ac90bd8aefd14e92f8c99b69862b
   GoogleAPIClientForREST: 9f49df9fac7867b459187e687fed3066b2be049a
   GoogleDataTransport: 8a40cb194ad242b6f6dfe72c14fe40fc67c4dcd7
   GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
