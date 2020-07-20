@@ -21,15 +21,28 @@
 @implementation ObjCSnippets
 
 - (void)fetchInstallationsID {
+  // [START fetch_installation_id]
   [[FIRInstallations installations] installationIDWithCompletion:^(NSString *identifier, NSError *error) {
-    // [START fetch_installation_id]
     if (error != nil) {
       NSLog(@"Error fetching Installation ID %@", error);
       return;
     }
     NSLog(@"Installation ID: %@", identifier);
-    // [END fetch_installation_id]
   }];
+  // [END fetch_installation_id]
+}
+
+- (void)fetchInstallationsToken {
+  // [START fetch_installation_token]
+  [[FIRInstallations installations] authTokenForcingRefresh:true
+                                                 completion:^(FIRInstallationsAuthTokenResult *result, NSError *error) {
+    if (error != nil) {
+      NSLog(@"Error fetching Installation token %@", error);
+      return;
+    }
+    NSLog(@"Installation auth token: %@", [result authToken]);
+  }];
+  // [END fetch_installation_token]
 }
 
 @end
