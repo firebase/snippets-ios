@@ -65,5 +65,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // [END fetch_installation_token]
   }
 
+  func deleteInstallation() {
+    // [START delete_installation]
+    Installations.installations().delete { error in
+      if let error = error {
+        print("Error deleting installation: \(error)")
+        return
+      }
+      print("Installation deleted");
+    }
+    // [END delete_installation]
+  }
+
 }
 

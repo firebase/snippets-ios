@@ -45,4 +45,16 @@
   // [END fetch_installation_token]
 }
 
+- (void)deleteInstallations {
+  // [START delete_installation]
+  [[FIRInstallations installations] deleteWithCompletion:^(NSError *error) {
+     if (error != nil) {
+       NSLog(@"Error deleting Installation %@", error);
+       return;
+     }
+     NSLog(@"Installation deleted");
+  }];
+  // [END delete_installation]
+}
+
 @end
