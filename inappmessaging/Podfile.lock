@@ -34,20 +34,20 @@ PODS:
     - FirebaseInstallations (~> 1.0)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/UserDefaults (~> 6.5)
-  - GoogleDataTransport (7.1.0):
+  - GoogleDataTransport (7.2.0):
     - nanopb (~> 1.30905.0)
-  - GoogleUtilities/Environment (6.7.1):
+  - GoogleUtilities/Environment (6.7.2):
     - PromisesObjC (~> 1.2)
-  - GoogleUtilities/Logger (6.7.1):
+  - GoogleUtilities/Logger (6.7.2):
     - GoogleUtilities/Environment
-  - GoogleUtilities/UserDefaults (6.7.1):
+  - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
     - nanopb/encode (= 1.30905.0)
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
-  - PromisesObjC (1.2.9)
+  - PromisesObjC (1.2.10)
 
 DEPENDENCIES:
   - Firebase
@@ -79,10 +79,10 @@ SPEC CHECKSUMS:
   FirebaseInAppMessagingDisplay: 60a65c8277f17675a8a5b92e9a97cd914b45d4ff
   FirebaseInstallations: 6f5f680e65dc374397a483c32d1799ba822a395b
   FirebaseInstanceID: cef67c4967c7cecb56ea65d8acbb4834825c587b
-  GoogleDataTransport: af0c79193dc59acd37630b4833d0dc6912ae6bd5
-  GoogleUtilities: e121a3867449ce16b0e35ddf1797ea7a389ffdf2
+  GoogleDataTransport: 672fb0ce96fe7f7f31d43672fca62ad2c9c86f7b
+  GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
-  PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
+  PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
 
 PODFILE CHECKSUM: ee1d0162c4b114166138141943031a3ae6c42221
 
