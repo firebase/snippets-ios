@@ -852,6 +852,9 @@
   // Create a query against the collection.
   FIRQuery *query = [citiesRef queryWhereField:@"state" isEqualTo:@"CA"];
   // [END simple_queries]
+  // [START simple_query_not_equal]
+  query = [citiesRef queryWhereField:@"capital" isNotEqualTo:@NO];
+  // [END simple_query_not_equal]
   NSLog(@"%@", query);
 }
 
@@ -872,7 +875,7 @@
   NSLog(@"%@", capitalCities);
 }
 
--(void)arrayContainsFilter {
+- (void)arrayContainsFilter {
   FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
   // [START array_contains_filter]
   [citiesRef queryWhereField:@"state" arrayContains:@"west_coast"];
@@ -970,6 +973,10 @@
   // [START in_filter_with_array]
   [citiesRef queryWhereField:@"regions" in:@[@[@"west_coast"], @[@"east_coast"]]];
   // [END in_filter_with_array]
+
+  // [START not_in_filter]
+  [citiesRef queryWhereField:@"country" notIn:@[@"USA", @"Japan"]];
+  // [END not_in_filter]
 }
 
 // =======================================================================================
