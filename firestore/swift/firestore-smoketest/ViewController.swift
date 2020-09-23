@@ -955,6 +955,10 @@ class ViewController: UIViewController {
         let query = citiesRef.whereField("state", isEqualTo: "CA")
         // [END simple_queries]
 
+        // [START simple_query_not_equal]
+        let notEqualQuery = citiesRef.whereField("capital", isNotEqualTo: false)
+        // [END simple_query_not_equal]
+
         print(query)
     }
 
@@ -1094,6 +1098,10 @@ class ViewController: UIViewController {
         // [START in_filter_with_array]
         citiesRef.whereField("regions", in: [["west_coast"], ["east_coast"]]);
         // [END in_filter_with_array]
+
+        // [START not_in_filter]
+        citiesRef.whereField("country", notIn: ["USA", "Japan"])
+        // [END not_in_filter]
     }
 
     // =======================================================================================
