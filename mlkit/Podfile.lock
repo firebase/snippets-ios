@@ -1,13 +1,13 @@
 PODS:
-  - Firebase/CoreOnly (6.33.0):
-    - FirebaseCore (= 6.10.3)
-  - Firebase/MLVision (6.33.0):
+  - Firebase/CoreOnly (6.34.0):
+    - FirebaseCore (= 6.10.4)
+  - Firebase/MLVision (6.34.0):
     - Firebase/CoreOnly
     - FirebaseMLVision (~> 0.21.0)
-  - Firebase/MLVisionAutoML (6.33.0):
+  - Firebase/MLVisionAutoML (6.34.0):
     - Firebase/CoreOnly
     - FirebaseMLVisionAutoML (~> 0.21.0)
-  - FirebaseCore (6.10.3):
+  - FirebaseCore (6.10.4):
     - FirebaseCoreDiagnostics (~> 1.6)
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/Logger (~> 6.7)
@@ -50,7 +50,7 @@ PODS:
   - GoogleAPIClientForREST/Vision (1.4.3):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleDataTransport (7.4.0):
+  - GoogleDataTransport (7.5.0):
     - nanopb (~> 1.30906.0)
   - GoogleToolboxForMac/DebugUtils (2.2.2):
     - GoogleToolboxForMac/Defines (= 2.2.2)
@@ -80,7 +80,7 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
-  - PromisesObjC (1.2.10)
+  - PromisesObjC (1.2.11)
   - Protobuf (3.13.0)
   - TensorFlowLiteC (2.1.0)
   - TensorFlowLiteObjC (2.1.0):
@@ -111,20 +111,20 @@ SPEC REPOS:
     - TensorFlowLiteObjC
 
 SPEC CHECKSUMS:
-  Firebase: 8db6f2d1b2c5e2984efba4949a145875a8f65fe5
-  FirebaseCore: d889d9e12535b7f36ac8bfbf1713a0836a3012cd
+  Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
+  FirebaseCore: d3a978a3cfa3240bf7e4ba7d137fdf5b22b628ec
   FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
   FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
   FirebaseMLCommon: d218d75dd1c6c4e447f731ac22da56b88cb79431
   FirebaseMLVision: 68dd092b4c52a7ac163ec0d4f541d5711fc9fec6
   FirebaseMLVisionAutoML: 869af2667c30ac90bd8aefd14e92f8c99b69862b
   GoogleAPIClientForREST: e2d95a611ac06a90d143c93bfd8597719f8b0938
-  GoogleDataTransport: b7f406340a291370045a270c599e53c6fa6ec20f
+  GoogleDataTransport: 445302b7da4216da63071a4c29e7023f47192e5a
   GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
-  PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
+  PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   TensorFlowLiteC: 215603d4426d93810eace5947e317389554a4b66
   TensorFlowLiteObjC: 2e074eb41084037aeda9a8babe111fdd3ac99974

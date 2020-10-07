@@ -1,10 +1,10 @@
 PODS:
-  - Firebase/CoreOnly (6.33.0):
-    - FirebaseCore (= 6.10.3)
-  - Firebase/DynamicLinks (6.33.0):
+  - Firebase/CoreOnly (6.34.0):
+    - FirebaseCore (= 6.10.4)
+  - Firebase/DynamicLinks (6.34.0):
     - Firebase/CoreOnly
     - FirebaseDynamicLinks (~> 4.3.1)
-  - FirebaseCore (6.10.3):
+  - FirebaseCore (6.10.4):
     - FirebaseCoreDiagnostics (~> 1.6)
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/Logger (~> 6.7)
@@ -15,7 +15,7 @@ PODS:
     - nanopb (~> 1.30906.0)
   - FirebaseDynamicLinks (4.3.1):
     - FirebaseCore (~> 6.10)
-  - GoogleDataTransport (7.4.0):
+  - GoogleDataTransport (7.5.0):
     - nanopb (~> 1.30906.0)
   - GoogleUtilities/Environment (6.7.2):
     - PromisesObjC (~> 1.2)
@@ -26,7 +26,7 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
-  - PromisesObjC (1.2.10)
+  - PromisesObjC (1.2.11)
 
 DEPENDENCIES:
   - Firebase/DynamicLinks
@@ -43,14 +43,14 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: 8db6f2d1b2c5e2984efba4949a145875a8f65fe5
-  FirebaseCore: d889d9e12535b7f36ac8bfbf1713a0836a3012cd
+  Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
+  FirebaseCore: d3a978a3cfa3240bf7e4ba7d137fdf5b22b628ec
   FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
   FirebaseDynamicLinks: 6eac37d86910382eafb6315d952cc44c9e176094
-  GoogleDataTransport: b7f406340a291370045a270c599e53c6fa6ec20f
+  GoogleDataTransport: 445302b7da4216da63071a4c29e7023f47192e5a
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
-  PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
+  PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
 
 PODFILE CHECKSUM: 7de02ed38e9465e2c05bb12085a971c35543c261
 
