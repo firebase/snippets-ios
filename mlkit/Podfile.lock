@@ -50,7 +50,7 @@ PODS:
   - GoogleAPIClientForREST/Vision (1.4.3):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleDataTransport (7.5.0):
+  - GoogleDataTransport (7.5.1):
     - nanopb (~> 1.30906.0)
   - GoogleToolboxForMac/DebugUtils (2.2.2):
     - GoogleToolboxForMac/Defines (= 2.2.2)
@@ -119,7 +119,7 @@ SPEC CHECKSUMS:
   FirebaseMLVision: 68dd092b4c52a7ac163ec0d4f541d5711fc9fec6
   FirebaseMLVisionAutoML: 869af2667c30ac90bd8aefd14e92f8c99b69862b
   GoogleAPIClientForREST: e2d95a611ac06a90d143c93bfd8597719f8b0938
-  GoogleDataTransport: 445302b7da4216da63071a4c29e7023f47192e5a
+  GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
   GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
