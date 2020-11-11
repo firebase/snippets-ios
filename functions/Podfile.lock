@@ -1,10 +1,10 @@
 PODS:
-  - Firebase/CoreOnly (7.0.0):
-    - FirebaseCore (= 7.0.0)
-  - Firebase/Functions (7.0.0):
+  - Firebase/CoreOnly (7.1.0):
+    - FirebaseCore (= 7.1.0)
+  - Firebase/Functions (7.1.0):
     - Firebase/CoreOnly
-    - FirebaseFunctions (~> 7.0.0)
-  - FirebaseCore (7.0.0):
+    - FirebaseFunctions (~> 7.1.0)
+  - FirebaseCore (7.1.0):
     - FirebaseCoreDiagnostics (~> 7.0)
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/Logger (~> 7.0)
@@ -13,7 +13,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/Logger (~> 7.0)
     - nanopb (~> 2.30906.0)
-  - FirebaseFunctions (7.0.0):
+  - FirebaseFunctions (7.1.0):
     - FirebaseCore (~> 7.0)
     - GTMSessionFetcher/Core (~> 1.4)
   - GoogleDataTransport (8.0.1):
@@ -46,10 +46,10 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: 50be68416f50eb4eb2ecb0e78acab9a051ef95df
-  FirebaseCore: cf3122185fce1cf71cedbbc498ea84d2b3e7cb69
+  Firebase: 78e8dd2e39d653de6270432ad84fe8b59f7bf4e8
+  FirebaseCore: 20046127eef0fcb8fa25df7fc12f7b97d4e48611
   FirebaseCoreDiagnostics: 872cdb9b749b23346dddd5c1014d1babd2257de3
-  FirebaseFunctions: 571aee227a021debe3e1092aa079f751623e233a
+  FirebaseFunctions: c163794cd4a2b5f4901d0df6d9f7709f2e993686
   GoogleDataTransport: e4085e6762f36a6141738f46b0153473ce57fb18
   GoogleUtilities: f734da554aade8cc7928a31c2f3311897933a1bd
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
