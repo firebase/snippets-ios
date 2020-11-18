@@ -18,16 +18,22 @@
 
 #import "ObjCSnippets.h"
 
+@interface ObjCSnippets ()
+@property(nonatomic, nullable) id<NSObject> installationIDObserver;
+@end
+
 @implementation ObjCSnippets
 
 - (void)handleInstallationIDChange {
   // [START handle_installation_id_change]
-  [[NSNotificationCenter defaultCenter] addObserverForName: FIRInstallationIDDidChangeNotification
-                                                    object:nil
-                                                     queue:nil
-                                                usingBlock:^(NSNotification * _Nonnull notification) {
+  __weak __auto_type weakSelf = self;
+  self.installationIDObserver =
+      [[NSNotificationCenter defaultCenter] addObserverForName: FIRInstallationIDDidChangeNotification
+                                                        object:nil
+                                                         queue:nil
+                                                    usingBlock:^(NSNotification * _Nonnull notification) {
     // Fetch new Installation ID
-    [self fetchInstallationsID];
+    [weakSelf fetchInstallationsID];
   }];
   // [END handle_installation_id_change]
 }
