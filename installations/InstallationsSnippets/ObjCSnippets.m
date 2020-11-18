@@ -20,6 +20,18 @@
 
 @implementation ObjCSnippets
 
+- (void)handleInstallationIDChange {
+  // [START handle_installation_id_change]
+  [[NSNotificationCenter defaultCenter] addObserverForName: FIRInstallationIDDidChangeNotification
+                                                    object:nil
+                                                     queue:nil
+                                                usingBlock:^(NSNotification * _Nonnull notification) {
+    // Fetch new Installation ID
+    [self fetchInstallationsID];
+  }];
+  // [END handle_installation_id_change]
+}
+
 - (void)fetchInstallationsID {
   // [START fetch_installation_id]
   [[FIRInstallations installations] installationIDWithCompletion:^(NSString *identifier, NSError *error) {
