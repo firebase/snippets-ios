@@ -39,6 +39,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
   }
 
+  var installationIDObserver: NSObjectProtocol?
+  func handleInstallationIDChange() {
+    // [START handle_installation_id_change]
+    installationIDObserver = NotificationCenter.default.addObserver(
+            forName: .InstallationIDDidChange,
+            object: nil,
+            queue: nil
+    ) { (notification) in
+      // Fetch new Installation ID
+      self.fetchInstallationToken()
+    }
+    // [END handle_installation_id_change]
+  }
+
   func fetchInstallationID() {
     // [START fetch_installation_id]
     Installations.installations().installationID { (id, error) in
