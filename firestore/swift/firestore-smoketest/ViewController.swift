@@ -761,7 +761,7 @@ class ViewController: UIViewController {
             // of a value that does not exist.
             //
             // There are thus three cases to handle, which Swift lets us describe
-            // nicely with built-in sum types:
+            // nicely with built-in Result types:
             //
             //      Result
             //        /\
