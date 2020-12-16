@@ -18,6 +18,7 @@
 		3EABFB381E254C8F00F4BBED /* firestore_smoketestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABFB371E254C8F00F4BBED /* firestore_smoketestTests.swift */; };
 		3EABFB431E254C8F00F4BBED /* firestore_smoketestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABFB421E254C8F00F4BBED /* firestore_smoketestUITests.swift */; };
 		8DA9B4AB201165C800EC29CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DA9B4AA201165C800EC29CD /* GoogleService-Info.plist */; };
+		8DFC1170258A2B8E00D080CB /* SolutionGeoPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC116F258A2B8E00D080CB /* SolutionGeoPointViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		3EABFB421E254C8F00F4BBED /* firestore_smoketestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firestore_smoketestUITests.swift; sourceTree = "<group>"; };
 		3EABFB441E254C8F00F4BBED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DA9B4AA201165C800EC29CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8DFC116F258A2B8E00D080CB /* SolutionGeoPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolutionGeoPointViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				3EABFB361E254C8F00F4BBED /* firestore-smoketestTests */,
 				3EABFB411E254C8F00F4BBED /* firestore-smoketestUITests */,
 				3EABFB201E254C8F00F4BBED /* Products */,
+				89B479BF7A6DFFF64734BB51 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +118,7 @@
 				3E3694B41EFDB0F2009C9125 /* SolutionArraysViewController.swift */,
 				3E3694B61EFDB3BF009C9125 /* SolutionAggregationViewController.swift */,
 				3E3694B81EFDC039009C9125 /* SolutionCountersViewController.swift */,
+				8DFC116F258A2B8E00D080CB /* SolutionGeoPointViewController.swift */,
 			);
 			path = "firestore-smoketest";
 			sourceTree = "<group>";
@@ -135,6 +139,13 @@
 				3EABFB441E254C8F00F4BBED /* Info.plist */,
 			);
 			path = "firestore-smoketestUITests";
+			sourceTree = "<group>";
+		};
+		89B479BF7A6DFFF64734BB51 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +238,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -277,6 +289,7 @@
 			files = (
 				3EABFB251E254C8F00F4BBED /* ViewController.swift in Sources */,
 				3E3694B51EFDB0F2009C9125 /* SolutionArraysViewController.swift in Sources */,
+				8DFC1170258A2B8E00D080CB /* SolutionGeoPointViewController.swift in Sources */,
 				3E3694B71EFDB3BF009C9125 /* SolutionAggregationViewController.swift in Sources */,
 				3EABFB231E254C8F00F4BBED /* AppDelegate.swift in Sources */,
 				3E3694B91EFDC039009C9125 /* SolutionCountersViewController.swift in Sources */,

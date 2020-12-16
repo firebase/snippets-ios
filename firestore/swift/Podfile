@@ -10,6 +10,10 @@ target 'firestore-smoketest' do
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
 
+  # [START geofire_pod]
+  pod 'GeoFire/Utils'
+  # [END geofire_pod]
+
   target 'firestore-smoketestTests' do
     inherit! :search_paths
     # Pods for testing
