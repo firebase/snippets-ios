@@ -31,7 +31,7 @@ class SolutionGeoPointController: UIViewController {
     }
 
     func storeGeoHash() {
-        // [START store_geohash]
+        // [START fs_geo_add_hash]
         // Compute the GeoHash for a lat/lng point
         let latitude = 51.5074
         let longitude = 0.12780
@@ -51,11 +51,11 @@ class SolutionGeoPointController: UIViewController {
         londonRef.updateData(documentData) { error in
             // ...
         }
-        // [END store_geohash]
+        // [END fs_geo_add_hash]
     }
 
     func geoQuery() {
-        // [START geo_query]
+        // [START fs_geo_query_hashes]
         // Find cities within 50km of London
         let center = CLLocationCoordinate2D(latitude: 51.5074, longitude: 0.1278)
         let radiusInKilometers: Double = 50
@@ -101,6 +101,6 @@ class SolutionGeoPointController: UIViewController {
         for query in queries {
             query.getDocuments(completion: getDocumentsCompletion)
         }
-        // [END geo_query]
+        // [END fs_geo_query_hashes]
     }
 }
