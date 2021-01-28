@@ -25,35 +25,53 @@ class ViewController: UIViewController {
     // Do any additional setup after loading the view.
   }
 
-  func prepareData() {
-    let base64encoded = ""
-    let labelData = [
-      "image": ["content": base64encoded],
+  func prepareData(uiImage: UIImage) {
+    // [START base64encodeImage]
+    guard let imageData = uiImage.jpegData(compressionQuality: 1.0f) else { return }
+    let base64encodedImage = imageData.base64EncodedString()
+    // [END base64encodeImage]
+  }
+
+  func prepareLabelData(base64encodedImage: String) {
+    // [START prepareLabelData]
+    let requestData = [
+      "image": ["content": base64encodedImage],
       "features": ["maxResults": 5, "type": "LABEL_DETECTION"]
     ]
-    let textData = [
-      "image": ["content": base64encoded],
-      "features": ["type": "TEXT_DETECTION"],
-      "imageContext": ["languageHints": ["en"]]
-    ]
+    // [END prepareLabelData]
+  }
+
+  func prepareTextData(base64encodedImage: String) {
     let textDataWithHints = [
-      "image": ["content": base64encoded],
+      "image": ["content": base64encodedImage],
       "features": ["type": "TEXT_DETECTION"],
       "imageContext": ["languageHints": ["en"]]
     ]
     let documentTextData = [
-      "image": ["content": base64encoded],
+      "image": ["content": base64encodedImage],
       "features": ["type": "DOCUMENT_TEXT_DETECTION"]
     ]
-    let landmarkData = [
-      "image": ["content": base64encoded],
-      "features": ["maxResults": 5, "type": "LANDMARK_DETECTION"]
+    // [START prepareTextData]
+    let requestData = [
+      "image": ["content": base64encodedImage],
+      "features": ["type": "TEXT_DETECTION"],
+      "imageContext": ["languageHints": ["en"]]
     ]
+    // [END prepareTextData]
   }
 
-  func annotateImage(_ data:[String: Any]) {
+  func prepareLandmarkData(base64encodedImage: String) {
+    // [START prepareLandmarkData]
+    let requestData = [
+      "image": ["content": base64encodedImage],
+      "features": ["maxResults": 5, "type": "LANDMARK_DETECTION"]
+    ]
+    // [END prepareLandmarkData]
+  }
+
+  func annotateImage(requestData: Dictionary) {
     // [START function_annotateImage]
-    functions.httpsCallable("annotateImage").call(data) { (result, error) in
+    functions.httpsCallable("annotateImage").call(requestData) { (result, error) in
       if let error = error as NSError? {
         if error.domain == FunctionsErrorDomain {
           let code = FunctionsErrorCode(rawValue: error.code)
@@ -68,6 +86,7 @@ class ViewController: UIViewController {
   }
 
   func getLabeledObjectsFrom(_ result: HTTPSCallableResult?) {
+    // [START getLabeledObjectsFrom]
     if let labelArray = (result?.data as? [String: Any])?["labelAnnotations"] as? [[String:Any]] {
       for labelObj in labelArray {
         let text = labelObj["description"]
@@ -75,9 +94,11 @@ class ViewController: UIViewController {
         let confidence = labelObj["score"]
       }
     }
+    // [END getLabeledObjectsFrom]
   }
 
   func getRecognizedTextsFrom(_ result: HTTPSCallableResult?) {
+    // [START getRecognizedTextsFrom]
     if let annotation = (result?.data as? [String: Any])?["fullTextAnnotation"] as? [String: Any] {
       guard let pages = annotation["pages"] as? [[String: Any]] else { return }
       for page in pages {
@@ -118,9 +139,11 @@ class ViewController: UIViewController {
       let text = annotation["text"] as? String ?? ""
       print("%n\(text)")
     }
+    // [END getRecognizedTextsFrom]
   }
 
   func getRecognizedLandmarksFrom(_ result: HTTPSCallableResult?) {
+    // [START getRecognizedLandmarksFrom]
     if let labelArray = (result?.data as? [String: Any])?["landmarkAnnotations"] as? [[String:Any]] {
       for labelObj in labelArray {
         let landmarkName = labelObj["description"]
@@ -136,5 +159,6 @@ class ViewController: UIViewController {
         }
       }
     }
+    // [END getRecognizedLandmarksFrom]
   }
 }

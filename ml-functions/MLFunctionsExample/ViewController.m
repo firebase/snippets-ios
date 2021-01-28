@@ -33,37 +33,56 @@
   // [END ml_functions_init]
 }
 
-- (void)prepareData {
-  NSString *base64encoded = @"";
-  NSDictionary *labelData = @{
-    @"image": @{@"content": base64encoded},
+- (void)prepareData:(UIImage *)uiImage {
+  // [START base64encodeImage]
+  NSData *imageData = UIImageJPEGRepresentation(uiImage, 1.0f);
+  NSString *base64encodedImage =
+    [imageData base64EncodedStringWithOptions:NSDataBase64Encoding76CharacterLineLength];
+  // [END base64encodeImage]
+}
+
+- (void)prepareLabelData:(NSString *)base64encodedImage {
+  // [START prepareLabelData]
+  NSDictionary *requestData = @{
+    @"image": @{@"content": base64encodedImage},
     @"features": @{@"maxResults": @5, @"type": @"LABEL_DETECTION"}
   };
-  NSDictionary *textData = @{
-    @"image": @{@"content": base64encoded},
+  // [END prepareLabelData]
+}
+
+- (void)prepareTextData:(NSString *)base64encodedImage {
+  // [START prepareTextData]
+  NSDictionary *requestData = @{
+    @"image": @{@"content": base64encodedImage},
     @"features": @{@"type": @"TEXT_DETECTION"},
     @"imageContext": @{@"languageHints": @[@"en"]}
   };
+  // [END prepareTextData]
   NSDictionary *textDataWithHints = @{
-    @"image": @{@"content": base64encoded},
+    @"image": @{@"content": base64encodedImage},
     @"features": @{@"type": @"TEXT_DETECTION"},
     @"imageContext": @{@"languageHints": @[@"en"]}
   };
   NSDictionary *documentTextData = @{
-    @"image": @{@"content": base64encoded},
+    @"image": @{@"content": base64encodedImage},
     @"features": @{@"type": @"DOCUMENT_TEXT_DETECTION"}
-  };
-  NSDictionary *landmarkData = @{
-    @"image": @{@"content": base64encoded},
-    @"features": @{@"maxResults": @5, @"type": @"LANDMARK_DETECTION"}
   };
 }
 
-- (void)annotateImage:(NSDictionary *)data {
+- (void)prepareLandmarkData:(NSString *)base64encodedImage {
+  // [START prepareLandmarkData]
+  NSDictionary *requestData = @{
+    @"image": @{@"content": base64encodedImage},
+    @"features": @{@"maxResults": @5, @"type": @"LANDMARK_DETECTION"}
+  };
+  // [END prepareLandmarkData]
+}
+
+- (void)annotateImage:(NSDictionary *)requestData {
 
   // [START function_annotateImage]
   [[_functions HTTPSCallableWithName:@"addMessage"]
-                            callWithObject:data
+                            callWithObject:requestData
                                 completion:^(FIRHTTPSCallableResult * _Nullable result, NSError * _Nullable error) {
           if (error) {
             if (error.domain == FIRFunctionsErrorDomain) {
@@ -81,15 +100,18 @@
 }
 
 - (void)getLabeledObjectsFromResult:(FIRHTTPSCallableResult *)result {
+  // [START getLabeledObjectsFrom]
   NSArray *labelArray = result.data[@"labelAnnotations"];
   for (NSDictionary *labelObj in labelArray) {
     NSString *text = labelObj[@"description"];
     NSString *entityId = labelObj[@"mid"];
     NSNumber *confidence = labelObj[@"score"];
   }
+  // [END getLabeledObjectsFrom]
 }
 
 - (void)getRecognizedTextsFromResult:(FIRHTTPSCallableResult *)result {
+  // [START getRecognizedTextsFrom]
   NSDictionary *annotation = result.data[@"fullTextAnnotation"];
   if (annotation) {
     for (NSDictionary *page in annotation[@"pages"]) {
@@ -120,9 +142,11 @@
     NSLog(@"\nComplete annotation:");
     NSLog(@"\n%@", annotation[@"text"]);
   }
+  // [END getRecognizedTextsFrom]
 }
 
 - (void)getRecognizedLandmarksFromResult:(FIRHTTPSCallableResult *)result {
+  // [START getRecognizedLandmarksFrom]
   NSArray *labelArray = result.data[@"landmarkAnnotations"];
   for (NSDictionary *labelObj in labelArray) {
     NSString *landmarkName = labelObj[@"description"];
@@ -137,6 +161,7 @@
       NSNumber *longitude = location[@"latLng"][@"longitude"];
     }
   }
+  // [END getRecognizedLandmarksFrom]
 }
 
 @end
