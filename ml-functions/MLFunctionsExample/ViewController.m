@@ -81,7 +81,7 @@
 - (void)annotateImage:(NSDictionary *)requestData {
 
   // [START function_annotateImage]
-  [[_functions HTTPSCallableWithName:@"addMessage"]
+  [[_functions HTTPSCallableWithName:@"annotateImage"]
                             callWithObject:requestData
                                 completion:^(FIRHTTPSCallableResult * _Nullable result, NSError * _Nullable error) {
           if (error) {

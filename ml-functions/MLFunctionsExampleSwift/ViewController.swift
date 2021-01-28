@@ -18,7 +18,9 @@ import UIKit
 import Firebase
 
 class ViewController: UIViewController {
+  // [START ml_functions_define]
   lazy var functions = Functions.functions()
+  // [START ml_functions_define]
 
   override func viewDidLoad() {
     super.viewDidLoad()
