@@ -144,7 +144,7 @@
       [pageText appendString:blockText];
     }
   }
-  // [START getRecognizedTextsFrom_details]
+  // [END getRecognizedTextsFrom_details]
 }
 
 - (void)getRecognizedLandmarksFromResult:(FIRHTTPSCallableResult *)result {
