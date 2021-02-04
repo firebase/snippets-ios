@@ -113,7 +113,7 @@
 - (void)getRecognizedTextsFromResult:(FIRHTTPSCallableResult *)result {
   // [START getRecognizedTextsFrom]
   NSDictionary *annotation = result.data[@"fullTextAnnotation"];
-  if (annotation) { return; }
+  if (!annotation) { return; }
   NSLog(@"\nComplete annotation:");
   NSLog(@"\n%@", annotation[@"text"]);
   // [END getRecognizedTextsFrom]
