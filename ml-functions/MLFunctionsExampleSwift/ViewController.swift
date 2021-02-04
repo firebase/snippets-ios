@@ -100,48 +100,49 @@ class ViewController: UIViewController {
   }
 
   func getRecognizedTextsFrom(_ result: HTTPSCallableResult?) {
-    // [START getRecognizedTextsFrom]
-    if let annotation = (result?.data as? [String: Any])?["fullTextAnnotation"] as? [String: Any] {
-      guard let pages = annotation["pages"] as? [[String: Any]] else { return }
-      for page in pages {
-        var pageText = ""
-        guard let blocks = page["blocks"] as? [[String: Any]] else { continue }
-        for block in blocks {
-          var blockText = ""
-          guard let paragraphs = block["paragraphs"] as? [[String: Any]] else { continue }
-          for paragraph in paragraphs {
-            var paragraphText = ""
-            guard let words = paragraph["words"] as? [[String: Any]] else { continue }
-            for word in words {
-              var wordText = ""
-              guard let symbols = word["symbols"] as? [[String: Any]] else { continue }
-              for symbol in symbols {
-                let text = symbol["text"] as? String ?? ""
-                let confidence = symbol["confidence"] as? Float ?? 0.0
-                wordText += text
-                print("Symbol text: \(text) (confidence: \(confidence)%n")
-              }
-              let confidence = word["confidence"] as? Float ?? 0.0
-              print("Word text: \(wordText) (confidence: \(confidence)%n%n")
-              let boundingBox = word["boundingBox"] as? [Float] ?? [0.0, 0.0, 0.0, 0.0]
-              print("Word bounding box: \(boundingBox.description)%n")
-              paragraphText += wordText
+    // [START function_getRecognizedTexts]
+    guard let annotation = (result?.data as? [String: Any])?["fullTextAnnotation"] as? [String: Any] else { return }
+    print("%nComplete annotation:")
+    let text = annotation["text"] as? String ?? ""
+    print("%n\(text)")
+    // [END function_getRecognizedTexts]
+     
+    // [START function_getRecognizedTexts_details]
+    guard let pages = annotation["pages"] as? [[String: Any]] else { return }
+    for page in pages {
+    var pageText = ""
+    guard let blocks = page["blocks"] as? [[String: Any]] else { continue }
+    for block in blocks {
+        var blockText = ""
+        guard let paragraphs = block["paragraphs"] as? [[String: Any]] else { continue }
+        for paragraph in paragraphs {
+        var paragraphText = ""
+        guard let words = paragraph["words"] as? [[String: Any]] else { continue }
+        for word in words {
+            var wordText = ""
+            guard let symbols = word["symbols"] as? [[String: Any]] else { continue }
+            for symbol in symbols {
+            let text = symbol["text"] as? String ?? ""
+            let confidence = symbol["confidence"] as? Float ?? 0.0
+            wordText += text
+            print("Symbol text: \(text) (confidence: \(confidence)%n")
             }
-            print("%nParagraph: %n\(paragraphText)%n")
-            let boundingBox = paragraph["boundingBox"] as? [Float] ?? [0.0, 0.0, 0.0, 0.0]
-            print("Paragraph bounding box: \(boundingBox)%n")
-            let confidence = paragraph["confidence"] as? Float ?? 0.0
-            print("Paragraph Confidence: \(confidence)%n")
-            blockText += paragraphText
-          }
-          pageText += blockText
+            let confidence = word["confidence"] as? Float ?? 0.0
+            print("Word text: \(wordText) (confidence: \(confidence)%n%n")
+            let boundingBox = word["boundingBox"] as? [Float] ?? [0.0, 0.0, 0.0, 0.0]
+            print("Word bounding box: \(boundingBox.description)%n")
+            paragraphText += wordText
         }
-      }
-      print("%nComplete annotation:")
-      let text = annotation["text"] as? String ?? ""
-      print("%n\(text)")
+        print("%nParagraph: %n\(paragraphText)%n")
+        let boundingBox = paragraph["boundingBox"] as? [Float] ?? [0.0, 0.0, 0.0, 0.0]
+        print("Paragraph bounding box: \(boundingBox)%n")
+        let confidence = paragraph["confidence"] as? Float ?? 0.0
+        print("Paragraph Confidence: \(confidence)%n")
+        blockText += paragraphText
+        }
+        pageText += blockText
     }
-    // [END getRecognizedTextsFrom]
+    // [END function_getRecognizedTexts_details]
   }
 
   func getRecognizedLandmarksFrom(_ result: HTTPSCallableResult?) {

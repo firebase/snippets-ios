@@ -113,36 +113,38 @@
 - (void)getRecognizedTextsFromResult:(FIRHTTPSCallableResult *)result {
   // [START getRecognizedTextsFrom]
   NSDictionary *annotation = result.data[@"fullTextAnnotation"];
-  if (annotation) {
-    for (NSDictionary *page in annotation[@"pages"]) {
-      NSMutableString *pageText = [NSMutableString new];
-      for (NSDictionary *block in page[@"blocks"]) {
-        NSMutableString *blockText = [NSMutableString new];
-        for (NSDictionary *paragraph in block[@"paragraphs"]) {
-          NSMutableString *paragraphText = [NSMutableString new];
-          for (NSDictionary *word in paragraph[@"words"]) {
-            NSMutableString *wordText = [NSMutableString new];
-            for (NSDictionary *symbol in word[@"symbols"]) {
-              NSString *text = symbol[@"text"];
-              [wordText appendString:text];
-              NSLog(@"Symbol text: %@ (confidence: %@\n", text, symbol[@"confidence"]);
-            }
-            NSLog(@"Word text: %@ (confidence: %@\n\n", wordText, word[@"confidence"]);
-            NSLog(@"Word bounding box: %@\n", word[@"boundingBox"]);
-            [paragraphText appendString:wordText];
-          }
-          NSLog(@"\nParagraph: \n%@\n", paragraphText);
-          NSLog(@"Paragraph bounding box: %@\n", paragraph[@"boundingBox"]);
-          NSLog(@"Paragraph Confidence: %@\n", paragraph[@"confidence"]);
-          [blockText appendString:paragraphText];
-        }
-        [pageText appendString:blockText];
-      }
-    }
-    NSLog(@"\nComplete annotation:");
-    NSLog(@"\n%@", annotation[@"text"]);
-  }
+  if (annotation) { return; }
+  NSLog(@"\nComplete annotation:");
+  NSLog(@"\n%@", annotation[@"text"]);
   // [END getRecognizedTextsFrom]
+
+  // [START getRecognizedTextsFrom_details]
+  for (NSDictionary *page in annotation[@"pages"]) {
+    NSMutableString *pageText = [NSMutableString new];
+    for (NSDictionary *block in page[@"blocks"]) {
+      NSMutableString *blockText = [NSMutableString new];
+      for (NSDictionary *paragraph in block[@"paragraphs"]) {
+        NSMutableString *paragraphText = [NSMutableString new];
+        for (NSDictionary *word in paragraph[@"words"]) {
+          NSMutableString *wordText = [NSMutableString new];
+          for (NSDictionary *symbol in word[@"symbols"]) {
+            NSString *text = symbol[@"text"];
+            [wordText appendString:text];
+            NSLog(@"Symbol text: %@ (confidence: %@\n", text, symbol[@"confidence"]);
+          }
+          NSLog(@"Word text: %@ (confidence: %@\n\n", wordText, word[@"confidence"]);
+          NSLog(@"Word bounding box: %@\n", word[@"boundingBox"]);
+          [paragraphText appendString:wordText];
+        }
+        NSLog(@"\nParagraph: \n%@\n", paragraphText);
+        NSLog(@"Paragraph bounding box: %@\n", paragraph[@"boundingBox"]);
+        NSLog(@"Paragraph Confidence: %@\n", paragraph[@"confidence"]);
+        [blockText appendString:paragraphText];
+      }
+      [pageText appendString:blockText];
+    }
+  }
+  // [START getRecognizedTextsFrom_details]
 }
 
 - (void)getRecognizedLandmarksFromResult:(FIRHTTPSCallableResult *)result {
