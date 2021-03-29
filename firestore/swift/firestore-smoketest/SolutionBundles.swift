@@ -117,4 +117,40 @@ class SolutionBundles {
   }
   // [END fs_bundle_load]
 
+  // [START fs_simple_bundle_load]
+  func loadBundle(from bundleURL: URL) {
+    let firestore = Firestore.firestore()
+    let data: Data
+    do {
+     try data = Data(contentsOf: bundleURL)
+    } catch {
+      print(error)
+      return
+    }
+    firestore.loadBundle(data)
+  }
+  // [END fs_simple_bundle_load]
+
+  // [START fs_named_query]
+  func runNamedQuery() {
+    let firestore = Firestore.firestore()
+    firestore.getQuery(named: "coll-query") { query in
+      query?.getDocuments { (snapshot, error) in
+        // ...
+      }
+    }
+  }
+  // [END fs_named_query]
+
+  // [START bundle_observe_progress]
+  func observeProgress(of loadBundleTask: LoadBundleTask) {
+    let handle = loadBundleTask.addObserver { progress in
+      print("Loaded \(progress.bytesLoaded) bytes out of \(progress.totalBytes) total")
+    }
+
+    // ...
+    loadBundleTask.removeObserverWith(handle: handle)
+  }
+  // [END bundle_observe_progress]
+
 }
