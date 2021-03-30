@@ -74,7 +74,7 @@
   }];
 }
 
-// Loads a remote bundle from the provided url.
+// Loads a bundled query.
 - (void)loadQueryNamed:(NSString *)queryName
    fromRemoteBundleURL:(NSURL *)url
          withFirestore:(FIRFirestore *)firestore
