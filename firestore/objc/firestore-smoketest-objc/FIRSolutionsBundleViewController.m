@@ -111,7 +111,44 @@
     // Handle query results
   }];
 }
-
 // [END fs_bundle_load]
+
+// [START fs_simple_bundle_load]
+// Load a bundle from a local URL.
+- (void)loadBundleFromBundleURL:(NSURL *)bundleURL {
+  FIRFirestore *firestore = [FIRFirestore firestore];
+  NSError *error;
+  NSData *data = [NSData dataWithContentsOfURL:bundleURL options:kNilOptions error:&error];
+  if (error != nil) {
+    NSLog(@"%@", error);
+    return;
+  }
+  [firestore loadBundle:data];
+}
+// [END fs_simple_bundle_load]
+
+// [START fs_named_query]
+- (void)runNamedQuery {
+  FIRFirestore *firestore = [FIRFirestore firestore];
+  [firestore getQueryNamed:@"coll-query" completion:^(FIRQuery *_Nullable query) {
+    [query getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
+      // ...
+    }];
+  }];
+}
+// [END fs_named_query]
+
+// [START bundle_observe_progress]
+- (void)observeProgressOfLoadBundleTask:(FIRLoadBundleTask *)loadBundleTask {
+  NSInteger handle = [loadBundleTask addObserver:^(FIRLoadBundleTaskProgress *progress) {
+    NSLog(@"Loaded %ld bytes out of %ld total",
+          (long)progress.bytesLoaded,
+          (long)progress.totalBytes);
+  }];
+
+  // ...
+  [loadBundleTask removeObserverWithHandle:handle];
+}
+// [END bundle_observe_progress]
 
 @end
