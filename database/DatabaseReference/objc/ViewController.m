@@ -161,4 +161,14 @@
   // [END rtdb_write_new_user_completion]
 }
 
+- (void)incrementStarsForPost:(NSString *)postID byUser: (NSString *) userID {
+  // [START rtdb_post_stars_increment]
+  NSDictionary *updates = @{[NSString stringWithFormat: @"posts/%@/stars/%@", postID, userID]: @TRUE,
+                          [NSString stringWithFormat: @"posts/%@/starCount", postID]: [FIRServerValue increment:@1],
+                          [NSString stringWithFormat: @"user-posts/%@/stars/%@", postID, userID]: @TRUE,
+                          [NSString stringWithFormat: @"user-posts/%@/starCount", postID]: [FIRServerValue increment:@1]};
+  [[[FIRDatabase database] reference] updateChildValues:updates];
+  // [END rtdb_post_stars_increment]
+}
+
 @end
