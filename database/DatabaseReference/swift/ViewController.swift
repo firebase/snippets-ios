@@ -140,9 +140,9 @@ class ViewController: UIViewController {
     // [START rtdb_post_stars_increment]
     let updates = [
       "posts/\(postID)/stars/\(userID)": true,
-      "posts/\(postID)/startCount": ServerValue.increment(1),
+      "posts/\(postID)/starCount": ServerValue.increment(1),
       "user-posts/\(postID)/stars/\(userID)": true,
-      "user-posts/\(postID)/startCount": ServerValue.increment(1)
+      "user-posts/\(postID)/starCount": ServerValue.increment(1)
     ] as [String : Any]
     Database.database().reference().updateChildValues(updates);
     // [END rtdb_post_stars_increment]
