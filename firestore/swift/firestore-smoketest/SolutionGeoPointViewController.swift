@@ -58,13 +58,13 @@ class SolutionGeoPointController: UIViewController {
         // [START fs_geo_query_hashes]
         // Find cities within 50km of London
         let center = CLLocationCoordinate2D(latitude: 51.5074, longitude: 0.1278)
-        let radiusInMeters: Double = 50_000
+        let radiusInM: Double = 50 * 1000
 
         // Each item in 'bounds' represents a startAt/endAt pair. We have to issue
         // a separate query for each pair. There can be up to 9 pairs of bounds
         // depending on overlap, but in most cases there are 4.
         let queryBounds = GFUtils.queryBounds(forLocation: center,
-                                              withRadius: radiusInMeters)
+                                              withRadius: radiusInM)
         let queries = queryBounds.compactMap { (any) -> Query? in
             guard let bound = any as? GFGeoQueryBounds else { return nil }
             return db.collection("cities")
@@ -90,7 +90,7 @@ class SolutionGeoPointController: UIViewController {
                 // We have to filter out a few false positives due to GeoHash accuracy, but
                 // most will match
                 let distance = GFUtils.distance(from: centerPoint, to: coordinates)
-                if distance <= radiusInKilometers {
+                if distance <= radiusInM {
                     matchingDocs.append(document)
                 }
             }
