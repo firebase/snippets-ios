@@ -65,8 +65,7 @@ class SolutionGeoPointController: UIViewController {
         // depending on overlap, but in most cases there are 4.
         let queryBounds = GFUtils.queryBounds(forLocation: center,
                                               withRadius: radiusInM)
-        let queries = queryBounds.compactMap { (any) -> Query? in
-            guard let bound = any as? GFGeoQueryBounds else { return nil }
+        let queries = queryBounds.map { bound -> Query in
             return db.collection("cities")
                 .order(by: "geohash")
                 .start(at: [bound.startValue])
