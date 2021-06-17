@@ -861,9 +861,9 @@
 - (void)exampleFilters {
   FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
   // [START example_filters]
-  [citiesRef queryWhereField:@"state" isEqualTo:@"CA"];
-  [citiesRef queryWhereField:@"population" isLessThan:@100000];
-  [citiesRef queryWhereField:@"name" isGreaterThanOrEqualTo:@"San Francisco"];
+  FIRQuery *stateQuery = [citiesRef queryWhereField:@"state" isEqualTo:@"CA"];
+  FIRQuery *populationQuery = [citiesRef queryWhereField:@"population" isLessThan:@100000];
+  FIRQuery *nameQuery = [citiesRef queryWhereField:@"name" isGreaterThanOrEqualTo:@"San Francisco"];
   // [END example_filters]
 }
 
