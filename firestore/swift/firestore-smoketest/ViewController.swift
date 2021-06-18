@@ -966,9 +966,9 @@ class ViewController: UIViewController {
         let citiesRef = db.collection("cities")
 
         // [START example_filters]
-        citiesRef.whereField("state", isEqualTo: "CA")
-        citiesRef.whereField("population", isLessThan: 100000)
-        citiesRef.whereField("name", isGreaterThanOrEqualTo: "San Francisco")
+        let stateQuery = citiesRef.whereField("state", isEqualTo: "CA")
+        let populationQuery = citiesRef.whereField("population", isLessThan: 100000)
+        let nameQuery = citiesRef.whereField("name", isGreaterThanOrEqualTo: "San Francisco")
         // [END example_filters]
     }
 
