@@ -17,15 +17,29 @@
 import UIKit
 import Firebase
 
+// [START forceCrash]
 class ViewController: UIViewController {
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    // Do any additional setup after loading the view, typically from a nib.
+
+    let button = UIButton(type: .roundedRect)
+    button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
+    button.setTitle("Crash", for: [])
+    button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
+    view.addSubview(button)
+  }
+
+  @IBAction func crashButtonTapped(_ sender: AnyObject) {
+    fatalError()
+  }
+  // [END forceCrash]
+
   // [START crashlytics_define]
   lazy var crashlytics = Crashlytics.crashlytics()
   // [END crashlytics_define]
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view.
-  }
 
   func customizeStackTraces() {
     // [START customizeStackTraces]
@@ -51,5 +65,71 @@ class ViewController: UIViewController {
 
     crashlytics.record(exceptionModel:ex)
     // [END customizeStackTracesAddress]
+  }
+
+  func setCustomKey() {
+    // [START setCustomKey]
+    // Set int_key to 100.
+    Crashlytics.crashlytics().setCustomValue(100, forKey: "int_key")
+
+    // Set str_key to "hello".
+    Crashlytics.crashlytics().setCustomValue("hello", forKey: "str_key")
+    // [END setCustomKey]
+  }
+
+  func setCustomValue() {
+    // [START setCustomValue]
+    Crashlytics.crashlytics().setCustomValue(100, forKey: "int_key")
+
+    // Set int_key to 50 from 100.
+    Crashlytics.crashlytics().setCustomValue(50, forKey: "int_key")
+    // [END setCustomValue]
+  }
+
+  func setCustomKeys() {
+    // [START setCustomKeys]
+    let keysAndValues = [
+                     "string key" : "string value",
+                     "string key 2" : "string value 2",
+                     "boolean key" : true,
+                     "boolean key 2" : false,
+                     "float key" : 1.01,
+                     "float key 2" : 2.02
+                    ] as [String : Any]
+
+    Crashlytics.crashlytics().setCustomKeysAndValues(keysAndValues)
+    // [END setCustomKeys]
+  }
+
+  func enableOptIn() {
+    // [START enableOptIn]
+    Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
+    // [END enableOptIn]
+  }
+
+  func logExceptions() {
+    // [START createError]
+    let userInfo = [
+      NSLocalizedDescriptionKey: NSLocalizedString("The request failed.", comment: ""),
+      NSLocalizedFailureReasonErrorKey: NSLocalizedString("The response returned a 404.", comment: ""),
+      NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Does this page exist?", comment: ""),
+      "ProductID": "123456",
+      "View": "MainView"
+    ]
+
+    let error = NSError.init(domain: NSCocoaErrorDomain,
+                             code: -1001,
+                             userInfo: userInfo)
+    // [END createError]
+
+    // [START recordError]
+    Crashlytics.crashlytics().record(error: error)
+    // [END recordError]
+  }
+
+  func setUserId() {
+    // [START setUserId]
+    Crashlytics.crashlytics().setUserID("123456789")
+    // [END setUserId]
   }
 }

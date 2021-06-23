@@ -19,19 +19,28 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-// [START ml_functions_define]
-@property(strong, nonatomic) FIRCrashlytics *crashlytics;
-// [END ml_functions_define]
+
 @end
 
+// [START forceCrash]
 @implementation ViewController
-
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  // [START crashlytics_init]
-  self.crashlytics = [FIRCrashlytics crashlytics];
-  // [END crashlytics_init]
+    [super viewDidLoad];
+
+    // Do any additional setup after loading the view, typically from a nib.
+
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame = CGRectMake(20, 50, 100, 30);
+    [button setTitle:@"Crash" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(crashButtonTapped:)
+        forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
 }
+
+- (IBAction)crashButtonTapped:(id)sender {
+    @[][1];
+}
+// [END forceCrash]
 
 - (void)customizeStackTraces {
   // [START customizeStackTraces]
@@ -60,6 +69,71 @@
 
   [[FIRCrashlytics crashlytics] recordExceptionModel:model];
   // [END customizeStackTracesAddress]
+}
+
+- (void)setCustomKey {
+  // [START setCustomKey]
+  // Set int_key to 100.
+  [[FIRCrashlytics crashlytics] setCustomValue:@(100) forKey:@"int_key"];
+
+  // Set str_key to "hello".
+  [[FIRCrashlytics crashlytics] setCustomValue:@"hello" forKey:@"str_key"];
+  // [END setCustomKey]
+}
+
+- (void)setCustomValue {
+  // [START setCustomValue]
+  [[FIRCrashlytics crashlytics] setCustomValue:@(100) forKey:@"int_key"];
+
+  // Set int_key to 50 from 100.
+  [[FIRCrashlytics crashlytics] setCustomValue:@(50) forKey:@"int_key"];
+  // [END setCustomValue]
+}
+
+- (void)setCustomKeys {
+  // [START setCustomKeys]
+  NSDictionary *keysAndValues =
+      @{@"string key" : @"string value",
+        @"string key 2" : @"string value 2",
+        @"boolean key" : @(YES),
+        @"boolean key 2" : @(NO),
+        @"float key" : @(1.01),
+        @"float key 2" : @(2.02)};
+
+  [[FIRCrashlytics crashlytics] setCustomKeysAndValues: keysAndValues];
+  // [END setCustomKeys]
+}
+
+- (void)enableOptIn {
+  // [START enableOptIn]
+  [[FIRCrashlytics crashlytics] setCrashlyticsCollectionEnabled:YES];
+  // [END enableOptIn]
+}
+
+- (void)logExceptions {
+  // [START createError]
+  NSDictionary *userInfo = @{
+    NSLocalizedDescriptionKey: NSLocalizedString(@"The request failed.", nil),
+    NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"The response returned a 404.", nil),
+    NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Does this page exist?", nil),
+    @"ProductID": @"123456",
+    @"View": @"MainView",
+  };
+
+  NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain
+                                       code:-1001
+                                   userInfo:userInfo];
+  // [END createError]
+
+  // [START recordError]
+  [[FIRCrashlytics crashlytics] recordError:error];
+  // [END recordError]
+}
+
+- (void)setUserId {
+  // [START setUserId]
+  [[FIRCrashlytics crashlytics] setUserID:@"123456789"];
+  // [END setUserId]
 }
 
 @end
