@@ -68,13 +68,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func fetchInstallationToken() {
     // [START fetch_installation_token]
-    Installations.installations().authTokenForcingRefresh(true, completion: { (token, error) in
+    Installations.installations().authTokenForcingRefresh(true, completion: { (result, error) in
       if let error = error {
         print("Error fetching token: \(error)")
         return
       }
-      guard let token = token else { return }
-      print("Installation auth token: \(token)")
+      guard let result = result else { return }
+      print("Installation auth token: \(result.authToken)")
     })
     // [END fetch_installation_token]
   }
