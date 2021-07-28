@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3EE4C9A85545E8087DAE96F3 /* Pods_AppCheckSnippetsObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4BA532C22B57FB6F604FDF /* Pods_AppCheckSnippetsObjC.framework */; };
 		4265C38C26AF71E100BD1DB2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4265C38B26AF71E100BD1DB2 /* AppDelegate.m */; };
 		4265C38F26AF71E100BD1DB2 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4265C38E26AF71E100BD1DB2 /* SceneDelegate.m */; };
 		4265C39226AF71E100BD1DB2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4265C39126AF71E100BD1DB2 /* ViewController.m */; };
@@ -25,11 +24,9 @@
 		4265C3BC26AF775A00BD1DB2 /* AppAttestProviderFactories.m in Sources */ = {isa = PBXBuildFile; fileRef = 4265C3BB26AF775A00BD1DB2 /* AppAttestProviderFactories.m */; };
 		4265C3BE26AF7A6600BD1DB2 /* YourCustomAppCheckProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4265C3BD26AF7A6600BD1DB2 /* YourCustomAppCheckProvider.swift */; };
 		4265C3C026AF7A7E00BD1DB2 /* YourCustomAppCheckProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4265C3BF26AF7A7E00BD1DB2 /* YourCustomAppCheckProvider.m */; };
-		BE9933463B864F0099EA59B6 /* Pods_AppCheckSnippetsSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7EDB1AA8B125945F9F4EA2 /* Pods_AppCheckSnippetsSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C1099839D442E0E3F9F4724 /* Pods-AppCheckSnippetsSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppCheckSnippetsSwift.release.xcconfig"; path = "Target Support Files/Pods-AppCheckSnippetsSwift/Pods-AppCheckSnippetsSwift.release.xcconfig"; sourceTree = "<group>"; };
 		4265C38726AF71E100BD1DB2 /* AppCheckSnippetsObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppCheckSnippetsObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4265C38A26AF71E100BD1DB2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4265C38B26AF71E100BD1DB2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,11 +51,6 @@
 		4265C3BB26AF775A00BD1DB2 /* AppAttestProviderFactories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppAttestProviderFactories.m; sourceTree = "<group>"; };
 		4265C3BD26AF7A6600BD1DB2 /* YourCustomAppCheckProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourCustomAppCheckProvider.swift; sourceTree = "<group>"; };
 		4265C3BF26AF7A7E00BD1DB2 /* YourCustomAppCheckProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YourCustomAppCheckProvider.m; sourceTree = "<group>"; };
-		9A4BA532C22B57FB6F604FDF /* Pods_AppCheckSnippetsObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppCheckSnippetsObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA8D3F5C3DAAAFF4B9BE94B9 /* Pods-AppCheckSnippetsObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppCheckSnippetsObjC.debug.xcconfig"; path = "Target Support Files/Pods-AppCheckSnippetsObjC/Pods-AppCheckSnippetsObjC.debug.xcconfig"; sourceTree = "<group>"; };
-		F25A107973E54D881AA67D7C /* Pods-AppCheckSnippetsSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppCheckSnippetsSwift.debug.xcconfig"; path = "Target Support Files/Pods-AppCheckSnippetsSwift/Pods-AppCheckSnippetsSwift.debug.xcconfig"; sourceTree = "<group>"; };
-		F261B12B23A1B94E3B6BD2E7 /* Pods-AppCheckSnippetsObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppCheckSnippetsObjC.release.xcconfig"; path = "Target Support Files/Pods-AppCheckSnippetsObjC/Pods-AppCheckSnippetsObjC.release.xcconfig"; sourceTree = "<group>"; };
-		FB7EDB1AA8B125945F9F4EA2 /* Pods_AppCheckSnippetsSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppCheckSnippetsSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +58,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EE4C9A85545E8087DAE96F3 /* Pods_AppCheckSnippetsObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +65,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE9933463B864F0099EA59B6 /* Pods_AppCheckSnippetsSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,10 +74,6 @@
 		37860BEBF061B43F7FE74ABB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EA8D3F5C3DAAAFF4B9BE94B9 /* Pods-AppCheckSnippetsObjC.debug.xcconfig */,
-				F261B12B23A1B94E3B6BD2E7 /* Pods-AppCheckSnippetsObjC.release.xcconfig */,
-				F25A107973E54D881AA67D7C /* Pods-AppCheckSnippetsSwift.debug.xcconfig */,
-				1C1099839D442E0E3F9F4724 /* Pods-AppCheckSnippetsSwift.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -144,17 +130,7 @@
 				4265C3A626AF723800BD1DB2 /* AppCheckSnippetsSwift */,
 				4265C38826AF71E100BD1DB2 /* Products */,
 				37860BEBF061B43F7FE74ABB /* Pods */,
-				4827DE0D9126E1C87D170221 /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		4827DE0D9126E1C87D170221 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9A4BA532C22B57FB6F604FDF /* Pods_AppCheckSnippetsObjC.framework */,
-				FB7EDB1AA8B125945F9F4EA2 /* Pods_AppCheckSnippetsSwift.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,11 +140,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4265C3A026AF71E300BD1DB2 /* Build configuration list for PBXNativeTarget "AppCheckSnippetsObjC" */;
 			buildPhases = (
-				85CB737BDBC113343EDC1BB2 /* [CP] Check Pods Manifest.lock */,
 				4265C38326AF71E100BD1DB2 /* Sources */,
 				4265C38426AF71E100BD1DB2 /* Frameworks */,
 				4265C38526AF71E100BD1DB2 /* Resources */,
-				68C76E91C05EB6A491BB8F20 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -183,11 +157,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4265C3B626AF723900BD1DB2 /* Build configuration list for PBXNativeTarget "AppCheckSnippetsSwift" */;
 			buildPhases = (
-				095F83BFFB6AE51285BEF6BA /* [CP] Check Pods Manifest.lock */,
 				4265C3A126AF723800BD1DB2 /* Sources */,
 				4265C3A226AF723800BD1DB2 /* Frameworks */,
 				4265C3A326AF723800BD1DB2 /* Resources */,
-				C93983DD1572A6712BB90DE2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,87 +229,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		095F83BFFB6AE51285BEF6BA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AppCheckSnippetsSwift-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		68C76E91C05EB6A491BB8F20 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AppCheckSnippetsObjC/Pods-AppCheckSnippetsObjC-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AppCheckSnippetsObjC/Pods-AppCheckSnippetsObjC-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppCheckSnippetsObjC/Pods-AppCheckSnippetsObjC-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		85CB737BDBC113343EDC1BB2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AppCheckSnippetsObjC-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C93983DD1572A6712BB90DE2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AppCheckSnippetsSwift/Pods-AppCheckSnippetsSwift-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AppCheckSnippetsSwift/Pods-AppCheckSnippetsSwift-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppCheckSnippetsSwift/Pods-AppCheckSnippetsSwift-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		4265C38326AF71E100BD1DB2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -404,7 +295,6 @@
 /* Begin XCBuildConfiguration section */
 		4265C39E26AF71E300BD1DB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA8D3F5C3DAAAFF4B9BE94B9 /* Pods-AppCheckSnippetsObjC.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -475,7 +365,6 @@
 		};
 		4265C39F26AF71E300BD1DB2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F261B12B23A1B94E3B6BD2E7 /* Pods-AppCheckSnippetsObjC.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -540,7 +429,6 @@
 		};
 		4265C3B726AF723900BD1DB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F25A107973E54D881AA67D7C /* Pods-AppCheckSnippetsSwift.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -614,7 +502,6 @@
 		};
 		4265C3B826AF723900BD1DB2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C1099839D442E0E3F9F4724 /* Pods-AppCheckSnippetsSwift.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
