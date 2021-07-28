@@ -46,7 +46,7 @@
         // [END_EXCLUDE]
 
         // Create FIRAppCheckToken object.
-        NSTimeInterval exp = expirationFromServer - 60;  // Refresh the token early to handle clock skew.
+        NSTimeInterval exp = expirationFromServer;
         FIRAppCheckToken *token
             = [[FIRAppCheckToken alloc] initWithToken:tokenFromServer
                                        expirationDate:[NSDate dateWithTimeIntervalSince1970:exp]];

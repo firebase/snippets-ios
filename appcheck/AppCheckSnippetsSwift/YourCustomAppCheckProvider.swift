@@ -38,7 +38,7 @@ class YourCustomAppCheckProvider: NSObject, AppCheckProvider {
             let exp = Date(timeIntervalSince1970: expirationFromServer)
             let token = AppCheckToken(
                 token: tokenFromServer,
-                expirationDate: exp - 60  // Refresh the token early to handle clock skew.
+                expirationDate: exp
             )
 
             // Pass the token or error to the completion handler.
