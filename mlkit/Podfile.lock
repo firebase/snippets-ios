@@ -52,18 +52,18 @@ PODS:
     - GTMSessionFetcher (>= 1.1.7)
   - GoogleDataTransport (7.5.1):
     - nanopb (~> 1.30906.0)
-  - GoogleToolboxForMac/DebugUtils (2.3.1):
-    - GoogleToolboxForMac/Defines (= 2.3.1)
-  - GoogleToolboxForMac/Defines (2.3.1)
-  - GoogleToolboxForMac/Logger (2.3.1):
-    - GoogleToolboxForMac/Defines (= 2.3.1)
-  - "GoogleToolboxForMac/NSData+zlib (2.3.1)":
-    - GoogleToolboxForMac/Defines (= 2.3.1)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.3.1)":
-    - GoogleToolboxForMac/DebugUtils (= 2.3.1)
-    - GoogleToolboxForMac/Defines (= 2.3.1)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.1)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.3.1)"
+  - GoogleToolboxForMac/DebugUtils (2.3.2):
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+  - GoogleToolboxForMac/Defines (2.3.2)
+  - GoogleToolboxForMac/Logger (2.3.2):
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+  - "GoogleToolboxForMac/NSData+zlib (2.3.2)":
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.3.2)":
+    - GoogleToolboxForMac/DebugUtils (= 2.3.2)
+    - GoogleToolboxForMac/Defines (= 2.3.2)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.2)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.3.2)"
   - GoogleUtilities/Environment (6.7.2):
     - PromisesObjC (~> 1.2)
   - GoogleUtilities/Logger (6.7.2):
@@ -120,7 +120,7 @@ SPEC CHECKSUMS:
   FirebaseMLVisionAutoML: 869af2667c30ac90bd8aefd14e92f8c99b69862b
   GoogleAPIClientForREST: 538a8ad0014fd88b78894e77100775a6b0a4f7ed
   GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
-  GoogleToolboxForMac: 471e0c05d39506e50e6398f46fa9a12ae0efeff9
+  GoogleToolboxForMac: 8bef7c7c5cf7291c687cf5354f39f9db6399ad34
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   GTMSessionFetcher: 36689134877faeb055b27dfa4ccc9ceaa42e029e
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
