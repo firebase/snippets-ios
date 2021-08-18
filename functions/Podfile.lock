@@ -1,28 +1,28 @@
 PODS:
-  - Firebase/CoreOnly (8.5.0):
-    - FirebaseCore (= 8.5.0)
-  - Firebase/Functions (8.5.0):
+  - Firebase/CoreOnly (8.6.0):
+    - FirebaseCore (= 8.6.0)
+  - Firebase/Functions (8.6.0):
     - Firebase/CoreOnly
-    - FirebaseFunctions (~> 8.5.0)
-  - FirebaseCore (8.5.0):
+    - FirebaseFunctions (~> 8.6.0)
+  - FirebaseCore (8.6.0):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
-  - FirebaseCoreDiagnostics (8.5.0):
+  - FirebaseCoreDiagnostics (8.6.0):
     - GoogleDataTransport (~> 9.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
     - nanopb (~> 2.30908.0)
-  - FirebaseFunctions (8.5.0):
+  - FirebaseFunctions (8.6.0):
     - FirebaseCore (~> 8.0)
     - GTMSessionFetcher/Core (~> 1.5)
   - GoogleDataTransport (9.1.0):
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Environment (7.5.0):
+  - GoogleUtilities/Environment (7.5.1):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.5.0):
+  - GoogleUtilities/Logger (7.5.1):
     - GoogleUtilities/Environment
   - GTMSessionFetcher/Core (1.6.1)
   - nanopb (2.30908.0):
@@ -48,12 +48,12 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: ff8c73105b90e33e1dc6c8e5445d7adc2ccdc7c1
-  FirebaseCore: 1c1ca72483b59b17050f5b4cec4fb748425a3901
-  FirebaseCoreDiagnostics: 7bf55d386f9fc690d971b70a582142321a390eb8
-  FirebaseFunctions: eb1fedf8eb25c144ef72ff68d78259d79eb29ae5
+  Firebase: 21ac9f28b09a8bdfc005f34c984fca84e7e8786d
+  FirebaseCore: 620b677f70f5470a8e59cb77f3ddc666f6f09785
+  FirebaseCoreDiagnostics: 3721920bde3a9a6d5aa093c1d25e9d3e47f694af
+  FirebaseFunctions: 7639390ac39a914ab7a137fd162956b99cba59a7
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
-  GoogleUtilities: eea970f4a389963963bffe8d8fabe43540678b9c
+  GoogleUtilities: 3df19e3c24f7bbc291d8b5809aa6b0d41e642437
   GTMSessionFetcher: 36689134877faeb055b27dfa4ccc9ceaa42e029e
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
