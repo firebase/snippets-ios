@@ -70,11 +70,11 @@ PODS:
     - GoogleUtilities/Environment
   - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
-  - GTMSessionFetcher (1.6.1):
-    - GTMSessionFetcher/Full (= 1.6.1)
-  - GTMSessionFetcher/Core (1.6.1)
-  - GTMSessionFetcher/Full (1.6.1):
-    - GTMSessionFetcher/Core (= 1.6.1)
+  - GTMSessionFetcher (1.7.0):
+    - GTMSessionFetcher/Full (= 1.7.0)
+  - GTMSessionFetcher/Core (1.7.0)
+  - GTMSessionFetcher/Full (1.7.0):
+    - GTMSessionFetcher/Core (= 1.7.0)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -122,7 +122,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
   GoogleToolboxForMac: 8bef7c7c5cf7291c687cf5354f39f9db6399ad34
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
-  GTMSessionFetcher: 36689134877faeb055b27dfa4ccc9ceaa42e029e
+  GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Protobuf: 7327d4444215b5f18e560a97f879ff5503c4581c
@@ -131,4 +131,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 4b071879fc5f9391b9325777ac56ce58e70e8b8d
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.11.0
