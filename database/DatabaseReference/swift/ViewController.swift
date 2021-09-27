@@ -122,6 +122,19 @@ class ViewController: UIViewController {
     // [END rtdb_write_new_user_completion]
   }
 
+  func singleUseFetchData(uid: String) {
+    let ref = Database.database().reference();
+    // [START single_value_get_data]
+    ref.child("users/\(uid)/username").getData(completion:  { error, snapshot in
+      guard error == nil else {
+        print(error!.localizedDescription)
+        return;
+      }
+      let userName = snapshot.value as? String ?? "Unknown";
+    });
+    // [END single_value_get_data]
+  }
+
   func emulatorSettings() {
     // [START rtdb_emulator_connect]
         // In almost all cases the ns (namespace) is your project ID.
