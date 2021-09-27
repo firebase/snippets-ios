@@ -172,7 +172,7 @@
     }
     NSString *userName = snapshot.value;
   }];
-  // [START single_value_get_data]
+  // [END single_value_get_data]
 }
 
 - (void)incrementStarsForPost:(NSString *)postID byUser: (NSString *) userID {
