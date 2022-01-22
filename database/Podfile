@@ -1,6 +1,6 @@
 # Firebase Database ReferenceCode
 use_frameworks!
-platform :ios, '7.0'
+platform :ios, '10.0'
 pod 'Firebase/Database'
 pod 'Firebase/Auth'
 

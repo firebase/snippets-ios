@@ -39,6 +39,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
   }
 
+  var installationIDObserver: NSObjectProtocol?
+  func handleInstallationIDChange() {
+    // [START handle_installation_id_change]
+    installationIDObserver = NotificationCenter.default.addObserver(
+            forName: .InstallationIDDidChange,
+            object: nil,
+            queue: nil
+    ) { (notification) in
+      // Fetch new Installation ID
+      self.fetchInstallationToken()
+    }
+    // [END handle_installation_id_change]
+  }
+
   func fetchInstallationID() {
     // [START fetch_installation_id]
     Installations.installations().installationID { (id, error) in
@@ -54,15 +68,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func fetchInstallationToken() {
     // [START fetch_installation_token]
-    Installations.installations().authTokenForcingRefresh(true, completion: { (token, error) in
+    Installations.installations().authTokenForcingRefresh(true, completion: { (result, error) in
       if let error = error {
         print("Error fetching token: \(error)")
         return
       }
-      guard let token = token else { return }
-      print("Installation auth token: \(token)")
+      guard let result = result else { return }
+      print("Installation auth token: \(result.authToken)")
     })
     // [END fetch_installation_token]
+  }
+
+  func deleteInstallation() {
+    // [START delete_installation]
+    Installations.installations().delete { error in
+      if let error = error {
+        print("Error deleting installation: \(error)")
+        return
+      }
+      print("Installation deleted");
+    }
+    // [END delete_installation]
   }
 
 }

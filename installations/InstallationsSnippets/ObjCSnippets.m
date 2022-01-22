@@ -18,7 +18,25 @@
 
 #import "ObjCSnippets.h"
 
+@interface ObjCSnippets ()
+@property(nonatomic, nullable) id<NSObject> installationIDObserver;
+@end
+
 @implementation ObjCSnippets
+
+- (void)handleInstallationIDChange {
+  // [START handle_installation_id_change]
+  __weak __auto_type weakSelf = self;
+  self.installationIDObserver = [[NSNotificationCenter defaultCenter]
+          addObserverForName: FIRInstallationIDDidChangeNotification
+                      object:nil
+                       queue:nil
+                  usingBlock:^(NSNotification * _Nonnull notification) {
+      // Fetch new Installation ID
+      [weakSelf fetchInstallationsID];
+  }];
+  // [END handle_installation_id_change]
+}
 
 - (void)fetchInstallationsID {
   // [START fetch_installation_id]
@@ -43,6 +61,18 @@
     NSLog(@"Installation auth token: %@", [result authToken]);
   }];
   // [END fetch_installation_token]
+}
+
+- (void)deleteInstallations {
+  // [START delete_installation]
+  [[FIRInstallations installations] deleteWithCompletion:^(NSError *error) {
+     if (error != nil) {
+       NSLog(@"Error deleting Installation %@", error);
+       return;
+     }
+     NSLog(@"Installation deleted");
+  }];
+  // [END delete_installation]
 }
 
 @end

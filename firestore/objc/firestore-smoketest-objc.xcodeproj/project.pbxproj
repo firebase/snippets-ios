@@ -18,6 +18,7 @@
 		8D70FC2A1F4CAE1B00C7F603 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D70FC291F4CAE1B00C7F603 /* Assets.xcassets */; };
 		8D70FC2D1F4CAE1B00C7F603 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D70FC2B1F4CAE1B00C7F603 /* LaunchScreen.storyboard */; };
 		8D70FC381F4CAE1B00C7F603 /* firestore_smoketest_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D70FC371F4CAE1B00C7F603 /* firestore_smoketest_objcTests.m */; };
+		8D9644E7260D565A002A46C9 /* FIRSolutionsBundleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9644E6260D565A002A46C9 /* FIRSolutionsBundleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		8D70FC331F4CAE1B00C7F603 /* firestore-smoketest-objcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "firestore-smoketest-objcTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D70FC371F4CAE1B00C7F603 /* firestore_smoketest_objcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = firestore_smoketest_objcTests.m; sourceTree = "<group>"; };
 		8D70FC391F4CAE1B00C7F603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D9644E5260D565A002A46C9 /* FIRSolutionsBundleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FIRSolutionsBundleViewController.h; sourceTree = "<group>"; };
+		8D9644E6260D565A002A46C9 /* FIRSolutionsBundleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FIRSolutionsBundleViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,8 @@
 				8D669A7420F423B200F08512 /* FIRSolutionCountersViewController.m */,
 				8D669A7620F423B200F08512 /* FIRSolutionArraysViewController.h */,
 				8D669A7520F423B200F08512 /* FIRSolutionArraysViewController.m */,
+				8D9644E5260D565A002A46C9 /* FIRSolutionsBundleViewController.h */,
+				8D9644E6260D565A002A46C9 /* FIRSolutionsBundleViewController.m */,
 				8D70FC261F4CAE1B00C7F603 /* Main.storyboard */,
 				8D70FC291F4CAE1B00C7F603 /* Assets.xcassets */,
 				8D70FC2B1F4CAE1B00C7F603 /* LaunchScreen.storyboard */,
@@ -246,6 +251,7 @@
 				8D669A7B20F423B200F08512 /* FIRSolutionArraysViewController.m in Sources */,
 				8D669A7A20F423B200F08512 /* FIRSolutionCountersViewController.m in Sources */,
 				8D70FC1F1F4CAE1B00C7F603 /* main.m in Sources */,
+				8D9644E7260D565A002A46C9 /* FIRSolutionsBundleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

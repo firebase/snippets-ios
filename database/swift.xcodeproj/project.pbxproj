@@ -66,6 +66,7 @@
 			children = (
 				8DDD57451EA6D39D00DD14EB /* DatabaseReference */,
 				8DDD57441EA6D39D00DD14EB /* Products */,
+				D8F966BF59E6A1509FCBF383 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +89,13 @@
 				8DDD57521EA6D39D00DD14EB /* Info.plist */,
 			);
 			path = DatabaseReference;
+			sourceTree = "<group>";
+		};
+		D8F966BF59E6A1509FCBF383 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,7 +125,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Morgan Chen";
 				TargetAttributes = {
 					8DDD57421EA6D39D00DD14EB = {
@@ -127,11 +135,12 @@
 					};
 				};
 			};
-			buildConfigurationList = 8DDD573E1EA6D39D00DD14EB /* Build configuration list for PBXProject "DatabaseReference" */;
+			buildConfigurationList = 8DDD573E1EA6D39D00DD14EB /* Build configuration list for PBXProject "swift" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -233,12 +242,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -278,10 +288,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -298,7 +309,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -312,14 +323,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.referencecode.DatabaseReference;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8DDD573E1EA6D39D00DD14EB /* Build configuration list for PBXProject "DatabaseReference" */ = {
+		8DDD573E1EA6D39D00DD14EB /* Build configuration list for PBXProject "swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8DDD575E1EA6D39D00DD14EB /* Debug */,

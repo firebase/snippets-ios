@@ -122,18 +122,43 @@ class ViewController: UIViewController {
     // [END rtdb_write_new_user_completion]
   }
 
-  func emulatorSettings(Database: Database) {
-	// [START rtdb_emulator_connect]
-        // In almost all cases the ns (namespace) is your project ID.
-	let db = Database.database(url:@"http://localhost:9000?ns=YOUR_DATABASE_NAMESPACE")
-	// [END rtdb_emulator_connect]
+  func singleUseFetchData(uid: String) {
+    let ref = Database.database().reference();
+    // [START single_value_get_data]
+    ref.child("users/\(uid)/username").getData(completion:  { error, snapshot in
+      guard error == nil else {
+        print(error!.localizedDescription)
+        return;
+      }
+      let userName = snapshot.value as? String ?? "Unknown";
+    });
+    // [END single_value_get_data]
   }
 
-  func flushRealtimeDatabase(Database: Database) { 
+  func emulatorSettings() {
+    // [START rtdb_emulator_connect]
+        // In almost all cases the ns (namespace) is your project ID.
+    let db = Database.database(url:"http://localhost:9000?ns=YOUR_DATABASE_NAMESPACE")
+    // [END rtdb_emulator_connect]
+  }
+
+  func flushRealtimeDatabase() { 
         // [START rtdb_emulator_flush]
 	// With a DatabaseReference, write nil to clear the database.
 	Database.database().reference().setValue(nil);
 	// [END rtdb_emulator_flush]  
+  }
+
+  func incrementStars(forPost postID: String, byUser userID: String) {
+    // [START rtdb_post_stars_increment]
+    let updates = [
+      "posts/\(postID)/stars/\(userID)": true,
+      "posts/\(postID)/starCount": ServerValue.increment(1),
+      "user-posts/\(postID)/stars/\(userID)": true,
+      "user-posts/\(postID)/starCount": ServerValue.increment(1)
+    ] as [String : Any]
+    Database.database().reference().updateChildValues(updates);
+    // [END rtdb_post_stars_increment]
   }
 
 }
