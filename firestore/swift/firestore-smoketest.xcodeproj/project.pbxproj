@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		142944E1372917377715C535 /* Pods_firestore_smoketest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88065E4BC3634E0E2DA6DB82 /* Pods_firestore_smoketest.framework */; };
+		258DE837F0A91F565FA11149 /* Pods_firestore_smoketestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60D5136BFF2B9F03E718D26 /* Pods_firestore_smoketestUITests.framework */; };
 		3E3694B51EFDB0F2009C9125 /* SolutionArraysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3694B41EFDB0F2009C9125 /* SolutionArraysViewController.swift */; };
 		3E3694B71EFDB3BF009C9125 /* SolutionAggregationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3694B61EFDB3BF009C9125 /* SolutionAggregationViewController.swift */; };
 		3E3694B91EFDC039009C9125 /* SolutionCountersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3694B81EFDC039009C9125 /* SolutionCountersViewController.swift */; };
@@ -17,6 +19,7 @@
 		3EABFB2D1E254C8F00F4BBED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EABFB2B1E254C8F00F4BBED /* LaunchScreen.storyboard */; };
 		3EABFB381E254C8F00F4BBED /* firestore_smoketestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABFB371E254C8F00F4BBED /* firestore_smoketestTests.swift */; };
 		3EABFB431E254C8F00F4BBED /* firestore_smoketestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABFB421E254C8F00F4BBED /* firestore_smoketestUITests.swift */; };
+		79EA4E0594368AF5F7A81FEC /* Pods_firestore_smoketestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1B58037C15BB12F3B0BEF1F /* Pods_firestore_smoketestTests.framework */; };
 		8D864B17260D3947008E85B3 /* SolutionBundles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D864B16260D3947008E85B3 /* SolutionBundles.swift */; };
 		8D864B35260D55C1008E85B3 /* SolutionGeoPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC116F258A2B8E00D080CB /* SolutionGeoPointViewController.swift */; };
 		8DA9B4AB201165C800EC29CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DA9B4AA201165C800EC29CD /* GoogleService-Info.plist */; };
@@ -40,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DFDDAE4D2C11965BF61F4EC /* Pods-firestore-smoketest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firestore-smoketest.release.xcconfig"; path = "Target Support Files/Pods-firestore-smoketest/Pods-firestore-smoketest.release.xcconfig"; sourceTree = "<group>"; };
+		107813579DED315F3827084B /* Pods-firestore-smoketest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firestore-smoketest.debug.xcconfig"; path = "Target Support Files/Pods-firestore-smoketest/Pods-firestore-smoketest.debug.xcconfig"; sourceTree = "<group>"; };
 		3E3694B41EFDB0F2009C9125 /* SolutionArraysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolutionArraysViewController.swift; sourceTree = "<group>"; };
 		3E3694B61EFDB3BF009C9125 /* SolutionAggregationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolutionAggregationViewController.swift; sourceTree = "<group>"; };
 		3E3694B81EFDC039009C9125 /* SolutionCountersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolutionCountersViewController.swift; sourceTree = "<group>"; };
@@ -56,9 +61,16 @@
 		3EABFB3E1E254C8F00F4BBED /* firestore-smoketestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "firestore-smoketestUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EABFB421E254C8F00F4BBED /* firestore_smoketestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firestore_smoketestUITests.swift; sourceTree = "<group>"; };
 		3EABFB441E254C8F00F4BBED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6ACC69EB1B9B6112C101F946 /* Pods-firestore-smoketestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firestore-smoketestUITests.debug.xcconfig"; path = "Target Support Files/Pods-firestore-smoketestUITests/Pods-firestore-smoketestUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		88065E4BC3634E0E2DA6DB82 /* Pods_firestore_smoketest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_firestore_smoketest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D864B16260D3947008E85B3 /* SolutionBundles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolutionBundles.swift; sourceTree = "<group>"; };
 		8DA9B4AA201165C800EC29CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8DFC116F258A2B8E00D080CB /* SolutionGeoPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolutionGeoPointViewController.swift; sourceTree = "<group>"; };
+		A1B58037C15BB12F3B0BEF1F /* Pods_firestore_smoketestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_firestore_smoketestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABBBF144CC83E8593B7A84A1 /* Pods-firestore-smoketestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firestore-smoketestTests.release.xcconfig"; path = "Target Support Files/Pods-firestore-smoketestTests/Pods-firestore-smoketestTests.release.xcconfig"; sourceTree = "<group>"; };
+		E359A43AF922FF866A944E0E /* Pods-firestore-smoketestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firestore-smoketestTests.debug.xcconfig"; path = "Target Support Files/Pods-firestore-smoketestTests/Pods-firestore-smoketestTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F60D5136BFF2B9F03E718D26 /* Pods_firestore_smoketestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_firestore_smoketestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F921D2527DC19B931C2783FB /* Pods-firestore-smoketestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-firestore-smoketestUITests.release.xcconfig"; path = "Target Support Files/Pods-firestore-smoketestUITests/Pods-firestore-smoketestUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				142944E1372917377715C535 /* Pods_firestore_smoketest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79EA4E0594368AF5F7A81FEC /* Pods_firestore_smoketestTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				258DE837F0A91F565FA11149 /* Pods_firestore_smoketestUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +109,7 @@
 				3EABFB411E254C8F00F4BBED /* firestore-smoketestUITests */,
 				3EABFB201E254C8F00F4BBED /* Products */,
 				89B479BF7A6DFFF64734BB51 /* Pods */,
+				76E806D027E9373D91D68955 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,9 +160,25 @@
 			path = "firestore-smoketestUITests";
 			sourceTree = "<group>";
 		};
+		76E806D027E9373D91D68955 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88065E4BC3634E0E2DA6DB82 /* Pods_firestore_smoketest.framework */,
+				A1B58037C15BB12F3B0BEF1F /* Pods_firestore_smoketestTests.framework */,
+				F60D5136BFF2B9F03E718D26 /* Pods_firestore_smoketestUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		89B479BF7A6DFFF64734BB51 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				107813579DED315F3827084B /* Pods-firestore-smoketest.debug.xcconfig */,
+				0DFDDAE4D2C11965BF61F4EC /* Pods-firestore-smoketest.release.xcconfig */,
+				E359A43AF922FF866A944E0E /* Pods-firestore-smoketestTests.debug.xcconfig */,
+				ABBBF144CC83E8593B7A84A1 /* Pods-firestore-smoketestTests.release.xcconfig */,
+				6ACC69EB1B9B6112C101F946 /* Pods-firestore-smoketestUITests.debug.xcconfig */,
+				F921D2527DC19B931C2783FB /* Pods-firestore-smoketestUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -158,9 +190,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3EABFB471E254C8F00F4BBED /* Build configuration list for PBXNativeTarget "firestore-smoketest" */;
 			buildPhases = (
+				81D056F16DF137F3435CD078 /* [CP] Check Pods Manifest.lock */,
 				3EABFB1B1E254C8E00F4BBED /* Sources */,
 				3EABFB1C1E254C8E00F4BBED /* Frameworks */,
 				3EABFB1D1E254C8E00F4BBED /* Resources */,
+				2D1D91AC3E95FDAB95C39330 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -175,6 +209,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3EABFB4A1E254C8F00F4BBED /* Build configuration list for PBXNativeTarget "firestore-smoketestTests" */;
 			buildPhases = (
+				4BE87603A3E7EA27573C1CF1 /* [CP] Check Pods Manifest.lock */,
 				3EABFB2F1E254C8F00F4BBED /* Sources */,
 				3EABFB301E254C8F00F4BBED /* Frameworks */,
 				3EABFB311E254C8F00F4BBED /* Resources */,
@@ -193,6 +228,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3EABFB4D1E254C8F00F4BBED /* Build configuration list for PBXNativeTarget "firestore-smoketestUITests" */;
 			buildPhases = (
+				B7D114FC6301E3C990FC0F5E /* [CP] Check Pods Manifest.lock */,
 				3EABFB3A1E254C8F00F4BBED /* Sources */,
 				3EABFB3B1E254C8F00F4BBED /* Frameworks */,
 				3EABFB3C1E254C8F00F4BBED /* Resources */,
@@ -284,6 +320,123 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2D1D91AC3E95FDAB95C39330 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-firestore-smoketest/Pods-firestore-smoketest-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseFirestore/FirebaseFirestore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseFirestoreSwift/FirebaseFirestoreSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GeoFire/GeoFire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/abseil/absl.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseFirestore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseFirestoreSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GeoFire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/absl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-firestore-smoketest/Pods-firestore-smoketest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4BE87603A3E7EA27573C1CF1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-firestore-smoketestTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		81D056F16DF137F3435CD078 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-firestore-smoketest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7D114FC6301E3C990FC0F5E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-firestore-smoketestUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3EABFB1B1E254C8E00F4BBED /* Sources */ = {
@@ -464,11 +617,12 @@
 		};
 		3EABFB481E254C8F00F4BBED /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 107813579DED315F3827084B /* Pods-firestore-smoketest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"GCC_WARN_64_TO_32_BIT_CONVERSION[arch=*64]" = YES;
 				INFOPLIST_FILE = "firestore-smoketest/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.firestore-smoketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -479,11 +633,12 @@
 		};
 		3EABFB491E254C8F00F4BBED /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DFDDAE4D2C11965BF61F4EC /* Pods-firestore-smoketest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"GCC_WARN_64_TO_32_BIT_CONVERSION[arch=*64]" = YES;
 				INFOPLIST_FILE = "firestore-smoketest/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.firestore-smoketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -494,6 +649,7 @@
 		};
 		3EABFB4B1E254C8F00F4BBED /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E359A43AF922FF866A944E0E /* Pods-firestore-smoketestTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -508,6 +664,7 @@
 		};
 		3EABFB4C1E254C8F00F4BBED /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABBBF144CC83E8593B7A84A1 /* Pods-firestore-smoketestTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -522,6 +679,7 @@
 		};
 		3EABFB4E1E254C8F00F4BBED /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6ACC69EB1B9B6112C101F946 /* Pods-firestore-smoketestUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "firestore-smoketestUITests/Info.plist";
@@ -535,6 +693,7 @@
 		};
 		3EABFB4F1E254C8F00F4BBED /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F921D2527DC19B931C2783FB /* Pods-firestore-smoketestUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "firestore-smoketestUITests/Info.plist";
