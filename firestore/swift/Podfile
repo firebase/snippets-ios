@@ -8,7 +8,7 @@ target 'firestore-smoketest' do
   # Pods for firestore-smoketest
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
-  pod 'FirebaseFirestoreSwift', '7.9.0-beta'
+  pod 'FirebaseFirestoreSwift'
 
   # [START geofire_pod]
   pod 'GeoFire/Utils'

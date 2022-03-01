@@ -749,7 +749,7 @@ class ViewController: UIViewController {
       }
       // [END get_document_options]
     }
-  
+
     private func customClassGetDocument() {
         // [START custom_type]
         let docRef = db.collection("cities").document("BJ")
