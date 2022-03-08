@@ -753,34 +753,18 @@ class ViewController: UIViewController {
     private func customClassGetDocument() {
         // [START custom_type]
         let docRef = db.collection("cities").document("BJ")
-
-        docRef.getDocument { (document, error) in
-            // Construct a Result type to encapsulate deserialization errors or
-            // successful deserialization. Note that if there is no error thrown
-            // the value may still be `nil`, indicating a successful deserialization
-            // of a value that does not exist.
-            //
-            // There are thus three cases to handle, which Swift lets us describe
-            // nicely with built-in Result types:
+        
+        docRef.getDocument(as: City.self) { result in
+            // The Result type encapsulates deserialization errors or
+            // successful deserialization, and can be handled as follows:
             //
             //      Result
             //        /\
-            //   Error  Optional<City>
-            //               /\
-            //            Nil  City
-            let result = Result {
-              try document?.data(as: City.self)
-            }
+            //   Error  City
             switch result {
             case .success(let city):
-                if let city = city {
-                    // A `City` value was successfully initialized from the DocumentSnapshot.
-                    print("City: \(city)")
-                } else {
-                    // A nil value was successfully initialized from the DocumentSnapshot,
-                    // or the DocumentSnapshot was nil.
-                    print("Document does not exist")
-                }
+                // A `City` value was successfully initialized from the DocumentSnapshot.
+                print("City: \(city)")
             case .failure(let error):
                 // A `City` value could not be initialized from the DocumentSnapshot.
                 print("Error decoding city: \(error)")
