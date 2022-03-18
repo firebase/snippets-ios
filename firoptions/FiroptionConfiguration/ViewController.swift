@@ -296,6 +296,79 @@ class ViewController: UIViewController {
     Analytics.logEvent(AnalyticsEventSelectPromotion, parameters: promoParams)
     // [END apply_promo]
   }
-
+  // MARK: ad_impression
+  // Log ad_impression for sharing advertising impression data.
+  // Simulated ad_impression structures from mediation platforms to ensure that this project compiles
+  // Ironsource Sample Pub Ad Impression
+  struct ISImpressionData {
+    let ad_network: String?
+    let ad_unit: String?
+    let instance_name: String?
+    let revenue: Double?
+  }
+  // MoPub Sample Pub Ad Impression
+  struct MPMoPubAd {}
+  // MoPub Sample Pub Ad Impression Data
+  struct MPImpressionData {
+    let adUnitName: String
+    let adUnitFormat: String
+    let publisherRevenue: Double
+    let currency: String
+    let networkName: String
+    let precision: String
+  }
+  // AppLovin Sample Pub Ad Impression
+  struct MAAd {
+    let adUnitIdentifier: String
+    let format: String
+    let revenue: String
+    let networkName: String
+  }
+  // [START log_ad_impression_mopub]
+  func mopubAd(_ ad: MPMoPubAd, didTrackImpressionWith impressionData: MPImpressionData?) {
+    if let impressionData = impressionData {
+      Analytics.logEvent(
+        AnalyticsEventAdImpression,
+        parameters: [
+          AnalyticsParameterAdPlatform: "MoPub",
+          AnalyticsParameterAdUnitName: impressionData.adUnitName,
+          AnalyticsParameterAdFormat: impressionData.adUnitFormat,
+          AnalyticsParameterValue: impressionData.publisherRevenue,
+          AnalyticsParameterCurrency: impressionData.currency,
+          AnalyticsParameterAdSource: impressionData.networkName,
+          "precision": impressionData.precision,
+        ])
+    }
+  }
+  // [END log_ad_impression_mopub]
+  // [START log_ad_impression_ironsource]
+  func impressionDataDidSucceed(_ impressionData: ISImpressionData!) {
+    Analytics.logEvent(
+      AnalyticsEventAdImpression,
+      parameters: [
+        AnalyticsParameterAdPlatform: "ironSource",
+        AnalyticsParameterAdSource: impressionData.ad_network ?? "No ad_network",
+        AnalyticsParameterAdFormat: impressionData.ad_unit ?? "No ad_unit",
+        AnalyticsParameterAdUnitName: impressionData.instance_name ?? "No instance_name",
+        AnalyticsParameterCurrency: "USD",
+        AnalyticsParameterValue: impressionData.revenue ?? 0,
+      ])
+  }
+  // [END log_ad_impression_ironsource]
+  // [START log_ad_impression_applovin]
+  func didPayRevenue(_ impressionData: MAAd?) {
+    if let impressionData = impressionData {
+      Analytics.logEvent(
+        AnalyticsEventAdImpression,
+        parameters: [
+          AnalyticsParameterAdPlatform: "AppLovin",
+          AnalyticsParameterAdUnitName: impressionData.adUnitIdentifier,
+          AnalyticsParameterAdFormat: impressionData.format,
+          AnalyticsParameterValue: impressionData.revenue,
+          AnalyticsParameterCurrency: "USD",  // All Applovin revenue is sent in USD
+          AnalyticsParameterAdSource: impressionData.networkName,
+        ])
+    }
+  }
+  // [END log_ad_impression_applovin]
 }
-
