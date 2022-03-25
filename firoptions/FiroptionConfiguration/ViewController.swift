@@ -341,6 +341,7 @@ class ViewController: UIViewController {
     }
   }
   // [END log_ad_impression_mopub]
+    
   // [START log_ad_impression_ironsource]
   func impressionDataDidSucceed(_ impressionData: ISImpressionData!) {
     Analytics.logEvent(
@@ -355,6 +356,7 @@ class ViewController: UIViewController {
       ])
   }
   // [END log_ad_impression_ironsource]
+
   // [START log_ad_impression_applovin]
   func didPayRevenue(_ impressionData: MAAd?) {
     if let impressionData = impressionData {
