@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8DFC20162410844B004392AD /* AnalyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC20152410844B004392AD /* AnalyticsHelper.m */; };
+		A19F764427EDED14002DE108 /* ISImpressionData.m in Sources */ = {isa = PBXBuildFile; fileRef = A19F764027EDED14002DE108 /* ISImpressionData.m */; };
+		A19F764527EDED14002DE108 /* MAAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A19F764327EDED14002DE108 /* MAAd.m */; };
 		EFEC9D631E01BF310021BDF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC9D621E01BF310021BDF9 /* AppDelegate.swift */; };
 		EFEC9D651E01BF310021BDF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC9D641E01BF310021BDF9 /* ViewController.swift */; };
 		EFEC9D681E01BF310021BDF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFEC9D661E01BF310021BDF9 /* Main.storyboard */; };
@@ -27,6 +29,10 @@
 		8DFC20132410844A004392AD /* FiroptionConfiguration-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FiroptionConfiguration-Bridging-Header.h"; sourceTree = "<group>"; };
 		8DFC20142410844B004392AD /* AnalyticsHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnalyticsHelper.h; sourceTree = "<group>"; };
 		8DFC20152410844B004392AD /* AnalyticsHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnalyticsHelper.m; sourceTree = "<group>"; };
+		A19F764027EDED14002DE108 /* ISImpressionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISImpressionData.m; sourceTree = "<group>"; };
+		A19F764127EDED14002DE108 /* ISImpressionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISImpressionData.h; sourceTree = "<group>"; };
+		A19F764227EDED14002DE108 /* MAAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAAd.h; sourceTree = "<group>"; };
+		A19F764327EDED14002DE108 /* MAAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAAd.m; sourceTree = "<group>"; };
 		EFEC9D5F1E01BF310021BDF9 /* FiroptionConfiguration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiroptionConfiguration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEC9D621E01BF310021BDF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFEC9D641E01BF310021BDF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +99,10 @@
 				EFEC9D641E01BF310021BDF9 /* ViewController.swift */,
 				8DFC20142410844B004392AD /* AnalyticsHelper.h */,
 				8DFC20152410844B004392AD /* AnalyticsHelper.m */,
+				A19F764127EDED14002DE108 /* ISImpressionData.h */,
+				A19F764027EDED14002DE108 /* ISImpressionData.m */,
+				A19F764227EDED14002DE108 /* MAAd.h */,
+				A19F764327EDED14002DE108 /* MAAd.m */,
 				EFEC9D661E01BF310021BDF9 /* Main.storyboard */,
 				EFEC9D691E01BF310021BDF9 /* Assets.xcassets */,
 				EFEC9D6B1E01BF310021BDF9 /* LaunchScreen.storyboard */,
@@ -220,6 +230,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A19F764527EDED14002DE108 /* MAAd.m in Sources */,
+				A19F764427EDED14002DE108 /* ISImpressionData.m in Sources */,
 				EFEC9D651E01BF310021BDF9 /* ViewController.swift in Sources */,
 				EFEC9D631E01BF310021BDF9 /* AppDelegate.swift in Sources */,
 				8DFC20162410844B004392AD /* AnalyticsHelper.m in Sources */,
