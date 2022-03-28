@@ -17,14 +17,10 @@
 
 @interface MAAd:NSObject
 // Simulated ad_impression structures from mediation platforms to ensure that this project compiles
-
 // AppLovin Sample Publisher Ad Impression
-@property (nonatomic, strong)NSString *adUnitIdentifier;
-@property (nonatomic, strong)NSString *networkName;
-@property (nonatomic, strong)NSString *format;
+@property (nonatomic, strong) NSString *adUnitIdentifier;
+@property (nonatomic, strong) NSString *networkName;
+@property (nonatomic, strong) NSString *format;
 @property (nonatomic) NSNumber *revenue;
 
-
 @end
-
-

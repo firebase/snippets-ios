@@ -296,39 +296,31 @@
 
 // MARK: ad_impression
 // Log ad_impression for sharing advertising impression data.
-
 // [START log_ad_impression_applovin]
-- (void)didPayRevenueForAd:(MAAd *)impressionData
-{
-    //double revenue = impressionData.revenue; // In USD
-
+- (void)didPayRevenueForAd:(MAAd *) impressionData {
     [FIRAnalytics logEventWithName:kFIREventAdImpression
-                    parameters:@{
-                        kFIRParameterAdPlatform:@"AppLovin",
-                        kFIRParameterAdSource:impressionData.networkName,
-                        kFIRParameterAdFormat:impressionData.format,
-                        kFIRParameterAdUnitName:impressionData.adUnitIdentifier,
-                        kFIRParameterCurrency:@"USD", // All Applovin revenue is sent in USD
+                    parameters: @{
+                        kFIRParameterAdPlatform: @"AppLovin",
+                        kFIRParameterAdSource: impressionData.networkName,
+                        kFIRParameterAdFormat: impressionData.format,
+                        kFIRParameterAdUnitName: impressionData.adUnitIdentifier,
+                        kFIRParameterCurrency: @"USD", // All Applovin revenue is sent in USD
                         kFIRParameterValue: impressionData.revenue
                     }];
-
 }
 // [END log_ad_impression_applovin]
 
 // [START log_ad_impression_ironsource]
-- (void)impressionDataDidSucceed:(ISImpressionData *)impressionData {
-
-
+- (void)impressionDataDidSucceed: (ISImpressionData *)impressionData {
 [FIRAnalytics logEventWithName:kFIREventAdImpression
                    parameters:@{
-                       kFIRParameterAdPlatform:@"ironSource",
-                       kFIRParameterAdSource:impressionData.ad_network,
-                       kFIRParameterAdFormat:impressionData.ad_unit,
-                       kFIRParameterAdUnitName:impressionData.instance_name,
-                       kFIRParameterCurrency:@"USD",
-                       kFIRParameterValue:impressionData.revenue
+                       kFIRParameterAdPlatform: @"ironSource",
+                       kFIRParameterAdSource: impressionData.ad_network,
+                       kFIRParameterAdFormat: impressionData.ad_unit,
+                       kFIRParameterAdUnitName: impressionData.instance_name,
+                       kFIRParameterCurrency: @"USD",
+                       kFIRParameterValue: impressionData.revenue
                    }];
-
 }
 // [END log_ad_impression_ironsource]
 @end

@@ -17,7 +17,6 @@
 #import <Foundation/Foundation.h>
 #import "ISImpressionData.h"
 // Simulated ad_impression structures from mediation platforms to ensure that this project compiles
-
 // Ironsource Sample Publisher Ad Impression
 @implementation ISImpressionData
 

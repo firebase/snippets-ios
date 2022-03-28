@@ -15,15 +15,12 @@
 //
 #import <Foundation/Foundation.h>
 
-@interface ISImpressionData:NSObject
+@interface ISImpressionData: NSObject
 // Simulated ad_impression structures from mediation platforms to ensure that this project compiles.
-
 // Ironsource Sample Publisher Ad Impression
-@property (nonatomic, strong)NSString *ad_network;
-@property (nonatomic, strong)NSString *ad_unit;
-@property (nonatomic, strong)NSString *instance_name;
+@property (nonatomic, strong) NSString *ad_network;
+@property (nonatomic, strong) NSString *ad_unit;
+@property (nonatomic, strong) NSString *instance_name;
 @property (nonatomic) NSNumber *revenue;
 
 @end
-
-
