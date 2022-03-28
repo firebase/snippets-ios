@@ -13,11 +13,14 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
 #import <Foundation/Foundation.h>
-NS_ASSUME_NONNULL_BEGIN
 
-@interface AnalyticsHelper: NSObject
+@interface ISImpressionData: NSObject
+// Simulated ad_impression structures from mediation platforms to ensure that this project compiles.
+// Ironsource Sample Publisher Ad Impression
+@property (nonatomic, strong) NSString *ad_network;
+@property (nonatomic, strong) NSString *ad_unit;
+@property (nonatomic, strong) NSString *instance_name;
+@property (nonatomic) NSNumber *revenue;
 
 @end
-NS_ASSUME_NONNULL_END

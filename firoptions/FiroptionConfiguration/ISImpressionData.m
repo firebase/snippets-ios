@@ -15,9 +15,9 @@
 //
 
 #import <Foundation/Foundation.h>
-NS_ASSUME_NONNULL_BEGIN
-
-@interface AnalyticsHelper: NSObject
+#import "ISImpressionData.h"
+// Simulated ad_impression structures from mediation platforms to ensure that this project compiles
+// Ironsource Sample Publisher Ad Impression
+@implementation ISImpressionData
 
 @end
-NS_ASSUME_NONNULL_END
