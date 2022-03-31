@@ -17,7 +17,11 @@
 #import "AppDelegate.h"
 
 // [START import_firebase]
-@import Firebase;
+@import FirebaseCore;
+// Import other Firebase products as necessary.
+// @import FirebaseAnalytics;
+// @import FirebaseCrashlytics;
+// ...
 // [END import_firebase]
 
 @interface AppDelegate ()

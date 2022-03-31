@@ -14,8 +14,7 @@
 //  limitations under the License.
 //
 
-import Foundation
-import Firebase
+import FirebaseAppCheck
 
 // [START appcheck_custom_provider]
 class YourCustomAppCheckProvider: NSObject, AppCheckProvider {

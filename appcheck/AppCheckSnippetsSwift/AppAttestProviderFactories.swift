@@ -14,8 +14,7 @@
 //  limitations under the License.
 //
 
-import Foundation
-import Firebase
+import FirebaseAppCheck
 
 // [START appcheck_simple_appattest_factory]
 class YourSimpleAppCheckProviderFactory: NSObject, AppCheckProviderFactory {

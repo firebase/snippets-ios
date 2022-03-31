@@ -15,8 +15,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CardActionFiamDelegate.h"
-@import FirebaseInAppMessaging;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

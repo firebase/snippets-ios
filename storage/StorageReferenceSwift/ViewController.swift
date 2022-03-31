@@ -16,8 +16,8 @@
 
 import UIKit
 
-import Firebase
-import FirebaseUI
+import FirebaseStorage
+import FirebaseStorageUI
 
 class ViewController: UIViewController {
 

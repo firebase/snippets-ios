@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseFunctions
 
 class ViewController: UIViewController {
   // [START ml_functions_define]

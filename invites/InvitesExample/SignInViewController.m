@@ -17,7 +17,7 @@
 #import "SignInViewController.h"
 #import "ViewController.h"
 @import GoogleSignIn;
-@import Firebase;
+@import FirebaseCore;
 
 
 @interface SignInViewController ()<GIDSignInDelegate, GIDSignInUIDelegate>
