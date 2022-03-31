@@ -16,9 +16,8 @@
 
 #import "ViewController.h"
 
-@import Firebase;
-
-@import FirebaseUI;
+@import FirebaseStorage;
+@import FirebaseStorageUI;
 
 @interface ViewController ()
 

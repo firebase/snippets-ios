@@ -14,7 +14,6 @@
 //  limitations under the License.
 //
 
-import Foundation
 import FirebaseInAppMessaging
 
 // [START fiam_card_action_delegate]
