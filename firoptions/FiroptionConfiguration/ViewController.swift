@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 
   func logInAppPurchaseEvent() {
     // [START ecommerce_purchase]
-    Analytics.logEvent(AnalyticsEventEcommercePurchase, parameters: [
+    Analytics.logEvent(AnalyticsEventPurchase, parameters: [
       AnalyticsParameterCoupon: "SummerPromo",
       AnalyticsParameterCurrency: "JPY",
       AnalyticsParameterValue: 10000,

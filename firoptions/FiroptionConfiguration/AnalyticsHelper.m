@@ -26,7 +26,7 @@
 
 - (void)logInAppPurchase {
   // [START ecommerce_purchase]
-  [FIRAnalytics logEventWithName:kFIREventEcommercePurchase
+  [FIRAnalytics logEventWithName:kFIREventPurchase
                       parameters:@{
     kFIRParameterCoupon: @"SummerPromo",
     kFIRParameterCurrency: @"JPY",
