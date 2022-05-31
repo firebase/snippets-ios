@@ -1,11 +1,11 @@
-platform :ios, '8.0'
+platform :ios, '12.0'
 use_frameworks!
 
 # [START pod_firebase_storage]
-pod 'Firebase/Storage'
+pod 'FirebaseStorage', '~> 9.0'
 # [END pod_firebase_storage]
 # [START pod_firebaseui_storage]
-pod 'FirebaseUI/Storage'
+pod 'FirebaseStorageUI'
 # [END pod_firebaseui_storage]
 
 target 'StorageReference' do

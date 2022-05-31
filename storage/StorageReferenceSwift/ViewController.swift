@@ -108,10 +108,10 @@ class ViewController: UIViewController {
     let spaceRef = imagesRef.child(fileName)
 
     // File path is "images/space.jpg"
-    let path = spaceRef.fullPath;
+    let path = spaceRef.fullPath
 
     // File name is "space.jpg"
-    let name = spaceRef.name;
+    let name = spaceRef.name
 
     // Points to "images"
     let images = spaceRef.parent()
@@ -132,8 +132,8 @@ class ViewController: UIViewController {
     let mountainImagesRef = storageRef.child("images/mountains.jpg")
 
     // While the file names are the same, the references point to different files
-    mountainsRef.name == mountainImagesRef.name;            // true
-    mountainsRef.fullPath == mountainImagesRef.fullPath;    // false
+    mountainsRef.name == mountainImagesRef.name            // true
+    mountainsRef.fullPath == mountainImagesRef.fullPath    // false
     // [END firstorage_upload]
   }
 
@@ -556,8 +556,8 @@ class ViewController: UIViewController {
 
     // Create file metadata to update
     let newMetadata = StorageMetadata()
-    newMetadata.cacheControl = "public,max-age=300";
-    newMetadata.contentType = "image/jpeg";
+    newMetadata.cacheControl = "public,max-age=300"
+    newMetadata.contentType = "image/jpeg"
 
     // Update metadata properties
     forestRef.updateMetadata(newMetadata) { metadata, error in
@@ -576,7 +576,7 @@ class ViewController: UIViewController {
 
     // [START firstorage_delete_metadata]
     let newMetadata = StorageMetadata()
-    newMetadata.contentType = "";
+    newMetadata.contentType = nil
 
     // Delete the metadata property
     forestRef.updateMetadata(newMetadata) { metadata, error in
