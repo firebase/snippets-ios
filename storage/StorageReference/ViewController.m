@@ -579,7 +579,7 @@
 
   // [START firstorage_delete_metadata]
   FIRStorageMetadata *newMetadata = [[FIRStorageMetadata alloc] init];
-  newMetadata.contentType = @"";
+  newMetadata.contentType = nil;
 
   // Delete the metadata property
   [forestRef updateMetadata:newMetadata completion:^(FIRStorageMetadata *metadata, NSError *error){
