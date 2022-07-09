@@ -1,4 +1,4 @@
-on: 
+[![Firestore](https://github.com/firebase/snippets-ios/actions/workflows/firestore.yml/badge.svg?branch=GEOFireUtils-km-m-mixup&event=create)](https://github.com/firebase/snippets-ios/actions/workflows/firestore.yml)on: 
   pull_request:
     paths:
       - 'firestore/**'
