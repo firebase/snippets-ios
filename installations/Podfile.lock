@@ -1,9 +1,4 @@
 PODS:
-  - Firebase/CoreOnly (6.27.0):
-    - FirebaseCore (= 6.8.0)
-  - Firebase/DynamicLinks (6.27.0):
-    - Firebase/CoreOnly
-    - FirebaseDynamicLinks (~> 4.1.0)
   - FirebaseCore (6.8.0):
     - FirebaseCoreDiagnostics (~> 1.3)
     - GoogleUtilities/Environment (~> 6.5)
@@ -13,8 +8,11 @@ PODS:
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/Logger (~> 6.5)
     - nanopb (~> 1.30905.0)
-  - FirebaseDynamicLinks (4.1.0):
+  - FirebaseInstallations (1.4.0):
     - FirebaseCore (~> 6.8)
+    - GoogleUtilities/Environment (~> 6.6)
+    - GoogleUtilities/UserDefaults (~> 6.6)
+    - PromisesObjC (~> 1.2)
   - GoogleDataTransport (6.2.1)
   - GoogleDataTransportCCTSupport (3.2.0):
     - GoogleDataTransport (~> 6.1)
@@ -23,6 +21,8 @@ PODS:
     - PromisesObjC (~> 1.2)
   - GoogleUtilities/Logger (6.6.0):
     - GoogleUtilities/Environment
+  - GoogleUtilities/UserDefaults (6.6.0):
+    - GoogleUtilities/Logger
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
     - nanopb/encode (= 1.30905.0)
@@ -31,14 +31,13 @@ PODS:
   - PromisesObjC (1.2.9)
 
 DEPENDENCIES:
-  - Firebase/DynamicLinks
+  - FirebaseInstallations
 
 SPEC REPOS:
   trunk:
-    - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
-    - FirebaseDynamicLinks
+    - FirebaseInstallations
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
@@ -46,16 +45,15 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: fc4cbf6f1592636431821ef9a3c557e4dfd9f268
   FirebaseCore: feda061cb1ee6d8ad4824f4a4a8ffbcfe284f595
   FirebaseCoreDiagnostics: 4505e4d4009b1d93f605088ee7d7764d5f0d1c84
-  FirebaseDynamicLinks: 50cff91aff05347770be750dde61d3311ff7ffc8
+  FirebaseInstallations: 293f567159b6d66d1c990f13bb868066096c94ec
   GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
   GoogleDataTransportCCTSupport: 489c1265d2c85b68187a83a911913d190012158d
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
 
-PODFILE CHECKSUM: 7de02ed38e9465e2c05bb12085a971c35543c261
+PODFILE CHECKSUM: 904aacceb39f206bdcc33f354e02d1d3d6343a46
 
 COCOAPODS: 1.9.3

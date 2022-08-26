@@ -39,10 +39,10 @@ PODS:
     - GTMSessionFetcher/Core (~> 1.1)
     - GTMSessionFetcher/Full (~> 1.1)
     - Protobuf (~> 3.5)
-  - GoogleAPIClientForREST (1.3.11):
-    - GoogleAPIClientForREST/Core (= 1.3.11)
+  - GoogleAPIClientForREST (1.4.1):
+    - GoogleAPIClientForREST/Core (= 1.4.1)
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleAPIClientForREST/Core (1.3.11):
+  - GoogleAPIClientForREST/Core (1.4.1):
     - GTMSessionFetcher (>= 1.1.7)
   - GoogleAppMeasurement (5.8.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
@@ -93,17 +93,17 @@ PODS:
     - GoogleUtilities/Logger
   - GTMOAuth2 (1.1.6):
     - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.3.1):
-    - GTMSessionFetcher/Full (= 1.3.1)
-  - GTMSessionFetcher/Core (1.3.1)
-  - GTMSessionFetcher/Full (1.3.1):
-    - GTMSessionFetcher/Core (= 1.3.1)
+  - GTMSessionFetcher (1.4.0):
+    - GTMSessionFetcher/Full (= 1.4.0)
+  - GTMSessionFetcher/Core (1.4.0)
+  - GTMSessionFetcher/Full (1.4.0):
+    - GTMSessionFetcher/Core (= 1.4.0)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
-  - Protobuf (3.11.4)
+  - Protobuf (3.12.0)
 
 DEPENDENCIES:
   - Firebase/Invites
@@ -135,16 +135,16 @@ SPEC CHECKSUMS:
   FirebaseDynamicLinks: f7a8717e2c7ea652923882a2d60b0045d6fd99d5
   FirebaseInstanceID: a122b0c258720cf250551bb2bedf48c699f80d90
   FirebaseInvites: f13ed69fae140e705baec1a59ff127334b841a8a
-  GoogleAPIClientForREST: 0f19a8280dfe6471f76016645d26eb5dae305101
+  GoogleAPIClientForREST: e50dc3267b3131ee3a25e707c10204f6bec15ae9
   GoogleAppMeasurement: ffe513e90551844a739e7bcbb1d2aca1c28a4338
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
   GoogleUtilities: 04fce34bcd5620c1ee76fb79172105c74a4df335
   GTMOAuth2: e8b6512c896235149df975c41d9a36c868ab7fba
-  GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
+  GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
-  Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
+  Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
 
 PODFILE CHECKSUM: 642789e1fcae7a05996d36ee829b1b64089587bd
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.9.3
