@@ -667,8 +667,7 @@ class ViewController: UIViewController {
 
   func emulatorSettings() { 
     // [START rtdb_emulator_connect]
-        // In almost all cases the ns (namespace) is your project ID.
-    let db = Storage.storage(url:"http://localhost:9199?ns=YOUR_DATABASE_NAMESPACE")
+    Storage.storage().useEmulator(withHost:"localhost", port:9199)
     // [END storage_emulator_connect]
 
   }
