@@ -666,7 +666,7 @@ class ViewController: UIViewController {
   // [END storage_list_paginated]
 
   func emulatorSettings() { 
-    // [START rtdb_emulator_connect]
+    // [START storage_emulator_connect]
     Storage.storage().useEmulator(withHost:"localhost", port:9199)
     // [END storage_emulator_connect]
 
