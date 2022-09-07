@@ -664,4 +664,12 @@ class ViewController: UIViewController {
     }
   }
   // [END storage_list_paginated]
+
+  func emulatorSettings() { 
+    // [START rtdb_emulator_connect]
+        // In almost all cases the ns (namespace) is your project ID.
+    let db = Storage.storage(url:"http://localhost:9199?ns=YOUR_DATABASE_NAMESPACE")
+    // [END storage_emulator_connect]
+
+  }
 }
