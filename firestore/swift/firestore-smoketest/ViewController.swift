@@ -1257,6 +1257,20 @@ class ViewController: UIViewController {
         Firestore.firestore().settings = settings
         // [END fs_emulator_connect]
     }
+
+    // MARK: Aggregation queries
+    private func countQuery() {
+        // [START count_aggregation_query]
+        do {
+            let query = db.collection("games/chess/players").whereField("online", isEqualTo: true)
+            let countQuery = query.countAggregateQuery
+            let snapshot = try await countQuery.aggregation(source: AggregateSource.serverNoCache)
+        } catch {
+            print(error)
+        }
+        // [END count_aggregation_query]
+    }
+
 }
 
 // [START codable_struct]
