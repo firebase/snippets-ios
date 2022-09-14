@@ -1,14 +1,14 @@
 PODS:
-  - Firebase/AppCheck (9.5.0):
+  - Firebase/AppCheck (9.6.0):
     - Firebase/CoreOnly
-    - FirebaseAppCheck (~> 9.5.0)
-  - Firebase/CoreOnly (9.5.0):
-    - FirebaseCore (= 9.5.0)
-  - FirebaseAppCheck (9.5.0):
+    - FirebaseAppCheck (~> 9.6.0)
+  - Firebase/CoreOnly (9.6.0):
+    - FirebaseCore (= 9.6.0)
+  - FirebaseAppCheck (9.6.0):
     - FirebaseCore (~> 9.0)
     - GoogleUtilities/Environment (~> 7.7)
     - PromisesObjC (~> 2.1)
-  - FirebaseCore (9.5.0):
+  - FirebaseCore (9.6.0):
     - FirebaseCoreDiagnostics (~> 9.0)
     - FirebaseCoreInternal (~> 9.0)
     - GoogleUtilities/Environment (~> 7.7)
@@ -52,9 +52,9 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: 800f16f07af493d98d017446a315c27af0552f41
-  FirebaseAppCheck: 84e58ced2b43249bb75529da1c33193b71e9c3c6
-  FirebaseCore: 25c0400b670fd1e2f2104349cd3b5dcce8d9418f
+  Firebase: 5ae8b7cf8efce559a653aef0ad95bab3f427c351
+  FirebaseAppCheck: c7e07ba851608c192518302f8b35a984cfec1824
+  FirebaseCore: 2082fffcd855f95f883c0a1641133eb9bbe76d40
   FirebaseCoreDiagnostics: 99a495094b10a57eeb3ae8efa1665700ad0bdaa6
   FirebaseCoreInternal: bca76517fe1ed381e989f5e7d8abb0da8d85bed3
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f

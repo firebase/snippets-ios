@@ -15,15 +15,15 @@ PODS:
     - FirebaseCore (~> 9.0)
   - FirebaseCoreInternal (9.6.0):
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
-  - FirebaseStorage (9.5.0):
+  - FirebaseStorage (9.6.0):
     - FirebaseAppCheckInterop (~> 9.0)
     - FirebaseAuthInterop (~> 9.0)
     - FirebaseCore (~> 9.0)
     - FirebaseCoreExtension (~> 9.0)
     - FirebaseStorageInternal (~> 9.0)
-  - FirebaseStorageInternal (9.5.0):
+  - FirebaseStorageInternal (9.6.0):
     - FirebaseCore (~> 9.0)
-    - GTMSessionFetcher/Core (< 2.1, >= 1.7)
+    - GTMSessionFetcher/Core (< 3.0, >= 1.7)
   - FirebaseStorageUI (12.2.0):
     - FirebaseStorage (< 10.0, >= 8.0)
     - SDWebImage (~> 5.6)
@@ -36,7 +36,7 @@ PODS:
   - GoogleUtilities/Logger (7.8.0):
     - GoogleUtilities/Environment
   - "GoogleUtilities/NSData+zlib (7.8.0)"
-  - GTMSessionFetcher/Core (2.0.0)
+  - GTMSessionFetcher/Core (2.1.0)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -76,12 +76,12 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 99a495094b10a57eeb3ae8efa1665700ad0bdaa6
   FirebaseCoreExtension: e83465d1236b166d1d445bbf0e82b65acb30b73b
   FirebaseCoreInternal: bca76517fe1ed381e989f5e7d8abb0da8d85bed3
-  FirebaseStorage: a806d9f9eededf6fb1d906e79221b83ada1dbb4f
-  FirebaseStorageInternal: 4f8a9e27391a99ac0692adbbd072fe0e5c4125fe
+  FirebaseStorage: 1fead543a1f441c3b434c1c9f12560dd82f8b568
+  FirebaseStorageInternal: 81d8a597324ccd06c41a43c5700bc1185a2fc328
   FirebaseStorageUI: 952bb91b93ae0ee00d0033af011c918606c35d37
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
-  GTMSessionFetcher: 681175626052e03fdde7952f7e9c7a9785719506
+  GTMSessionFetcher: ffbb25ec00ebcb5201adab0a56d808f6f1902d9f
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866

@@ -1,12 +1,12 @@
 PODS:
-  - Firebase/CoreOnly (9.5.0):
-    - FirebaseCore (= 9.5.0)
-  - Firebase/Functions (9.5.0):
+  - Firebase/CoreOnly (9.6.0):
+    - FirebaseCore (= 9.6.0)
+  - Firebase/Functions (9.6.0):
     - Firebase/CoreOnly
-    - FirebaseFunctions (~> 9.5.0)
+    - FirebaseFunctions (~> 9.6.0)
   - FirebaseAppCheckInterop (9.6.0)
   - FirebaseAuthInterop (9.6.0)
-  - FirebaseCore (9.5.0):
+  - FirebaseCore (9.6.0):
     - FirebaseCoreDiagnostics (~> 9.0)
     - FirebaseCoreInternal (~> 9.0)
     - GoogleUtilities/Environment (~> 7.7)
@@ -20,7 +20,7 @@ PODS:
     - FirebaseCore (~> 9.0)
   - FirebaseCoreInternal (9.6.0):
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
-  - FirebaseFunctions (9.5.0):
+  - FirebaseFunctions (9.6.0):
     - FirebaseAppCheckInterop (~> 9.0)
     - FirebaseAuthInterop (~> 9.0)
     - FirebaseCore (~> 9.0)
@@ -69,14 +69,14 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: 800f16f07af493d98d017446a315c27af0552f41
+  Firebase: 5ae8b7cf8efce559a653aef0ad95bab3f427c351
   FirebaseAppCheckInterop: d5ecda0c09f8069406643d6e0fa12c09d1b736e3
   FirebaseAuthInterop: b6cf02117f13a8400c8c8b4421e12c6e850bcaf3
-  FirebaseCore: 25c0400b670fd1e2f2104349cd3b5dcce8d9418f
+  FirebaseCore: 2082fffcd855f95f883c0a1641133eb9bbe76d40
   FirebaseCoreDiagnostics: 99a495094b10a57eeb3ae8efa1665700ad0bdaa6
   FirebaseCoreExtension: e83465d1236b166d1d445bbf0e82b65acb30b73b
   FirebaseCoreInternal: bca76517fe1ed381e989f5e7d8abb0da8d85bed3
-  FirebaseFunctions: 9f6b1ae15651fff0107ef3abd2ee885b9c103236
+  FirebaseFunctions: f9d4e4161f1c3bc331e3fc71a32fc06debf54e7b
   FirebaseMessagingInterop: 348785028509e1a5a9af277123e7fc08b2d17306
   FirebaseSharedSwift: 2269c2ddc7a5efb7fb5f3f3177e790613b52dfda
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
