@@ -761,7 +761,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FirebaseFirestoreSwift:
-    :commit: 84a8b5030c396bba064cd8f8b01b9c3630c76de7
+    :commit: 3d51280713332af3f023abc7e305541871c1e005
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
@@ -773,7 +773,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 99a495094b10a57eeb3ae8efa1665700ad0bdaa6
   FirebaseCoreInternal: bca76517fe1ed381e989f5e7d8abb0da8d85bed3
   FirebaseFirestore: c09ce6d050745a45fb75ebd901005ed3279c3caf
-  FirebaseFirestoreSwift: d86a0fef1225c6c1ddfae15b3250700867d63013
+  FirebaseFirestoreSwift: bbb4238ecb6bdb9d275770cc63e0203e6e16eda1
   GeoFire: c34927b5c81ab614f611c79aa8d074cfa9780f07
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
