@@ -1142,4 +1142,20 @@
     // [END fs_emulator_connect]
 }
 
+- (void)countAggregateQuery {
+    // [START count_aggregate_query]
+    FIRCollectionReference* query =
+        [[self.db collectionWithPath:@"games/chess/players"]
+                          whereField:@"online"
+                           isEqualTo:@YES];
+    [query getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error fetching count: %@", error);
+            return;
+        }
+        NSLog(@"Online players count: %@", snapshot.count);
+    }];
+    // [END count_aggregate_query]
+}
+
 @end

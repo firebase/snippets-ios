@@ -1260,15 +1260,16 @@ class ViewController: UIViewController {
 
     // MARK: Aggregation queries
     private func countQuery() {
-        // [START count_aggregation_query]
+        // [START count_aggregate_query]
         do {
             let query = db.collection("games/chess/players").whereField("online", isEqualTo: true)
             let countQuery = query.countAggregateQuery
             let snapshot = try await countQuery.aggregation(source: AggregateSource.serverNoCache)
+            print(snapshot.count)
         } catch {
             print(error)
         }
-        // [END count_aggregation_query]
+        // [END count_aggregate_query]
     }
 
 }
