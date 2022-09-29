@@ -1142,18 +1142,31 @@
     // [END fs_emulator_connect]
 }
 
-- (void)countAggregateQuery {
-    // [START count_aggregate_query]
-    FIRCollectionReference* query =
-        [[self.db collectionWithPath:@"games/chess/players"]
-                          whereField:@"online"
-                           isEqualTo:@YES];
+- (void)countAggregateCollection {
+    // [START count_aggregate_collection]
+    FIRCollectionReference* query = [self.db collectionWithPath:@"cities"];
     [query getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
         if (error != nil) {
             NSLog(@"Error fetching count: %@", error);
             return;
         }
-        NSLog(@"Online players count: %@", snapshot.count);
+        NSLog(@"Cities count: %@", snapshot.count);
+    }];
+    // [END count_aggregate_collection]
+}
+
+- (void)countAggregateQuery {
+    // [START count_aggregate_query]
+    FIRCollectionReference* query =
+        [[self.db collectionWithPath:@"cities"]
+                          whereField:@"state"
+                           isEqualTo:@"CA"];
+    [query getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error fetching count: %@", error);
+            return;
+        }
+        NSLog(@"Cities count: %@", snapshot.count);
     }];
     // [END count_aggregate_query]
 }

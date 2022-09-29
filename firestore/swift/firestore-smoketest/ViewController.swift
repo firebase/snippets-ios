@@ -1259,10 +1259,23 @@ class ViewController: UIViewController {
     }
 
     // MARK: Aggregation queries
-    private func countQuery() {
+    private func countAggregateCollection() {
+        // [START count_aggregate_collection]
+        do {
+            let query = db.collection("cities")
+            let countQuery = query.countAggregateQuery
+            let snapshot = try await countQuery.aggregation(source: AggregateSource.serverNoCache)
+            print(snapshot.count)
+        } catch {
+            print(error)
+        }
+        // [END count_aggregate_collection]
+    }
+
+    private func countAggregateQuery() {
         // [START count_aggregate_query]
         do {
-            let query = db.collection("games/chess/players").whereField("online", isEqualTo: true)
+            let query = db.collection("cities").whereField("state", isEqualTo: "CA")
             let countQuery = query.countAggregateQuery
             let snapshot = try await countQuery.aggregation(source: AggregateSource.serverNoCache)
             print(snapshot.count)
