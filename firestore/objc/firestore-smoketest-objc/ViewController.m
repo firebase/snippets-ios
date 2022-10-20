@@ -1145,12 +1145,14 @@
 - (void)countAggregateCollection {
     // [START count_aggregate_collection]
     FIRCollectionReference* query = [self.db collectionWithPath:@"cities"];
-    [query getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
+    [query.count aggregationWithSource:FIRAggregateSourceServer
+                            completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                         NSError *error) {
         if (error != nil) {
             NSLog(@"Error fetching count: %@", error);
-            return;
+        } else {
+            NSLog(@"Cities count: %@", snapshot.count);
         }
-        NSLog(@"Cities count: %@", snapshot.count);
     }];
     // [END count_aggregate_collection]
 }
@@ -1161,12 +1163,14 @@
         [[self.db collectionWithPath:@"cities"]
                           whereField:@"state"
                            isEqualTo:@"CA"];
-    [query getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
+    [query.count aggregationWithSource:FIRAggregateSourceServer
+                            completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                          NSError *error) {
         if (error != nil) {
             NSLog(@"Error fetching count: %@", error);
-            return;
+        } else {
+            NSLog(@"Cities count: %@", snapshot.count);
         }
-        NSLog(@"Cities count: %@", snapshot.count);
     }];
     // [END count_aggregate_query]
 }
