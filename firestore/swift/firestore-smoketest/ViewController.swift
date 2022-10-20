@@ -1259,7 +1259,7 @@ class ViewController: UIViewController {
     }
 
     // MARK: Aggregation queries
-    private func countAggregateCollection() {
+    private func countAggregateCollection() async {
         // [START count_aggregate_collection]
         let query = db.collection("cities")
         let countQuery = query.count
@@ -1272,7 +1272,7 @@ class ViewController: UIViewController {
         // [END count_aggregate_collection]
     }
 
-    private func countAggregateQuery() {
+    private func countAggregateQuery() async {
         // [START count_aggregate_query]
         let query = db.collection("cities").whereField("state", isEqualTo: "CA")
         let countQuery = query.count

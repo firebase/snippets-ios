@@ -1144,7 +1144,7 @@
 
 - (void)countAggregateCollection {
     // [START count_aggregate_collection]
-    FIRCollectionReference* query = [self.db collectionWithPath:@"cities"];
+    FIRCollectionReference *query = [self.db collectionWithPath:@"cities"];
     [query.count aggregationWithSource:FIRAggregateSourceServer
                             completion:^(FIRAggregateQuerySnapshot *snapshot,
                                          NSError *error) {
@@ -1159,9 +1159,9 @@
 
 - (void)countAggregateQuery {
     // [START count_aggregate_query]
-    FIRCollectionReference* query =
+    FIRQuery *query =
         [[self.db collectionWithPath:@"cities"]
-                          whereField:@"state"
+                     queryWhereField:@"state"
                            isEqualTo:@"CA"];
     [query.count aggregationWithSource:FIRAggregateSourceServer
                             completion:^(FIRAggregateQuerySnapshot *snapshot,
