@@ -1257,6 +1257,34 @@ class ViewController: UIViewController {
         Firestore.firestore().settings = settings
         // [END fs_emulator_connect]
     }
+
+    // MARK: Aggregation queries
+    private func countAggregateCollection() async {
+        // [START count_aggregate_collection]
+        let query = db.collection("cities")
+        let countQuery = query.count
+        do {
+            let snapshot = try await countQuery.getAggregation(source: .server)
+            print(snapshot.count)
+        } catch {
+            print(error);
+        }
+        // [END count_aggregate_collection]
+    }
+
+    private func countAggregateQuery() async {
+        // [START count_aggregate_query]
+        let query = db.collection("cities").whereField("state", isEqualTo: "CA")
+        let countQuery = query.count
+        do {
+            let snapshot = try await countQuery.getAggregation(source: .server)
+            print(snapshot.count)
+        } catch {
+            print(error);
+        }
+        // [END count_aggregate_query]
+    }
+
 }
 
 // [START codable_struct]

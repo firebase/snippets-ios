@@ -1142,4 +1142,37 @@
     // [END fs_emulator_connect]
 }
 
+- (void)countAggregateCollection {
+    // [START count_aggregate_collection]
+    FIRCollectionReference *query = [self.db collectionWithPath:@"cities"];
+    [query.count aggregationWithSource:FIRAggregateSourceServer
+                            completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                         NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error fetching count: %@", error);
+        } else {
+            NSLog(@"Cities count: %@", snapshot.count);
+        }
+    }];
+    // [END count_aggregate_collection]
+}
+
+- (void)countAggregateQuery {
+    // [START count_aggregate_query]
+    FIRQuery *query =
+        [[self.db collectionWithPath:@"cities"]
+                     queryWhereField:@"state"
+                           isEqualTo:@"CA"];
+    [query.count aggregationWithSource:FIRAggregateSourceServer
+                            completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                          NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error fetching count: %@", error);
+        } else {
+            NSLog(@"Cities count: %@", snapshot.count);
+        }
+    }];
+    // [END count_aggregate_query]
+}
+
 @end
