@@ -708,7 +708,7 @@ PODS:
   - PromisesObjC (2.1.1)
 
 DEPENDENCIES:
-  - FirebaseAuth (~> 10.0)
+  - FirebaseAuth
   - FirebaseFirestore
 
 SPEC REPOS:
@@ -744,6 +744,6 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
 
-PODFILE CHECKSUM: ef7454ae54d39d8af1634cc84f2dd98fb27225bd
+PODFILE CHECKSUM: 2c326f47761ecd18d1c150444d24a282c84b433e
 
 COCOAPODS: 1.11.3
