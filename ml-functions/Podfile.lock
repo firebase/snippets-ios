@@ -29,7 +29,7 @@ PODS:
   - GoogleUtilities/Logger (7.8.0):
     - GoogleUtilities/Environment
   - "GoogleUtilities/NSData+zlib (7.8.0)"
-  - GTMSessionFetcher/Core (2.1.0)
+  - GTMSessionFetcher/Core (2.3.0)
   - PromisesObjC (2.1.1)
 
 DEPENDENCIES:
@@ -61,7 +61,7 @@ SPEC CHECKSUMS:
   FirebaseMessagingInterop: 26c3bf82c7697d8fbfb13216541423bc2c93e8fc
   FirebaseSharedSwift: 6966c4de41fba13a4270de1e421e6eee2cf90113
   GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
-  GTMSessionFetcher: ffbb25ec00ebcb5201adab0a56d808f6f1902d9f
+  GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
 
 PODFILE CHECKSUM: aa543baa476adf0a1eb62d4970ac2cffc30a1931
