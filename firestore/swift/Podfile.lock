@@ -636,7 +636,7 @@ PODS:
     - "gRPC-C++ (~> 1.44.0)"
     - leveldb-library (~> 1.22)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseFirestoreSwift (10.2.0):
+  - FirebaseFirestoreSwift (10.3.0):
     - FirebaseCore (~> 10.0)
     - FirebaseCoreExtension (~> 10.0)
     - FirebaseFirestore (~> 10.0)
@@ -757,7 +757,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FirebaseFirestoreSwift:
-    :commit: 861839a5f1389141cf72a3ba6e9af694a36dd7fa
+    :commit: 0b7fc7e1e83f866696209fcd13d4bd118d46a71e
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
@@ -769,7 +769,7 @@ SPEC CHECKSUMS:
   FirebaseCoreExtension: d08b424832917cf13612021574399afbbedffeef
   FirebaseCoreInternal: 091bde13e47bb1c5e9fe397634f3593dc390430f
   FirebaseFirestore: bda7a1ca8c19319a2acd2761cd4b962022c1d5ea
-  FirebaseFirestoreSwift: 3efd6253025b189eb11861d6027d6b33988005ce
+  FirebaseFirestoreSwift: 55098402529ce59ba54a2ce1ad5798ae1ba563ef
   FirebaseSharedSwift: a160b39d4ce77be922b3d6ff009099c7294e36e5
   GeoFire: c34927b5c81ab614f611c79aa8d074cfa9780f07
   GoogleUtilities: bad72cb363809015b1f7f19beb1f1cd23c589f95
