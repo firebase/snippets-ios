@@ -1288,7 +1288,7 @@ class ViewController: UIViewController {
     private func orQuery() {
         // [START or_query]
         let query = db.collection("cities").whereFilter(Filter.andFilter([
-            Filter.whereField("name", isGreaterThan: "L"),
+            Filter.whereField("state", isEqualTo: "CA"),
             Filter.orFilter([
                 Filter.whereField("capital", isEqualTo: true),
                 Filter.whereField("population", isGreaterThanOrEqualTo: 1000000);

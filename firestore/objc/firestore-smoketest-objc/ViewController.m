@@ -1179,7 +1179,7 @@
   // [START or_query]
   FIRCollectionReference *collection = [self.db collectionWithPath:@"cities"];
   FIRQuery *query = [collection queryWhereFilter:[FIRFilter andFilterWithFilters:@[
-    [FIRFilter filterWhereField:@"name" isGreaterThan:@"L"],
+    [FIRFilter filterWhereField:@"state" isEqualTo:@"CA"],
     [FIRFilter orFilterWithFilters:@[
       [FIRFilter filterWhereField:@"capital" isEqualTo:@YES],
       [FIRFilter filterWhereField:@"population" isGreaterThanOrEqualTo:@1000000]
