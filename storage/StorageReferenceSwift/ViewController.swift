@@ -667,7 +667,7 @@ class ViewController: UIViewController {
 
   func emulatorSettings() { 
     // [START storage_emulator_connect]
-    Storage.storage().useEmulator(withHost:"localhost", port:9199)
+    Storage.storage().useEmulator(withHost:"127.0.0.1", port:9199)
     // [END storage_emulator_connect]
 
   }
