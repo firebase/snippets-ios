@@ -756,6 +756,21 @@
   // [END get_multiple_all]
 }
 
+- (void)getMultipleAllSubcollection {
+  // [START get_multiple_all_subcollection]
+  [[self.db collectionWithPath:@"cities/SF/landmarks"]
+      getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
+        if (error != nil) {
+          NSLog(@"Error getting documents: %@", error);
+        } else {
+          for (FIRDocumentSnapshot *document in snapshot.documents) {
+            NSLog(@"%@ => %@", document.documentID, document.data);
+          }
+        }
+      }];
+  // [END get_multiple_all_subcollection]
+}
+
 - (void)listenMultiple {
   // [START listen_multiple]
   [[[self.db collectionWithPath:@"cities"] queryWhereField:@"state" isEqualTo:@"CA"]
