@@ -846,7 +846,7 @@ class ViewController: UIViewController {
 
     private func getMultipleAllSubcollection() {
         // [START get_multiple_all_subcollection]
-        db.collection("cities", "SF", "landmarks").getDocuments() { (querySnapshot, err) in
+        db.collection("cities/SF/landmarks").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
