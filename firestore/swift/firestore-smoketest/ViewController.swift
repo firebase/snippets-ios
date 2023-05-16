@@ -1095,7 +1095,13 @@ class ViewController: UIViewController {
     private func enableOffline() {
         // [START enable_offline]
         let settings = FirestoreSettings()
-        settings.isPersistenceEnabled = true
+
+        // Use memory-only cache
+        settings.cacheSettings =
+            MemoryCacheSettings(garbageCollectorSettings: MemoryLRUGCSettings())
+
+        // Use persistent disk cache
+        settings.cacheSettings = PersistentCacheSettings(sizeBytes: 1_000_000)
 
         // Any additional options
         // ...

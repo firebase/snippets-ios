@@ -986,7 +986,13 @@
 - (void)enableOffline {
   // [START enable_offline]
   FIRFirestoreSettings *settings = [[FIRFirestoreSettings alloc] init];
-  settings.persistenceEnabled = YES;
+
+  // Use memory-only cache
+  settings.cacheSettings = [[FIRMemoryCacheSettings alloc]
+      initWithGarbageCollectorSettings:[[FIRMemoryLRUGCSettings alloc] init]];
+
+  // Use persistent disk cache (default behavior)
+  settings.cacheSettings = [[FIRPersistentCacheSettings alloc] initWithSizeBytes:@1000000];
 
   // Any additional options
   // ...
