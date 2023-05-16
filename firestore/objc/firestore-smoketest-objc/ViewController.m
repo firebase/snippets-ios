@@ -80,7 +80,8 @@
 - (void)setupCacheSize {
     // [START fs_setup_cache]
     FIRFirestoreSettings *settings = [FIRFirestore firestore].settings;
-    settings.cacheSizeBytes = kFIRFirestoreCacheSizeUnlimited;
+    settings.cacheSettings =
+        [[FIRPersistentCacheSettings alloc] initWithSizeBytes:1000000];
     [FIRFirestore firestore].settings = settings;
     // [END fs_setup_cache]
 }

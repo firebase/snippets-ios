@@ -142,7 +142,7 @@ class ViewController: UIViewController {
     private func setupCacheSize() {
         // [START fs_setup_cache]
         let settings = Firestore.firestore().settings
-        settings.cacheSizeBytes = FirestoreCacheSizeUnlimited
+        settings.cacheSettings = PersistentCacheSettings(sizeBytes: 1_000_000)
         Firestore.firestore().settings = settings
         // [END fs_setup_cache]
     }
