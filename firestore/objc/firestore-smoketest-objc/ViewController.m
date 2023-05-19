@@ -997,6 +997,19 @@
   // [END enable_offline]
 }
 
+- (void)enableOfflineConfigurable {
+  // [START enable_offline_configurable]
+  FIRFirestoreSettings *settings = [[FIRFirestoreSettings alloc] init];
+
+  setting.cacheSettings = [FIRPersistentCacheSettings init]; // No-op, 100 MB persistent cache is enabled by default
+  settings.cacheSettings = [FIRPersistentCacheSettings initWithSizeBytes:1_000_000]; // Change cache size threshold
+  settings.cacheSettings = [FIRMemoryCacheSettings init] // Switch to memory cache
+
+  FIRFirestore *db = [FIRFirestore firestore];
+  db.settings = settings;
+  // [END enable_offline_configurable]
+}
+
 - (void)listenToOffline {
   FIRFirestore *db = self.db;
   // [START listen_to_offline]

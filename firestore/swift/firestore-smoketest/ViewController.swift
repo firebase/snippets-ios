@@ -1106,6 +1106,19 @@ class ViewController: UIViewController {
         // [END enable_offline]
     }
 
+    private func enableOfflineConfigurable() {
+        // [START enable_offline_configurable]
+        let settings = FirestoreSettings()
+
+        settings.cacheSettings = PersistentCacheSettings() // No-op, 100 MB persistent cache is enabled by default
+        settings.cacheSettings = PersistentCacheSettings(sizeBytes: 1_000_000) // Change cache size threshold
+        settings.cacheSettings = MemoryCacheSettings() // Switch to memory cache
+
+        let db = Firestore.firestore()
+        db.settings = settings
+        // [END enable_offline_configurable]
+    }
+
     private func listenToOffline() {
         let db = Firestore.firestore()
         // [START listen_to_offline]
