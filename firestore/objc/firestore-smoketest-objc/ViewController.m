@@ -85,6 +85,14 @@
     // [END fs_setup_cache]
 }
 
+- (void)setupCacheSizeConfigurable {
+  // [START fs_setup_cache_configurable]
+  FIRFirestoreSettings *settings = [[FIRFirestoreSettings alloc] init];
+  settings.cacheSettings = [FIRPersistentCacheSettings initWithSizeBytes:1_000_000]; // Change cache size threshold
+  settings.cacheSettings = [FIRPersistentCacheSettings initWithSizeBytes:kFIRFirestoreCacheUnlimited]; // Disable cache cleanup
+  db.settings = settings;
+  // [END fs_setup_cache_configurable]
+}
 - (void)addAdaLovelace {
   // [START add_ada_lovelace]
   // Add a new document with a generated ID
@@ -1001,9 +1009,8 @@
   // [START enable_offline_configurable]
   FIRFirestoreSettings *settings = [[FIRFirestoreSettings alloc] init];
 
-  setting.cacheSettings = [FIRPersistentCacheSettings init]; // No-op, 100 MB persistent cache is enabled by default
-  settings.cacheSettings = [FIRPersistentCacheSettings initWithSizeBytes:1_000_000]; // Change cache size threshold
-  settings.cacheSettings = [FIRMemoryCacheSettings init] // Switch to memory cache
+  settings.cacheSettings = [FIRPersistentCacheSettings init]; // No-op, 100 MB persistent cache is enabled by default, or
+  settings.cacheSettings = [FIRMemoryCacheSettings init] // Use memory cache
 
   FIRFirestore *db = [FIRFirestore firestore];
   db.settings = settings;

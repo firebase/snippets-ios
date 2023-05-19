@@ -112,6 +112,7 @@ class ViewController: UIViewController {
         listenToOffline()
         toggleOffline()
         setupCacheSize()
+        setupCacheSizeConfigurable()
 
         // Cursors
         simpleCursor()
@@ -145,6 +146,15 @@ class ViewController: UIViewController {
         settings.cacheSizeBytes = FirestoreCacheSizeUnlimited
         Firestore.firestore().settings = settings
         // [END fs_setup_cache]
+    }
+
+    private func setupCacheSizeConfigurable() {
+        // [START fs_setup_cache_configurable]
+        let settings = FirestoreSettings()
+        settings.cacheSettings = PersistentCacheSettings(sizeBytes: 1_000_000) // Change cache size threshold, or
+        settings.cacheSettings = PersistentCacheSettings(sizeBytes: FirestoreCacheSizeUnlimited) // Disable cache cleanup 
+        db.settings = settings
+        // [END fs_setup_cache_configurable]
     }
 
     // =======================================================================================
@@ -1110,9 +1120,8 @@ class ViewController: UIViewController {
         // [START enable_offline_configurable]
         let settings = FirestoreSettings()
 
-        settings.cacheSettings = PersistentCacheSettings() // No-op, 100 MB persistent cache is enabled by default
-        settings.cacheSettings = PersistentCacheSettings(sizeBytes: 1_000_000) // Change cache size threshold
-        settings.cacheSettings = MemoryCacheSettings() // Switch to memory cache
+        settings.cacheSettings = PersistentCacheSettings() // No-op, 100 MB persistent cache is enabled by default, or
+        settings.cacheSettings = MemoryCacheSettings() // Use memory cache
 
         let db = Firestore.firestore()
         db.settings = settings
