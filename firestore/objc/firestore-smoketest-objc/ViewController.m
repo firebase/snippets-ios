@@ -88,7 +88,7 @@
 - (void)setupCacheSizeConfigurable {
   // [START fs_setup_cache_configurable]
   FIRFirestoreSettings *settings = [[FIRFirestoreSettings alloc] init];
-  settings.cacheSettings = [FIRPersistentCacheSettings initWithSizeBytes:1_000_000]; // Change cache size threshold
+  settings.cacheSettings = [FIRPersistentCacheSettings initWithSizeBytes:1_000_000]; // Change cache size threshold, or
   settings.cacheSettings = [FIRPersistentCacheSettings initWithSizeBytes:kFIRFirestoreCacheUnlimited]; // Disable cache cleanup
   db.settings = settings;
   // [END fs_setup_cache_configurable]
