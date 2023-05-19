@@ -80,6 +80,7 @@
 - (void)setupCacheSize {
     // [START fs_setup_cache]
     FIRFirestoreSettings *settings = [FIRFirestore firestore].settings;
+    // Set cache size to 1 MB
     settings.cacheSettings =
         [[FIRPersistentCacheSettings alloc] initWithSizeBytes:@1000000];
     [FIRFirestore firestore].settings = settings;
@@ -993,6 +994,7 @@
       initWithGarbageCollectorSettings:[[FIRMemoryLRUGCSettings alloc] init]];
 
   // Use persistent disk cache (default behavior)
+  // This example uses 1 million bytes, or 1 MB.
   settings.cacheSettings = [[FIRPersistentCacheSettings alloc] initWithSizeBytes:@1000000];
 
   // Any additional options
