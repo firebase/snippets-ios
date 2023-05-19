@@ -80,7 +80,9 @@
 - (void)setupCacheSize {
     // [START fs_setup_cache]
     FIRFirestoreSettings *settings = [FIRFirestore firestore].settings;
-    settings.cacheSizeBytes = kFIRFirestoreCacheSizeUnlimited;
+    // Set cache size to 1 MB
+    settings.cacheSettings =
+        [[FIRPersistentCacheSettings alloc] initWithSizeBytes:@1000000];
     [FIRFirestore firestore].settings = settings;
     // [END fs_setup_cache]
 }
@@ -986,7 +988,14 @@
 - (void)enableOffline {
   // [START enable_offline]
   FIRFirestoreSettings *settings = [[FIRFirestoreSettings alloc] init];
-  settings.persistenceEnabled = YES;
+
+  // Use memory-only cache
+  settings.cacheSettings = [[FIRMemoryCacheSettings alloc]
+      initWithGarbageCollectorSettings:[[FIRMemoryLRUGCSettings alloc] init]];
+
+  // Use persistent disk cache (default behavior)
+  // This example uses 1 million bytes, or 1 MB.
+  settings.cacheSettings = [[FIRPersistentCacheSettings alloc] initWithSizeBytes:@1000000];
 
   // Any additional options
   // ...
