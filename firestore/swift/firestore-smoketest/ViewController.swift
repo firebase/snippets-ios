@@ -844,6 +844,20 @@ class ViewController: UIViewController {
         // [END get_multiple_all]
     }
 
+    private func getMultipleAllSubcollection() {
+        // [START get_multiple_all_subcollection]
+        db.collection("cities/SF/landmarks").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
+        // [END get_multiple_all_subcollection]
+    }
+
     private func listenMultiple() {
         // [START listen_multiple]
         db.collection("cities").whereField("state", isEqualTo: "CA")
