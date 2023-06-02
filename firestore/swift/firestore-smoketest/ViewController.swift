@@ -1095,7 +1095,7 @@ class ViewController: UIViewController {
         // [END in_filter]
 
         // [START in_filter_with_array]
-        citiesRef.whereField("regions", in: [["west_coast"], ["east_coast"]]);
+        citiesRef.whereField("regions", in: [["west_coast"], ["east_coast"]])
         // [END in_filter_with_array]
 
         // [START not_in_filter]
@@ -1288,7 +1288,7 @@ class ViewController: UIViewController {
             let snapshot = try await countQuery.getAggregation(source: .server)
             print(snapshot.count)
         } catch {
-            print(error);
+            print(error)
         }
         // [END count_aggregate_collection]
     }
@@ -1301,7 +1301,7 @@ class ViewController: UIViewController {
             let snapshot = try await countQuery.getAggregation(source: .server)
             print(snapshot.count)
         } catch {
-            print(error);
+            print(error)
         }
         // [END count_aggregate_query]
     }
