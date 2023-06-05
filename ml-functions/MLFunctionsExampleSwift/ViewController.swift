@@ -82,7 +82,7 @@ class ViewController: UIViewController {
         }
         // ...
       }
-      // Function completed succesfully
+      // Function completed successfully
     }
     // [END function_annotateImage]
   }
