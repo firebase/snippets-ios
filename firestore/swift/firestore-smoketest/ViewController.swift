@@ -143,7 +143,7 @@ class ViewController: UIViewController {
         // [START fs_setup_cache]
         let settings = Firestore.firestore().settings
         // Set cache size to 100 MB
-        settings.cacheSettings = PersistentCacheSettings(sizeBytes: 100 * 1024 * 1024)
+        settings.cacheSettings = PersistentCacheSettings(sizeBytes: 100 * 1024 * 1024 as NSNumber)
         Firestore.firestore().settings = settings
         // [END fs_setup_cache]
     }
@@ -1102,7 +1102,7 @@ class ViewController: UIViewController {
             MemoryCacheSettings(garbageCollectorSettings: MemoryLRUGCSettings())
 
         // Use persistent disk cache, with 100 MB cache size
-        settings.cacheSettings = PersistentCacheSettings(sizeBytes: 100 * 1024 * 1024)
+        settings.cacheSettings = PersistentCacheSettings(sizeBytes: 100 * 1024 * 1024 as NSNumber)
 
         // Any additional options
         // ...
