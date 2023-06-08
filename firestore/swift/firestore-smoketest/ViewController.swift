@@ -142,7 +142,8 @@ class ViewController: UIViewController {
     private func setupCacheSize() {
         // [START fs_setup_cache]
         let settings = Firestore.firestore().settings
-        settings.cacheSizeBytes = FirestoreCacheSizeUnlimited
+        // Set cache size to 100 MB
+        settings.cacheSettings = PersistentCacheSettings(sizeBytes: 100 * 1024 * 1024 as NSNumber)
         Firestore.firestore().settings = settings
         // [END fs_setup_cache]
     }
@@ -843,6 +844,20 @@ class ViewController: UIViewController {
         // [END get_multiple_all]
     }
 
+    private func getMultipleAllSubcollection() {
+        // [START get_multiple_all_subcollection]
+        db.collection("cities/SF/landmarks").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
+        // [END get_multiple_all_subcollection]
+    }
+
     private func listenMultiple() {
         // [START listen_multiple]
         db.collection("cities").whereField("state", isEqualTo: "CA")
@@ -1080,7 +1095,7 @@ class ViewController: UIViewController {
         // [END in_filter]
 
         // [START in_filter_with_array]
-        citiesRef.whereField("regions", in: [["west_coast"], ["east_coast"]]);
+        citiesRef.whereField("regions", in: [["west_coast"], ["east_coast"]])
         // [END in_filter_with_array]
 
         // [START not_in_filter]
@@ -1095,7 +1110,13 @@ class ViewController: UIViewController {
     private func enableOffline() {
         // [START enable_offline]
         let settings = FirestoreSettings()
-        settings.isPersistenceEnabled = true
+
+        // Use memory-only cache
+        settings.cacheSettings =
+            MemoryCacheSettings(garbageCollectorSettings: MemoryLRUGCSettings())
+
+        // Use persistent disk cache, with 100 MB cache size
+        settings.cacheSettings = PersistentCacheSettings(sizeBytes: 100 * 1024 * 1024 as NSNumber)
 
         // Any additional options
         // ...
@@ -1267,7 +1288,7 @@ class ViewController: UIViewController {
             let snapshot = try await countQuery.getAggregation(source: .server)
             print(snapshot.count)
         } catch {
-            print(error);
+            print(error)
         }
         // [END count_aggregate_collection]
     }
@@ -1280,7 +1301,7 @@ class ViewController: UIViewController {
             let snapshot = try await countQuery.getAggregation(source: .server)
             print(snapshot.count)
         } catch {
-            print(error);
+            print(error)
         }
         // [END count_aggregate_query]
     }

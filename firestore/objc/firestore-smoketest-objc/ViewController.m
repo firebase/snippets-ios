@@ -80,7 +80,9 @@
 - (void)setupCacheSize {
     // [START fs_setup_cache]
     FIRFirestoreSettings *settings = [FIRFirestore firestore].settings;
-    settings.cacheSizeBytes = kFIRFirestoreCacheSizeUnlimited;
+    // Set cache size to 100 MB
+    settings.cacheSettings =
+        [[FIRPersistentCacheSettings alloc] initWithSizeBytes:@(100 * 1024 * 1024)];
     [FIRFirestore firestore].settings = settings;
     // [END fs_setup_cache]
 }
@@ -756,6 +758,21 @@
   // [END get_multiple_all]
 }
 
+- (void)getMultipleAllSubcollection {
+  // [START get_multiple_all_subcollection]
+  [[self.db collectionWithPath:@"cities/SF/landmarks"]
+      getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
+        if (error != nil) {
+          NSLog(@"Error getting documents: %@", error);
+        } else {
+          for (FIRDocumentSnapshot *document in snapshot.documents) {
+            NSLog(@"%@ => %@", document.documentID, document.data);
+          }
+        }
+      }];
+  // [END get_multiple_all_subcollection]
+}
+
 - (void)listenMultiple {
   // [START listen_multiple]
   [[[self.db collectionWithPath:@"cities"] queryWhereField:@"state" isEqualTo:@"CA"]
@@ -986,7 +1003,15 @@
 - (void)enableOffline {
   // [START enable_offline]
   FIRFirestoreSettings *settings = [[FIRFirestoreSettings alloc] init];
-  settings.persistenceEnabled = YES;
+
+  // Use memory-only cache
+  settings.cacheSettings = [[FIRMemoryCacheSettings alloc]
+      initWithGarbageCollectorSettings:[[FIRMemoryLRUGCSettings alloc] init]];
+
+  // Use persistent disk cache (default behavior)
+  // This example uses 100 MB.
+  settings.cacheSettings = [[FIRPersistentCacheSettings alloc]
+      initWithSizeBytes:@(100 * 1024 * 1024)];
 
   // Any additional options
   // ...
