@@ -1272,7 +1272,7 @@ class ViewController: UIViewController {
     private func emulatorSettings() {
         // [START fs_emulator_connect]
         let settings = Firestore.firestore().settings
-        settings.host = "localhost:8080"
+        settings.host = "127.0.0.1:8080"
         settings.isPersistenceEnabled = false 
         settings.isSSLEnabled = false
         Firestore.firestore().settings = settings
