@@ -1,25 +1,25 @@
 PODS:
-  - Firebase/AppCheck (10.2.0):
+  - Firebase/AppCheck (10.11.0):
     - Firebase/CoreOnly
-    - FirebaseAppCheck (~> 10.2.0)
-  - Firebase/CoreOnly (10.2.0):
-    - FirebaseCore (= 10.2.0)
-  - FirebaseAppCheck (10.2.0):
+    - FirebaseAppCheck (~> 10.11.0)
+  - Firebase/CoreOnly (10.11.0):
+    - FirebaseCore (= 10.11.0)
+  - FirebaseAppCheck (10.11.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - PromisesObjC (~> 2.1)
-  - FirebaseCore (10.2.0):
+  - FirebaseCore (10.11.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreInternal (10.2.0):
+  - FirebaseCoreInternal (10.11.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - GoogleUtilities/Environment (7.10.0):
+  - GoogleUtilities/Environment (7.11.1):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.10.0):
+  - GoogleUtilities/Logger (7.11.1):
     - GoogleUtilities/Environment
-  - "GoogleUtilities/NSData+zlib (7.10.0)"
-  - PromisesObjC (2.1.1)
+  - "GoogleUtilities/NSData+zlib (7.11.1)"
+  - PromisesObjC (2.2.0)
 
 DEPENDENCIES:
   - Firebase/AppCheck
@@ -34,13 +34,13 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: a3ea7eba4382afd83808376edb99acdaff078dcf
-  FirebaseAppCheck: 17e885f852bcba290b18c29a2718e3d48c571833
-  FirebaseCore: 813838072b797b64f529f3c2ee35e696e5641dd1
-  FirebaseCoreInternal: 091bde13e47bb1c5e9fe397634f3593dc390430f
-  GoogleUtilities: bad72cb363809015b1f7f19beb1f1cd23c589f95
-  PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
+  Firebase: 31d9575c124839fb5abc0db6d39511cc1dab1b85
+  FirebaseAppCheck: fb7a0f680b941e9efd67b1ed9b1d700a2ed73ce5
+  FirebaseCore: 62fd4d549f5e3f3bd52b7998721c5fa0557fb355
+  FirebaseCoreInternal: 9e46c82a14a3b3a25be4e1e151ce6d21536b89c0
+  GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
+  PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
 
 PODFILE CHECKSUM: 3f5fe9faa57008d6327228db502ed5519ccd4918
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1
