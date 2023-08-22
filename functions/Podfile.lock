@@ -23,7 +23,7 @@ PODS:
     - FirebaseSharedSwift (~> 10.0)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
   - FirebaseMessagingInterop (10.13.0)
-  - FirebaseSharedSwift (10.13.0)
+  - FirebaseSharedSwift (10.14.0)
   - GoogleUtilities/Environment (7.11.5):
     - PromisesObjC (< 3.0, >= 1.2)
   - GoogleUtilities/Logger (7.11.5):
@@ -59,7 +59,7 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: b342e37cd4f5b4454ec34308f073420e7920858e
   FirebaseFunctions: 42d5444230096dcffe68261937b1ddd56ea9fcb2
   FirebaseMessagingInterop: 593e501af43b6d8df45d7323a0803d496b179ba3
-  FirebaseSharedSwift: 5c4906ecf0441ed23efff399454dc791eff8ad54
+  FirebaseSharedSwift: 0eec812f08b6ec9e03196fc27635739781513028
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
