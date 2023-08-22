@@ -675,7 +675,7 @@ PODS:
     - FirebaseCoreExtension (~> 10.0)
     - FirebaseFirestore (~> 10.0)
     - FirebaseSharedSwift (~> 10.0)
-  - FirebaseSharedSwift (10.13.0)
+  - FirebaseSharedSwift (10.14.0)
   - GeoFire/Utils (5.0.0)
   - GoogleUtilities/AppDelegateSwizzler (7.11.5):
     - GoogleUtilities/Environment
@@ -795,7 +795,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FirebaseFirestoreSwift:
-    :commit: 4b9cbf61554925d1276e265bfb08738981c901ce
+    :commit: 51d9e393bfdcd7071665732db68b5e43feb3944a
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
@@ -809,7 +809,7 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: b342e37cd4f5b4454ec34308f073420e7920858e
   FirebaseFirestore: 97102936578f2e07fa11455fef9ae979084f4673
   FirebaseFirestoreSwift: 4bfcdffcc8c5a91962bed488187a8bc69910438e
-  FirebaseSharedSwift: 5c4906ecf0441ed23efff399454dc791eff8ad54
+  FirebaseSharedSwift: 0eec812f08b6ec9e03196fc27635739781513028
   GeoFire: a579ffdcdcf6fe74ef9efd7f887d4082598d6d1f
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   "gRPC-C++": 0968bace703459fd3e5dcb0b2bed4c573dbff046
