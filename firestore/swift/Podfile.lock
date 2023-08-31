@@ -798,7 +798,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FirebaseFirestoreSwift:
-    :commit: ab7228ef6bedd6437bbebf62fa55f98d59d2df72
+    :commit: 1dc90cdd619c5e8493df4a01138e2d87e61bc027
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
