@@ -1,14 +1,14 @@
 PODS:
-  - Firebase/AppCheck (10.14.0):
+  - Firebase/AppCheck (10.15.0):
     - Firebase/CoreOnly
-    - FirebaseAppCheck (~> 10.14.0)
-  - Firebase/CoreOnly (10.14.0):
-    - FirebaseCore (= 10.14.0)
-  - FirebaseAppCheck (10.14.0):
+    - FirebaseAppCheck (~> 10.15.0)
+  - Firebase/CoreOnly (10.15.0):
+    - FirebaseCore (= 10.15.0)
+  - FirebaseAppCheck (10.15.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - PromisesObjC (~> 2.1)
-  - FirebaseCore (10.14.0):
+  - FirebaseCore (10.15.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
@@ -34,9 +34,9 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: 6c1bf3f534bc422d52af2e41fe0d50bf08b6b773
-  FirebaseAppCheck: 476ec4e3e3e67dca98b0aca68c57d1822edcd8c8
-  FirebaseCore: 6fc17ac9f03509d51c131298aacb3ee5698b4f02
+  Firebase: 66043bd4579e5b73811f96829c694c7af8d67435
+  FirebaseAppCheck: 66eea1c882cddd1bce9d92a0a7efd596f7204782
+  FirebaseCore: 2cec518b43635f96afe7ac3a9c513e47558abd2e
   FirebaseCoreInternal: 2f4bee5ed00301b5e56da0849268797a2dd31fb4
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
