@@ -18,7 +18,6 @@ import UIKit
 
 import FirebaseCore
 import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 class ViewController: UIViewController {
 

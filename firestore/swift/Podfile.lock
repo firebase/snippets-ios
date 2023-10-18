@@ -654,8 +654,6 @@ PODS:
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreExtension (10.15.0):
-    - FirebaseCore (~> 10.0)
   - FirebaseCoreInternal (10.15.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
   - FirebaseFirestore (10.15.0):
@@ -671,12 +669,6 @@ PODS:
     - "gRPC-C++ (~> 1.50.1)"
     - leveldb-library (~> 1.22)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseFirestoreSwift (10.16.0):
-    - FirebaseCore (~> 10.0)
-    - FirebaseCoreExtension (~> 10.0)
-    - FirebaseFirestore (~> 10.0)
-    - FirebaseSharedSwift (~> 10.0)
-  - FirebaseSharedSwift (10.15.0)
   - GeoFire/Utils (5.0.0)
   - GoogleUtilities/AppDelegateSwizzler (7.11.5):
     - GoogleUtilities/Environment
@@ -767,7 +759,6 @@ PODS:
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
-  - FirebaseFirestoreSwift (from `https://github.com/firebase/firebase-ios-sdk.git`)
   - GeoFire/Utils
 
 SPEC REPOS:
@@ -778,10 +769,8 @@ SPEC REPOS:
     - FirebaseAppCheckInterop
     - FirebaseAuth
     - FirebaseCore
-    - FirebaseCoreExtension
     - FirebaseCoreInternal
     - FirebaseFirestore
-    - FirebaseSharedSwift
     - GeoFire
     - GoogleUtilities
     - "gRPC-C++"
@@ -792,15 +781,6 @@ SPEC REPOS:
     - PromisesObjC
     - RecaptchaInterop
 
-EXTERNAL SOURCES:
-  FirebaseFirestoreSwift:
-    :git: https://github.com/firebase/firebase-ios-sdk.git
-
-CHECKOUT OPTIONS:
-  FirebaseFirestoreSwift:
-    :commit: b0fdd7833f3fed873260d9a69e9365731b86f98e
-    :git: https://github.com/firebase/firebase-ios-sdk.git
-
 SPEC CHECKSUMS:
   abseil: 926fb7a82dc6d2b8e1f2ed7f3a718bce691d1e46
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
@@ -808,11 +788,8 @@ SPEC CHECKSUMS:
   FirebaseAppCheckInterop: a8c555b1c2db1d9445e6c3a08a848167ddb7eb51
   FirebaseAuth: a55ec5f7f8a5b1c2dd750235c1bb419bfb642445
   FirebaseCore: 2cec518b43635f96afe7ac3a9c513e47558abd2e
-  FirebaseCoreExtension: d3f1ea3725fb41f56e8fbfb29eeaff54e7ffb8f6
   FirebaseCoreInternal: 2f4bee5ed00301b5e56da0849268797a2dd31fb4
   FirebaseFirestore: b4c0eaaf24efda5732ec21d9e6c788d083118ca6
-  FirebaseFirestoreSwift: a7a0c64b8e16b14dfca3405e447c647182318709
-  FirebaseSharedSwift: 34b11d9e675e14ee55e160cb7645bba30a192d14
   GeoFire: a579ffdcdcf6fe74ef9efd7f887d4082598d6d1f
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   "gRPC-C++": 0968bace703459fd3e5dcb0b2bed4c573dbff046
@@ -823,6 +800,6 @@ SPEC CHECKSUMS:
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
 
-PODFILE CHECKSUM: 97272481fd29bdcf2f666d99fa188fa8f4e80c39
+PODFILE CHECKSUM: 22731d7869838987cae87634f5c8630ddc505b09
 
 COCOAPODS: 1.13.0
