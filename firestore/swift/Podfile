@@ -8,7 +8,6 @@ target 'firestore-smoketest' do
   # Pods for firestore-smoketest
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
-  pod 'FirebaseFirestoreSwift', :git => 'https://github.com/firebase/firebase-ios-sdk.git'
 
   # [START geofire_pod]
   pod 'GeoFire/Utils'
