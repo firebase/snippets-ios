@@ -15,6 +15,7 @@
 //
 
 #import "AppDelegate.h"
+@import FirebaseCore;
 @import FirebaseAppCheck;
 
 @interface AppDelegate ()
