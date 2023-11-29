@@ -16,21 +16,12 @@
 
 import UIKit
 
+import FirebaseAuth
 import FirebaseDatabase
 
 class ViewController: UIViewController {
 
   var ref: DatabaseReference!
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-  }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
 
   func persistenceReference() {
     // [START keep_synchronized]
@@ -103,13 +94,13 @@ class ViewController: UIViewController {
     // [END clock_skew]
   }
 
-  func writeNewUser(_ user: Firebase.User, withUsername username: String) {
+  func writeNewUser(_ user: FirebaseAuth.User, withUsername username: String) {
     // [START rtdb_write_new_user]
     ref.child("users").child(user.uid).setValue(["username": username])
     // [END rtdb_write_new_user]
   }
 
-  func writeNewUserWithCompletion(_ user: Firebase.User, withUsername username: String) {
+  func writeNewUserWithCompletion(_ user: FirebaseAuth.User, withUsername username: String) {
     // [START rtdb_write_new_user_completion]
     ref.child("users").child(user.uid).setValue(["username": username]) {
       (error:Error?, ref:DatabaseReference) in
@@ -130,7 +121,7 @@ class ViewController: UIViewController {
         print(error!.localizedDescription)
         return;
       }
-      let userName = snapshot.value as? String ?? "Unknown";
+      let userName = snapshot?.value as? String ?? "Unknown";
     });
     // [END single_value_get_data]
   }
