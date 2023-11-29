@@ -14,36 +14,42 @@
 //  limitations under the License.
 //
 
+import FirebaseCore
 import FirebaseAppCheck
 
 // [START appcheck_custom_provider]
 class YourCustomAppCheckProvider: NSObject, AppCheckProvider {
-    var app: FirebaseApp
+  var app: FirebaseApp
 
-    init(withFirebaseApp app: FirebaseApp) {
-        self.app = app
-        super.init()
+  init(withFirebaseApp app: FirebaseApp) {
+    self.app = app
+    super.init()
+  }
+
+  func getToken() async throws -> AppCheckToken {
+    let getTokenTask = Task { () -> AppCheckToken in
+      // [START_EXCLUDE]
+      let expirationFromServer = 1000.0
+      let tokenFromServer = "token"
+      // [END_EXCLUDE]
+
+      // Create AppCheckToken object.
+      let exp = Date(timeIntervalSince1970: expirationFromServer)
+      let token = AppCheckToken(
+        token: tokenFromServer,
+        expirationDate: exp
+      )
+
+      if Date() > exp {
+        throw NSError(domain: "ExampleError", code: 1, userInfo: nil)
+      }
+
+      return token
     }
 
-    func getToken(completion handler: @escaping (AppCheckToken?, Error?) -> Void) {
-        DispatchQueue.main.async {
-            // Logic to exchange proof of authenticity for an App Check token.
-            // [START_EXCLUDE]
-            let expirationFromServer = 1000.0
-            let tokenFromServer = "token"
-            // [END_EXCLUDE]
+    return try await getTokenTask.value
+  }
 
-            // Create AppCheckToken object.
-            let exp = Date(timeIntervalSince1970: expirationFromServer)
-            let token = AppCheckToken(
-                token: tokenFromServer,
-                expirationDate: exp
-            )
-
-            // Pass the token or error to the completion handler.
-            handler(token, nil)
-        }
-    }
 }
 // [END appcheck_custom_provider]
 
