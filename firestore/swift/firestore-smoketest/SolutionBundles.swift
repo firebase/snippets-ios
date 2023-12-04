@@ -26,93 +26,42 @@ class SolutionBundles {
                    userInfo: [NSLocalizedFailureReasonErrorKey: reason])
   }
 
-  // Loads a remote bundle from the provided url.
   func fetchRemoteBundle(for firestore: Firestore,
-                         from url: URL,
-                         completion: @escaping ((Result<LoadBundleTaskProgress, Error>) -> ())) {
+                         from url: URL) async throws -> LoadBundleTaskProgress {
     guard let inputStream = InputStream(url: url) else {
       let error = self.bundleLoadError(reason: "Unable to create stream from the given url: \(url)")
-      completion(.failure(error))
-      return
+      throw error
     }
 
-    // The return value of this function is ignored, but can be used for more granular
-    // bundle load observation.
-    let _ = firestore.loadBundle(inputStream) { (progress, error) in
-      switch (progress, error) {
-
-      case (.some(let value), .none):
-        if value.state == .success {
-          completion(.success(value))
-        } else {
-          let concreteError = self.bundleLoadError(
-            reason: "Expected bundle load to be completed, but got \(value.state) instead"
-          )
-          completion(.failure(concreteError))
-        }
-
-      case (.none, .some(let concreteError)):
-        completion(.failure(concreteError))
-
-      case (.none, .none):
-        let concreteError = self.bundleLoadError(reason: "Operation failed, but returned no error.")
-        completion(.failure(concreteError))
-
-      case (.some(let value), .some(let concreteError)):
-        let concreteError = self.bundleLoadError(
-          reason: "Operation returned error \(concreteError) with nonnull progress: \(value)"
-        )
-        completion(.failure(concreteError))
-      }
-    }
+    return try await firestore.loadBundle(inputStream)
   }
 
   // Fetches a specific named query from the provided bundle.
   func loadQuery(named queryName: String,
                  fromRemoteBundle bundleURL: URL,
-                 with store: Firestore,
-                 completion: @escaping ((Result<Query, Error>) -> ())) {
-    fetchRemoteBundle(for: store,
-                      from: bundleURL) { (result) in
-      switch result {
-      case .success:
-        store.getQuery(named: queryName) { query in
-          if let query = query {
-            completion(.success(query))
-          } else {
-            completion(
-              .failure(
-                self.bundleLoadError(reason: "Could not find query named \(queryName)")
-              )
-            )
-          }
-        }
-
-      case .failure(let error):
-        completion(.failure(error))
-      }
+                 with store: Firestore) async throws -> Query {
+    let loadResult = try await fetchRemoteBundle(for: store, from: bundleURL)
+    if let query = await store.getQuery(named: queryName) {
+      return query
+    } else {
+      throw bundleLoadError(reason: "Could not find query named \(queryName)")
     }
   }
 
   // Load a query and fetch its results from a bundle.
-  func runStoriesQuery() {
+  func runStoriesQuery() async {
     let queryName = "latest-stories-query"
     let firestore = Firestore.firestore()
     let remoteBundle = URL(string: "https://example.com/createBundle")!
-    loadQuery(named: queryName,
-              fromRemoteBundle: remoteBundle,
-              with: firestore) { (result) in
-      switch result {
-      case .failure(let error):
-        print(error)
 
-      case .success(let query):
-        query.getDocuments { (snapshot, error) in
-
-          // handle query results
-
-        }
-      }
+    do {
+      let query = try await loadQuery(named: queryName,
+                                      fromRemoteBundle: remoteBundle,
+                                      with: firestore)
+      let snapshot = try await query.getDocuments()
+      // handle query results
+    } catch {
+      print(error)
     }
   }
   // [END fs_bundle_load]
@@ -132,12 +81,17 @@ class SolutionBundles {
   // [END fs_simple_bundle_load]
 
   // [START fs_named_query]
-  func runNamedQuery() {
+  func runNamedQuery() async {
     let firestore = Firestore.firestore()
-    firestore.getQuery(named: "coll-query") { query in
-      query?.getDocuments { (snapshot, error) in
-        // ...
+    let queryName = "coll-query"
+    do {
+      guard let query = await firestore.getQuery(named: queryName) else {
+        throw bundleLoadError(reason: "Could not find query named \(queryName)")
       }
+      let snapshot = try await query.getDocuments()
+      // ...
+    } catch {
+      print(error)
     }
   }
   // [END fs_named_query]
