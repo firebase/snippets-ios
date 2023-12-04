@@ -147,54 +147,48 @@ class ViewController: UIViewController {
   // ======== https://firebase.google.com/preview/firestore/client/quickstart ==============
   // =======================================================================================
 
-  private func addAdaLovelace() {
+  private func addAdaLovelace() async {
     // [START add_ada_lovelace]
     // Add a new document with a generated ID
-    var ref: DocumentReference? = nil
-    ref = db.collection("users").addDocument(data: [
-      "first": "Ada",
-      "last": "Lovelace",
-      "born": 1815
-    ]) { err in
-      if let err = err {
-        print("Error adding document: \(err)")
-      } else {
-        print("Document added with ID: \(ref!.documentID)")
-      }
+    do {
+      let ref = try await db.collection("users").addDocument(data: [
+        "first": "Ada",
+        "last": "Lovelace",
+        "born": 1815
+      ])
+      print("Document added with ID: \(ref.documentID)")
+    } catch {
+      print("Error adding document: \(error)")
     }
     // [END add_ada_lovelace]
   }
 
-  private func addAlanTuring() {
-    var ref: DocumentReference? = nil
-
+  private func addAlanTuring() async {
     // [START add_alan_turing]
     // Add a second document with a generated ID.
-    ref = db.collection("users").addDocument(data: [
-      "first": "Alan",
-      "middle": "Mathison",
-      "last": "Turing",
-      "born": 1912
-    ]) { err in
-      if let err = err {
-        print("Error adding document: \(err)")
-      } else {
-        print("Document added with ID: \(ref!.documentID)")
-      }
+    do {
+      let ref = try await db.collection("users").addDocument(data: [
+        "first": "Alan",
+        "middle": "Mathison",
+        "last": "Turing",
+        "born": 1912
+      ])
+      print("Document added with ID: \(ref.documentID)")
+    } catch {
+      print("Error adding document: \(error)")
     }
     // [END add_alan_turing]
   }
 
-  private func getCollection() {
+  private func getCollection() async {
     // [START get_collection]
-    db.collection("users").getDocuments() { (querySnapshot, err) in
-      if let err = err {
-        print("Error getting documents: \(err)")
-      } else {
-        for document in querySnapshot!.documents {
-          print("\(document.documentID) => \(document.data())")
-        }
+    do {
+      let snapshot = try await db.collection("users").getDocuments()
+      for document in snapshot.documents {
+        print("\(document.documentID) => \(document.data())")
       }
+    } catch {
+      print("Error getting documents: \(error)")
     }
     // [END get_collection]
   }
@@ -250,19 +244,18 @@ class ViewController: UIViewController {
   // ========= https://firebase.google.com/preview/firestore/client/save-data ==============
   // =======================================================================================
 
-  private func setDocument() {
+  private func setDocument() async {
     // [START set_document]
     // Add a new document in collection "cities"
-    db.collection("cities").document("LA").setData([
-      "name": "Los Angeles",
-      "state": "CA",
-      "country": "USA"
-    ]) { err in
-      if let err = err {
-        print("Error writing document: \(err)")
-      } else {
-        print("Document successfully written!")
-      }
+    do {
+      try await db.collection("cities").document("LA").setData([
+        "name": "Los Angeles",
+        "state": "CA",
+        "country": "USA"
+      ])
+      print("Document successfully written!")
+    } catch {
+      print("Error writing document: \(error)")
     }
     // [END set_document]
   }
@@ -283,7 +276,7 @@ class ViewController: UIViewController {
     // [END set_document_codable]
   }
 
-  private func dataTypes() {
+  private func dataTypes() async {
     // [START data_types]
     let docData: [String: Any] = [
       "stringExample": "Hello world!",
@@ -299,12 +292,11 @@ class ViewController: UIViewController {
         ]
       ]
     ]
-    db.collection("data").document("one").setData(docData) { err in
-      if let err = err {
-        print("Error writing document: \(err)")
-      } else {
-        print("Document successfully written!")
-      }
+    do {
+      try await db.collection("data").document("one").setData(docData)
+      print("Document successfully written!")
+    } catch {
+      print("Error writing document: \(error)")
     }
     // [END data_types]
   }
@@ -317,19 +309,17 @@ class ViewController: UIViewController {
     // [END set_data]
   }
 
-  private func addDocument() {
+  private func addDocument() async {
     // [START add_document]
     // Add a new document with a generated id.
-    var ref: DocumentReference? = nil
-    ref = db.collection("cities").addDocument(data: [
-      "name": "Tokyo",
-      "country": "Japan"
-    ]) { err in
-      if let err = err {
-        print("Error adding document: \(err)")
-      } else {
-        print("Document added with ID: \(ref!.documentID)")
-      }
+    do {
+      let ref = try await db.collection("cities").addDocument(data: [
+        "name": "Tokyo",
+        "country": "Japan"
+      ])
+      print("Document added with ID: \(ref.documentID)")
+    } catch {
+      print("Error adding document: \(error)")
     }
     // [END add_document]
   }
@@ -347,19 +337,18 @@ class ViewController: UIViewController {
     // [END new_document]
   }
 
-  private func updateDocument() {
+  private func updateDocument() async {
     // [START update_document]
     let washingtonRef = db.collection("cities").document("DC")
 
     // Set the "capital" field of the city 'DC'
-    washingtonRef.updateData([
-      "capital": true
-    ]) { err in
-      if let err = err {
-        print("Error updating document: \(err)")
-      } else {
-        print("Document successfully updated")
-      }
+    do {
+      try await washingtonRef.updateData([
+        "capital": true
+      ])
+      print("Document successfully updated")
+    } catch {
+      print("Error updating document: \(error)")
     }
     // [END update_document]
   }
@@ -399,38 +388,36 @@ class ViewController: UIViewController {
     // [END create_if_missing]
   }
 
-  private func updateDocumentNested() {
+  private func updateDocumentNested() async {
     // [START update_document_nested]
     // Create an initial document to update.
     let frankDocRef = db.collection("users").document("frank")
-    frankDocRef.setData([
-      "name": "Frank",
-      "favorites": [ "food": "Pizza", "color": "Blue", "subject": "recess" ],
-      "age": 12
-    ])
+    do {
+      try await frankDocRef.setData([
+        "name": "Frank",
+        "favorites": [ "food": "Pizza", "color": "Blue", "subject": "recess" ],
+        "age": 12
+      ])
 
-    // To update age and favorite color:
-    db.collection("users").document("frank").updateData([
-      "age": 13,
-      "favorites.color": "Red"
-    ]) { err in
-      if let err = err {
-        print("Error updating document: \(err)")
-      } else {
-        print("Document successfully updated")
-      }
+      // To update age and favorite color:
+      try await frankDocRef.updateData([
+        "age": 13,
+        "favorites.color": "Red"
+      ])
+      print("Document successfully updated")
+    } catch {
+      print("Error updating document: \(error)")
     }
     // [END update_document_nested]
   }
 
-  private func deleteDocument() {
+  private func deleteDocument() async {
     // [START delete_document]
-    db.collection("cities").document("DC").delete() { err in
-      if let err = err {
-        print("Error removing document: \(err)")
-      } else {
-        print("Document successfully removed!")
-      }
+    do {
+      try await db.collection("cities").document("DC").delete()
+      print("Document successfully removed!")
+    } catch {
+      print("Error removing document: \(error)")
     }
     // [END delete_document]
   }
