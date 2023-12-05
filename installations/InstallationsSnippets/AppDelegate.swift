@@ -48,45 +48,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             queue: nil
     ) { (notification) in
       // Fetch new Installation ID
-      self.fetchInstallationToken()
+      Task {
+        await self.fetchInstallationToken()
+      }
     }
     // [END handle_installation_id_change]
   }
 
-  func fetchInstallationID() {
+  func fetchInstallationID() async {
     // [START fetch_installation_id]
-    Installations.installations().installationID { (id, error) in
-      if let error = error {
-        print("Error fetching id: \(error)")
-        return
-      }
-      guard let id = id else { return }
+    do {
+      let id = try await Installations.installations().installationID()
       print("Installation ID: \(id)")
+    } catch {
+      print("Error fetching id: \(error)")
     }
     // [END fetch_installation_id]
   }
 
-  func fetchInstallationToken() {
+  func fetchInstallationToken() async {
     // [START fetch_installation_token]
-    Installations.installations().authTokenForcingRefresh(true, completion: { (result, error) in
-      if let error = error {
-        print("Error fetching token: \(error)")
-        return
-      }
-      guard let result = result else { return }
+    do {
+      let result = try await Installations.installations()
+        .authTokenForcingRefresh(true)
       print("Installation auth token: \(result.authToken)")
-    })
+    } catch {
+      print("Error fetching token: \(error)")
+    }
     // [END fetch_installation_token]
   }
 
-  func deleteInstallation() {
+  func deleteInstallation() async {
     // [START delete_installation]
-    Installations.installations().delete { error in
-      if let error = error {
-        print("Error deleting installation: \(error)")
-        return
-      }
+    do {
+      try await Installations.installations().delete()
       print("Installation deleted");
+    } catch {
+      print("Error deleting installation: \(error)")
     }
     // [END delete_installation]
   }
