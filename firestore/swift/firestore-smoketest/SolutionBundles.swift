@@ -40,7 +40,7 @@ class SolutionBundles {
   func loadQuery(named queryName: String,
                  fromRemoteBundle bundleURL: URL,
                  with store: Firestore) async throws -> Query {
-    let loadResult = try await fetchRemoteBundle(for: store, from: bundleURL)
+    let _ = try await fetchRemoteBundle(for: store, from: bundleURL)
     if let query = await store.getQuery(named: queryName) {
       return query
     } else {
@@ -59,6 +59,7 @@ class SolutionBundles {
                                       fromRemoteBundle: remoteBundle,
                                       with: firestore)
       let snapshot = try await query.getDocuments()
+      print(snapshot)
       // handle query results
     } catch {
       print(error)
@@ -89,6 +90,7 @@ class SolutionBundles {
         throw bundleLoadError(reason: "Could not find query named \(queryName)")
       }
       let snapshot = try await query.getDocuments()
+      print(snapshot)
       // ...
     } catch {
       print(error)
