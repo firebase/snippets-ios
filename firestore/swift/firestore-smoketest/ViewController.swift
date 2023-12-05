@@ -36,47 +36,53 @@ class ViewController: UIViewController {
 
   @IBAction func didTouchSmokeTestButton(_ sender: AnyObject) {
     // Quickstart
-    addAdaLovelace()
-    addAlanTuring()
-    getCollection()
-    listenForUsers()
+    Task {
+      await addAdaLovelace()
+      await addAlanTuring()
+      await getCollection()
+      listenForUsers()
+    }
 
     // Structure Data
     demonstrateReferences()
 
     // Save Data
-    setDocument()
-    dataTypes()
-    setData()
-    addDocument()
-    newDocument()
-    updateDocument()
-    createIfMissing()
-    updateDocumentNested()
-    deleteDocument()
-    deleteCollection()
-    deleteField()
-    serverTimestamp()
-    serverTimestampOptions()
-    simpleTransaction()
-    transaction()
-    writeBatch()
+    Task {
+      await setDocument()
+      await dataTypes()
+      setData()
+      await addDocument()
+      newDocument()
+      await updateDocument()
+      createIfMissing()
+      await updateDocumentNested()
+      await deleteDocument()
+      deleteCollection()
+      await deleteField()
+      await serverTimestamp()
+      serverTimestampOptions()
+      await simpleTransaction()
+      await transaction()
+      await writeBatch()
+    }
 
     // Retrieve Data
-    exampleData()
-    exampleDataCollectionGroup()
-    getDocument()
-    customClassGetDocument()
-    listenDocument()
-    listenDocumentLocal()
-    listenWithMetadata()
-    getMultiple()
-    getMultipleAll()
-    listenMultiple()
-    listenDiffs()
-    listenState()
-    detachListener()
-    handleListenErrors()
+    Task {
+      exampleData()
+      exampleDataCollectionGroup()
+      await getDocument()
+      await customClassGetDocument()
+      listenDocument()
+      listenDocumentLocal()
+      listenWithMetadata()
+      await getMultiple()
+      await getMultipleAll()
+      listenMultiple()
+      listenDiffs()
+      listenState()
+      detachListener()
+      handleListenErrors()
+    }
 
     // Query Data
     simpleQueries()
@@ -456,30 +462,29 @@ class ViewController: UIViewController {
     // [END delete_collection]
   }
 
-  private func deleteField() {
+  private func deleteField() async {
     // [START delete_field]
-    db.collection("cities").document("BJ").updateData([
-      "capital": FieldValue.delete(),
-    ]) { err in
-      if let err = err {
-        print("Error updating document: \(err)")
-      } else {
-        print("Document successfully updated")
-      }
+    do {
+
+      try await db.collection("cities").document("BJ").updateData([
+        "capital": FieldValue.delete(),
+      ])
+      print("Document successfully updated")
+    } catch {
+      print("Error updating document: \(error)")
     }
     // [END delete_field]
   }
 
-  private func serverTimestamp() {
+  private func serverTimestamp() async {
     // [START server_timestamp]
-    db.collection("objects").document("some-id").updateData([
-      "lastUpdated": FieldValue.serverTimestamp(),
-    ]) { err in
-      if let err = err {
-        print("Error updating document: \(err)")
-      } else {
-        print("Document successfully updated")
-      }
+    do {
+      try await db.collection("objects").document("some-id").updateData([
+        "lastUpdated": FieldValue.serverTimestamp(),
+      ])
+      print("Document successfully updated")
+    } catch {
+      print("Error updating document: \(error)")
     }
     // [END server_timestamp]
   }
@@ -500,96 +505,94 @@ class ViewController: UIViewController {
     // [END server_timestamp_options]
   }
 
-  private func simpleTransaction() {
+  private func simpleTransaction() async {
     // [START simple_transaction]
     let sfReference = db.collection("cities").document("SF")
 
-    db.runTransaction({ (transaction, errorPointer) -> Any? in
-      let sfDocument: DocumentSnapshot
-      do {
-        try sfDocument = transaction.getDocument(sfReference)
-      } catch let fetchError as NSError {
-        errorPointer?.pointee = fetchError
-        return nil
-      }
+    do {
+      let _ = try await db.runTransaction({ (transaction, errorPointer) -> Any? in
+        let sfDocument: DocumentSnapshot
+        do {
+          try sfDocument = transaction.getDocument(sfReference)
+        } catch let fetchError as NSError {
+          errorPointer?.pointee = fetchError
+          return nil
+        }
 
-      guard let oldPopulation = sfDocument.data()?["population"] as? Int else {
-        let error = NSError(
-          domain: "AppErrorDomain",
-          code: -1,
-          userInfo: [
-            NSLocalizedDescriptionKey: "Unable to retrieve population from snapshot \(sfDocument)"
-          ]
-        )
-        errorPointer?.pointee = error
-        return nil
-      }
+        guard let oldPopulation = sfDocument.data()?["population"] as? Int else {
+          let error = NSError(
+            domain: "AppErrorDomain",
+            code: -1,
+            userInfo: [
+              NSLocalizedDescriptionKey: "Unable to retrieve population from snapshot \(sfDocument)"
+            ]
+          )
+          errorPointer?.pointee = error
+          return nil
+        }
 
-      // Note: this could be done without a transaction
-      //       by updating the population using FieldValue.increment()
-      transaction.updateData(["population": oldPopulation + 1], forDocument: sfReference)
-      return nil
-    }) { (object, error) in
-      if let error = error {
-        print("Transaction failed: \(error)")
-      } else {
-        print("Transaction successfully committed!")
-      }
+        // Note: this could be done without a transaction
+        //       by updating the population using FieldValue.increment()
+        transaction.updateData(["population": oldPopulation + 1], forDocument: sfReference)
+        return nil
+      })
+      print("Transaction successfully committed!")
+    } catch {
+      print("Transaction failed: \(error)")
     }
     // [END simple_transaction]
   }
 
-  private func transaction() {
+  private func transaction() async {
     // [START transaction]
     let sfReference = db.collection("cities").document("SF")
 
-    db.runTransaction({ (transaction, errorPointer) -> Any? in
-      let sfDocument: DocumentSnapshot
-      do {
-        try sfDocument = transaction.getDocument(sfReference)
-      } catch let fetchError as NSError {
-        errorPointer?.pointee = fetchError
-        return nil
-      }
+    do {
+      let object = try await db.runTransaction({ (transaction, errorPointer) -> Any? in
+        let sfDocument: DocumentSnapshot
+        do {
+          try sfDocument = transaction.getDocument(sfReference)
+        } catch let fetchError as NSError {
+          errorPointer?.pointee = fetchError
+          return nil
+        }
 
-      guard let oldPopulation = sfDocument.data()?["population"] as? Int else {
-        let error = NSError(
-          domain: "AppErrorDomain",
-          code: -1,
-          userInfo: [
-            NSLocalizedDescriptionKey: "Unable to retrieve population from snapshot \(sfDocument)"
-          ]
-        )
-        errorPointer?.pointee = error
-        return nil
-      }
+        guard let oldPopulation = sfDocument.data()?["population"] as? Int else {
+          let error = NSError(
+            domain: "AppErrorDomain",
+            code: -1,
+            userInfo: [
+              NSLocalizedDescriptionKey: "Unable to retrieve population from snapshot \(sfDocument)"
+            ]
+          )
+          errorPointer?.pointee = error
+          return nil
+        }
 
-      // Note: this could be done without a transaction
-      //       by updating the population using FieldValue.increment()
-      let newPopulation = oldPopulation + 1
-      guard newPopulation <= 1000000 else {
-        let error = NSError(
-          domain: "AppErrorDomain",
-          code: -2,
-          userInfo: [NSLocalizedDescriptionKey: "Population \(newPopulation) too big"]
-        )
-        errorPointer?.pointee = error
-        return nil
-      }
+        // Note: this could be done without a transaction
+        //       by updating the population using FieldValue.increment()
+        let newPopulation = oldPopulation + 1
+        guard newPopulation <= 1000000 else {
+          let error = NSError(
+            domain: "AppErrorDomain",
+            code: -2,
+            userInfo: [NSLocalizedDescriptionKey: "Population \(newPopulation) too big"]
+          )
+          errorPointer?.pointee = error
+          return nil
+        }
 
-      transaction.updateData(["population": newPopulation], forDocument: sfReference)
-      return newPopulation
-    }) { (object, error) in
-      if let error = error {
-        print("Error updating population: \(error)")
-      } else {
-        print("Population increased to \(object!)")
-      }
+        transaction.updateData(["population": newPopulation], forDocument: sfReference)
+        return newPopulation
+      })
+      print("Population increased to \(object!)")
+    } catch {
+      print("Error updating population: \(error)")
     }
     // [END transaction]
   }
 
-  private func writeBatch() {
+  private func writeBatch() async {
     // [START write_batch]
     // Get new write batch
     let batch = db.batch()
@@ -607,12 +610,11 @@ class ViewController: UIViewController {
     batch.deleteDocument(laRef)
 
     // Commit the batch
-    batch.commit() { err in
-      if let err = err {
-        print("Error writing batch \(err)")
-      } else {
-        print("Batch write succeeded.")
-      }
+    do {
+      try await batch.commit()
+      print("Batch write succeeded.")
+    } catch {
+      print("Error writing batch: \(error)")
     }
     // [END write_batch]
   }
@@ -701,57 +703,53 @@ class ViewController: UIViewController {
     // [END fs_collection_group_query_data_setup]
   }
 
-  private func getDocument() {
+  private func getDocument() async {
     // [START get_document]
     let docRef = db.collection("cities").document("SF")
 
-    docRef.getDocument { (document, error) in
-      if let document = document, document.exists {
+    do {
+      let document = try await docRef.getDocument()
+      if document.exists {
         let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
         print("Document data: \(dataDescription)")
       } else {
         print("Document does not exist")
       }
+    } catch {
+      print("Error getting document: \(error)")
     }
     // [END get_document]
   }
 
-  private func getDocumentWithOptions() {
+  private func getDocumentWithOptions() async {
     // [START get_document_options]
     let docRef = db.collection("cities").document("SF")
 
-    // Force the SDK to fetch the document from the cache. Could also specify
-    // FirestoreSource.server or FirestoreSource.default.
-    docRef.getDocument(source: .cache) { (document, error) in
-      if let document = document {
+    do {
+      // Force the SDK to fetch the document from the cache. Could also specify
+      // FirestoreSource.server or FirestoreSource.default.
+      let document = try await docRef.getDocument(source: .cache)
+      if document.exists {
         let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
         print("Cached document data: \(dataDescription)")
       } else {
         print("Document does not exist in cache")
       }
+    } catch {
+      print("Error getting document: \(error)")
     }
     // [END get_document_options]
   }
 
-  private func customClassGetDocument() {
+  private func customClassGetDocument() async {
     // [START custom_type]
     let docRef = db.collection("cities").document("BJ")
 
-    docRef.getDocument(as: City.self) { result in
-      // The Result type encapsulates deserialization errors or
-      // successful deserialization, and can be handled as follows:
-      //
-      //      Result
-      //        /\
-      //   Error  City
-      switch result {
-      case .success(let city):
-        // A `City` value was successfully initialized from the DocumentSnapshot.
-        print("City: \(city)")
-      case .failure(let error):
-        // A `City` value could not be initialized from the DocumentSnapshot.
-        print("Error decoding city: \(error)")
-      }
+    do {
+      let city = try await docRef.getDocument(as: City.self)
+      print("City: \(city)")
+    } catch {
+      print("Error decoding city: \(error)")
     }
     // [END custom_type]
   }
@@ -797,45 +795,42 @@ class ViewController: UIViewController {
     // [END listen_with_metadata]
   }
 
-  private func getMultiple() {
+  private func getMultiple() async {
     // [START get_multiple]
-    db.collection("cities").whereField("capital", isEqualTo: true)
-      .getDocuments() { (querySnapshot, err) in
-        if let err = err {
-          print("Error getting documents: \(err)")
-        } else {
-          for document in querySnapshot!.documents {
-            print("\(document.documentID) => \(document.data())")
-          }
-        }
+    do {
+      let querySnapshot = try await db.collection("cities").whereField("capital", isEqualTo: true)
+        .getDocuments()
+      for document in querySnapshot.documents {
+        print("\(document.documentID) => \(document.data())")
       }
+    } catch {
+      print("Error getting documents: \(error)")
+    }
     // [END get_multiple]
   }
 
-  private func getMultipleAll() {
+  private func getMultipleAll() async {
     // [START get_multiple_all]
-    db.collection("cities").getDocuments() { (querySnapshot, err) in
-      if let err = err {
-        print("Error getting documents: \(err)")
-      } else {
-        for document in querySnapshot!.documents {
-          print("\(document.documentID) => \(document.data())")
-        }
+    do {
+      let querySnapshot = try await db.collection("cities").getDocuments()
+      for document in querySnapshot.documents {
+        print("\(document.documentID) => \(document.data())")
       }
+    } catch {
+      print("Error getting documents: \(error)")
     }
     // [END get_multiple_all]
   }
 
-  private func getMultipleAllSubcollection() {
+  private func getMultipleAllSubcollection() async {
     // [START get_multiple_all_subcollection]
-    db.collection("cities/SF/landmarks").getDocuments() { (querySnapshot, err) in
-      if let err = err {
-        print("Error getting documents: \(err)")
-      } else {
-        for document in querySnapshot!.documents {
-          print("\(document.documentID) => \(document.data())")
-        }
+    do {
+      let querySnapshot = try await db.collection("cities/SF/landmarks").getDocuments()
+      for document in querySnapshot.documents {
+        print("\(document.documentID) => \(document.data())")
       }
+    } catch {
+      print("Error getting documents: \(error)")
     }
     // [END get_multiple_all_subcollection]
   }
@@ -848,7 +843,7 @@ class ViewController: UIViewController {
           print("Error fetching documents: \(error!)")
           return
         }
-        let cities = documents.map { $0["name"]! }
+        let cities = documents.compactMap { $0["name"] }
         print("Current cities in CA: \(cities)")
       }
     // [END listen_multiple]
@@ -1255,7 +1250,7 @@ class ViewController: UIViewController {
     // [START fs_emulator_connect]
     let settings = Firestore.firestore().settings
     settings.host = "127.0.0.1:8080"
-    settings.isPersistenceEnabled = false
+    settings.cacheSettings = MemoryCacheSettings()
     settings.isSSLEnabled = false
     Firestore.firestore().settings = settings
     // [END fs_emulator_connect]
