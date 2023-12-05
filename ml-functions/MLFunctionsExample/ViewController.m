@@ -85,10 +85,10 @@
                             callWithObject:requestData
                                 completion:^(FIRHTTPSCallableResult * _Nullable result, NSError * _Nullable error) {
           if (error) {
-            if (error.domain == FIRFunctionsErrorDomain) {
+            if ([error.domain isEqualToString:@"com.firebase.functions"]) {
               FIRFunctionsErrorCode code = error.code;
               NSString *message = error.localizedDescription;
-              NSObject *details = error.userInfo[FIRFunctionsErrorDetailsKey];
+              NSObject *details = error.userInfo[@"details"];
             }
             // ...
           }
