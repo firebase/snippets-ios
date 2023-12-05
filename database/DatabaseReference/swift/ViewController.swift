@@ -100,29 +100,26 @@ class ViewController: UIViewController {
     // [END rtdb_write_new_user]
   }
 
-  func writeNewUserWithCompletion(_ user: FirebaseAuth.User, withUsername username: String) {
+  func writeNewUserWithCompletion(_ user: FirebaseAuth.User, withUsername username: String) async {
     // [START rtdb_write_new_user_completion]
-    ref.child("users").child(user.uid).setValue(["username": username]) {
-      (error:Error?, ref:DatabaseReference) in
-      if let error = error {
-        print("Data could not be saved: \(error).")
-      } else {
-        print("Data saved successfully!")
-      }
+    do {
+      try await ref.child("users").child(user.uid).setValue(["username": username])
+      print("Data saved successfully!")
+    } catch {
+      print("Data could not be saved: \(error).")
     }
     // [END rtdb_write_new_user_completion]
   }
 
-  func singleUseFetchData(uid: String) {
-    let ref = Database.database().reference();
+  func singleUseFetchData(uid: String) async {
+    let ref = Database.database().reference()
     // [START single_value_get_data]
-    ref.child("users/\(uid)/username").getData(completion:  { error, snapshot in
-      guard error == nil else {
-        print(error!.localizedDescription)
-        return;
-      }
-      let userName = snapshot?.value as? String ?? "Unknown";
-    });
+    do {
+      let snapshot = try await ref.child("users/\(uid)/username").getData()
+      let userName = snapshot.value as? String ?? "Unknown"
+    } catch {
+      print(error)
+    }
     // [END single_value_get_data]
   }
 
@@ -134,9 +131,9 @@ class ViewController: UIViewController {
   }
 
   func flushRealtimeDatabase() { 
-        // [START rtdb_emulator_flush]
+    // [START rtdb_emulator_flush]
 	// With a DatabaseReference, write nil to clear the database.
-	Database.database().reference().setValue(nil);
+	Database.database().reference().setValue(nil)
 	// [END rtdb_emulator_flush]  
   }
 
@@ -148,7 +145,7 @@ class ViewController: UIViewController {
       "user-posts/\(postID)/stars/\(userID)": true,
       "user-posts/\(postID)/starCount": ServerValue.increment(1)
     ] as [String : Any]
-    Database.database().reference().updateChildValues(updates);
+    Database.database().reference().updateChildValues(updates)
     // [END rtdb_post_stars_increment]
   }
 
@@ -167,7 +164,7 @@ func combinedExample() {
 
   connectedRef.observe(.value, with: { snapshot in
     // only handle connection established (or I've reconnected after a loss of connection)
-    guard let connected = snapshot.value as? Bool, connected else { return }
+    guard snapshot.value as? Bool ?? false else { return }
 
     // add this device to my connections list
     let con = myConnectionsRef.childByAutoId()
