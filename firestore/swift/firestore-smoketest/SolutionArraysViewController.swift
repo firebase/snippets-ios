@@ -31,9 +31,11 @@ class SolutionArraysViewController: UIViewController {
   func queryInCategory() async {
     // [START query_in_category]
     do {
-      let snapshot = try await db.collection("posts")
+      let querySnapshot = try await db.collection("posts")
         .whereField("categories.cats", isEqualTo: true)
         .getDocuments()
+      // Do something with the snapshot
+      print(querySnapshot)
     } catch {
       print("Error: \(error)")
     }
@@ -77,11 +79,6 @@ class SolutionArraysViewController: UIViewController {
     let title: String
     let categories: [String: Bool]
 
-    init(title: String, categories: [String: Bool]) {
-      self.title = title
-      self.categories = categories
-    }
-
   }
 
   let post = PostDict(title: "My great post", categories: [
@@ -96,11 +93,6 @@ class SolutionArraysViewController: UIViewController {
 
     let title: String
     let categories: [String: UInt64]
-
-    init(title: String, categories: [String: UInt64]) {
-      self.title = title
-      self.categories = categories
-    }
 
   }
 
