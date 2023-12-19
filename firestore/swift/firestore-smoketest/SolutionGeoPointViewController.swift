@@ -72,28 +72,41 @@ class SolutionGeoPointController: UIViewController {
         .end(at: [bound.endValue])
     }
 
-    var matchingDocs = [QueryDocumentSnapshot]()
+    @Sendable func fetchMatchingDocs(from query: Query,
+                           center: CLLocationCoordinate2D,
+                           radiusInMeters: Double) async throws -> [QueryDocumentSnapshot] {
+      let snapshot = try await query.getDocuments()
+      // Collect all the query results together into a single list
+      return snapshot.documents.filter { document in
+        let lat = document.data()["lat"] as? Double ?? 0
+        let lng = document.data()["lng"] as? Double ?? 0
+        let coordinates = CLLocation(latitude: lat, longitude: lng)
+        let centerPoint = CLLocation(latitude: center.latitude, longitude: center.longitude)
+
+        // We have to filter out a few false positives due to GeoHash accuracy, but
+        // most will match
+        let distance = GFUtils.distance(from: centerPoint, to: coordinates)
+        return distance <= radiusInM
+      }
+    }
 
     // After all callbacks have executed, matchingDocs contains the result. Note that this code
     // executes all queries serially, which may not be optimal for performance.
     do {
-      for query in queries {
-        let snapshot = try await query.getDocuments()
-        // Collect all the query results together into a single list
-        for document in snapshot.documents {
-          let lat = document.data()["lat"] as? Double ?? 0
-          let lng = document.data()["lng"] as? Double ?? 0
-          let coordinates = CLLocation(latitude: lat, longitude: lng)
-          let centerPoint = CLLocation(latitude: center.latitude, longitude: center.longitude)
-
-          // We have to filter out a few false positives due to GeoHash accuracy, but
-          // most will match
-          let distance = GFUtils.distance(from: centerPoint, to: coordinates)
-          if distance <= radiusInM {
-            matchingDocs.append(document)
+      let matchingDocs = try await withThrowingTaskGroup(of: [QueryDocumentSnapshot].self) { group -> [QueryDocumentSnapshot] in
+        for query in queries {
+          group.addTask {
+            try await fetchMatchingDocs(from: query, center: center, radiusInMeters: radiusInM)
           }
         }
+        var matchingDocs = [QueryDocumentSnapshot]()
+        for try await documents in group {
+          matchingDocs.append(contentsOf: documents)
+        }
+        return matchingDocs
       }
+
+      print("Docs matching geoquery: \(matchingDocs)")
     } catch {
       print("Unable to fetch snapshot data. \(error)")
     }

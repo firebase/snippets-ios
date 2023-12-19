@@ -30,12 +30,6 @@ class SolutionAggregationViewController: UIViewController {
     let avgRating: Float
     let numRatings: Int
 
-    init(name: String, avgRating: Float, numRatings: Int) {
-      self.name = name
-      self.avgRating = avgRating
-      self.numRatings = numRatings
-    }
-
   }
 
   let arinell = Restaurant(name: "Arinell Pizza", avgRating: 4.65, numRatings: 683)
