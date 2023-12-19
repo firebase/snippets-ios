@@ -29,7 +29,7 @@ class ViewController: UIViewController {
 
   func prepareData(uiImage: UIImage) {
     // [START base64encodeImage]
-    guard let imageData = uiImage.jpegData(compressionQuality: 1.0f) else { return }
+    guard let imageData = uiImage.jpegData(compressionQuality: 1.0) else { return }
     let base64encodedImage = imageData.base64EncodedString()
     // [END base64encodeImage]
   }
@@ -71,9 +71,12 @@ class ViewController: UIViewController {
     // [END prepareLandmarkData]
   }
 
-  func annotateImage(requestData: Dictionary) {
+  func annotateImage(requestData: Any) async {
     // [START function_annotateImage]
-    functions.httpsCallable("annotateImage").call(requestData) { (result, error) in
+    do {
+      let result = try await functions.httpsCallable("annotateImage").call(requestData)
+      print(result)
+    } catch {
       if let error = error as NSError? {
         if error.domain == FunctionsErrorDomain {
           let code = FunctionsErrorCode(rawValue: error.code)
@@ -82,7 +85,6 @@ class ViewController: UIViewController {
         }
         // ...
       }
-      // Function completed successfully
     }
     // [END function_annotateImage]
   }
@@ -101,46 +103,51 @@ class ViewController: UIViewController {
 
   func getRecognizedTextsFrom(_ result: HTTPSCallableResult?) {
     // [START function_getRecognizedTexts]
-    guard let annotation = (result?.data as? [String: Any])?["fullTextAnnotation"] as? [String: Any] else { return }
-    print("%nComplete annotation:")
-    let text = annotation["text"] as? String ?? ""
-    print("%n\(text)")
+    let annotation = result.flatMap { $0.data as? [String: Any] }
+        .flatMap { $0["fullTextAnnotation"] }
+        .flatMap { $0 as? [String: Any] }
+    guard let annotation = annotation else { return }
+
+    if let text = annotation["text"] as? String {
+      print("Complete annotation: \(text)")
+    }
     // [END function_getRecognizedTexts]
-     
+    
     // [START function_getRecognizedTexts_details]
     guard let pages = annotation["pages"] as? [[String: Any]] else { return }
     for page in pages {
-    var pageText = ""
-    guard let blocks = page["blocks"] as? [[String: Any]] else { continue }
-    for block in blocks {
+      var pageText = ""
+      guard let blocks = page["blocks"] as? [[String: Any]] else { continue }
+      for block in blocks {
         var blockText = ""
         guard let paragraphs = block["paragraphs"] as? [[String: Any]] else { continue }
         for paragraph in paragraphs {
-        var paragraphText = ""
-        guard let words = paragraph["words"] as? [[String: Any]] else { continue }
-        for word in words {
+          var paragraphText = ""
+          guard let words = paragraph["words"] as? [[String: Any]] else { continue }
+          for word in words {
             var wordText = ""
             guard let symbols = word["symbols"] as? [[String: Any]] else { continue }
             for symbol in symbols {
-            let text = symbol["text"] as? String ?? ""
-            let confidence = symbol["confidence"] as? Float ?? 0.0
-            wordText += text
-            print("Symbol text: \(text) (confidence: \(confidence)%n")
+              let text = symbol["text"] as? String ?? ""
+              let confidence = symbol["confidence"] as? Float ?? 0.0
+              wordText += text
+              print("Symbol text: \(text) (confidence: \(confidence)%n")
             }
             let confidence = word["confidence"] as? Float ?? 0.0
             print("Word text: \(wordText) (confidence: \(confidence)%n%n")
             let boundingBox = word["boundingBox"] as? [Float] ?? [0.0, 0.0, 0.0, 0.0]
             print("Word bounding box: \(boundingBox.description)%n")
             paragraphText += wordText
-        }
-        print("%nParagraph: %n\(paragraphText)%n")
-        let boundingBox = paragraph["boundingBox"] as? [Float] ?? [0.0, 0.0, 0.0, 0.0]
-        print("Paragraph bounding box: \(boundingBox)%n")
-        let confidence = paragraph["confidence"] as? Float ?? 0.0
-        print("Paragraph Confidence: \(confidence)%n")
-        blockText += paragraphText
+          }
+          print("%nParagraph: %n\(paragraphText)%n")
+          let boundingBox = paragraph["boundingBox"] as? [Float] ?? [0.0, 0.0, 0.0, 0.0]
+          print("Paragraph bounding box: \(boundingBox)%n")
+          let confidence = paragraph["confidence"] as? Float ?? 0.0
+          print("Paragraph Confidence: \(confidence)%n")
+          blockText += paragraphText
         }
         pageText += blockText
+      }
     }
     // [END function_getRecognizedTexts_details]
   }

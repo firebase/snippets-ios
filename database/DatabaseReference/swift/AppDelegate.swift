@@ -16,6 +16,7 @@
 
 import UIKit
 
+import FirebaseCore
 import FirebaseDatabase
 
 @UIApplicationMain

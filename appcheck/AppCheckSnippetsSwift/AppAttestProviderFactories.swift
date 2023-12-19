@@ -14,6 +14,7 @@
 //  limitations under the License.
 //
 
+import FirebaseCore
 import FirebaseAppCheck
 
 // [START appcheck_simple_appattest_factory]

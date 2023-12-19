@@ -15,77 +15,65 @@
 //
 
 import UIKit
+import FirebaseCore
 import FirebaseAppCheck
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        return true
-    }
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    return true
+  }
+
+  func initCustom() {
+    // [START appcheck_initialize_custom]
+    let providerFactory = YourAppCheckProviderFactory()
+    AppCheck.setAppCheckProviderFactory(providerFactory)
+
+    FirebaseApp.configure()
+    // [END appcheck_initialize_custom]
+  }
+
+  func initDebug() {
+    // [START appcheck_initialize_debug]
+    let providerFactory = AppCheckDebugProviderFactory()
+    AppCheck.setAppCheckProviderFactory(providerFactory)
+
+    FirebaseApp.configure()
+    // [END appcheck_initialize_debug]
+  }
+
+  func nonFirebaseBackend() async {
+    // [START appcheck_nonfirebase]
     
-    func initCustom() {
-        // [START appcheck_initialize_custom]
-        let providerFactory = YourAppCheckProviderFactory()
-        AppCheck.setAppCheckProviderFactory(providerFactory)
+    do {
+      let token = try await AppCheck.appCheck().token(forcingRefresh: false)
 
-        FirebaseApp.configure()
-        // [END appcheck_initialize_custom]
+      // Get the raw App Check token string.
+      let tokenString = token.token
+
+      // Include the App Check token with requests to your server.
+      let url = URL(string: "https://yourbackend.example.com/yourApiEndpoint")!
+      var request = URLRequest(url: url)
+      request.httpMethod = "GET"
+      request.setValue(tokenString, forHTTPHeaderField: "X-Firebase-AppCheck")
+
+      let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          // Handle response from your backend.
+      }
+      task.resume()
+    } catch(let error) {
+      print("Unable to retrieve App Check token: \(error)")
+      return
     }
-    
-    func initDebug() {
-        // [START appcheck_initialize_debug]
-        let providerFactory = AppCheckDebugProviderFactory()
-        AppCheck.setAppCheckProviderFactory(providerFactory)
+    // [END appcheck_nonfirebase]
+  }
 
-        FirebaseApp.configure()
-        // [END appcheck_initialize_debug]
-    }
-    
-    func nonFirebaseBackend() {
-        // [START appcheck_nonfirebase]
-        AppCheck.appCheck().token(forcingRefresh: false) { token, error in
-            guard error == nil else {
-                // Handle any errors if the token was not retrieved.
-                print("Unable to retrieve App Check token: \(error!)")
-                return
-            }
-            guard let token = token else {
-                print("Unable to retrieve App Check token.")
-                return
-            }
+  // MARK: UISceneSession Lifecycle
 
-            // Get the raw App Check token string.
-            let tokenString = token.token
-
-            // Include the App Check token with requests to your server.
-            let url = URL(string: "https://yourbackend.example.com/yourApiEndpoint")!
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.setValue(tokenString, forHTTPHeaderField: "X-Firebase-AppCheck")
-
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                // Handle response from your backend.
-            }
-            task.resume()
-        }
-        // [END appcheck_nonfirebase]
-    }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-
+  func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+    return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+  }
 
 }
 
