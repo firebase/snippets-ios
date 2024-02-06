@@ -1291,20 +1291,20 @@
 }
 
 - (void)sumAggregateCollection {
-  // [START sum_aggregate_collection]
-  FIRQuery *query = [self.db collectionWithPath:@"cities"];
-  FIRAggregateQuery *aggregateQuery = [query aggregate:@[
-    [FIRAggregateField aggregateFieldForSumOfField:@"population"]]];
-  [aggregateQuery aggregationWithSource:FIRAggregateSourceServer
-                             completion:^(FIRAggregateQuerySnapshot *snapshot,
-                                          NSError *error) {
-    if (error != nil) {
-      NSLog(@"Error fetching aggregate: %@", error);
-    } else {
-      NSLog(@"Sum: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForSumOfField:@"population"]]);
-    }
-  }];
-  // [END sum_aggregate_collection]
+    // [START sum_aggregate_collection]
+    FIRQuery *query = [self.db collectionWithPath:@"cities"];
+    FIRAggregateQuery *aggregateQuery = [query aggregate:@[
+        [FIRAggregateField aggregateFieldForSumOfField:@"population"]]];
+    [aggregateQuery aggregationWithSource:FIRAggregateSourceServer
+                               completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                            NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error fetching aggregate: %@", error);
+        } else {
+            NSLog(@"Sum: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForSumOfField:@"population"]]);
+        }
+    }];
+    // [END sum_aggregate_collection]
 }
 
 - (void)sumAggregateQuery {
