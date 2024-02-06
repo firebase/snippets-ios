@@ -78,30 +78,30 @@
 // =======================================================================================
 
 - (void)setupCacheSize {
-    // [START fs_setup_cache]
-    FIRFirestoreSettings *settings = [FIRFirestore firestore].settings;
-    // Set cache size to 100 MB
-    settings.cacheSettings =
-        [[FIRPersistentCacheSettings alloc] initWithSizeBytes:@(100 * 1024 * 1024)];
-    [FIRFirestore firestore].settings = settings;
-    // [END fs_setup_cache]
+  // [START fs_setup_cache]
+  FIRFirestoreSettings *settings = [FIRFirestore firestore].settings;
+  // Set cache size to 100 MB
+  settings.cacheSettings =
+  [[FIRPersistentCacheSettings alloc] initWithSizeBytes:@(100 * 1024 * 1024)];
+  [FIRFirestore firestore].settings = settings;
+  // [END fs_setup_cache]
 }
 
 - (void)addAdaLovelace {
   // [START add_ada_lovelace]
   // Add a new document with a generated ID
   __block FIRDocumentReference *ref =
-      [[self.db collectionWithPath:@"users"] addDocumentWithData:@{
-        @"first": @"Ada",
-        @"last": @"Lovelace",
-        @"born": @1815
-      } completion:^(NSError * _Nullable error) {
-        if (error != nil) {
-          NSLog(@"Error adding document: %@", error);
-        } else {
-          NSLog(@"Document added with ID: %@", ref.documentID);
-        }
-      }];
+  [[self.db collectionWithPath:@"users"] addDocumentWithData:@{
+    @"first": @"Ada",
+    @"last": @"Lovelace",
+    @"born": @1815
+  } completion:^(NSError * _Nullable error) {
+    if (error != nil) {
+      NSLog(@"Error adding document: %@", error);
+    } else {
+      NSLog(@"Document added with ID: %@", ref.documentID);
+    }
+  }];
   // [END add_ada_lovelace]
 }
 
@@ -109,34 +109,34 @@
   // [START add_alan_turing]
   // Add a second document with a generated ID.
   __block FIRDocumentReference *ref =
-      [[self.db collectionWithPath:@"users"] addDocumentWithData:@{
-        @"first": @"Alan",
-        @"middle": @"Mathison",
-        @"last": @"Turing",
-        @"born": @1912
-      } completion:^(NSError * _Nullable error) {
-        if (error != nil) {
-          NSLog(@"Error adding document: %@", error);
-        } else {
-          NSLog(@"Document added with ID: %@", ref.documentID);
-        }
-      }];
+  [[self.db collectionWithPath:@"users"] addDocumentWithData:@{
+    @"first": @"Alan",
+    @"middle": @"Mathison",
+    @"last": @"Turing",
+    @"born": @1912
+  } completion:^(NSError * _Nullable error) {
+    if (error != nil) {
+      NSLog(@"Error adding document: %@", error);
+    } else {
+      NSLog(@"Document added with ID: %@", ref.documentID);
+    }
+  }];
   // [END add_alan_turing]
 }
 
 - (void)getCollection {
   // [START get_collection]
   [[self.db collectionWithPath:@"users"]
-      getDocumentsWithCompletion:^(FIRQuerySnapshot * _Nullable snapshot,
-                                   NSError * _Nullable error) {
-        if (error != nil) {
-          NSLog(@"Error getting documents: %@", error);
-        } else {
-          for (FIRDocumentSnapshot *document in snapshot.documents) {
-            NSLog(@"%@ => %@", document.documentID, document.data);
-          }
-        }
-      }];
+   getDocumentsWithCompletion:^(FIRQuerySnapshot * _Nullable snapshot,
+                                NSError * _Nullable error) {
+    if (error != nil) {
+      NSLog(@"Error getting documents: %@", error);
+    } else {
+      for (FIRDocumentSnapshot *document in snapshot.documents) {
+        NSLog(@"%@ => %@", document.documentID, document.data);
+      }
+    }
+  }];
   // [END get_collection]
 }
 
@@ -147,17 +147,17 @@
   // We will get a first snapshot with the initial results and a new
   // snapshot each time there is a change in the results.
   [[[self.db collectionWithPath:@"users"] queryWhereField:@"born" isLessThan:@1900]
-      addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
-        if (error != nil) {
-          NSLog(@"Error retreiving snapshots %@", error);
-        } else {
-          NSMutableArray *users = [NSMutableArray array];
-          for (FIRDocumentSnapshot *user in snapshot.documents) {
-            [users addObject:user.data];
-          }
-          NSLog(@"Current users born before 1900: %@", users);
-        }
-      }];
+   addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+    if (error != nil) {
+      NSLog(@"Error retreiving snapshots %@", error);
+    } else {
+      NSMutableArray *users = [NSMutableArray array];
+      for (FIRDocumentSnapshot *user in snapshot.documents) {
+        [users addObject:user.data];
+      }
+      NSLog(@"Current users born before 1900: %@", users);
+    }
+  }];
   // [END listen_for_users]
 }
 
@@ -168,7 +168,7 @@
 - (void)demonstrateReferences {
   // [START doc_reference]
   FIRDocumentReference *alovelaceDocumentRef =
-      [[self.db collectionWithPath:@"users"] documentWithPath:@"alovelace"];
+  [[self.db collectionWithPath:@"users"] documentWithPath:@"alovelace"];
   // [END doc_reference]
   NSLog(@"%@", alovelaceDocumentRef);
   // [START collection_reference]
@@ -177,14 +177,14 @@
   NSLog(@"%@", usersCollectionRef);
   // [START subcollection_reference]
   FIRDocumentReference *messageRef =
-      [[[[self.db collectionWithPath:@"rooms"] documentWithPath:@"roomA"]
-      collectionWithPath:@"messages"] documentWithPath:@"message1"];
+  [[[[self.db collectionWithPath:@"rooms"] documentWithPath:@"roomA"]
+    collectionWithPath:@"messages"] documentWithPath:@"message1"];
   // [END subcollection_reference]
   NSLog(@"%@", messageRef);
 
   // [START path_reference]
   FIRDocumentReference *aLovelaceDocumentReference =
-      [self.db documentWithPath:@"users/alovelace"];
+  [self.db documentWithPath:@"users/alovelace"];
   // [END path_reference]
   NSLog(@"%@", aLovelaceDocumentReference);
 }
@@ -228,13 +228,13 @@
   };
 
   [[[self.db collectionWithPath:@"data"] documentWithPath:@"one"] setData:docData
-      completion:^(NSError * _Nullable error) {
-        if (error != nil) {
-          NSLog(@"Error writing document: %@", error);
-        } else {
-          NSLog(@"Document successfully written!");
-        }
-      }];
+                                                               completion:^(NSError * _Nullable error) {
+    if (error != nil) {
+      NSLog(@"Error writing document: %@", error);
+    } else {
+      NSLog(@"Document successfully written!");
+    }
+  }];
   // [END data_types]
 }
 
@@ -242,7 +242,7 @@
   NSDictionary *data = @{ @"name": @"Beijing" };
   // [START set_data]
   [[[self.db collectionWithPath:@"cities"] documentWithPath:@"new-city-id"]
-      setData:data];
+   setData:data];
   // [END set_data]
 }
 
@@ -250,16 +250,16 @@
   // [START add_document]
   // Add a new document with a generated id.
   __block FIRDocumentReference *ref =
-      [[self.db collectionWithPath:@"cities"] addDocumentWithData:@{
-        @"name": @"Tokyo",
-        @"country": @"Japan"
-      } completion:^(NSError * _Nullable error) {
-        if (error != nil) {
-          NSLog(@"Error adding document: %@", error);
-        } else {
-          NSLog(@"Document added with ID: %@", ref.documentID);
-        }
-      }];
+  [[self.db collectionWithPath:@"cities"] addDocumentWithData:@{
+    @"name": @"Tokyo",
+    @"country": @"Japan"
+  } completion:^(NSError * _Nullable error) {
+    if (error != nil) {
+      NSLog(@"Error adding document: %@", error);
+    } else {
+      NSLog(@"Document added with ID: %@", ref.documentID);
+    }
+  }];
   // [END add_document]
 }
 
@@ -274,7 +274,7 @@
 - (void)updateDocument {
   // [START update_document]
   FIRDocumentReference *washingtonRef =
-      [[self.db collectionWithPath:@"cities"] documentWithPath:@"DC"];
+  [[self.db collectionWithPath:@"cities"] documentWithPath:@"DC"];
   // Set the "capital" field of the city
   [washingtonRef updateData:@{
     @"capital": @YES
@@ -291,7 +291,7 @@
 - (void)updateDocumentArray {
   // [START update_document_array]
   FIRDocumentReference *washingtonRef =
-      [[self.db collectionWithPath:@"cities"] documentWithPath:@"DC"];
+  [[self.db collectionWithPath:@"cities"] documentWithPath:@"DC"];
 
   // Atomically add a new region to the "regions" array field.
   [washingtonRef updateData:@{
@@ -308,7 +308,7 @@
 - (void)updateDocumentIncrement {
   // [START update_document_increment]
   FIRDocumentReference *washingtonRef =
-      [[self.db collectionWithPath:@"cities"] documentWithPath:@"DC"];
+  [[self.db collectionWithPath:@"cities"] documentWithPath:@"DC"];
 
   // Atomically increment the population of the city by 50.
   // Note that increment() with no arguments increments by 1.
@@ -323,11 +323,11 @@
   // Write to the document reference, merging data with existing
   // if the document already exists
   [[[self.db collectionWithPath:@"cities"] documentWithPath:@"BJ"]
-       setData:@{ @"capital": @YES }
-       merge:YES
-       completion:^(NSError * _Nullable error) {
-         // ...
-       }];
+   setData:@{ @"capital": @YES }
+   merge:YES
+   completion:^(NSError * _Nullable error) {
+    // ...
+  }];
   // [END create_if_missing]
 }
 
@@ -335,7 +335,7 @@
   // [START update_document_nested]
   // Create an initial document to update.
   FIRDocumentReference *frankDocRef =
-      [[self.db collectionWithPath:@"users"] documentWithPath:@"frank"];
+  [[self.db collectionWithPath:@"users"] documentWithPath:@"frank"];
   [frankDocRef setData:@{
     @"name": @"Frank",
     @"favorites": @{
@@ -362,12 +362,12 @@
 - (void)deleteDocument {
   // [START delete_document]
   [[[self.db collectionWithPath:@"cities"] documentWithPath:@"DC"]
-      deleteDocumentWithCompletion:^(NSError * _Nullable error) {
-        if (error != nil) {
-          NSLog(@"Error removing document: %@", error);
-        } else {
-          NSLog(@"Document successfully removed!");
-        }
+   deleteDocumentWithCompletion:^(NSError * _Nullable error) {
+    if (error != nil) {
+      NSLog(@"Error removing document: %@", error);
+    } else {
+      NSLog(@"Document successfully removed!");
+    }
   }];
   // [END delete_document]
 }
@@ -379,33 +379,33 @@
   // Limit query to avoid out-of-memory errors when deleting large collections.
   // When deleting a collection guaranteed to fit in memory, batching can be avoided entirely.
   [[collection queryLimitedTo:batchSize]
-      getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
-        if (error != nil) {
-          // An error occurred.
-          if (completion != nil) { completion(error); }
-          return;
-        }
-        if (snapshot.count == 0) {
-          // There's nothing to delete.
-          if (completion != nil) { completion(nil); }
-          return;
-        }
+   getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
+    if (error != nil) {
+      // An error occurred.
+      if (completion != nil) { completion(error); }
+      return;
+    }
+    if (snapshot.count == 0) {
+      // There's nothing to delete.
+      if (completion != nil) { completion(nil); }
+      return;
+    }
 
-        FIRWriteBatch *batch = [collection.firestore batch];
-        for (FIRDocumentSnapshot *document in snapshot.documents) {
-          [batch deleteDocument:document.reference];
-        }
+    FIRWriteBatch *batch = [collection.firestore batch];
+    for (FIRDocumentSnapshot *document in snapshot.documents) {
+      [batch deleteDocument:document.reference];
+    }
 
-        [batch commitWithCompletion:^(NSError *batchError) {
-          if (batchError != nil) {
-            // Stop the deletion process and handle the error. Some elements
-            // may have been deleted.
-            completion(batchError);
-          } else {
-            [self deleteCollection:collection batchSize:batchSize completion:completion];
-          }
-        }];
-      }];
+    [batch commitWithCompletion:^(NSError *batchError) {
+      if (batchError != nil) {
+        // Stop the deletion process and handle the error. Some elements
+        // may have been deleted.
+        completion(batchError);
+      } else {
+        [self deleteCollection:collection batchSize:batchSize completion:completion];
+      }
+    }];
+  }];
 }
 // [END delete_collection]
 
@@ -440,7 +440,7 @@
 - (void)serverTimestampOptions {
   // [START server_timestamp_options]
   FIRDocumentReference *docRef =
-      [[self.db collectionWithPath:@"objects"] documentWithPath:@"some-id"];
+  [[self.db collectionWithPath:@"objects"] documentWithPath:@"some-id"];
 
   // Perform an update followed by an immediate read without waiting for the update to complete.
   // Due to the snapshot options we will get two results: one with an estimated timestamp and
@@ -461,7 +461,7 @@
 - (void)simpleTransaction {
   // [START simple_transaction]
   FIRDocumentReference *sfReference =
-      [[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"];
+  [[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"];
   [self.db runTransactionWithBlock:^id (FIRTransaction *transaction, NSError **errorPointer) {
     FIRDocumentSnapshot *sfDocument = [transaction getDocument:sfReference error:errorPointer];
     if (*errorPointer != nil) { return nil; }
@@ -533,17 +533,17 @@
 
   // Set the value of 'NYC'
   FIRDocumentReference *nycRef =
-      [[self.db collectionWithPath:@"cities"] documentWithPath:@"NYC"];
+  [[self.db collectionWithPath:@"cities"] documentWithPath:@"NYC"];
   [batch setData:@{} forDocument:nycRef];
 
   // Update the population of 'SF'
   FIRDocumentReference *sfRef =
-      [[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"];
+  [[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"];
   [batch updateData:@{ @"population": @1000000 } forDocument:sfRef];
 
   // Delete the city 'LA'
   FIRDocumentReference *laRef =
-      [[self.db collectionWithPath:@"cities"] documentWithPath:@"LA"];
+  [[self.db collectionWithPath:@"cities"] documentWithPath:@"LA"];
   [batch deleteDocument:laRef];
 
   // Commit the batch
@@ -605,45 +605,45 @@
 }
 
 - (void)exampleDataCollectionGroup {
-    // [START fs_collection_group_query_data_setup]
-    FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
+  // [START fs_collection_group_query_data_setup]
+  FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
 
-    NSDictionary *data = @{@"name": @"Golden Gate Bridge", @"type": @"bridge"};
-    [[[citiesRef documentWithPath:@"SF"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+  NSDictionary *data = @{@"name": @"Golden Gate Bridge", @"type": @"bridge"};
+  [[[citiesRef documentWithPath:@"SF"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
 
-    data = @{@"name": @"Legion of Honor", @"type": @"museum"};
-    [[[citiesRef documentWithPath:@"SF"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+  data = @{@"name": @"Legion of Honor", @"type": @"museum"};
+  [[[citiesRef documentWithPath:@"SF"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
 
-    data = @{@"name": @"Griffith Park", @"type": @"park"};
-    [[[citiesRef documentWithPath:@"LA"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+  data = @{@"name": @"Griffith Park", @"type": @"park"};
+  [[[citiesRef documentWithPath:@"LA"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
 
-    data = @{@"name": @"The Getty", @"type": @"museum"};
-    [[[citiesRef documentWithPath:@"LA"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+  data = @{@"name": @"The Getty", @"type": @"museum"};
+  [[[citiesRef documentWithPath:@"LA"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
 
-    data = @{@"name": @"Lincoln Memorial", @"type": @"memorial"};
-    [[[citiesRef documentWithPath:@"DC"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+  data = @{@"name": @"Lincoln Memorial", @"type": @"memorial"};
+  [[[citiesRef documentWithPath:@"DC"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
 
-    data = @{@"name": @"National Air and Space Museum", @"type": @"museum"};
-    [[[citiesRef documentWithPath:@"DC"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+  data = @{@"name": @"National Air and Space Museum", @"type": @"museum"};
+  [[[citiesRef documentWithPath:@"DC"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
 
-    data = @{@"name": @"Ueno Park", @"type": @"park"};
-    [[[citiesRef documentWithPath:@"TOK"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+  data = @{@"name": @"Ueno Park", @"type": @"park"};
+  [[[citiesRef documentWithPath:@"TOK"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
 
-    data = @{@"name": @"National Museum of Nature and Science", @"type": @"museum"};
-    [[[citiesRef documentWithPath:@"TOK"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+  data = @{@"name": @"National Museum of Nature and Science", @"type": @"museum"};
+  [[[citiesRef documentWithPath:@"TOK"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
 
-    data = @{@"name": @"Jingshan Park", @"type": @"park"};
-    [[[citiesRef documentWithPath:@"BJ"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+  data = @{@"name": @"Jingshan Park", @"type": @"park"};
+  [[[citiesRef documentWithPath:@"BJ"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
 
-    data = @{@"name": @"Beijing Ancient Observatory", @"type": @"museum"};
-    [[[citiesRef documentWithPath:@"BJ"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
-    // [END fs_collection_group_query_data_setup]
+  data = @{@"name": @"Beijing Ancient Observatory", @"type": @"museum"};
+  [[[citiesRef documentWithPath:@"BJ"] collectionWithPath:@"landmarks"] addDocumentWithData:data];
+  // [END fs_collection_group_query_data_setup]
 }
 
 - (void)getDocument {
   // [START get_document]
   FIRDocumentReference *docRef =
-      [[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"];
+  [[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"];
   [docRef getDocumentWithCompletion:^(FIRDocumentSnapshot *snapshot, NSError *error) {
     if (snapshot.exists) {
       // Document data may be nil if the document exists but has no keys or values.
@@ -693,27 +693,27 @@
 - (void)listenDocument {
   // [START listen_document]
   [[[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"]
-      addSnapshotListener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
-        if (snapshot == nil) {
-          NSLog(@"Error fetching document: %@", error);
-          return;
-        }
-        NSLog(@"Current data: %@", snapshot.data);
-      }];
+   addSnapshotListener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
+    if (snapshot == nil) {
+      NSLog(@"Error fetching document: %@", error);
+      return;
+    }
+    NSLog(@"Current data: %@", snapshot.data);
+  }];
   // [END listen_document]
 }
 
 - (void)listenDocumentLocal {
   // [START listen_document_local]
   [[[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"]
-      addSnapshotListener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
-        if (snapshot == nil) {
-          NSLog(@"Error fetching document: %@", error);
-          return;
-        }
-        NSString *source = snapshot.metadata.hasPendingWrites ? @"Local" : @"Server";
-        NSLog(@"%@ data: %@", source, snapshot.data);
-      }];
+   addSnapshotListener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
+    if (snapshot == nil) {
+      NSLog(@"Error fetching document: %@", error);
+      return;
+    }
+    NSString *source = snapshot.metadata.hasPendingWrites ? @"Local" : @"Server";
+    NSLog(@"%@ data: %@", source, snapshot.data);
+  }];
   // [END listen_document_local]
 }
 
@@ -721,9 +721,9 @@
   // [START listen_with_metadata]
   // Listen for metadata changes.
   [[[self.db collectionWithPath:@"cities"] documentWithPath:@"SF"]
-      addSnapshotListenerWithIncludeMetadataChanges:YES
-                                           listener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
-     // ...
+   addSnapshotListenerWithIncludeMetadataChanges:YES
+   listener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
+    // ...
   }];
   // [END listen_with_metadata]
 }
@@ -731,113 +731,113 @@
 - (void)getMultiple {
   // [START get_multiple]
   [[[self.db collectionWithPath:@"cities"] queryWhereField:@"capital" isEqualTo:@(YES)]
-      getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
-        if (error != nil) {
-          NSLog(@"Error getting documents: %@", error);
-        } else {
-          for (FIRDocumentSnapshot *document in snapshot.documents) {
-            NSLog(@"%@ => %@", document.documentID, document.data);
-          }
-        }
-      }];
+   getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
+    if (error != nil) {
+      NSLog(@"Error getting documents: %@", error);
+    } else {
+      for (FIRDocumentSnapshot *document in snapshot.documents) {
+        NSLog(@"%@ => %@", document.documentID, document.data);
+      }
+    }
+  }];
   // [END get_multiple]
 }
 
 - (void)getMultipleAll {
   // [START get_multiple_all]
   [[self.db collectionWithPath:@"cities"]
-      getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
-        if (error != nil) {
-          NSLog(@"Error getting documents: %@", error);
-        } else {
-          for (FIRDocumentSnapshot *document in snapshot.documents) {
-            NSLog(@"%@ => %@", document.documentID, document.data);
-          }
-        }
-      }];
+   getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
+    if (error != nil) {
+      NSLog(@"Error getting documents: %@", error);
+    } else {
+      for (FIRDocumentSnapshot *document in snapshot.documents) {
+        NSLog(@"%@ => %@", document.documentID, document.data);
+      }
+    }
+  }];
   // [END get_multiple_all]
 }
 
 - (void)getMultipleAllSubcollection {
   // [START get_multiple_all_subcollection]
   [[self.db collectionWithPath:@"cities/SF/landmarks"]
-      getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
-        if (error != nil) {
-          NSLog(@"Error getting documents: %@", error);
-        } else {
-          for (FIRDocumentSnapshot *document in snapshot.documents) {
-            NSLog(@"%@ => %@", document.documentID, document.data);
-          }
-        }
-      }];
+   getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
+    if (error != nil) {
+      NSLog(@"Error getting documents: %@", error);
+    } else {
+      for (FIRDocumentSnapshot *document in snapshot.documents) {
+        NSLog(@"%@ => %@", document.documentID, document.data);
+      }
+    }
+  }];
   // [END get_multiple_all_subcollection]
 }
 
 - (void)listenMultiple {
   // [START listen_multiple]
   [[[self.db collectionWithPath:@"cities"] queryWhereField:@"state" isEqualTo:@"CA"]
-      addSnapshotListener:^(FIRQuerySnapshot *snapshot, NSError *error) {
-        if (snapshot == nil) {
-          NSLog(@"Error fetching documents: %@", error);
-          return;
-        }
-        NSMutableArray *cities = [NSMutableArray array];
-        for (FIRDocumentSnapshot *document in snapshot.documents) {
-          [cities addObject:document.data[@"name"]];
-        }
-        NSLog(@"Current cities in CA: %@", cities);
-      }];
+   addSnapshotListener:^(FIRQuerySnapshot *snapshot, NSError *error) {
+    if (snapshot == nil) {
+      NSLog(@"Error fetching documents: %@", error);
+      return;
+    }
+    NSMutableArray *cities = [NSMutableArray array];
+    for (FIRDocumentSnapshot *document in snapshot.documents) {
+      [cities addObject:document.data[@"name"]];
+    }
+    NSLog(@"Current cities in CA: %@", cities);
+  }];
   // [END listen_multiple]
 }
 
 - (void)listenDiffs {
   // [START listen_diffs]
   [[[self.db collectionWithPath:@"cities"] queryWhereField:@"state" isEqualTo:@"CA"]
-      addSnapshotListener:^(FIRQuerySnapshot *snapshot, NSError *error) {
-        if (snapshot == nil) {
-          NSLog(@"Error fetching documents: %@", error);
-          return;
-        }
-        for (FIRDocumentChange *diff in snapshot.documentChanges) {
-          if (diff.type == FIRDocumentChangeTypeAdded) {
-            NSLog(@"New city: %@", diff.document.data);
-          }
-          if (diff.type == FIRDocumentChangeTypeModified) {
-            NSLog(@"Modified city: %@", diff.document.data);
-          }
-          if (diff.type == FIRDocumentChangeTypeRemoved) {
-            NSLog(@"Removed city: %@", diff.document.data);
-          }
-        }
-      }];
+   addSnapshotListener:^(FIRQuerySnapshot *snapshot, NSError *error) {
+    if (snapshot == nil) {
+      NSLog(@"Error fetching documents: %@", error);
+      return;
+    }
+    for (FIRDocumentChange *diff in snapshot.documentChanges) {
+      if (diff.type == FIRDocumentChangeTypeAdded) {
+        NSLog(@"New city: %@", diff.document.data);
+      }
+      if (diff.type == FIRDocumentChangeTypeModified) {
+        NSLog(@"Modified city: %@", diff.document.data);
+      }
+      if (diff.type == FIRDocumentChangeTypeRemoved) {
+        NSLog(@"Removed city: %@", diff.document.data);
+      }
+    }
+  }];
   // [END listen_diffs]
 }
 
 - (void)listenState {
   // [START listen_state]
   [[[self.db collectionWithPath:@"cities"] queryWhereField:@"state" isEqualTo:@"CA"]
-      addSnapshotListener:^(FIRQuerySnapshot *snapshot, NSError *error) {
-        if (snapshot == nil) {
-          NSLog(@"Error fetching documents: %@", error);
-          return;
-        }
-        for (FIRDocumentChange *diff in snapshot.documentChanges) {
-          if (diff.type == FIRDocumentChangeTypeAdded) {
-            NSLog(@"New city: %@", diff.document.data);
-          }
-          if (!snapshot.metadata.isFromCache) {
-            NSLog(@"Synced with server state.");
-          }
-        }
-      }];
+   addSnapshotListener:^(FIRQuerySnapshot *snapshot, NSError *error) {
+    if (snapshot == nil) {
+      NSLog(@"Error fetching documents: %@", error);
+      return;
+    }
+    for (FIRDocumentChange *diff in snapshot.documentChanges) {
+      if (diff.type == FIRDocumentChangeTypeAdded) {
+        NSLog(@"New city: %@", diff.document.data);
+      }
+      if (!snapshot.metadata.isFromCache) {
+        NSLog(@"Synced with server state.");
+      }
+    }
+  }];
   // [END listen_state]
 }
 
 - (void)detachListener {
   // [START detach_listener]
   id<FIRListenerRegistration> listener = [[self.db collectionWithPath:@"cities"]
-      addSnapshotListener:^(FIRQuerySnapshot *snapshot, NSError *error) {
-        // ...
+                                          addSnapshotListener:^(FIRQuerySnapshot *snapshot, NSError *error) {
+    // ...
   }];
 
   // ...
@@ -850,11 +850,11 @@
 - (void)handleListenErrors {
   // [START handle_listen_errors]
   [[self.db collectionWithPath:@"cities"]
-      addSnapshotListener:^(FIRQuerySnapshot *snapshot, NSError *error) {
-        if (error != nil) {
-          NSLog(@"Error retreving collection: %@", error);
-        }
-      }];
+   addSnapshotListener:^(FIRQuerySnapshot *snapshot, NSError *error) {
+    if (error != nil) {
+      NSLog(@"Error retreving collection: %@", error);
+    }
+  }];
   // [END handle_listen_errors]
 }
 
@@ -887,7 +887,7 @@
 - (void)onlyCapitals {
   // [START only_capitals]
   FIRQuery *capitalCities =
-      [[self.db collectionWithPath:@"cities"] queryWhereField:@"capital" isEqualTo:@YES];
+  [[self.db collectionWithPath:@"cities"] queryWhereField:@"capital" isEqualTo:@YES];
   // [END only_capitals]
   NSLog(@"%@", capitalCities);
 }
@@ -903,9 +903,9 @@
   FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
   // [START chain_filters]
   [[citiesRef queryWhereField:@"state" isEqualTo:@"CO"]
-      queryWhereField:@"name" isGreaterThanOrEqualTo:@"Denver"];
+   queryWhereField:@"name" isGreaterThanOrEqualTo:@"Denver"];
   [[citiesRef queryWhereField:@"state" isEqualTo:@"CA"]
-      queryWhereField:@"population" isLessThan:@1000000];
+   queryWhereField:@"population" isLessThan:@1000000];
   // [END chain_filters]
 }
 
@@ -913,9 +913,9 @@
   FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
   // [START valid_range_filters]
   [[citiesRef queryWhereField:@"state" isGreaterThanOrEqualTo:@"CA"]
-      queryWhereField:@"state" isLessThanOrEqualTo:@"IN"];
+   queryWhereField:@"state" isLessThanOrEqualTo:@"IN"];
   [[citiesRef queryWhereField:@"state" isEqualTo:@"CA"]
-      queryWhereField:@"population" isGreaterThan:@1000000];
+   queryWhereField:@"population" isGreaterThan:@1000000];
   // [END valid_range_filters]
 }
 
@@ -923,7 +923,7 @@
   FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
   // [START invalid_range_filters]
   [[citiesRef queryWhereField:@"state" isGreaterThanOrEqualTo:@"CA"]
-      queryWhereField:@"population" isGreaterThan:@1000000];
+   queryWhereField:@"population" isGreaterThan:@1000000];
   // [END invalid_range_filters]
 }
 
@@ -952,8 +952,8 @@
   FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
   // [START filter_and_order]
   [[[citiesRef queryWhereField:@"population" isGreaterThan:@100000]
-      queryOrderedByField:@"population"]
-      queryLimitedTo:2];
+    queryOrderedByField:@"population"]
+   queryLimitedTo:2];
   // [END filter_and_order]
 }
 
@@ -961,7 +961,7 @@
   FIRCollectionReference *citiesRef = [self.db collectionWithPath:@"cities"];
   // [START valid_filter_and_order]
   [[citiesRef queryWhereField:@"population" isGreaterThan:@100000]
-      queryOrderedByField:@"population"];
+   queryOrderedByField:@"population"];
   // [END valid_filter_and_order]
 }
 
@@ -1006,12 +1006,12 @@
 
   // Use memory-only cache
   settings.cacheSettings = [[FIRMemoryCacheSettings alloc]
-      initWithGarbageCollectorSettings:[[FIRMemoryLRUGCSettings alloc] init]];
+                            initWithGarbageCollectorSettings:[[FIRMemoryLRUGCSettings alloc] init]];
 
   // Use persistent disk cache (default behavior)
   // This example uses 100 MB.
   settings.cacheSettings = [[FIRPersistentCacheSettings alloc]
-      initWithSizeBytes:@(100 * 1024 * 1024)];
+                            initWithSizeBytes:@(100 * 1024 * 1024)];
 
   // Any additional options
   // ...
@@ -1028,21 +1028,21 @@
   // Listen to metadata updates to receive a server snapshot even if
   // the data is the same as the cached data.
   [[[db collectionWithPath:@"cities"] queryWhereField:@"state" isEqualTo:@"CA"]
-      addSnapshotListenerWithIncludeMetadataChanges:YES
-      listener:^(FIRQuerySnapshot *snapshot, NSError *error) {
-        if (snapshot == nil) {
-          NSLog(@"Error retreiving snapshot: %@", error);
-          return;
-        }
-        for (FIRDocumentChange *diff in snapshot.documentChanges) {
-          if (diff.type == FIRDocumentChangeTypeAdded) {
-            NSLog(@"New city: %@", diff.document.data);
-          }
-        }
+   addSnapshotListenerWithIncludeMetadataChanges:YES
+   listener:^(FIRQuerySnapshot *snapshot, NSError *error) {
+    if (snapshot == nil) {
+      NSLog(@"Error retreiving snapshot: %@", error);
+      return;
+    }
+    for (FIRDocumentChange *diff in snapshot.documentChanges) {
+      if (diff.type == FIRDocumentChangeTypeAdded) {
+        NSLog(@"New city: %@", diff.document.data);
+      }
+    }
 
-        NSString *source = snapshot.metadata.isFromCache ? @"local cache" : @"server";
-        NSLog(@"Metadata: Data fetched from %@", source);
-      }];
+    NSString *source = snapshot.metadata.isFromCache ? @"local cache" : @"server";
+    NSLog(@"Metadata: Data fetched from %@", source);
+  }];
   // [END listen_to_offline]
 }
 
@@ -1072,14 +1072,14 @@
   // [START cursor_greater_than]
   // Get all cities with population over one million, ordered by population.
   [[[db collectionWithPath:@"cities"]
-      queryOrderedByField:@"population"]
-      queryStartingAtValues:@[ @1000000 ]];
+    queryOrderedByField:@"population"]
+   queryStartingAtValues:@[ @1000000 ]];
   // [END cursor_greater_than]
   // [START cursor_less_than]
   // Get all cities with population less than one million, ordered by population.
   [[[db collectionWithPath:@"cities"]
-      queryOrderedByField:@"population"]
-      queryEndingAtValues:@[ @1000000 ]];
+    queryOrderedByField:@"population"]
+   queryEndingAtValues:@[ @1000000 ]];
   // [END cursor_less_than]
 }
 
@@ -1090,16 +1090,16 @@
 
   // [START snapshot_cursor]
   [[[db collectionWithPath:@"cities"] documentWithPath:@"SF"]
-      addSnapshotListener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
-        if (snapshot == nil) {
-          NSLog(@"Error retreiving cities: %@", error);
-          return;
-        }
-        // Get all cities with a population greater than or equal to San Francisco.
-        FIRQuery *sfSizeOrBigger = [[[db collectionWithPath:@"cities"]
-            queryOrderedByField:@"population"]
-            queryStartingAtDocument:snapshot];
-      }];
+   addSnapshotListener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
+    if (snapshot == nil) {
+      NSLog(@"Error retreiving cities: %@", error);
+      return;
+    }
+    // Get all cities with a population greater than or equal to San Francisco.
+    FIRQuery *sfSizeOrBigger = [[[db collectionWithPath:@"cities"]
+                                 queryOrderedByField:@"population"]
+                                queryStartingAtDocument:snapshot];
+  }];
   // [END snapshot_cursor]
 }
 
@@ -1108,8 +1108,8 @@
 
   // [START paginate]
   FIRQuery *first = [[[db collectionWithPath:@"cities"]
-      queryOrderedByField:@"population"]
-      queryLimitedTo:25];
+                      queryOrderedByField:@"population"]
+                     queryLimitedTo:25];
   [first addSnapshotListener:^(FIRQuerySnapshot *snapshot, NSError *error) {
     if (snapshot == nil) {
       NSLog(@"Error retreiving cities: %@", error);
@@ -1121,8 +1121,8 @@
     // Construct a new query starting after this document,
     // retreiving the next 25 cities.
     FIRQuery *next = [[[db collectionWithPath:@"cities"]
-        queryOrderedByField:@"population"]
-        queryStartingAfterDocument:lastSnapshot];
+                       queryOrderedByField:@"population"]
+                      queryStartingAfterDocument:lastSnapshot];
     // Use the query for pagination.
     // ...
   }];
@@ -1137,67 +1137,67 @@
   // [START multi_cursor]
   // Will return all Springfields
   [[[[db collectionWithPath:@"cities"]
-      queryOrderedByField:@"name"]
-      queryOrderedByField:@"state"]
-      queryStartingAtValues:@[ @"Springfield" ]];
+     queryOrderedByField:@"name"]
+    queryOrderedByField:@"state"]
+   queryStartingAtValues:@[ @"Springfield" ]];
   // Will return "Springfield, Missouri" and "Springfield, Wisconsin"
   [[[[db collectionWithPath:@"cities"]
      queryOrderedByField:@"name"]
-     queryOrderedByField:@"state"]
-     queryStartingAtValues:@[ @"Springfield", @"Missouri" ]];
+    queryOrderedByField:@"state"]
+   queryStartingAtValues:@[ @"Springfield", @"Missouri" ]];
   // [END multi_cursor]
 }
 
 - (void)collectionGroupQuery {
-    // [START fs_collection_group_query]
-    [[[self.db collectionGroupWithID:@"landmarks"] queryWhereField:@"type" isEqualTo:@"museum"]
-        getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
-        // [START_EXCLUDE]
-        // [END_EXCLUDE]
-    }];
-    // [END fs_collection_group_query]
+  // [START fs_collection_group_query]
+  [[[self.db collectionGroupWithID:@"landmarks"] queryWhereField:@"type" isEqualTo:@"museum"]
+   getDocumentsWithCompletion:^(FIRQuerySnapshot *snapshot, NSError *error) {
+    // [START_EXCLUDE]
+    // [END_EXCLUDE]
+  }];
+  // [END fs_collection_group_query]
 }
 
 - (void)emulatorSettings {
-    // [START fs_emulator_connect]
-    FIRFirestoreSettings *settings = [FIRFirestore firestore].settings;
-    settings.host = @"localhost:8080";
-    settings.sslEnabled = false;
-    [FIRFirestore firestore].settings = settings;
-    // [END fs_emulator_connect]
+  // [START fs_emulator_connect]
+  FIRFirestoreSettings *settings = [FIRFirestore firestore].settings;
+  settings.host = @"localhost:8080";
+  settings.sslEnabled = false;
+  [FIRFirestore firestore].settings = settings;
+  // [END fs_emulator_connect]
 }
 
 - (void)countAggregateCollection {
-    // [START count_aggregate_collection]
-    FIRCollectionReference *query = [self.db collectionWithPath:@"cities"];
-    [query.count aggregationWithSource:FIRAggregateSourceServer
-                            completion:^(FIRAggregateQuerySnapshot *snapshot,
-                                         NSError *error) {
-        if (error != nil) {
-            NSLog(@"Error fetching count: %@", error);
-        } else {
-            NSLog(@"Cities count: %@", snapshot.count);
-        }
-    }];
-    // [END count_aggregate_collection]
+  // [START count_aggregate_collection]
+  FIRCollectionReference *query = [self.db collectionWithPath:@"cities"];
+  [query.count aggregationWithSource:FIRAggregateSourceServer
+                          completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                       NSError *error) {
+    if (error != nil) {
+      NSLog(@"Error fetching count: %@", error);
+    } else {
+      NSLog(@"Cities count: %@", snapshot.count);
+    }
+  }];
+  // [END count_aggregate_collection]
 }
 
 - (void)countAggregateQuery {
-    // [START count_aggregate_query]
-    FIRQuery *query =
-        [[self.db collectionWithPath:@"cities"]
-                     queryWhereField:@"state"
-                           isEqualTo:@"CA"];
-    [query.count aggregationWithSource:FIRAggregateSourceServer
-                            completion:^(FIRAggregateQuerySnapshot *snapshot,
-                                          NSError *error) {
-        if (error != nil) {
-            NSLog(@"Error fetching count: %@", error);
-        } else {
-            NSLog(@"Cities count: %@", snapshot.count);
-        }
-    }];
-    // [END count_aggregate_query]
+  // [START count_aggregate_query]
+  FIRQuery *query =
+  [[self.db collectionWithPath:@"cities"]
+   queryWhereField:@"state"
+   isEqualTo:@"CA"];
+  [query.count aggregationWithSource:FIRAggregateSourceServer
+                          completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                       NSError *error) {
+    if (error != nil) {
+      NSLog(@"Error fetching count: %@", error);
+    } else {
+      NSLog(@"Cities count: %@", snapshot.count);
+    }
+  }];
+  // [END count_aggregate_query]
 }
 
 - (void)orQuery {
@@ -1288,6 +1288,97 @@
     [FIRFilter filterWhereField:@"b" in:@[@1, @2, @3, @4, @5, @6, @7, @8, @9, @10]]
   ]]];
   // [END 20_disjunctions]
+}
+
+- (void)sumAggregateCollection {
+  // [START sum_aggregate_collection]
+  FIRQuery *query = [self.db collectionWithPath:@"cities"];
+  FIRAggregateQuery *aggregateQuery = [query aggregate:@[
+    [FIRAggregateField aggregateFieldForSumOfField:@"population"]]];
+  [aggregateQuery aggregationWithSource:FIRAggregateSourceServer
+                             completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                          NSError *error) {
+    if (error != nil) {
+      NSLog(@"Error fetching aggregate: %@", error);
+    } else {
+      NSLog(@"Sum: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForSumOfField:@"population"]]);
+    }
+  }];
+  // [END sum_aggregate_collection]
+}
+
+- (void)sumAggregateQuery {
+  // [START sum_aggregate_query]
+  FIRQuery *query = [[self.db collectionWithPath:@"cities"]
+                     queryWhereFilter:[FIRFilter filterWhereField:@"capital" isEqualTo:@YES]];
+  FIRAggregateQuery *aggregateQuery = [query aggregate:@[
+    [FIRAggregateField aggregateFieldForSumOfField:@"population"]]];
+  [aggregateQuery aggregationWithSource:FIRAggregateSourceServer
+                             completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                          NSError *error) {
+    if (error != nil) {
+      NSLog(@"Error fetching aggregate: %@", error);
+    } else {
+      NSLog(@"Sum: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForSumOfField:@"population"]]);
+    }
+  }];
+  // [END sum_aggregate_query]
+}
+
+- (void)averageAggregateCollection {
+  // [START average_aggregate_collection]
+  FIRQuery *query = [self.db collectionWithPath:@"cities"];
+  FIRAggregateQuery *aggregateQuery = [query aggregate:@[
+    [FIRAggregateField aggregateFieldForAverageOfField:@"population"]]];
+  [aggregateQuery aggregationWithSource:FIRAggregateSourceServer
+                             completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                          NSError *error) {
+    if (error != nil) {
+      NSLog(@"Error fetching aggregate: %@", error);
+    } else {
+      NSLog(@"Avg: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForAverageOfField:@"population"]]);
+    }
+  }];
+  // [END average_aggregate_collection]
+}
+
+- (void)averageAggregateQuery {
+  // [START average_aggregate_query]
+  FIRQuery *query = [[self.db collectionWithPath:@"cities"]
+                     queryWhereFilter:[FIRFilter filterWhereField:@"capital" isEqualTo:@YES]];
+  FIRAggregateQuery *aggregateQuery = [query aggregate:@[
+    [FIRAggregateField aggregateFieldForAverageOfField:@"population"]]];
+  [aggregateQuery aggregationWithSource:FIRAggregateSourceServer
+                             completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                          NSError *error) {
+    if (error != nil) {
+      NSLog(@"Error fetching aggregate: %@", error);
+    } else {
+      NSLog(@"Avg: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForAverageOfField:@"population"]]);
+    }
+  }];
+  // [END average_aggregate_query]
+}
+
+- (void)multiAggregateCollection {
+  // [START multi_aggregate_collection]
+  FIRQuery *query = [self.db collectionWithPath:@"cities"];
+  FIRAggregateQuery *aggregateQuery = [query aggregate:@[
+    [FIRAggregateField aggregateFieldForCount],
+    [FIRAggregateField aggregateFieldForSumOfField:@"population"],
+    [FIRAggregateField aggregateFieldForAverageOfField:@"population"]]];
+  [aggregateQuery aggregationWithSource:FIRAggregateSourceServer
+                             completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                          NSError *error) {
+    if (error != nil) {
+      NSLog(@"Error fetching aggregate: %@", error);
+    } else {
+      NSLog(@"Count: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForCount]]);
+      NSLog(@"Sum: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForSumOfField:@"population"]]);
+      NSLog(@"Avg: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForAverageOfField:@"population"]]);
+    }
+  }];
+  // [END multi_aggregate_collection]
 }
 
 @end
