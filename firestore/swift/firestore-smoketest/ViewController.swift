@@ -1282,7 +1282,76 @@ class ViewController: UIViewController {
     }
     // [END count_aggregate_query]
   }
-
+  
+  private func sumAggregateCollection() async {
+    // [START sum_aggregate_collection]
+    let query = db.collection("cities")
+    let aggregateQuery = query.aggregate([AggregateField.sum("population")])
+    do {
+      let snapshot = try await aggregateQuery.getAggregation(source: .server)
+      print(snapshot.get(AggregateField.sum("population")))
+    } catch {
+      print(error)
+    }
+    // [END sum_aggregate_collection]
+  }
+  
+  private func sumAggregateQuery() async {
+    // [START sum_aggregate_query]
+    let query = db.collection("cities").whereField("capital", isEqualTo: true)
+    let aggregateQuery = query.aggregate([AggregateField.sum("population")])
+    do {
+      let snapshot = try await aggregateQuery.getAggregation(source: .server)
+      print(snapshot.get(AggregateField.sum("population")))
+    } catch {
+      print(error)
+    }
+    // [END sum_aggregate_query]
+  }
+  
+  private func averageAggregateCollection() async {
+    // [START average_aggregate_collection]
+    let query = db.collection("cities")
+    let aggregateQuery = query.aggregate([AggregateField.average("population")])
+    do {
+      let snapshot = try await aggregateQuery.getAggregation(source: .server)
+      print(snapshot.get(AggregateField.average("population")))
+    } catch {
+      print(error)
+    }
+    // [END average_aggregate_collection]
+  }
+  
+  private func averageAggregateQuery() async {
+    // [START average_aggregate_query]
+    let query = db.collection("cities").whereField("capital", isEqualTo: true)
+    let aggregateQuery = query.aggregate([AggregateField.average("population")])
+    do {
+      let snapshot = try await aggregateQuery.getAggregation(source: .server)
+      print(snapshot.get(AggregateField.average("population")))
+    } catch {
+      print(error)
+    }
+    // [END average_aggregate_query]
+  }
+  
+  private func multiAggregateCollection() async {
+    // [START multi_aggregate_collection]
+    let query = db.collection("cities")
+    let aggregateQuery = query.aggregate([
+      AggregateField.count(),
+      AggregateField.sum("population"),
+      AggregateField.average("population")])
+    do {
+      let snapshot = try await aggregateQuery.getAggregation(source: .server)
+      print("Count: \(snapshot.get(AggregateField.count()))")
+      print("Sum: \(snapshot.get(AggregateField.sum("population")))")
+      print("Average: \(snapshot.get(AggregateField.average("population")))")
+    } catch {
+      print(error)
+    }
+    // [END multi_aggregate_collection]
+  }
 }
 
 // [START codable_struct]
