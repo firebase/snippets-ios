@@ -1200,4 +1200,95 @@
     // [END count_aggregate_query]
 }
 
+- (void)sumAggregateCollection {
+    // [START sum_aggregate_collection]
+    FIRQuery *query = [self.db collectionWithPath:@"cities"];
+    FIRAggregateQuery *aggregateQuery = [query aggregate:@[
+        [FIRAggregateField aggregateFieldForSumOfField:@"population"]]];
+    [aggregateQuery aggregationWithSource:FIRAggregateSourceServer
+                               completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                            NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error fetching aggregate: %@", error);
+        } else {
+            NSLog(@"Sum: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForSumOfField:@"population"]]);
+        }
+    }];
+    // [END sum_aggregate_collection]
+}
+
+- (void)sumAggregateQuery {
+    // [START sum_aggregate_query]
+    FIRQuery *query = [[self.db collectionWithPath:@"cities"]
+                       queryWhereFilter:[FIRFilter filterWhereField:@"capital" isEqualTo:@YES]];
+    FIRAggregateQuery *aggregateQuery = [query aggregate:@[
+        [FIRAggregateField aggregateFieldForSumOfField:@"population"]]];
+    [aggregateQuery aggregationWithSource:FIRAggregateSourceServer
+                               completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                            NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error fetching aggregate: %@", error);
+        } else {
+            NSLog(@"Sum: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForSumOfField:@"population"]]);
+        }
+    }];
+    // [END sum_aggregate_query]
+}
+
+- (void)averageAggregateCollection {
+    // [START average_aggregate_collection]
+    FIRQuery *query = [self.db collectionWithPath:@"cities"];
+    FIRAggregateQuery *aggregateQuery = [query aggregate:@[
+        [FIRAggregateField aggregateFieldForAverageOfField:@"population"]]];
+    [aggregateQuery aggregationWithSource:FIRAggregateSourceServer
+                               completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                            NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error fetching aggregate: %@", error);
+        } else {
+            NSLog(@"Avg: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForAverageOfField:@"population"]]);
+        }
+    }];
+    // [END average_aggregate_collection]
+}
+
+- (void)averageAggregateQuery {
+    // [START average_aggregate_query]
+    FIRQuery *query = [[self.db collectionWithPath:@"cities"]
+                       queryWhereFilter:[FIRFilter filterWhereField:@"capital" isEqualTo:@YES]];
+    FIRAggregateQuery *aggregateQuery = [query aggregate:@[
+        [FIRAggregateField aggregateFieldForAverageOfField:@"population"]]];
+    [aggregateQuery aggregationWithSource:FIRAggregateSourceServer
+                               completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                            NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error fetching aggregate: %@", error);
+        } else {
+            NSLog(@"Avg: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForAverageOfField:@"population"]]);
+        }
+    }];
+    // [END average_aggregate_query]
+}
+
+- (void)multiAggregateCollection {
+    // [START multi_aggregate_collection]
+    FIRQuery *query = [self.db collectionWithPath:@"cities"];
+    FIRAggregateQuery *aggregateQuery = [query aggregate:@[
+        [FIRAggregateField aggregateFieldForCount],
+        [FIRAggregateField aggregateFieldForSumOfField:@"population"],
+        [FIRAggregateField aggregateFieldForAverageOfField:@"population"]]];
+    [aggregateQuery aggregationWithSource:FIRAggregateSourceServer
+                               completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                            NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error fetching aggregate: %@", error);
+        } else {
+            NSLog(@"Count: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForCount]]);
+            NSLog(@"Sum: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForSumOfField:@"population"]]);
+            NSLog(@"Avg: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForAverageOfField:@"population"]]);
+        }
+    }];
+    // [END multi_aggregate_collection]
+}
+
 @end
