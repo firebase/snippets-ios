@@ -42,10 +42,10 @@ PODS:
     - nanopb/encode (= 2.30909.1)
   - nanopb/decode (2.30909.1)
   - nanopb/encode (2.30909.1)
-  - PromisesObjC (2.3.1)
-  - SDWebImage (5.18.11):
-    - SDWebImage/Core (= 5.18.11)
-  - SDWebImage/Core (5.18.11)
+  - PromisesObjC (2.4.0)
+  - SDWebImage (5.19.0):
+    - SDWebImage/Core (= 5.19.0)
+  - SDWebImage/Core (5.19.0)
 
 DEPENDENCIES:
   - FirebaseStorage (~> 9.0)
@@ -83,8 +83,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
   GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
   nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
-  PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
-  SDWebImage: a3ba0b8faac7228c3c8eadd1a55c9c9fe5e16457
+  PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
+  SDWebImage: 981fd7e860af070920f249fd092420006014c3eb
 
 PODFILE CHECKSUM: 391f1ea32d2ab69e86fbbcaed454945eef4950b4
 
