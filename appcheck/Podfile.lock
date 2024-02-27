@@ -25,7 +25,7 @@ PODS:
   - GoogleUtilities/Logger (7.12.0):
     - GoogleUtilities/Environment
   - "GoogleUtilities/NSData+zlib (7.12.0)"
-  - PromisesObjC (2.3.1)
+  - PromisesObjC (2.4.0)
 
 DEPENDENCIES:
   - Firebase/AppCheck
@@ -49,7 +49,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 74f647ad9739ea75112ce6c3b3b91f5488ce1122
   FirebaseCoreInternal: 43c1788eaeee9d1b97caaa751af567ce11010d00
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
-  PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
+  PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
 
 PODFILE CHECKSUM: 3f5fe9faa57008d6327228db502ed5519ccd4918
 
