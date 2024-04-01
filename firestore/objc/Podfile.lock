@@ -829,7 +829,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.8)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
     - RecaptchaInterop (~> 100.0)
-  - FirebaseCore (10.23.0):
+  - FirebaseCore (10.23.1):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.12)
     - GoogleUtilities/Logger (~> 7.12)
@@ -998,7 +998,7 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 1e2348957acdbcad360b80a264a90799984b2ba6
   FirebaseAppCheckInterop: a1955ce8c30f38f87e7d091630e871e91154d65d
   FirebaseAuth: 22eb85d3853141de7062bfabc131aa7d6335cade
-  FirebaseCore: 63efb128decaebb04c4033ed4e05fb0bb1cccef1
+  FirebaseCore: c43f9f0437b50a965e930cac4ad243200d12a984
   FirebaseCoreExtension: cb88851781a24e031d1b58e0bd01eb1f46b044b5
   FirebaseCoreInternal: 6a292e6f0bece1243a737e81556e56e5e19282e3
   FirebaseFirestore: 3478b0580f6c16d895460611b4fcec93955f4717
