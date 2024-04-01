@@ -1,5 +1,5 @@
 PODS:
-  - FirebaseCore (10.23.0):
+  - FirebaseCore (10.23.1):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.12)
     - GoogleUtilities/Logger (~> 7.12)
@@ -36,7 +36,7 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  FirebaseCore: 63efb128decaebb04c4033ed4e05fb0bb1cccef1
+  FirebaseCore: c43f9f0437b50a965e930cac4ad243200d12a984
   FirebaseCoreInternal: 6a292e6f0bece1243a737e81556e56e5e19282e3
   FirebaseInstallations: 42d6ead4605d6eafb3b6683674e80e18eb6f2c35
   GoogleUtilities: d053d902a8edaa9904e1bd00c37535385b8ed152

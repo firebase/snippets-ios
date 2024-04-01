@@ -821,12 +821,12 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.32):
     - BoringSSL-GRPC/Interface (= 0.0.32)
   - BoringSSL-GRPC/Interface (0.0.32)
-  - Firebase/Auth (10.23.0):
+  - Firebase/Auth (10.23.1):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 10.23.0)
-  - Firebase/CoreOnly (10.23.0):
-    - FirebaseCore (= 10.23.0)
-  - Firebase/Firestore (10.23.0):
+  - Firebase/CoreOnly (10.23.1):
+    - FirebaseCore (= 10.23.1)
+  - Firebase/Firestore (10.23.1):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 10.23.0)
   - FirebaseAppCheckInterop (10.23.0)
@@ -837,7 +837,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.8)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
     - RecaptchaInterop (~> 100.0)
-  - FirebaseCore (10.23.0):
+  - FirebaseCore (10.23.1):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.12)
     - GoogleUtilities/Logger (~> 7.12)
@@ -1008,10 +1008,10 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   abseil: ebec4f56469dd7ce9ab08683c0319a68aa0ad86e
   BoringSSL-GRPC: 1e2348957acdbcad360b80a264a90799984b2ba6
-  Firebase: 333ec7c6b12fa09c77b5162cda6b862102211d50
+  Firebase: cf09623f98ae25a3ad484e23c7e0e5f464152d80
   FirebaseAppCheckInterop: a1955ce8c30f38f87e7d091630e871e91154d65d
   FirebaseAuth: 22eb85d3853141de7062bfabc131aa7d6335cade
-  FirebaseCore: 63efb128decaebb04c4033ed4e05fb0bb1cccef1
+  FirebaseCore: c43f9f0437b50a965e930cac4ad243200d12a984
   FirebaseCoreExtension: cb88851781a24e031d1b58e0bd01eb1f46b044b5
   FirebaseCoreInternal: 6a292e6f0bece1243a737e81556e56e5e19282e3
   FirebaseFirestore: 3478b0580f6c16d895460611b4fcec93955f4717
