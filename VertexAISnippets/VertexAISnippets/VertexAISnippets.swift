@@ -182,6 +182,38 @@ class Snippets {
 
   func textAndVideoPrompt() async throws {
     // AVFoundation support coming soon™
+    // [START text_video_prompt]
+    guard let fileURL = Bundle.main.url(forResource: "sample", 
+                                        withExtension: "mp4") else { fatalError() }
+    let video = try Data(contentsOf: fileURL)
+    let prompt = "What's in this video?"
+    let videoContent = ModelContent.Part.data(mimetype: "video/mp4", video)
+
+    // To generate text output, call generateContent and pass in the prompt
+    let response = try await model.generateContent(videoContent, prompt)
+    if let text = response.text {
+      print(text)
+    }
+    // [END text_video_prompt]
+  }
+
+  func textAndVideoPromptStreaming() async throws {
+    // AVFoundation support coming soon™
+    // [START text_video_prompt_streaming]
+    guard let fileURL = Bundle.main.url(forResource: "sample",
+                                        withExtension: "mp4") else { fatalError() }
+    let video = try Data(contentsOf: fileURL)
+    let prompt = "What's in this video?"
+    let videoContent = ModelContent.Part.data(mimetype: "video/mp4", video)
+
+    // To stream generated text output, call generateContentStream and pass in the prompt
+    let contentStream = model.generateContentStream(videoContent, prompt)
+    for try await chunk in contentStream {
+      if let text = chunk.text {
+        print(text)
+      }
+    }
+    // [END text_video_prompt_streaming]
   }
 
   func chatStreaming() async throws {
