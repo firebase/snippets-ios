@@ -198,7 +198,6 @@ class Snippets {
   }
 
   func textAndVideoPromptStreaming() async throws {
-    // AVFoundation support coming soon™
     // [START text_video_prompt_streaming]
     guard let fileURL = Bundle.main.url(forResource: "sample",
                                         withExtension: "mp4") else { fatalError() }
