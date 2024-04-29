@@ -1,0 +1,22 @@
+on: 
+  pull_request:
+    paths:
+      - 'VertexAISnippets/**'
+      - '.github/workflows/vertexai.yml'
+name: VertexAI
+jobs:
+  snippets-build:
+    name: snippets build
+    runs-on: macOS-latest
+    strategy:
+        matrix:
+          destination: ['platform=iOS Simulator,OS=latest,name=iPhone 15', 'platform=OS X']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Build Swift snippets
+        run: |
+          cd VertexAISnippets
+          xcodebuild -project VertexAISnippets.xcodeproj -scheme VertexAISnippets clean build -destination "${destination}" CODE_SIGNING_REQUIRED=NO
+        env: 
+         destination: ${{ matrix.destination }}
