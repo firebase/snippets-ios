@@ -326,4 +326,120 @@ class Snippets {
     // [END set_safety_settings]
   }
 
+  func functionCalling() async throws {
+    // [START create_function]
+    func makeAPIRequest(currencyDate: String, currencyFrom: String,
+                        currencyTo: String) -> JSONObject {
+      // This hypothetical API returns a JSON such as:
+      // {"base":"USD","date":"2024-04-17","rates":{"SEK": 0.091}}
+      return [
+        "date": .string(currencyDate),
+        "base": .string(currencyFrom),
+        "rates": .object([currencyTo: .number(0.091)]),
+      ]
+    }
+    // [END create_function]
+
+    // [START create_function_metadata]
+    let getExchangeRate = FunctionDeclaration(
+      name: "getExchangeRate",
+      description: "Get the exchange rate for currencies between countries",
+      parameters: [
+        "currencyDate": Schema(
+          type: .string,
+          description: "A date that must always be in YYYY-MM-DD format or the value 'latest' if a time period is not specified"
+        ),
+        "currencyFrom": Schema(
+          type: .string,
+          description: "The currency to convert from."
+        ),
+        "currencyTo": Schema(
+          type: .string,
+          description: "The currency to convert to."
+        ),
+      ],
+      requiredParameters: nil
+    )
+
+    // [END create_function_metadata]
+
+    // [START initialize_model_function]
+    // Specify the function declaration.
+    let function = Tool(functionDeclarations: [getExchangeRate])
+
+    // Use a model that supports function calling, like Gemini 1.0 Pro.
+    // See "Supported models" in the "Introduction to function calling" page.
+    let generativeModel = VertexAI.vertexAI().generativeModel(modelName: "gemini-1.0-pro",
+                                                              tools: [function])
+    // [END initialize_model_function]
+
+    // [START generate_function_call]
+    let chat = generativeModel.startChat()
+
+    let prompt = "How much is 50 US dollars worth in Swedish krona?"
+
+    // Send the message to the generative model
+    let response1 = try await chat.sendMessage(prompt)
+
+    // Check if the model responded with a function call
+    guard let functionCall = response1.functionCalls.first else {
+      fatalError("Model did not respond with a function call.")
+    }
+    // Print an error if the returned function was not declared
+    guard functionCall.name == "getExchangeRate" else {
+      fatalError("Unexpected function called: \(functionCall.name)")
+    }
+    // Verify that the names and types of the parameters match the declaration
+    guard case let .string(currencyDate) = functionCall.args["currencyDate"] else {
+      fatalError("Missing argument: currencyDate")
+    }
+    guard case let .string(currencyFrom) = functionCall.args["currencyFrom"] else {
+      fatalError("Missing argument: currencyFrom")
+    }
+    guard case let .string(currencyTo) = functionCall.args["currencyTo"] else {
+      fatalError("Missing argument: currencyTo")
+    }
+
+    // Call the hypothetical API
+    let apiResponse = makeAPIRequest(
+      currencyDate: currencyDate,
+      currencyFrom: currencyFrom,
+      currencyTo: currencyTo
+    )
+
+    // Send the API response back to the model so it can generate a text response that can be
+    // displayed to the user.
+    let response2 = try await chat.sendMessage([ModelContent(
+      role: "function",
+      parts: [.functionResponse(FunctionResponse(
+        name: functionCall.name,
+        response: apiResponse
+      ))]
+    )])
+
+    // Log the text response.
+    guard let modelResponse = response2.text else {
+      fatalError("Model did not respond with text.")
+    }
+    print(modelResponse)
+    // [END generate_function_call]
+
+    // [START function_modes]
+    let model = VertexAI.vertexAI().generativeModel(
+      // Setting a function calling mode is only available in Gemini 1.5 Pro
+      modelName: "gemini-1.5-pro-latest",
+      // Pass the function declaration
+      tools: [Tool(functionDeclarations: [getExchangeRate])],
+      toolConfig: ToolConfig(
+        functionCallingConfig: FunctionCallingConfig(
+          // Only call functions (model won't generate text)
+          mode: FunctionCallingConfig.Mode.any,
+          // This should only be set when the Mode is .any.
+          allowedFunctionNames: ["getExchangeRate"]
+        )
+      )
+    )
+    // [END function_modes]
+  }
+
 }
