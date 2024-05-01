@@ -326,16 +326,16 @@ class Snippets {
     // [END set_safety_settings]
   }
 
+  // MARK: - Function Calling
+
   func functionCalling() async throws {
     // [START create_function]
-    func makeAPIRequest(currencyDate: String, currencyFrom: String,
-                        currencyTo: String) -> JSONObject {
+    func makeAPIRequest(currencyFrom: String, currencyTo: String) -> JSONObject {
       // This hypothetical API returns a JSON such as:
-      // {"base":"USD","date":"2024-04-17","rates":{"SEK": 0.091}}
+      // {"base":"USD","rates":{"SEK": 10.99}}
       return [
-        "date": .string(currencyDate),
         "base": .string(currencyFrom),
-        "rates": .object([currencyTo: .number(0.091)]),
+        "rates": .object([currencyTo: .number(10.99)]),
       ]
     }
     // [END create_function]
@@ -345,10 +345,6 @@ class Snippets {
       name: "getExchangeRate",
       description: "Get the exchange rate for currencies between countries",
       parameters: [
-        "currencyDate": Schema(
-          type: .string,
-          description: "A date that must always be in YYYY-MM-DD format or the value 'latest' if a time period is not specified"
-        ),
         "currencyFrom": Schema(
           type: .string,
           description: "The currency to convert from."
@@ -358,23 +354,25 @@ class Snippets {
           description: "The currency to convert to."
         ),
       ],
-      requiredParameters: nil
+      requiredParameters: ["currencyFrom", "currencyTo"]
     )
-
     // [END create_function_metadata]
 
     // [START initialize_model_function]
-    // Specify the function declaration.
-    let function = Tool(functionDeclarations: [getExchangeRate])
-
+    // Initialize the Vertex AI service
+    let vertex = VertexAI.vertexAI()
+    
+    // Initialize the generative model
     // Use a model that supports function calling, like Gemini 1.0 Pro.
-    // See "Supported models" in the "Introduction to function calling" page.
-    let generativeModel = VertexAI.vertexAI().generativeModel(modelName: "gemini-1.0-pro",
-                                                              tools: [function])
+    let model = vertex.generativeModel(
+      modelName: "gemini-1.0-pro",
+      // Specify the function declaration.
+      tools: [Tool(functionDeclarations: [getExchangeRate])]
+    )
     // [END initialize_model_function]
 
     // [START generate_function_call]
-    let chat = generativeModel.startChat()
+    let chat = model.startChat()
 
     let prompt = "How much is 50 US dollars worth in Swedish krona?"
 
@@ -390,9 +388,6 @@ class Snippets {
       fatalError("Unexpected function called: \(functionCall.name)")
     }
     // Verify that the names and types of the parameters match the declaration
-    guard case let .string(currencyDate) = functionCall.args["currencyDate"] else {
-      fatalError("Missing argument: currencyDate")
-    }
     guard case let .string(currencyFrom) = functionCall.args["currencyFrom"] else {
       fatalError("Missing argument: currencyFrom")
     }
@@ -401,15 +396,11 @@ class Snippets {
     }
 
     // Call the hypothetical API
-    let apiResponse = makeAPIRequest(
-      currencyDate: currencyDate,
-      currencyFrom: currencyFrom,
-      currencyTo: currencyTo
-    )
+    let apiResponse = makeAPIRequest(currencyFrom: currencyFrom, currencyTo: currencyTo)
 
     // Send the API response back to the model so it can generate a text response that can be
     // displayed to the user.
-    let response2 = try await chat.sendMessage([ModelContent(
+    let response = try await chat.sendMessage([ModelContent(
       role: "function",
       parts: [.functionResponse(FunctionResponse(
         name: functionCall.name,
@@ -418,16 +409,25 @@ class Snippets {
     )])
 
     // Log the text response.
-    guard let modelResponse = response2.text else {
+    guard let modelResponse = response.text else {
       fatalError("Model did not respond with text.")
     }
     print(modelResponse)
     // [END generate_function_call]
+  }
+
+  func functionCallingModes() {
+    let getExchangeRate = FunctionDeclaration(
+      name: "getExchangeRate",
+      description: "Get the exchange rate for currencies between countries",
+      parameters: nil,
+      requiredParameters: nil
+    )
 
     // [START function_modes]
     let model = VertexAI.vertexAI().generativeModel(
       // Setting a function calling mode is only available in Gemini 1.5 Pro
-      modelName: "gemini-1.5-pro-latest",
+      modelName: "gemini-1.5-pro-preview-0409",
       // Pass the function declaration
       tools: [Tool(functionDeclarations: [getExchangeRate])],
       toolConfig: ToolConfig(
