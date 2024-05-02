@@ -93,7 +93,7 @@ class Snippets {
       modelName: "{{ '<var>MODEL_NAME</var>' }}",
       safetySettings: [harassmentSafety, hateSpeechSafety]
     )
-    // END multi_safety_settings
+    // [END multi_safety_settings]
   }
 
   func callGemini() async throws {
