@@ -39,6 +39,63 @@ class Snippets {
     self.model = model
   }
 
+  func templateInitializeModel() {
+    // [START template_initialize_model]
+    // Initialize the Vertex AI service
+    let vertex = VertexAI.vertexAI()
+
+    // Initialize the generative model with a model that supports your use case
+    // Gemini 1.5 Pro is versatile and can accept both text-only or multimodal prompt inputs
+    let model = vertex.generativeModel(modelName: "{{generic_model_name_initialization}}")
+    // [END template_initialize_model]
+  }
+
+  func configureModel() {
+    let vertex = VertexAI.vertexAI()
+
+    // [START configure_model]
+    let config = GenerationConfig(
+      temperature: 0.9,
+      topP: 0.1,
+      topK: 16,
+      maxOutputTokens: 200,
+      stopSequences: ["red"]
+    )
+
+    let model = vertex.generativeModel(
+      modelName: "{{ '<var>MODEL_NAME</var>' }}",
+      generationConfig: config
+    )
+    // [END configure_model]
+  }
+
+  func safetySettings() {
+    let vertex = VertexAI.vertexAI()
+
+    // [START safety_settings]
+    let model = vertex.generativeModel(
+      modelName: "{{ '<var>MODEL_NAME</var>' }}",
+      safetySettings: [
+        SafetySetting(harmCategory: .harassment, threshold: .blockOnlyHigh)
+      ]
+    )
+    // [END safety_settings]
+  }
+
+  func multiSafetySettings() {
+    let vertex = VertexAI.vertexAI()
+
+    // [START multi_safety_settings]
+    let harassmentSafety = SafetySetting(harmCategory: .harassment, threshold: .blockOnlyHigh)
+    let hateSpeechSafety = SafetySetting(harmCategory: .hateSpeech, threshold: .blockMediumAndAbove)
+
+    let model = vertex.generativeModel(
+      modelName: "{{ '<var>MODEL_NAME</var>' }}",
+      safetySettings: [harassmentSafety, hateSpeechSafety]
+    )
+    // END multi_safety_settings
+  }
+
   func callGemini() async throws {
     // [START call_gemini]
     // Provide a prompt that contains text
@@ -181,7 +238,6 @@ class Snippets {
   }
 
   func textAndVideoPrompt() async throws {
-    // AVFoundation support coming soon™
     // [START text_video_prompt]
     guard let fileURL = Bundle.main.url(forResource: "sample", 
                                         withExtension: "mp4") else { fatalError() }
@@ -273,7 +329,7 @@ class Snippets {
     let response = try await model.countTokens(image, "What's in this picture?")
     print("Total Tokens: \(response.totalTokens)")
     print("Total Billable Characters: \(response.totalBillableCharacters)")
-    // [START count_tokens_text_image]
+    // [END count_tokens_text_image]
   }
 
   func countTokensMultiImage() async throws {
