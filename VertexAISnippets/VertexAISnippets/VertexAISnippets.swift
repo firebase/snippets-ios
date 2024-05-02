@@ -329,7 +329,7 @@ class Snippets {
     let response = try await model.countTokens(image, "What's in this picture?")
     print("Total Tokens: \(response.totalTokens)")
     print("Total Billable Characters: \(response.totalBillableCharacters)")
-    // [START count_tokens_text_image]
+    // [END count_tokens_text_image]
   }
 
   func countTokensMultiImage() async throws {
