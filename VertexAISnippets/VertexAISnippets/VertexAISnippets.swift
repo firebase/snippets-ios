@@ -32,22 +32,11 @@ class Snippets {
     let vertex = VertexAI.vertexAI()
 
     // Initialize the generative model with a model that supports your use case
-    // Gemini 1.5 Pro is versatile and can accept both text-only or multimodal prompt inputs
-    let model = vertex.generativeModel(modelName: "gemini-1.5-pro-preview-0409")
+    // Gemini 1.5 models are versatile and can be used with all API capabilities
+    let model = vertex.generativeModel(modelName: "{{generic_model_name_initialization}}")
     // [END initialize_model]
 
     self.model = model
-  }
-
-  func templateInitializeModel() {
-    // [START template_initialize_model]
-    // Initialize the Vertex AI service
-    let vertex = VertexAI.vertexAI()
-
-    // Initialize the generative model with a model that supports your use case
-    // Gemini 1.5 Pro is versatile and can accept both text-only or multimodal prompt inputs
-    let model = vertex.generativeModel(modelName: "{{generic_model_name_initialization}}")
-    // [END template_initialize_model]
   }
 
   func configureModel() {
@@ -63,7 +52,7 @@ class Snippets {
     )
 
     let model = vertex.generativeModel(
-      modelName: "{{ '<var>MODEL_NAME</var>' }}",
+      modelName: "{{generic_model_name_initialization}}",
       generationConfig: config
     )
     // [END configure_model]
@@ -74,7 +63,7 @@ class Snippets {
 
     // [START safety_settings]
     let model = vertex.generativeModel(
-      modelName: "{{ '<var>MODEL_NAME</var>' }}",
+      modelName: "{{generic_model_name_initialization}}",
       safetySettings: [
         SafetySetting(harmCategory: .harassment, threshold: .blockOnlyHigh)
       ]
@@ -90,42 +79,14 @@ class Snippets {
     let hateSpeechSafety = SafetySetting(harmCategory: .hateSpeech, threshold: .blockMediumAndAbove)
 
     let model = vertex.generativeModel(
-      modelName: "{{ '<var>MODEL_NAME</var>' }}",
+      modelName: "{{generic_model_name_initialization}}",
       safetySettings: [harassmentSafety, hateSpeechSafety]
     )
     // [END multi_safety_settings]
   }
 
-  func callGemini() async throws {
-    // [START call_gemini]
-    // Provide a prompt that contains text
-    let prompt = "Write a story about a magic backpack."
-
-    // To generate text output, call generateContent with the text input
-    let response = try await model.generateContent(prompt)
-    if let text = response.text {
-      print(text)
-    }
-    // [END call_gemini]
-  }
-
-  func callGeminiStreaming() async throws {
-    // [START call_gemini_streaming]
-    // Provide a prompt that contains text
-    let prompt = "Write a story about a magic backpack."
-
-    // To stream generated text output, call generateContentStream with the text input
-    let contentStream = model.generateContentStream(prompt)
-    for try await chunk in contentStream {
-      if let text = chunk.text {
-        print(text)
-      }
-    }
-    // [END call_gemini_streaming]
-  }
-
   func sendTextOnlyPromptStreaming() async throws {
-    // [START text_only_prompt_streaming]
+    // [START text_gen_text_only_prompt_streaming]
     // Provide a prompt that contains text
     let prompt = "Write a story about a magic backpack."
 
@@ -136,12 +97,11 @@ class Snippets {
         print(text)
       }
     }
-    // [END text_only_prompt_streaming]
+    // [START text_gen_text_only_prompt_streaming]
   }
 
-  // Note: This is the same as the call gemini prompt, but may change in the future.
   func sendTextOnlyPromt() async throws {
-    // [START text_only_prompt]
+    // [START text_gen_text_only_prompt]
     // Provide a prompt that contains text
     let prompt = "Write a story about a magic backpack."
 
@@ -150,11 +110,11 @@ class Snippets {
     if let text = response.text {
       print(text)
     }
-    // [END text_only_prompt]
+    // [START text_gen_text_only_prompt]
   }
 
   func sendMultimodalPromptStreaming() async throws {
-    // [START multimodal_prompt_streaming]
+    // [START text_gen_multimodal_one_image_prompt_streaming]
     #if canImport(UIKit)
       guard let image = UIImage(named: "image") else { fatalError() }
     #else
@@ -171,11 +131,11 @@ class Snippets {
         print(text)
       }
     }
-    // [END multimodal_prompt_streaming]
+    // [END text_gen_multimodal_one_image_prompt_streaming]
   }
 
   func sendMultimodalPrompt() async throws {
-    // [START multimodal_prompt]
+    // [START text_gen_multimodal_one_image_prompt]
     // Provide a text prompt to include with the image
     #if canImport(UIKit)
       guard let image = UIImage(named: "image") else { fatalError() }
@@ -190,11 +150,11 @@ class Snippets {
     if let text = response.text {
       print(text)
     }
-    // [END multimodal_prompt]
+    // [END text_gen_multimodal_one_image_prompt]
   }
 
   func multiImagePromptStreaming() async throws {
-    // [START two_image_prompt_streaming]
+    // [START text_gen_multimodal_multi_image_prompt_streaming]
     #if canImport(UIKit)
       guard let image1 = UIImage(named: "image1") else { fatalError() }
       guard let image2 = UIImage(named: "image2") else { fatalError() }
@@ -213,11 +173,11 @@ class Snippets {
         print(text)
       }
     }
-    // [END two_image_prompt_streaming]
+    // [END text_gen_multimodal_multi_image_prompt_streaming]
   }
 
   func multiImagePrompt() async throws {
-    // [START two_image_prompt]
+    // [START text_gen_multimodal_multi_image_prompt]
     #if canImport(UIKit)
       guard let image1 = UIImage(named: "image1") else { fatalError() }
       guard let image2 = UIImage(named: "image2") else { fatalError() }
@@ -234,12 +194,12 @@ class Snippets {
     if let text = response.text {
       print(text)
     }
-    // [END two_image_prompt]
+    // [END text_gen_multimodal_multi_image_prompt]
   }
 
   func textAndVideoPrompt() async throws {
-    // [START text_video_prompt]
-    guard let fileURL = Bundle.main.url(forResource: "sample", 
+    // [START text_gen_multimodal_video_prompt]
+    guard let fileURL = Bundle.main.url(forResource: "sample",
                                         withExtension: "mp4") else { fatalError() }
     let video = try Data(contentsOf: fileURL)
     let prompt = "What's in this video?"
@@ -250,11 +210,11 @@ class Snippets {
     if let text = response.text {
       print(text)
     }
-    // [END text_video_prompt]
+    // [END text_gen_multimodal_video_prompt]
   }
 
   func textAndVideoPromptStreaming() async throws {
-    // [START text_video_prompt_streaming]
+    // [START text_gen_multimodal_video_prompt_streaming]
     guard let fileURL = Bundle.main.url(forResource: "sample",
                                         withExtension: "mp4") else { fatalError() }
     let video = try Data(contentsOf: fileURL)
@@ -268,7 +228,7 @@ class Snippets {
         print(text)
       }
     }
-    // [END text_video_prompt_streaming]
+    // [END text_gen_multimodal_video_prompt_streaming]
   }
 
   func chatStreaming() async throws {
@@ -360,26 +320,26 @@ class Snippets {
   }
 
   func setSafetySetting() {
-    // [START set_safety_setting]
+    // [START set_one_safety_setting]
     let model = VertexAI.vertexAI().generativeModel(
-      modelName: "MODEL_NAME",
+      modelName: "{{generic_model_name_initialization}}",
       safetySettings: [
         SafetySetting(harmCategory: .harassment, threshold: .blockOnlyHigh)
       ]
     )
-    // [END set_safety_setting]
+    // [END set_one_safety_setting]
   }
 
   func setMultipleSafetySettings() {
-    // [START set_safety_settings]
+    // [START set_multi_safety_settings]
     let harassmentSafety = SafetySetting(harmCategory: .harassment, threshold: .blockOnlyHigh)
     let hateSpeechSafety = SafetySetting(harmCategory: .hateSpeech, threshold: .blockMediumAndAbove)
 
     let model = VertexAI.vertexAI().generativeModel(
-      modelName: "MODEL_NAME",
+      modelName: "{{generic_model_name_initialization}}",
       safetySettings: [harassmentSafety, hateSpeechSafety]
     )
-    // [END set_safety_settings]
+    // [END set_multi_safety_settings]
   }
 
   // MARK: - Function Calling
@@ -421,7 +381,7 @@ class Snippets {
     // Initialize the generative model
     // Use a model that supports function calling, like Gemini 1.0 Pro.
     let model = vertex.generativeModel(
-      modelName: "gemini-1.0-pro",
+      modelName: "{{generic_model_name_initialization}}",
       // Specify the function declaration.
       tools: [Tool(functionDeclarations: [getExchangeRate])]
     )
@@ -483,7 +443,7 @@ class Snippets {
     // [START function_modes]
     let model = VertexAI.vertexAI().generativeModel(
       // Setting a function calling mode is only available in Gemini 1.5 Pro
-      modelName: "gemini-1.5-pro-preview-0409",
+      modelName: "{{generic_model_name_initialization}}",
       // Pass the function declaration
       tools: [Tool(functionDeclarations: [getExchangeRate])],
       toolConfig: ToolConfig(
