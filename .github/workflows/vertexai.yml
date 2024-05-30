@@ -1,7 +1,7 @@
 on: 
   pull_request:
     paths:
-      - 'VertexAISnippets/**'
+      - 'vertexai/**'
       - '.github/workflows/vertexai.yml'
 name: VertexAI
 jobs:
@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@master
       - name: Build Swift snippets
         run: |
-          cd VertexAISnippets
+          cd vertexai
           xcodebuild -project VertexAISnippets.xcodeproj -scheme VertexAISnippets clean build -destination "${destination}" CODE_SIGNING_REQUIRED=NO
         env: 
          destination: ${{ matrix.destination }}
