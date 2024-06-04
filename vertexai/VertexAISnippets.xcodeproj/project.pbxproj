@@ -384,7 +384,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
-				branch = "vertexai-preview-0.1.0";
+				branch = main;
 				kind = branch;
 			};
 		};
