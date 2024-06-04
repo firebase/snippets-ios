@@ -33,7 +33,7 @@ class Snippets {
 
     // Initialize the generative model with a model that supports your use case
     // Gemini 1.5 models are versatile and can be used with all API capabilities
-    let model = vertex.generativeModel(modelName: "gemini-1.5-pro")
+    let model = vertex.generativeModel(modelName: "gemini-1.5-flash")
     // [END initialize_model]
 
     self.model = model
@@ -52,7 +52,7 @@ class Snippets {
     )
 
     let model = vertex.generativeModel(
-      modelName: "gemini-1.5-pro",
+      modelName: "gemini-1.5-flash",
       generationConfig: config
     )
     // [END configure_model]
@@ -63,7 +63,7 @@ class Snippets {
 
     // [START safety_settings]
     let model = vertex.generativeModel(
-      modelName: "gemini-1.5-pro",
+      modelName: "gemini-1.5-flash",
       safetySettings: [
         SafetySetting(harmCategory: .harassment, threshold: .blockOnlyHigh)
       ]
@@ -79,7 +79,7 @@ class Snippets {
     let hateSpeechSafety = SafetySetting(harmCategory: .hateSpeech, threshold: .blockMediumAndAbove)
 
     let model = vertex.generativeModel(
-      modelName: "gemini-1.5-pro",
+      modelName: "gemini-1.5-flash",
       safetySettings: [harassmentSafety, hateSpeechSafety]
     )
     // [END multi_safety_settings]
@@ -322,7 +322,7 @@ class Snippets {
   func setSafetySetting() {
     // [START set_one_safety_setting]
     let model = VertexAI.vertexAI().generativeModel(
-      modelName: "gemini-1.5-pro",
+      modelName: "gemini-1.5-flash",
       safetySettings: [
         SafetySetting(harmCategory: .harassment, threshold: .blockOnlyHigh)
       ]
@@ -336,7 +336,7 @@ class Snippets {
     let hateSpeechSafety = SafetySetting(harmCategory: .hateSpeech, threshold: .blockMediumAndAbove)
 
     let model = VertexAI.vertexAI().generativeModel(
-      modelName: "gemini-1.5-pro",
+      modelName: "gemini-1.5-flash",
       safetySettings: [harassmentSafety, hateSpeechSafety]
     )
     // [END set_multi_safety_settings]
@@ -379,9 +379,9 @@ class Snippets {
     let vertex = VertexAI.vertexAI()
     
     // Initialize the generative model
-    // Use a model that supports function calling, like Gemini 1.0 Pro.
+    // Use a model that supports function calling, like a Gemini 1.5 model.
     let model = vertex.generativeModel(
-      modelName: "gemini-1.5-pro",
+      modelName: "gemini-1.5-flash",
       // Specify the function declaration.
       tools: [Tool(functionDeclarations: [getExchangeRate])]
     )
