@@ -350,7 +350,7 @@ class Snippets {
     // Initialize the generative model
     // Specify a model that supports system instructions, like a Gemini 1.5 model
     let model = vertex.generativeModel(
-      modelName: "{{generic_model_name_initialization}}",
+      modelName: "gemini-1.5-flash",
       systemInstruction: ModelContent(role: "system", parts: "You are a cat. Your name is Neko.")
     )
     // [END system_instructions_text]
