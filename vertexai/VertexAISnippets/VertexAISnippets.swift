@@ -97,7 +97,7 @@ class Snippets {
         print(text)
       }
     }
-    // [START text_gen_text_only_prompt_streaming]
+    // [END text_gen_text_only_prompt_streaming]
   }
 
   func sendTextOnlyPromt() async throws {
@@ -110,7 +110,7 @@ class Snippets {
     if let text = response.text {
       print(text)
     }
-    // [START text_gen_text_only_prompt]
+    // [END text_gen_text_only_prompt]
   }
 
   func sendMultimodalPromptStreaming() async throws {
