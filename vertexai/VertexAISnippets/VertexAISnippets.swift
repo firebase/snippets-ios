@@ -20,6 +20,9 @@ import AppKit
 
 // [START import_vertexai]
 import FirebaseVertexAI
+import FirebaseCore
+import FirebaseAuthInterop
+import FirebaseAppCheckInterop
 // [END import_vertexai]
 
 class Snippets {
@@ -91,7 +94,7 @@ class Snippets {
     let prompt = "Write a story about a magic backpack."
 
     // To stream generated text output, call generateContentStream with the text input
-    let contentStream = model.generateContentStream(prompt)
+    let contentStream = try model.generateContentStream(prompt)
     for try await chunk in contentStream {
       if let text = chunk.text {
         print(text)
@@ -125,7 +128,7 @@ class Snippets {
     let prompt = "What's in this picture?"
 
     // To stream generated text output, call generateContentStream and pass in the prompt
-    let contentStream = model.generateContentStream(image, prompt)
+    let contentStream = try model.generateContentStream(image, prompt)
     for try await chunk in contentStream {
       if let text = chunk.text {
         print(text)
@@ -167,7 +170,7 @@ class Snippets {
     let prompt = "What's different between these pictures?"
 
     // To stream generated text output, call generateContentStream and pass in the prompt
-    let contentStream = model.generateContentStream(image1, image2, prompt)
+    let contentStream = try model.generateContentStream(image1, image2, prompt)
     for try await chunk in contentStream {
       if let text = chunk.text {
         print(text)
@@ -222,7 +225,7 @@ class Snippets {
     let videoContent = ModelContent.Part.data(mimetype: "video/mp4", video)
 
     // To stream generated text output, call generateContentStream and pass in the prompt
-    let contentStream = model.generateContentStream(videoContent, prompt)
+    let contentStream = try model.generateContentStream(videoContent, prompt)
     for try await chunk in contentStream {
       if let text = chunk.text {
         print(text)
@@ -243,7 +246,7 @@ class Snippets {
     let chat = model.startChat(history: history)
 
     // To stream generated text output, call sendMessageStream and pass in the message
-    let contentStream = chat.sendMessageStream("How many paws are in my house?")
+    let contentStream = try chat.sendMessageStream("How many paws are in my house?")
     for try await chunk in contentStream {
       if let text = chunk.text {
         print(text)
