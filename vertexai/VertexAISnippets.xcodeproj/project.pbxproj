@@ -12,8 +12,9 @@
 		8D40F4122BD1CDC40020872A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D40F4112BD1CDC40020872A /* Assets.xcassets */; };
 		8D40F4162BD1CDC40020872A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D40F4152BD1CDC40020872A /* Preview Assets.xcassets */; };
 		8D40F4262BD1CE1A0020872A /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8D40F4252BD1CE1A0020872A /* FirebaseAppCheck */; };
-		8D40F43B2BD1CE3E0020872A /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 8D40F43A2BD1CE3E0020872A /* FirebaseVertexAI-Preview */; };
 		8D40F43D2BD1CE910020872A /* VertexAISnippets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40F43C2BD1CE910020872A /* VertexAISnippets.swift */; };
+		8D7B83012CD4127C0024A604 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7B83002CD4127C0024A604 /* FirebaseAuth */; };
+		8D7B83032CD4127C0024A604 /* FirebaseVertexAI in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7B83022CD4127C0024A604 /* FirebaseVertexAI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +32,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D40F43B2BD1CE3E0020872A /* FirebaseVertexAI-Preview in Frameworks */,
+				8D7B83032CD4127C0024A604 /* FirebaseVertexAI in Frameworks */,
+				8D7B83012CD4127C0024A604 /* FirebaseAuth in Frameworks */,
 				8D40F4262BD1CE1A0020872A /* FirebaseAppCheck in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,7 +104,8 @@
 			name = VertexAISnippets;
 			packageProductDependencies = (
 				8D40F4252BD1CE1A0020872A /* FirebaseAppCheck */,
-				8D40F43A2BD1CE3E0020872A /* FirebaseVertexAI-Preview */,
+				8D7B83002CD4127C0024A604 /* FirebaseAuth */,
+				8D7B83022CD4127C0024A604 /* FirebaseVertexAI */,
 			);
 			productName = VertexAISnippets;
 			productReference = 8D40F40A2BD1CDC30020872A /* VertexAISnippets.app */;
@@ -116,7 +119,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					8D40F4092BD1CDC30020872A = {
 						CreatedOnToolsVersion = 15.2;
@@ -204,6 +207,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -265,6 +269,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -292,6 +297,7 @@
 				CODE_SIGN_ENTITLEMENTS = VertexAISnippets/VertexAISnippets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"VertexAISnippets/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -328,6 +334,7 @@
 				CODE_SIGN_ENTITLEMENTS = VertexAISnippets/VertexAISnippets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"VertexAISnippets/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -396,10 +403,15 @@
 			package = 8D40F41C2BD1CE1A0020872A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAppCheck;
 		};
-		8D40F43A2BD1CE3E0020872A /* FirebaseVertexAI-Preview */ = {
+		8D7B83002CD4127C0024A604 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8D40F41C2BD1CE1A0020872A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseVertexAI-Preview";
+			productName = FirebaseAuth;
+		};
+		8D7B83022CD4127C0024A604 /* FirebaseVertexAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D40F41C2BD1CE1A0020872A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseVertexAI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
