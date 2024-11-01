@@ -20,6 +20,7 @@ import AppKit
 
 // [START import_vertexai]
 import FirebaseVertexAI
+import FirebaseCore
 // [END import_vertexai]
 
 class Snippets {
@@ -91,7 +92,7 @@ class Snippets {
     let prompt = "Write a story about a magic backpack."
 
     // To stream generated text output, call generateContentStream with the text input
-    let contentStream = model.generateContentStream(prompt)
+    let contentStream = try model.generateContentStream(prompt)
     for try await chunk in contentStream {
       if let text = chunk.text {
         print(text)
@@ -125,7 +126,7 @@ class Snippets {
     let prompt = "What's in this picture?"
 
     // To stream generated text output, call generateContentStream and pass in the prompt
-    let contentStream = model.generateContentStream(image, prompt)
+    let contentStream = try model.generateContentStream(image, prompt)
     for try await chunk in contentStream {
       if let text = chunk.text {
         print(text)
@@ -167,7 +168,7 @@ class Snippets {
     let prompt = "What's different between these pictures?"
 
     // To stream generated text output, call generateContentStream and pass in the prompt
-    let contentStream = model.generateContentStream(image1, image2, prompt)
+    let contentStream = try model.generateContentStream(image1, image2, prompt)
     for try await chunk in contentStream {
       if let text = chunk.text {
         print(text)
@@ -203,7 +204,7 @@ class Snippets {
                                         withExtension: "mp4") else { fatalError() }
     let video = try Data(contentsOf: fileURL)
     let prompt = "What's in this video?"
-    let videoContent = ModelContent.Part.data(mimetype: "video/mp4", video)
+    let videoContent = InlineDataPart(data: video, mimeType: "video/mp4")
 
     // To generate text output, call generateContent and pass in the prompt
     let response = try await model.generateContent(videoContent, prompt)
@@ -219,10 +220,10 @@ class Snippets {
                                         withExtension: "mp4") else { fatalError() }
     let video = try Data(contentsOf: fileURL)
     let prompt = "What's in this video?"
-    let videoContent = ModelContent.Part.data(mimetype: "video/mp4", video)
+    let videoContent = InlineDataPart(data: video, mimeType: "video/mp4")
 
     // To stream generated text output, call generateContentStream and pass in the prompt
-    let contentStream = model.generateContentStream(videoContent, prompt)
+    let contentStream = try model.generateContentStream(videoContent, prompt)
     for try await chunk in contentStream {
       if let text = chunk.text {
         print(text)
@@ -243,7 +244,7 @@ class Snippets {
     let chat = model.startChat(history: history)
 
     // To stream generated text output, call sendMessageStream and pass in the message
-    let contentStream = chat.sendMessageStream("How many paws are in my house?")
+    let contentStream = try chat.sendMessageStream("How many paws are in my house?")
     for try await chunk in contentStream {
       if let text = chunk.text {
         print(text)
@@ -275,7 +276,7 @@ class Snippets {
     // [START count_tokens_text]
     let response = try await model.countTokens("Why is the sky blue?")
     print("Total Tokens: \(response.totalTokens)")
-    print("Total Billable Characters: \(response.totalBillableCharacters)")
+    print("Total Billable Characters: \(response.totalBillableCharacters ?? 0)")
     // [END count_tokens_text]
   }
 
@@ -288,7 +289,7 @@ class Snippets {
     // [START count_tokens_text_image]
     let response = try await model.countTokens(image, "What's in this picture?")
     print("Total Tokens: \(response.totalTokens)")
-    print("Total Billable Characters: \(response.totalBillableCharacters)")
+    print("Total Billable Characters: \(response.totalBillableCharacters ?? 0)")
     // [END count_tokens_text_image]
   }
 
@@ -303,7 +304,7 @@ class Snippets {
     // [START count_tokens_multi_image]
     let response = try await model.countTokens(image1, image2, "What's in this picture?")
     print("Total Tokens: \(response.totalTokens)")
-    print("Total Billable Characters: \(response.totalBillableCharacters)")
+    print("Total Billable Characters: \(response.totalBillableCharacters ?? 0)")
     // [END count_tokens_multi_image]
   }
 
@@ -311,11 +312,11 @@ class Snippets {
     // [START count_tokens_chat]
     let chat = model.startChat()
     let history = chat.history
-    let message = try ModelContent(role: "user", "Why is the sky blue?")
+    let message = ModelContent(role: "user", parts: "Why is the sky blue?")
     let contents = history + [message]
     let response = try await model.countTokens(contents)
     print("Total Tokens: \(response.totalTokens)")
-    print("Total Billable Characters: \(response.totalBillableCharacters)")
+    print("Total Billable Characters: \(response.totalBillableCharacters ?? 0)")
     // [END count_tokens_chat]
   }
 
@@ -361,16 +362,13 @@ class Snippets {
       name: "getExchangeRate",
       description: "Get the exchange rate for currencies between countries",
       parameters: [
-        "currencyFrom": Schema(
-          type: .string,
+        "currencyFrom": Schema.string(
           description: "The currency to convert from."
         ),
-        "currencyTo": Schema(
-          type: .string,
+        "currencyTo": Schema.string(
           description: "The currency to convert to."
         ),
-      ],
-      requiredParameters: ["currencyFrom", "currencyTo"]
+      ]
     )
     // [END create_function_metadata]
 
@@ -383,7 +381,7 @@ class Snippets {
     let model = vertex.generativeModel(
       modelName: "gemini-1.5-flash",
       // Specify the function declaration.
-      tools: [Tool(functionDeclarations: [getExchangeRate])]
+      tools: [Tool.functionDeclarations([getExchangeRate])]
     )
     // [END initialize_model_function]
 
@@ -418,10 +416,7 @@ class Snippets {
     // displayed to the user.
     let response = try await chat.sendMessage([ModelContent(
       role: "function",
-      parts: [.functionResponse(FunctionResponse(
-        name: functionCall.name,
-        response: apiResponse
-      ))]
+      parts: [FunctionResponsePart(name: functionCall.name, response: apiResponse)]
     )])
 
     // Log the text response.
@@ -436,8 +431,7 @@ class Snippets {
     let getExchangeRate = FunctionDeclaration(
       name: "getExchangeRate",
       description: "Get the exchange rate for currencies between countries",
-      parameters: nil,
-      requiredParameters: nil
+      parameters: [:]
     )
 
     // [START function_modes]
@@ -445,11 +439,10 @@ class Snippets {
       // Setting a function calling mode is only available in Gemini 1.5 Pro
       modelName: "gemini-1.5-pro",
       // Pass the function declaration
-      tools: [Tool(functionDeclarations: [getExchangeRate])],
+      tools: [Tool.functionDeclarations([getExchangeRate])],
       toolConfig: ToolConfig(
-        functionCallingConfig: FunctionCallingConfig(
-          // Only call functions (model won't generate text)
-          mode: FunctionCallingConfig.Mode.any,
+        // Only call functions (model won't generate text)
+        functionCallingConfig: FunctionCallingConfig.any(
           // This should only be set when the Mode is .any.
           allowedFunctionNames: ["getExchangeRate"]
         )
