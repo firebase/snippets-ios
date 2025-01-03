@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,8 @@
 		8D70FC2A1F4CAE1B00C7F603 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D70FC291F4CAE1B00C7F603 /* Assets.xcassets */; };
 		8D70FC2D1F4CAE1B00C7F603 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D70FC2B1F4CAE1B00C7F603 /* LaunchScreen.storyboard */; };
 		8D70FC381F4CAE1B00C7F603 /* firestore_smoketest_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D70FC371F4CAE1B00C7F603 /* firestore_smoketest_objcTests.m */; };
+		8D79519D2D28ABAD000FD694 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8D79519C2D28ABAD000FD694 /* FirebaseAuth */; };
+		8D79519F2D28ABAD000FD694 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8D79519E2D28ABAD000FD694 /* FirebaseFirestore */; };
 		8D9644E7260D565A002A46C9 /* FIRSolutionsBundleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9644E6260D565A002A46C9 /* FIRSolutionsBundleViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D79519D2D28ABAD000FD694 /* FirebaseAuth in Frameworks */,
+				8D79519F2D28ABAD000FD694 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,8 +84,8 @@
 				8D4F2EF1201162EE002ED308 /* GoogleService-Info.plist */,
 				8D70FC1C1F4CAE1B00C7F603 /* firestore-smoketest-objc */,
 				8D70FC361F4CAE1B00C7F603 /* firestore-smoketest-objcTests */,
+				8D79519B2D28ABAD000FD694 /* Frameworks */,
 				8D70FC1B1F4CAE1B00C7F603 /* Products */,
-				F792628F569A18209F7C4E90 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,11 +139,11 @@
 			path = "firestore-smoketest-objcTests";
 			sourceTree = "<group>";
 		};
-		F792628F569A18209F7C4E90 /* Pods */ = {
+		8D79519B2D28ABAD000FD694 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +213,9 @@
 				Base,
 			);
 			mainGroup = 8D70FC111F4CAE1B00C7F603;
+			packageReferences = (
+				8D79519A2D28AB9C000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 8D70FC1B1F4CAE1B00C7F603 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -408,7 +415,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "firestore-smoketest-objc/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.firebase.firestore-smoketest-objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -419,7 +429,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "firestore-smoketest-objc/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.firebase.firestore-smoketest-objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -430,7 +443,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "firestore-smoketest-objcTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.firebase.firestore-smoketest-objcTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/firestore-smoketest-objc.app/firestore-smoketest-objc";
@@ -442,7 +459,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "firestore-smoketest-objcTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.firebase.firestore-smoketest-objcTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/firestore-smoketest-objc.app/firestore-smoketest-objc";
@@ -480,6 +501,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D79519A2D28AB9C000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D79519C2D28ABAD000FD694 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D79519A2D28AB9C000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		8D79519E2D28ABAD000FD694 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D79519A2D28AB9C000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8D70FC121F4CAE1B00C7F603 /* Project object */;
 }
