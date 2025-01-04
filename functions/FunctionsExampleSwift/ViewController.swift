@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 
   func emulatorSettings() {
     // [START functions_emulator_connect]
-    Functions.functions().useFunctionsEmulator(origin: "http://127.0.0.1:5001")
+    Functions.functions().useEmulator(withHost: "localhost", port: 5001)
     // [END functions_emulator_connect]
   }
 
