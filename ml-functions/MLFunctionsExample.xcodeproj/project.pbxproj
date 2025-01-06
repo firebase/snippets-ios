@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D7951CA2D2C8AAA000FD694 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7951C92D2C8AAA000FD694 /* FirebaseFunctions */; };
+		8D7951CC2D2C8AB2000FD694 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7951CB2D2C8AB2000FD694 /* FirebaseFunctions */; };
 		8D8FA34322F4CAB100213E06 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D8FA34222F4CAB100213E06 /* AppDelegate.m */; };
 		8D8FA34622F4CAB100213E06 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D8FA34522F4CAB100213E06 /* ViewController.m */; };
 		8D8FA34922F4CAB100213E06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D8FA34722F4CAB100213E06 /* Main.storyboard */; };
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D7951CA2D2C8AAA000FD694 /* FirebaseFunctions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,19 +55,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D7951CC2D2C8AB2000FD694 /* FirebaseFunctions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D7951C82D2C8AAA000FD694 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8D8FA33522F4CAB100213E06 = {
 			isa = PBXGroup;
 			children = (
 				8D8FA34022F4CAB100213E06 /* MLFunctionsExample */,
 				8D8FA35C22F4CAF700213E06 /* MLFunctionsExampleSwift */,
+				8D7951C82D2C8AAA000FD694 /* Frameworks */,
 				8D8FA33F22F4CAB100213E06 /* Products */,
-				E21099940C3416ACBB0EB9EC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,13 +115,6 @@
 				8D8FA36922F4CAF800213E06 /* Info.plist */,
 			);
 			path = MLFunctionsExampleSwift;
-			sourceTree = "<group>";
-		};
-		E21099940C3416ACBB0EB9EC /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,8 +160,9 @@
 		8D8FA33622F4CAB100213E06 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1610;
 				ORGANIZATIONNAME = Firebase;
 				TargetAttributes = {
 					8D8FA33D22F4CAB100213E06 = {
@@ -177,6 +182,9 @@
 				Base,
 			);
 			mainGroup = 8D8FA33522F4CAB100213E06;
+			packageReferences = (
+				8D7951C72D2C8A9B000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 8D8FA33F22F4CAB100213E06 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -306,6 +314,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -366,6 +375,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -488,6 +498,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D7951C72D2C8A9B000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D7951C92D2C8AAA000FD694 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D7951C72D2C8A9B000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		8D7951CB2D2C8AB2000FD694 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D7951C72D2C8A9B000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8D8FA33622F4CAB100213E06 /* Project object */;
 }
