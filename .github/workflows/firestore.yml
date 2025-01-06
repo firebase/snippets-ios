@@ -18,8 +18,7 @@ jobs:
         run: |
           cp .github/GoogleService-Info-CI.plist firestore/swift/firestore-smoketest/GoogleService-Info.plist
           cd firestore/swift
-          pod install --repo-update
-          xcodebuild -workspace firestore-smoketest.xcworkspace clean build -scheme firestore-smoketest -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project firestore-smoketest.xcodeproj clean build -scheme firestore-smoketest -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
         env: 
          destination: ${{ matrix.destination }}
   objc-build:
@@ -35,7 +34,6 @@ jobs:
         run: |
           cp .github/GoogleService-Info-CI.plist firestore/objc/GoogleService-Info.plist
           cd firestore/objc
-          pod install --repo-update
-          xcodebuild -workspace firestore-smoketest-objc.xcworkspace clean build -scheme firestore-smoketest-objc -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project firestore-smoketest-objc.xcodeproj clean build -scheme firestore-smoketest-objc -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
         env: 
          destination: ${{ matrix.destination }}
