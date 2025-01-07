@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,8 @@
 		8D19B3751EA7D49400451CA7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D19B3731EA7D49400451CA7 /* ViewController.m */; };
 		8D19B3781EA7D4A300451CA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D19B3761EA7D4A300451CA7 /* AppDelegate.swift */; };
 		8D19B3791EA7D4A300451CA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D19B3771EA7D4A300451CA7 /* ViewController.swift */; };
+		8D474FD62D28A9CF000B5C38 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8D474FD52D28A9CF000B5C38 /* FirebaseAuth */; };
+		8D474FD82D28A9CF000B5C38 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8D474FD72D28A9CF000B5C38 /* FirebaseDatabase */; };
 		8DDD574C1EA6D39D00DD14EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DDD574A1EA6D39D00DD14EB /* Main.storyboard */; };
 		8DDD574E1EA6D39D00DD14EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DDD574D1EA6D39D00DD14EB /* Assets.xcassets */; };
 		8DDD57511EA6D39D00DD14EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DDD574F1EA6D39D00DD14EB /* LaunchScreen.storyboard */; };
@@ -35,12 +37,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D474FD82D28A9CF000B5C38 /* FirebaseDatabase in Frameworks */,
+				8D474FD62D28A9CF000B5C38 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D474FD42D28A9CF000B5C38 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8D5CA1551EA6D5490024095C /* ObjC */ = {
 			isa = PBXGroup;
 			children = (
@@ -65,8 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				8DDD57451EA6D39D00DD14EB /* DatabaseReference */,
+				8D474FD42D28A9CF000B5C38 /* Frameworks */,
 				8DDD57441EA6D39D00DD14EB /* Products */,
-				D8F966BF59E6A1509FCBF383 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,13 +100,6 @@
 				8DDD57521EA6D39D00DD14EB /* Info.plist */,
 			);
 			path = DatabaseReference;
-			sourceTree = "<group>";
-		};
-		D8F966BF59E6A1509FCBF383 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +139,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8DDD573E1EA6D39D00DD14EB /* Build configuration list for PBXProject "swift" */;
+			buildConfigurationList = 8DDD573E1EA6D39D00DD14EB /* Build configuration list for PBXProject "DatabaseReference" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -145,6 +149,9 @@
 				Base,
 			);
 			mainGroup = 8DDD573A1EA6D39D00DD14EB;
+			packageReferences = (
+				8D474FD32D28A9C3000B5C38 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 8DDD57441EA6D39D00DD14EB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -291,7 +298,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -305,7 +313,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = DatabaseReference/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.referencecode.DatabaseReference;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -321,7 +332,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = DatabaseReference/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.firebase.referencecode.DatabaseReference;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -332,7 +346,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8DDD573E1EA6D39D00DD14EB /* Build configuration list for PBXProject "swift" */ = {
+		8DDD573E1EA6D39D00DD14EB /* Build configuration list for PBXProject "DatabaseReference" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8DDD575E1EA6D39D00DD14EB /* Debug */,
@@ -351,6 +365,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D474FD32D28A9C3000B5C38 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D474FD52D28A9CF000B5C38 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D474FD32D28A9C3000B5C38 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		8D474FD72D28A9CF000B5C38 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D474FD32D28A9C3000B5C38 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8DDD573B1EA6D39D00DD14EB /* Project object */;
 }

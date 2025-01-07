@@ -24,7 +24,7 @@ class CardActionFiamDelegate : NSObject, InAppMessagingDisplayDelegate {
     }
     
     func messageDismissed(_ inAppMessage: InAppMessagingDisplayMessage,
-                          dismissType: FIRInAppMessagingDismissType) {
+                          dismissType: InAppMessagingDismissType) {
         // ...
     }
     
@@ -41,7 +41,7 @@ class CardActionFiamDelegate : NSObject, InAppMessagingDisplayDelegate {
 
 
 // [START fiam_card_action_delegate_bundles]
-class CardActionFiamDelegate : NSObject, InAppMessagingDisplayDelegate {
+class CardActionDelegate : NSObject, InAppMessagingDisplayDelegate {
     
     func messageClicked(_ inAppMessage: InAppMessagingDisplayMessage) {
 	// Get data bundle from the inapp message

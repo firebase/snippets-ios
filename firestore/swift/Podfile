@@ -1,4 +1,5 @@
-# Uncomment this line to define a global platform for your project
+# No longer used since the project migrated to SPM, but this file still exists
+# for the GeoFire snippet below.
 platform :ios, '14.0'
 
 target 'firestore-smoketest' do

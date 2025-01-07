@@ -10,7 +10,7 @@ jobs:
     runs-on: macOS-latest
     strategy:
         matrix:
-          destination: ['platform=iOS Simulator,OS=latest,name=iPhone 11']
+          destination: ['platform=iOS Simulator,OS=latest,name=iPhone 16']
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -18,7 +18,6 @@ jobs:
         run: |
           cp .github/GoogleService-Info-CI.plist firoptions/FiroptionConfiguration/GoogleService-Info.plist
           cd firoptions
-          pod install --repo-update
-          xcodebuild -workspace FiroptionConfiguration.xcworkspace clean build -scheme FiroptionConfiguration -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project FiroptionConfiguration.xcodeproj clean build -scheme FiroptionConfiguration -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
         env: 
          destination: ${{ matrix.destination }}

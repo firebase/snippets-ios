@@ -244,10 +244,10 @@
 
   // [START firstorage_progress]
   // Add a progress observer to an upload task
-  FIRStorageHandle observer = [uploadTask observeStatus:FIRStorageTaskStatusProgress
-                                                handler:^(FIRStorageTaskSnapshot *snapshot) {
-                                                  // A progress event occurred
-                                                }];
+  NSString *observer = [uploadTask observeStatus:FIRStorageTaskStatusProgress
+                                          handler:^(FIRStorageTaskSnapshot *snapshot) {
+    // A progress event occurred
+  }];
   // [END firstorage_progress]
 }
 
@@ -259,10 +259,10 @@
 
   // [START firstorage_task]
   // Create a task listener handle
-  FIRStorageHandle observer = [uploadTask observeStatus:FIRStorageTaskStatusProgress
-                                                handler:^(FIRStorageTaskSnapshot *snapshot) {
-                                                  // A progress event occurred
-                                                }];
+  NSString *observer = [uploadTask observeStatus:FIRStorageTaskStatusProgress
+                                         handler:^(FIRStorageTaskSnapshot *snapshot) {
+    // A progress event occurred
+  }];
 
   // Remove an individual observer
   [uploadTask removeObserverWithHandle:observer];
@@ -446,10 +446,10 @@
 
   // [START firstorage_download_observe]
   // Add a progress observer to a download task
-  FIRStorageHandle observer = [downloadTask observeStatus:FIRStorageTaskStatusProgress
-                                                  handler:^(FIRStorageTaskSnapshot *snapshot) {
-                                                    // A progress event occurred
-                                                  }];
+  NSString *observer = [downloadTask observeStatus:FIRStorageTaskStatusProgress
+                                           handler:^(FIRStorageTaskSnapshot *snapshot) {
+    // A progress event occurred
+  }];
   // [END firstorage_download_observe]
 }
 
@@ -460,10 +460,10 @@
 
   // [START firstorage_handle_observer]
   // Create a task listener handle
-  FIRStorageHandle observer = [downloadTask observeStatus:FIRStorageTaskStatusProgress
-                                                  handler:^(FIRStorageTaskSnapshot *snapshot) {
-                                                    // A progress event occurred
-                                                  }];
+  NSString *observer = [downloadTask observeStatus:FIRStorageTaskStatusProgress
+                                           handler:^(FIRStorageTaskSnapshot *snapshot) {
+    // A progress event occurred
+  }];
 
   // Remove an individual observer
   [downloadTask removeObserverWithHandle:observer];

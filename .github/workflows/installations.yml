@@ -10,14 +10,13 @@ jobs:
     runs-on: macOS-latest
     strategy:
         matrix:
-          destination: ['platform=iOS Simulator,OS=latest,name=iPhone 11']
+          destination: ['platform=iOS Simulator,OS=latest,name=iPhone 16']
     steps:
       - name: Checkout
         uses: actions/checkout@master
       - name: Build Swift snippets
         run: |
           cd installations/
-          pod install --repo-update
-          xcodebuild -workspace InstallationsSnippets.xcworkspace clean build -scheme InstallationsSnippets -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project InstallationsSnippets.xcodeproj clean build -scheme InstallationsSnippets -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
         env: 
          destination: ${{ matrix.destination }}

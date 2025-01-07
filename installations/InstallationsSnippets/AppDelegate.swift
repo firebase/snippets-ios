@@ -14,6 +14,7 @@
 //  limitations under the License.
 //
 
+import UIKit
 import FirebaseCore
 import FirebaseInstallations
 
