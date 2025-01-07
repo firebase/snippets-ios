@@ -32,6 +32,6 @@ jobs:
       - name: Build ObjC snippets
         run: |
           cd appcheck
-          xcodebuild -project AppCheckSnippets.xcodeproj clean build -scheme AppCheckSnippetsObjC -objc -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project AppCheckSnippets.xcodeproj clean build -scheme AppCheckSnippetsObjC -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
         env: 
          destination: ${{ matrix.destination }}
