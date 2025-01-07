@@ -20,6 +20,9 @@ import FirebaseCore
 import FirebaseStorage
 import FirebaseStorageUI
 
+extension StorageMetadata: @unchecked @retroactive Sendable {}
+extension StorageListResult: @unchecked @retroactive Sendable {}
+
 class ViewController: UIViewController {
 
   var imageView: UIImageView!
