@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@master
       - name: Build Swift snippets
         run: |
+          sudo xcode-select -switch /Applications/Xcode_16.1.app/Contents/Developer
           cd storage
           xcodebuild -project StorageReference.xcodeproj clean build -scheme StorageReferenceSwift -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
         env: 
