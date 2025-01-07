@@ -24,7 +24,7 @@ import FirebaseCore
 // ...
 // [END import_firebase]
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?

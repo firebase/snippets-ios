@@ -1,9 +1,9 @@
 on: 
   pull_request:
     paths:
-      - 'firestore/**'
-      - '.github/workflows/firestore.yml'
-name: Firestore
+      - 'ml-functions/**'
+      - '.github/workflows/ml-functions.yml'
+name: Functions (ML)
 jobs:
   swift-build:
     name: Swift build
@@ -16,9 +16,8 @@ jobs:
         uses: actions/checkout@master
       - name: Build Swift snippets
         run: |
-          cp .github/GoogleService-Info-CI.plist firestore/swift/firestore-smoketest/GoogleService-Info.plist
-          cd firestore/swift
-          xcodebuild -project firestore-smoketest.xcodeproj clean build -scheme firestore-smoketest -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          cd ml-functions
+          xcodebuild -project MLFunctionsExample.xcodeproj clean build -scheme MLFunctionsExampleSwift -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
         env: 
          destination: ${{ matrix.destination }}
   objc-build:
@@ -32,8 +31,7 @@ jobs:
         uses: actions/checkout@master
       - name: Build ObjC snippets
         run: |
-          cp .github/GoogleService-Info-CI.plist firestore/objc/GoogleService-Info.plist
-          cd firestore/objc
-          xcodebuild -project firestore-smoketest-objc.xcodeproj clean build -scheme firestore-smoketest-objc -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          cd ml-functions
+          xcodebuild -project MLFunctionsExample.xcodeproj clean build -scheme MLFunctionsExample -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
         env: 
          destination: ${{ matrix.destination }}

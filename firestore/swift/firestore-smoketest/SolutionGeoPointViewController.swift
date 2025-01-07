@@ -18,7 +18,7 @@ import UIKit
 
 import FirebaseCore
 import FirebaseFirestore
-import GeoFire
+import GeoFireUtils
 import CoreLocation
 
 class SolutionGeoPointController: UIViewController {

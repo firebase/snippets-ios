@@ -1,0 +1,22 @@
+on: 
+  pull_request:
+    paths:
+      - 'database/**'
+      - '.github/workflows/database.yml'
+name: Database
+jobs:
+  swift-build:
+    name: Build combined snippets
+    runs-on: macOS-latest
+    strategy:
+        matrix:
+          destination: ['platform=iOS Simulator,OS=latest,name=iPhone 16']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Build snippets
+        run: |
+          cd database
+          xcodebuild -project DatabaseReference.xcodeproj clean build -scheme DatabaseReference -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+        env: 
+         destination: ${{ matrix.destination }}

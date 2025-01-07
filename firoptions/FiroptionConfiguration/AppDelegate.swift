@@ -15,7 +15,8 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseCore
+import FirebaseDatabase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -53,11 +54,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // The other options are not mandatory, but may be required
     // for specific Firebase products.
     secondaryOptions.bundleID = "com.google.firebase.devrel.FiroptionConfiguration"
-    secondaryOptions.trackingID = "UA-12345678-1"
     secondaryOptions.clientID = "27992087142-ola6qe637ulk8780vl8mo5vogegkm23n.apps.googleusercontent.com"
     secondaryOptions.databaseURL = "https://myproject.firebaseio.com"
     secondaryOptions.storageBucket = "myproject.appspot.com"
-    secondaryOptions.androidClientID = "12345.apps.googleusercontent.com"
     secondaryOptions.deepLinkURLScheme = "myapp://"
     secondaryOptions.storageBucket = "projectid-12345.appspot.com"
     secondaryOptions.appGroupID = nil
