@@ -14,9 +14,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Install deps
+        run: brew install xcbeautify
       - name: Build Swift snippets
         run: |
           cd vertexai
-          xcodebuild -project VertexAISnippets.xcodeproj -scheme VertexAISnippets clean build -destination "${destination}" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project VertexAISnippets.xcodeproj -scheme VertexAISnippets clean build -destination "${destination}" CODE_SIGNING_REQUIRED=NO | xcbeautify --renderer github-actions
         env: 
          destination: ${{ matrix.destination }}

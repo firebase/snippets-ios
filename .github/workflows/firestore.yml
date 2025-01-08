@@ -14,11 +14,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Install deps
+        run: brew install xcbeautify
       - name: Build Swift snippets
         run: |
           cp .github/GoogleService-Info-CI.plist firestore/swift/firestore-smoketest/GoogleService-Info.plist
           cd firestore/swift
-          xcodebuild -project firestore-smoketest.xcodeproj clean build -scheme firestore-smoketest -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project firestore-smoketest.xcodeproj clean build -scheme firestore-smoketest -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcbeautify --renderer github-actions
         env: 
          destination: ${{ matrix.destination }}
   objc-build:
@@ -30,10 +32,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Install deps
+        run: brew install xcbeautify
       - name: Build ObjC snippets
         run: |
           cp .github/GoogleService-Info-CI.plist firestore/objc/GoogleService-Info.plist
           cd firestore/objc
-          xcodebuild -project firestore-smoketest-objc.xcodeproj clean build -scheme firestore-smoketest-objc -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project firestore-smoketest-objc.xcodeproj clean build -scheme firestore-smoketest-objc -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcbeautify --renderer github-actions
         env: 
          destination: ${{ matrix.destination }}

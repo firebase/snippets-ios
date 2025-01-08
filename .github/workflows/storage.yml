@@ -14,11 +14,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Install deps
+        run: brew install xcbeautify
       - name: Build Swift snippets
         run: |
           sudo xcode-select -switch /Applications/Xcode_16.1.app/Contents/Developer
           cd storage
-          xcodebuild -project StorageReference.xcodeproj clean build -scheme StorageReferenceSwift -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project StorageReference.xcodeproj clean build -scheme StorageReferenceSwift -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcbeautify --renderer github-actions
         env: 
          destination: ${{ matrix.destination }}
   objc-build:
@@ -30,10 +32,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Install deps
+        run: brew install xcbeautify
       - name: Build ObjC snippets
         run: |
           sudo xcode-select -switch /Applications/Xcode_16.1.app/Contents/Developer
           cd storage
-          xcodebuild -project StorageReference.xcodeproj clean build -scheme StorageReference -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project StorageReference.xcodeproj clean build -scheme StorageReference -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcbeautify --renderer github-actions
         env: 
          destination: ${{ matrix.destination }}

@@ -14,9 +14,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Install deps
+        run: brew install xcbeautify
       - name: Build snippets
         run: |
           cd database
-          xcodebuild -project DatabaseReference.xcodeproj clean build -scheme DatabaseReference -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project DatabaseReference.xcodeproj clean build -scheme DatabaseReference -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcbeautify --renderer github-actions
         env: 
          destination: ${{ matrix.destination }}

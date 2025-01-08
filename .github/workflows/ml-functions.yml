@@ -14,10 +14,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Install deps
+        run: brew install xcbeautify
       - name: Build Swift snippets
         run: |
           cd ml-functions
-          xcodebuild -project MLFunctionsExample.xcodeproj clean build -scheme MLFunctionsExampleSwift -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project MLFunctionsExample.xcodeproj clean build -scheme MLFunctionsExampleSwift -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcbeautify --renderer github-actions
         env: 
          destination: ${{ matrix.destination }}
   objc-build:
@@ -29,9 +31,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Install deps
+        run: brew install xcbeautify
       - name: Build ObjC snippets
         run: |
           cd ml-functions
-          xcodebuild -project MLFunctionsExample.xcodeproj clean build -scheme MLFunctionsExample -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project MLFunctionsExample.xcodeproj clean build -scheme MLFunctionsExample -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcbeautify --renderer github-actions
         env: 
          destination: ${{ matrix.destination }}
