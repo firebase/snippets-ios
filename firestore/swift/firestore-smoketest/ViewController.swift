@@ -1352,6 +1352,97 @@ class ViewController: UIViewController {
     }
     // [END multi_aggregate_collection]
   }
+
+  private func orQuery() {
+    // [START or_query]
+    let query = db.collection("cities").whereFilter(Filter.andFilter([
+      Filter.whereField("state", isEqualTo: "CA"),
+      Filter.orFilter([
+        Filter.whereField("capital", isEqualTo: true),
+        Filter.whereField("population", isGreaterOrEqualTo: 1000000)
+      ])
+    ]))
+    // [END or_query]
+  }
+
+  private func orQueryDisjunctions() {
+    let collection = db.collection("cities")
+
+    // [START one_disjunction]
+    collection.whereField("a", isEqualTo: 1)
+    // [END one_disjunction]
+
+    // [START two_disjunctions]
+    collection.whereFilter(Filter.orFilter([
+      Filter.whereField("a", isEqualTo: 1),
+      Filter.whereField("b", isEqualTo: 2)
+    ]))
+    // [END two_disjunctions]
+
+    // [START four_disjunctions]
+    collection.whereFilter(Filter.orFilter([
+      Filter.andFilter([
+        Filter.whereField("a", isEqualTo: 1),
+        Filter.whereField("c", isEqualTo: 3)
+      ]),
+      Filter.andFilter([
+        Filter.whereField("a", isEqualTo: 1),
+        Filter.whereField("d", isEqualTo: 4)
+      ]),
+      Filter.andFilter([
+        Filter.whereField("b", isEqualTo: 2),
+        Filter.whereField("c", isEqualTo: 3)
+      ]),
+      Filter.andFilter([
+        Filter.whereField("b", isEqualTo: 2),
+        Filter.whereField("d", isEqualTo: 4)
+      ])
+    ]))
+    // [END four_disjunctions]
+
+    // [START four_disjunctions_compact]
+    collection.whereFilter(Filter.andFilter([
+      Filter.orFilter([
+        Filter.whereField("a", isEqualTo: 1),
+        Filter.whereField("b", isEqualTo: 2)
+      ]),
+      Filter.orFilter([
+        Filter.whereField("c", isEqualTo: 3),
+        Filter.whereField("d", isEqualTo: 4)
+      ]),
+    ]))
+    // [END four_disjunctions_compact]
+
+    // [START 20_disjunctions]
+    collection.whereFilter(Filter.orFilter([
+      Filter.whereField("a", in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+      Filter.whereField("b", in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    ]))
+    // [END 20_disjunctions]
+
+    // [START 10_disjunctions]
+    collection.whereFilter(Filter.andFilter([
+      Filter.whereField("a", in: [1, 2, 3, 4, 5]),
+      Filter.orFilter([
+        Filter.whereField("b", isEqualTo: 2),
+        Filter.whereField("c", isEqualTo: 3)
+      ])
+    ]))
+    // [END 10_disjunctions]
+  }
+
+  // This method crashes, so don't include it in the smoketest.
+  func illegalDisjunctions() {
+    let collection = db.collection("cities")
+
+    // [START 50_disjunctions]
+    collection.whereFilter(Filter.andFilter([
+      Filter.whereField("a", in: [1, 2, 3, 4, 5]),
+      Filter.whereField("b", in: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    ]))
+    // [END 50_disjunctions]
+  }
+
 }
 
 // [START codable_struct]

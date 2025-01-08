@@ -1271,24 +1271,114 @@
 }
 
 - (void)multiAggregateCollection {
-    // [START multi_aggregate_collection]
-    FIRQuery *query = [self.db collectionWithPath:@"cities"];
-    FIRAggregateQuery *aggregateQuery = [query aggregate:@[
-        [FIRAggregateField aggregateFieldForCount],
-        [FIRAggregateField aggregateFieldForSumOfField:@"population"],
-        [FIRAggregateField aggregateFieldForAverageOfField:@"population"]]];
-    [aggregateQuery aggregationWithSource:FIRAggregateSourceServer
-                               completion:^(FIRAggregateQuerySnapshot *snapshot,
-                                            NSError *error) {
-        if (error != nil) {
-            NSLog(@"Error fetching aggregate: %@", error);
-        } else {
-            NSLog(@"Count: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForCount]]);
-            NSLog(@"Sum: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForSumOfField:@"population"]]);
-            NSLog(@"Avg: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForAverageOfField:@"population"]]);
-        }
-    }];
-    // [END multi_aggregate_collection]
+  // [START multi_aggregate_collection]
+  FIRQuery *query = [self.db collectionWithPath:@"cities"];
+  FIRAggregateQuery *aggregateQuery = [query aggregate:@[
+    [FIRAggregateField aggregateFieldForCount],
+    [FIRAggregateField aggregateFieldForSumOfField:@"population"],
+    [FIRAggregateField aggregateFieldForAverageOfField:@"population"]]];
+  [aggregateQuery aggregationWithSource:FIRAggregateSourceServer
+                             completion:^(FIRAggregateQuerySnapshot *snapshot,
+                                          NSError *error) {
+    if (error != nil) {
+      NSLog(@"Error fetching aggregate: %@", error);
+    } else {
+      NSLog(@"Count: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForCount]]);
+      NSLog(@"Sum: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForSumOfField:@"population"]]);
+      NSLog(@"Avg: %@", [snapshot valueForAggregateField:[FIRAggregateField aggregateFieldForAverageOfField:@"population"]]);
+    }
+  }];
+  // [END multi_aggregate_collection]
+}
+
+- (void)orQuery {
+  // [START or_query]
+  FIRCollectionReference *collection = [self.db collectionWithPath:@"cities"];
+  FIRQuery *query = [collection queryWhereFilter:[FIRFilter andFilterWithFilters:@[
+    [FIRFilter filterWhereField:@"state" isEqualTo:@"CA"],
+    [FIRFilter orFilterWithFilters:@[
+      [FIRFilter filterWhereField:@"capital" isEqualTo:@YES],
+      [FIRFilter filterWhereField:@"population" isGreaterThanOrEqualTo:@1000000]
+    ]]
+  ]]];
+  // [END or_query]
+}
+
+- (void)orQueryDisjunctions {
+  FIRCollectionReference *collection = [self.db collectionWithPath:@"cities"];
+
+  // [START one_disjunction]
+  [collection queryWhereField:@"a" isEqualTo:@1];
+  // [END one_disjunction]
+
+  // [START two_disjunctions]
+  [collection queryWhereFilter:[FIRFilter orFilterWithFilters:@[
+    [FIRFilter filterWhereField:@"a" isEqualTo:@1],
+    [FIRFilter filterWhereField:@"b" isEqualTo:@2]
+  ]]];
+  // [END two_disjunctions]
+
+  // [START four_disjunctions]
+  [collection queryWhereFilter:[FIRFilter orFilterWithFilters:@[
+    [FIRFilter andFilterWithFilters:@[
+      [FIRFilter filterWhereField:@"a" isEqualTo:@1],
+      [FIRFilter filterWhereField:@"c" isEqualTo:@3]
+    ]],
+    [FIRFilter andFilterWithFilters:@[
+      [FIRFilter filterWhereField:@"a" isEqualTo:@1],
+      [FIRFilter filterWhereField:@"d" isEqualTo:@4]
+    ]],
+    [FIRFilter andFilterWithFilters:@[
+      [FIRFilter filterWhereField:@"b" isEqualTo:@2],
+      [FIRFilter filterWhereField:@"c" isEqualTo:@3]
+    ]],
+    [FIRFilter andFilterWithFilters:@[
+      [FIRFilter filterWhereField:@"b" isEqualTo:@2],
+      [FIRFilter filterWhereField:@"d" isEqualTo:@4]
+    ]],
+  ]]];
+  // [END four_disjunctions]
+
+  // [START four_disjunctions_compact]
+  [collection queryWhereFilter:[FIRFilter andFilterWithFilters:@[
+    [FIRFilter orFilterWithFilters:@[
+      [FIRFilter filterWhereField:@"a" isEqualTo:@1],
+      [FIRFilter filterWhereField:@"b" isEqualTo:@2]
+    ]],
+    [FIRFilter orFilterWithFilters:@[
+      [FIRFilter filterWhereField:@"c" isEqualTo:@3],
+      [FIRFilter filterWhereField:@"d" isEqualTo:@4]
+    ]]
+  ]]];
+  // [END four_disjunctions_compact]
+
+  // [START 20_disjunctions]
+  [collection queryWhereFilter:[FIRFilter orFilterWithFilters:@[
+    [FIRFilter filterWhereField:@"a" in:@[@1, @2, @3, @4, @5, @6, @7, @8, @9, @10]],
+    [FIRFilter filterWhereField:@"b" in:@[@1, @2, @3, @4, @5, @6, @7, @8, @9, @10]]
+  ]]];
+  // [END 20_disjunctions]
+
+  // [START 10_disjunctions]
+  [collection queryWhereFilter:[FIRFilter andFilterWithFilters:@[
+    [FIRFilter filterWhereField:@"a" in: @[@1, @2, @3, @4, @5]],
+    [FIRFilter orFilterWithFilters:@[
+      [FIRFilter filterWhereField:@"b" isEqualTo:@2],
+      [FIRFilter filterWhereField:@"c" isEqualTo:@3]
+    ]]
+  ]]];
+  // [END 10_disjunctions]
+}
+
+- (void)illegalDisjunctions {
+  FIRCollectionReference *collection = [self.db collectionWithPath:@"cities"];
+
+  // [START 20_disjunctions]
+  [collection queryWhereFilter:[FIRFilter andFilterWithFilters:@[
+    [FIRFilter filterWhereField:@"a" in:@[@1, @2, @3, @4, @5]],
+    [FIRFilter filterWhereField:@"b" in:@[@1, @2, @3, @4, @5, @6, @7, @8, @9, @10]]
+  ]]];
+  // [END 20_disjunctions]
 }
 
 @end
