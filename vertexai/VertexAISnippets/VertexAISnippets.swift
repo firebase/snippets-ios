@@ -343,6 +343,20 @@ class Snippets {
     // [END set_multi_safety_settings]
   }
 
+  func setSystemInstructions() {
+    // [START system_instructions_text]
+    // Initialize the Vertex AI service
+    let vertex = VertexAI.vertexAI()
+
+    // Initialize the generative model
+    // Specify a model that supports system instructions, like a Gemini 1.5 model
+    let model = vertex.generativeModel(
+      modelName: "gemini-1.5-flash",
+      systemInstruction: ModelContent(role: "system", parts: "You are a cat. Your name is Neko.")
+    )
+    // [END system_instructions_text]
+  }
+
   // MARK: - Function Calling
 
   func functionCalling() async throws {
