@@ -36,10 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // [START default_configure_file]
     // Load a named file.
-    let filePath = Bundle.main.path(forResource: "MyGoogleService", ofType: "plist")
-    guard let fileopts = FirebaseOptions(contentsOfFile: filePath!)
-      else { assert(false, "Couldn't load config file") }
-    FirebaseApp.configure(options: fileopts)
+    guard 
+      let filePath = Bundle.main.path(forResource: "MyGoogleService", ofType: "plist"),
+      let fileOptions = FirebaseOptions(contentsOfFile: filePath)
+    else { fatalError("Couldn't load config file.") }
+    FirebaseApp.configure(options: fileOptions)
     // [END default_configure_file]
 
     // Note: this one is not deleted, so is the default below.
@@ -69,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Retrieve a previous created named app.
     guard let secondary = FirebaseApp.app(name: "secondary")
-      else { assert(false, "Could not retrieve secondary app") }
+      else { fatalError("Could not retrieve secondary app") }
 
 
     // Retrieve a Real Time Database client configured against a specific app.
@@ -80,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let defaultDb = Database.database()
 
     guard let defapp = FirebaseApp.app()
-      else { assert(false, "Could not retrieve default app") }
+      else { fatalError("Could not retrieve default app") }
 
     assert(secondaryDb.app == secondary)
     assert(defaultDb.app == defapp)
