@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,9 +17,12 @@
 		3EABFB2D1E254C8F00F4BBED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EABFB2B1E254C8F00F4BBED /* LaunchScreen.storyboard */; };
 		3EABFB381E254C8F00F4BBED /* firestore_smoketestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABFB371E254C8F00F4BBED /* firestore_smoketestTests.swift */; };
 		3EABFB431E254C8F00F4BBED /* firestore_smoketestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABFB421E254C8F00F4BBED /* firestore_smoketestUITests.swift */; };
+		8D15627E2EA0474400D3B017 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8D15627D2EA0474400D3B017 /* FirebaseAuth */; };
+		8D1562802EA0474400D3B017 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8D15627F2EA0474400D3B017 /* FirebaseFirestore */; };
 		8D7951A32D28AC82000FD694 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7951A22D28AC82000FD694 /* FirebaseAuth */; };
 		8D7951A52D28AC82000FD694 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7951A42D28AC82000FD694 /* FirebaseFirestore */; };
 		8D7951A82D28ADBE000FD694 /* GeoFireUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7951A72D28ADBE000FD694 /* GeoFireUtils */; };
+		8D7C36932EA069B70083BAF5 /* PipelineSnippets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7C36922EA069B00083BAF5 /* PipelineSnippets.swift */; };
 		8D864B17260D3947008E85B3 /* SolutionBundles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D864B16260D3947008E85B3 /* SolutionBundles.swift */; };
 		8D864B35260D55C1008E85B3 /* SolutionGeoPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC116F258A2B8E00D080CB /* SolutionGeoPointViewController.swift */; };
 		8DA9B4AB201165C800EC29CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DA9B4AA201165C800EC29CD /* GoogleService-Info.plist */; };
@@ -59,6 +62,7 @@
 		3EABFB3E1E254C8F00F4BBED /* firestore-smoketestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "firestore-smoketestUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EABFB421E254C8F00F4BBED /* firestore_smoketestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firestore_smoketestUITests.swift; sourceTree = "<group>"; };
 		3EABFB441E254C8F00F4BBED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D7C36922EA069B00083BAF5 /* PipelineSnippets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipelineSnippets.swift; sourceTree = "<group>"; };
 		8D864B16260D3947008E85B3 /* SolutionBundles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolutionBundles.swift; sourceTree = "<group>"; };
 		8DA9B4AA201165C800EC29CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8DFC116F258A2B8E00D080CB /* SolutionGeoPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolutionGeoPointViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 				8D7951A32D28AC82000FD694 /* FirebaseAuth in Frameworks */,
 				8D7951A82D28ADBE000FD694 /* GeoFireUtils in Frameworks */,
 				8D7951A52D28AC82000FD694 /* FirebaseFirestore in Frameworks */,
+				8D1562802EA0474400D3B017 /* FirebaseFirestore in Frameworks */,
+				8D15627E2EA0474400D3B017 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +122,7 @@
 		3EABFB211E254C8F00F4BBED /* firestore-smoketest */ = {
 			isa = PBXGroup;
 			children = (
+				8D7C36922EA069B00083BAF5 /* PipelineSnippets.swift */,
 				8DA9B4AA201165C800EC29CD /* GoogleService-Info.plist */,
 				3EABFB221E254C8F00F4BBED /* AppDelegate.swift */,
 				3EABFB241E254C8F00F4BBED /* ViewController.swift */,
@@ -253,8 +260,8 @@
 			);
 			mainGroup = 3EABFB161E254C8E00F4BBED;
 			packageReferences = (
-				8D7951A02D28AC75000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				8D7951A62D28ADAE000FD694 /* XCRemoteSwiftPackageReference "geofire-objc" */,
+				8D15627C2EA0474400D3B017 /* XCLocalSwiftPackageReference "../../../firebase-ios-sdk" */,
 			);
 			productRefGroup = 3EABFB201E254C8F00F4BBED /* Products */;
 			projectDirPath = "";
@@ -305,6 +312,7 @@
 				8D864B17260D3947008E85B3 /* SolutionBundles.swift in Sources */,
 				3E3694B71EFDB3BF009C9125 /* SolutionAggregationViewController.swift in Sources */,
 				8D864B35260D55C1008E85B3 /* SolutionGeoPointViewController.swift in Sources */,
+				8D7C36932EA069B70083BAF5 /* PipelineSnippets.swift in Sources */,
 				3EABFB231E254C8F00F4BBED /* AppDelegate.swift in Sources */,
 				3E3694B91EFDC039009C9125 /* SolutionCountersViewController.swift in Sources */,
 			);
@@ -412,12 +420,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -467,11 +476,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -483,14 +493,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"GCC_WARN_64_TO_32_BIT_CONVERSION[arch=*64]" = YES;
 				INFOPLIST_FILE = "firestore-smoketest/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.firestore-smoketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -501,14 +511,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"GCC_WARN_64_TO_32_BIT_CONVERSION[arch=*64]" = YES;
 				INFOPLIST_FILE = "firestore-smoketest/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.firebase.firestore-smoketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -620,10 +630,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		8D15627C2EA0474400D3B017 /* XCLocalSwiftPackageReference "../../../firebase-ios-sdk" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../../firebase-ios-sdk";
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		8D7951A02D28AC75000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			repositoryURL = "~/dev/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 11.6.0;
@@ -640,6 +657,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8D15627D2EA0474400D3B017 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseAuth;
+		};
+		8D15627F2EA0474400D3B017 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseFirestore;
+		};
 		8D7951A22D28AC82000FD694 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8D7951A02D28AC75000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
