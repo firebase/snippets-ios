@@ -825,7 +825,7 @@ public class PipelineSnippets {
 
   // https://cloud.google.com/firestore/docs/pipeline/functions/comparison_functions#lte
   func lessThanOrEqualToFunction() async throws {
-    // START less_or_equal]
+    // [START less_or_equal]
     let result = try await db.pipeline()
       .collection("books")
       .select([Field("rating").lessThanOrEqual(2).as("hasBadRating")])
