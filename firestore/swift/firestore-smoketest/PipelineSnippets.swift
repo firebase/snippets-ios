@@ -437,7 +437,7 @@ public class PipelineSnippets {
     // { identifier: 1, neighbors: [ "Alice", "Cathy" ], unnestedNeighbors: "Alice", index: 0 }
     // { identifier: 1, neighbors: [ "Alice", "Cathy" ], unnestedNeighbors: "Cathy", index: 1 }
     // { identifier: 3, neighbors: "Bob", index: null}
-    // [END unneest_edge_cases]
+    // [END unnest_edge_cases]
     print(results)
   }
 
