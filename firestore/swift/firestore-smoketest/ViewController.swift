@@ -21,7 +21,7 @@ import FirebaseFirestore
 
 class ViewController: UIViewController {
 
-  var db: Firestore!
+  var smokeTests: SmokeTests!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -31,10 +31,29 @@ class ViewController: UIViewController {
 
     Firestore.firestore().settings = settings
     // [END setup]
-    db = Firestore.firestore()
+    smokeTests = SmokeTests(Firestore.firestore())
   }
 
   @IBAction func didTouchSmokeTestButton(_ sender: AnyObject) {
+    smokeTests.runAllSmokeTests()
+  }
+
+  @IBAction func didTouchDeleteButton(_ sender: AnyObject) {
+    smokeTests.deleteCollection(collection: "users")
+    smokeTests.deleteCollection(collection: "cities")
+  }
+
+}
+
+class SmokeTests: @unchecked Sendable {
+
+  nonisolated(unsafe) private let db: Firestore
+
+  init(_ db: Firestore) {
+    self.db = db
+  }
+
+  func runAllSmokeTests() {
     // Quickstart
     Task {
       await addAdaLovelace()
@@ -121,12 +140,7 @@ class ViewController: UIViewController {
     multiCursor()
   }
 
-  @IBAction func didTouchDeleteButton(_ sender: AnyObject) {
-    deleteCollection(collection: "users")
-    deleteCollection(collection: "cities")
-  }
-
-  private func deleteCollection(collection: String) {
+  func deleteCollection(collection: String) {
     db.collection(collection).getDocuments() { (querySnapshot, err) in
       if let err = err {
         print("Error getting documents: \(err)")
@@ -1446,7 +1460,7 @@ class ViewController: UIViewController {
 }
 
 // [START codable_struct]
-public struct City: Codable {
+public struct City: Codable, Sendable {
 
   let name: String
   let state: String?

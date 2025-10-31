@@ -19,9 +19,11 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 
-class SolutionAggregationViewController: UIViewController {
+class SolutionAggregationViewController: @unchecked Sendable {
 
-  var db: Firestore!
+  nonisolated(unsafe) lazy var db: Firestore = {
+    Firestore.firestore()
+  }()
 
   // [START restaurant_struct]
   struct Restaurant {
@@ -37,11 +39,6 @@ class SolutionAggregationViewController: UIViewController {
 
   struct Rating {
     let rating: Float
-  }
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    db = Firestore.firestore()
   }
 
   func getRatingsSubcollection() async {
