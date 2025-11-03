@@ -959,32 +959,6 @@ public class PipelineSnippets {
     print(result)
   }
 
-  // https://cloud.google.com/firestore/docs/pipeline/functions/logical_functions#is_nan
-  func isNaNFunction() async throws {
-    // [START is_nan]
-    let result = try await db.pipeline()
-      .collection("books")
-      .select([
-        Field("rating").isNan().as("hasInvalidRating")
-      ])
-      .execute()
-    // [END is_nan]
-    print(result)
-  }
-
-  // https://cloud.google.com/firestore/docs/pipeline/functions/logical_functions#is_not_nan
-  func isNotNaNFunction() async throws {
-    // [START is_not_nan]
-    let result = try await db.pipeline()
-      .collection("books")
-      .select([
-        Field("rating").isNotNan().as("hasValidRating")
-      ])
-      .execute()
-    // [END is_not_nan]
-    print(result)
-  }
-
   // https://cloud.google.com/firestore/docs/pipeline/functions/logical_functions#max
   func maxLogicalFunction() async throws {
     // [START max_logical_function]
