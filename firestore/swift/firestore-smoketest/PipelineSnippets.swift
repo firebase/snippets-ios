@@ -27,6 +27,24 @@ public class PipelineSnippets {
     pipelineConcepts()
   }
 
+  func basicRead() async throws {
+    do {
+      // Initialize a Firestore Pipeline instance and specify the "users" collection as the
+      // input stage.
+      let snapshot = try await db.pipeline()
+        .collection("users")
+        .execute() // Execute the pipeline to retrieve documents.
+
+      // Iterate through the documents in the pipeline results, similar to a regular query
+      // snapshot.
+      for result in snapshot.results {
+        print("\(result.id ?? "no ID") => \(result.data)")
+      }
+    } catch {
+      print("Error getting documents with pipeline: \(error)")
+    }
+  }
+
   // https://cloud.google.com/firestore/docs/pipeline/overview#concepts
   func pipelineConcepts() {
     // [START pipeline_concepts]
