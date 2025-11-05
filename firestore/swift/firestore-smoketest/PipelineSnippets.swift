@@ -519,7 +519,7 @@ public class PipelineSnippets {
 
   // https://cloud.google.com/firestore/docs/pipeline/functions/aggregate_functions#max
   func maxFunction() async throws {
-    // [START min_function]
+    // [START max_function]
     let result = try await db.pipeline()
       .collection("books")
       .aggregate([Field("price").maximum().as("maximumPrice")])
