@@ -524,7 +524,7 @@ public class PipelineSnippets {
       .collection("books")
       .aggregate([Field("price").maximum().as("maximumPrice")])
       .execute()
-    // [START max_function]
+    // [END max_function]
     print(result)
   }
 
