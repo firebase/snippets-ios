@@ -411,22 +411,6 @@ public class PipelineSnippets {
     print(results)
   }
 
-  // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/union#examples
-  func unionStageStable() async throws {
-    // [START union_stage_stable]
-    let results = try await db.pipeline()
-      .collection("cities/SF/restaurants")
-      .where(Field("type").equal("Chinese"))
-      .union(with: db.pipeline()
-          .collection("cities/NY/restaurants")
-          .where(Field("type").equal("Italian")))
-      .where(Field("rating").greaterThanOrEqual(4.5))
-      .sort([Field("__name__").descending()])
-      .execute()
-    // [END union_stage_stable]
-    print(results)
-  }
-
   // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/unnest#examples
   func unnestStage() async throws {
     // [START unnest_stage]
