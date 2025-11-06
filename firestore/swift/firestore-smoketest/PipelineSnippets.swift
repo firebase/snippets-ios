@@ -1040,6 +1040,7 @@ public class PipelineSnippets {
 
   // https://cloud.google.com/firestore/docs/pipeline/functions/string_functions#ends_with
   func endsWithFunction() async throws {
+    // [START ends_with]
     let result = try await db.pipeline()
       .collection("inventory/devices/laptops")
       .select([
@@ -1047,6 +1048,7 @@ public class PipelineSnippets {
           .as("16InLaptops")
       ])
       .execute()
+    // [END ends_with]
     print(result)
   }
 
