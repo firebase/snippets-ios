@@ -27,7 +27,22 @@ public class PipelineSnippets {
     pipelineConcepts()
   }
 
-  func basicRead() async throws {
+  func stagesExpressionsExample() async throws {
+    // [START stages_expressions_example]
+    guard let cutoffDate = Calendar.current.date(byAdding: .month, value: -1, to: Date()) else {
+      return
+    }
+    let snapshot = try await db.pipeline()
+      .collection("productViews")
+      .where(Field("viewedAt").greaterThan(cutoffDate.timeIntervalSince1970))
+      .aggregate([Field("productId").countDistinct().as("uniqueProductViews")])
+      .execute()
+    // [END stages_expressions_example]
+    print(snapshot)
+  }
+
+  func basicRead() async {
+    // [START basic_read]
     do {
       // Initialize a Firestore Pipeline instance and specify the "users" collection as the
       // input stage.
@@ -43,6 +58,7 @@ public class PipelineSnippets {
     } catch {
       print("Error getting documents with pipeline: \(error)")
     }
+    // [END basic_read]
   }
 
   // https://cloud.google.com/firestore/docs/pipeline/overview#concepts
@@ -1149,6 +1165,7 @@ public class PipelineSnippets {
       ])
       .execute()
     // [END to_lower]
+    print(result)
   }
 
   // https://cloud.google.com/firestore/docs/pipeline/functions/string_functions#substr
@@ -1185,7 +1202,7 @@ public class PipelineSnippets {
     let result = try await db.pipeline()
       .collection("books")
       .select([
-        Field("name").trim().as("whitespaceTrimmedName")
+        Field("name").trim(" \n\t").as("whitespaceTrimmedName")
       ])
       .execute()
     // [END trim_function]
