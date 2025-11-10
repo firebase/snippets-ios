@@ -29,12 +29,11 @@ public class PipelineSnippets {
 
   func stagesExpressionsExample() async throws {
     // [START stages_expressions_example]
-    guard let cutoffDate = Calendar.current.date(byAdding: .month, value: -1, to: Date()) else {
-      return
-    }
+    let trailing30Days = Constant(Date().timeIntervalSince1970 * Double(MSEC_PER_SEC))
+      .timestampSubtract(30, .day)
     let snapshot = try await db.pipeline()
       .collection("productViews")
-      .where(Field("viewedAt").greaterThan(cutoffDate.timeIntervalSince1970))
+      .where(Field("viewedAt").greaterThan(trailing30Days))
       .aggregate([Field("productId").countDistinct().as("uniqueProductViews")])
       .execute()
     // [END stages_expressions_example]
@@ -483,9 +482,7 @@ public class PipelineSnippets {
     // [START count_if]
     let result = try await db.pipeline()
       .collection("books")
-      .aggregate([
-        AggregateFunction("count_if", [Field("rating").greaterThan(4)]).as("filteredCount")
-      ])
+      .aggregate([Field("rating").greaterThan(4).countIf().as("filteredCount")])
       .execute()
     // [END count_if]
     print(result)
@@ -496,7 +493,7 @@ public class PipelineSnippets {
     // [START count_distinct]
     let result = try await db.pipeline()
       .collection("books")
-      .aggregate([AggregateFunction("count_distinct", [Field("author")]).as("unique_authors")])
+      .aggregate([Field("author").countDistinct().as("unique_authors")])
       .execute()
     // [END count_distinct]
     print(result)
@@ -1376,5 +1373,801 @@ public class PipelineSnippets {
       .execute()
     // [END vector_length]
     print(result)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/where
+  func createWhereData() async throws {
+    // [START create_where_data]
+    try await db.collection("cities").document("SF").setData(
+      ["name": "San Francisco", "state": "CA", "country": "USA", "population": 870000]
+    )
+    try await db.collection("cities").document("LA").setData(
+      ["name": "Los Angeles", "state": "CA", "country": "USA", "population": 3970000]
+    )
+    try await db.collection("cities").document("NY").setData(
+      ["name": "New York", "state": "NY", "country": "USA", "population": 8530000]
+    )
+    try await db.collection("cities").document("TOR").setData(
+      ["name": "Toronto", "state": NSNull(), "country": "Canada", "population": 2930000]
+    )
+    try await db.collection("cities").document("MEX").setData(
+      ["name": "Mexico City", "state": NSNull(), "country": "Mexico", "population": 9200000]
+    )
+    // [END create_where_data]
+  }
+
+  func whereEqualityExample() async throws {
+    // [START where_equality_example]
+    let cities = try await db.pipeline()
+      .collection("cities")
+      .where(Field("state").equal("CA"))
+      .execute()
+    // [END where_equality_example]
+    print(cities)
+  }
+
+  func whereMultipleStagesExample() async throws {
+    // [START where_multiple_stages]
+    let cities = try await db.pipeline()
+      .collection("cities")
+      .where(Field("location.country").equal("USA"))
+      .where(Field("population").greaterThan(500000))
+      .execute()
+    // [END where_multiple_stages]
+    print(cities)
+  }
+
+  func whereComplexExample() async throws {
+    // [START where_complex]
+    let cities = try await db.pipeline()
+      .collection("cities")
+      .where(
+        Field("name").like("San%") ||
+          (Field("location.state").charLength().greaterThan(7) &&
+            Field("location.country").equal("USA"))
+      ).execute()
+    // [END where_complex]
+    print(cities)
+  }
+
+  func whereStageOrderExample() async throws {
+    // [START where_stage_order]
+    let cities = try await db.pipeline()
+      .collection("cities")
+      .limit(10)
+      .where(Field("location.country").equal("USA"))
+      .execute()
+    // [END where_stage_order]
+    print(cities)
+  }
+
+  func whereHavingExample() async throws {
+    // [START where_having_example]
+    let cities = try await db.pipeline()
+      .collection("cities")
+      .aggregate([
+        Field("population").sum().as("totalPopulation")
+      ], groups: [
+        Field("location.state")
+      ])
+      .where(Field("totalPopulation").greaterThan(10000000))
+      .execute()
+    // [END where_having_example]
+    print(cities)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/unnest
+
+  func unnestSyntaxExample() async throws {
+    // [START unnest_syntax]
+    let userScore = try await db.pipeline()
+      .collection("users")
+      .unnest(Field("scores").as("userScore"), indexField: "attempt")
+      .execute()
+    // [END unnest_syntax]
+    print(userScore)
+  }
+
+  func unnestAliasIndexDataExample() async throws {
+    // [START unnest_alias_index_data]
+    try await db.collection("users").addDocument(data: ["name": "foo", "scores": [5, 4], "userScore": 0])
+    try await db.collection("users").addDocument(data: ["name": "bar", "scores": [1, 3], "attempt": 5])
+    // [END unnest_alias_index_data]
+  }
+
+  func unnestAliasIndexExample() async throws {
+    // [START unnest_alias_index]
+    let userScore = try await db.pipeline()
+      .collection("users")
+      .unnest(Field("scores").as("userScore"), indexField: "attempt")
+      .execute()
+    // [END unnest_alias_index]
+    print(userScore)
+  }
+
+  func unnestNonArrayDataExample() async throws {
+    // [START unnest_nonarray_data]
+    try await db.collection("users").addDocument(data: ["name": "foo", "scores": 1])
+    try await db.collection("users").addDocument(data: ["name": "bar", "scores": NSNull()])
+    try await db.collection("users").addDocument(data: ["name": "qux", "scores": ["backupScores": 1]])
+    // [END unnest_nonarray_data]
+  }
+
+  func unnestNonArrayExample() async throws {
+    // [START unnest_nonarray]
+    let userScore = try await db.pipeline()
+      .collection("users")
+      .unnest(Field("scores").as("userScore"), indexField: "attempt")
+      .execute()
+    // [END unnest_nonarray]
+    print(userScore)
+  }
+
+  func unnestEmptyArrayDataExample() async throws {
+    // [START unnest_empty_array_data]
+    try await db.collection("users").addDocument(data: ["name": "foo", "scores": [5, 4]])
+    try await db.collection("users").addDocument(data: ["name": "bar", "scores": []])
+    // [END unnest_empty_array_data]
+  }
+
+  func unnestEmptyArrayExample() async throws {
+    // [START unnest_empty_array]
+    let userScore = try await db.pipeline()
+      .collection("users")
+      .unnest(Field("scores").as("userScore"), indexField: "attempt")
+      .execute()
+    // [END unnest_empty_array]
+    print(userScore)
+  }
+
+  func unnestPreserveEmptyArrayExample() async throws {
+    // [START unnest_preserve_empty_array]
+    let userScore = try await db.pipeline()
+      .collection("users")
+      .unnest(
+        ConditionalExpression(
+          Field("scores").equal(ArrayExpression([])),
+          then: ArrayExpression([Field("scores")]),
+          else: Field("scores")
+        ).as("userScore"),
+        indexField: "attempt"
+      )
+      .execute()
+    // [END unnest_preserve_empty_array]
+    print(userScore)
+  }
+
+  func unnestNestedDataExample() async throws {
+    // [START unnest_nested_data]
+    try await db.collection("users").addDocument(data: [
+      "name": "foo",
+      "record": [
+        [
+          "scores": [5, 4],
+          "avg": 4.5
+        ], [
+          "scores": [1, 3],
+          "old_avg": 2
+        ]
+      ]
+    ])
+    // [END unnest_nested_data]
+  }
+
+  func unnestNestedExample() async throws {
+    // [START unnest_nested]
+    let userScore = try await db.pipeline()
+      .collection("users")
+      .unnest(Field("record").as("record"))
+      .unnest(Field("record.scores").as("userScore"), indexField: "attempt")
+      .execute()
+    // [END unnest_nested]
+    print(userScore)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/sample
+
+  func sampleSyntaxExample() async throws {
+    // [START sample_syntax]
+    var sampled = try await db.pipeline()
+      .database()
+      .sample(count: 50)
+      .execute()
+
+    sampled = try await db.pipeline()
+      .database()
+      .sample(percentage: 0.5)
+      .execute()
+    // [END sample_syntax]
+    print(sampled)
+  }
+
+  func sampleDocumentsDataExample() async throws {
+    // [START sample_documents_data]
+    try await db.collection("cities").document("SF").setData(["name": "San Francisco", "state": "California"])
+    try await db.collection("cities").document("NYC").setData(["name": "New York City", "state": "New York"])
+    try await db.collection("cities").document("CHI").setData(["name": "Chicago", "state": "Illinois"])
+    // [END sample_documents_data]
+  }
+
+  func sampleDocumentsExample() async throws {
+    // [START sample_documents]
+    let sampled = try await db.pipeline()
+      .collection("cities")
+      .sample(count: 1)
+      .execute()
+    // [END sample_documents]
+    print(sampled)
+  }
+
+  func sampleAllDocumentsExample() async throws {
+    // [START sample_all_documents]
+    let sampled = try await db.pipeline()
+      .collection("cities")
+      .sample(count: 5)
+      .execute()
+    // [END sample_all_documents]
+    print(sampled)
+  }
+
+  func samplePercentageDataExample() async throws {
+    // [START sample_percentage_data]
+    try await db.collection("cities").document("SF").setData(["name": "San Francsico", "state": "California"])
+    try await db.collection("cities").document("NYC").setData(["name": "New York City", "state": "New York"])
+    try await db.collection("cities").document("CHI").setData(["name": "Chicago", "state": "Illinois"])
+    try await db.collection("cities").document("ATL").setData(["name": "Atlanta", "state": "Georgia"])
+    // [END sample_percentage_data]
+  }
+
+  func samplePercentageExample() async throws {
+    // [START sample_percentage]
+    let sampled = try await db.pipeline()
+      .collection("cities")
+      .sample(percentage: 0.5)
+      .execute()
+    // [END sample_percentage]
+    print(sampled)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/sort
+
+  func sortSyntaxExample() async throws {
+    // [START sort_syntax]
+    let results = try await db.pipeline()
+      .collection("cities")
+      .sort([Field("population").ascending()])
+      .execute()
+    // [END sort_syntax]
+    print(results)
+  }
+
+  func sortSyntaxExample2() async throws {
+    // [START sort_syntax_2]
+    let results = try await db.pipeline()
+      .collection("cities")
+      .sort([Field("name").charLength().ascending()])
+      .execute()
+    // [END sort_syntax_2]
+    print(results)
+  }
+
+  func sortDocumentIDExample() async throws {
+    // [START sort_document_id]
+    let results = try await db.pipeline()
+      .collection("cities")
+      .sort([Field("country").ascending(), Field("__name__").ascending()])
+      .execute()
+    // [END sort_document_id]
+    print(results)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/select
+
+  func selectSyntaxExample() async throws {
+    // [START select_syntax]
+    let names = try await db.pipeline()
+      .collection("cities")
+      .select([
+        Field("name").concat([", ", Field("location.country")]).as("name"),
+        Field("population")
+      ]).execute()
+    // [END select_syntax]
+    print(names)
+  }
+
+  func selectPositionDataExample() async throws {
+    // [START select_position_data]
+    try await db.collection("cities").document("SF").setData([
+      "name": "San Francisco", "population": 800000, "location": ["country": "USA", "state": "California"]
+    ])
+    try await db.collection("cities").document("TO").setData([
+      "name": "Toronto", "population": 3000000, "location": ["country": "Canada", "province": "Ontario"]
+    ])
+    // [END select_position_data]
+  }
+
+  func selectPositionExample() async throws {
+    // [START select_position]
+    let names = try await db.pipeline()
+      .collection("cities")
+      .where(Field("location.country").equal("Canada"))
+      .select([
+        Field("name").concat([", ", Field("location.country")]).as("name"),
+        Field("population")
+      ])
+      .execute()
+    // [END select_position]
+    print(names)
+  }
+
+  func selectBadPositionExample() async throws {
+    // [START select_bad_position]
+    let names = try await db.pipeline()
+      .collection("cities")
+      .select([
+        Field("name").concat([", ", Field("location.country")]).as("name"),
+        Field("population")
+      ])
+      .where(Field("location.country").equal("Canada"))
+      .execute()
+    // [END select_bad_position]
+    print(names)
+  }
+
+  func selectNestedDataExample() async throws {
+    // [START select_nested_data]
+    try await db.collection("cities").document("SF").setData(["name": "San Francisco", "population": 800000, "location": ["country": "USA", "state": "California"], "landmarks": ["Golden Gate Bridge", "Alcatraz"]])
+    try await db.collection("cities").document("TO").setData(["name": "Toronto", "population": 3000000, "province": "ON", "location": ["country": "Canada", "province": "Ontario"], "landmarks": ["CN Tower", "Casa Loma"]])
+    try await db.collection("cities").document("AT").setData(["name": "Atlantis", "population": NSNull()])
+    // [END select_nested_data]
+  }
+
+  func selectNestedExample() async throws {
+    // [START select_nested]
+    let locations = try await db.pipeline()
+      .collection("cities")
+      .select([
+        Field("name").as("city"),
+        Field("location.country").as("country"),
+        Field("landmarks").arrayGet(0).as("topLandmark")
+      ]).execute()
+    // [END select_nested]
+    print(locations)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/remove_fields
+
+  func removeFieldsSyntaxExample() async throws {
+    // [START remove_fields_syntax]
+    let results = try await db.pipeline()
+      .collection("cities")
+      .removeFields(["population", "location.state"])
+      .execute()
+    // [END remove_fields_syntax]
+    print(results)
+  }
+
+  func removeFieldsNestedDataExample() async throws {
+    // [START remove_fields_nested_data]
+    try await db.collection("cities").document("SF").setData([
+      "name": "San Francisco", "location": ["country": "USA", "state": "California"]
+    ])
+    try await db.collection("cities").document("TO").setData([
+      "name": "Toronto", "location": ["country": "Canada", "province": "Ontario"]
+    ])
+    // [END remove_fields_nested_data]
+  }
+
+  func removeFieldsNestedExample() async throws {
+    // [START remove_fields_nested]
+    let results = try await db.pipeline()
+      .collection("cities")
+      .removeFields(["location.state"])
+      .execute()
+    // [END remove_fields_nested]
+    print(results)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/limit
+
+  func limitSyntaxExample() async throws {
+    // [START limit_syntax]
+    let results = try await db.pipeline()
+      .collection("cities")
+      .limit(10)
+      .execute()
+    // [END limit_syntax]
+    print(results)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/find_nearest
+
+  func findNearestSyntaxExample() async throws {
+    // [START find_nearest_syntax]
+    let results = try await db.pipeline()
+      .collection("cities")
+      .findNearest(
+        field: Field("embedding"),
+        vectorValue: VectorValue([1.5, 2.345]),
+        distanceMeasure: .euclidean
+      )
+      .execute()
+    // [END find_nearest_syntax]
+    print(results)
+  }
+
+  func findNearestLimitExample() async throws {
+    // [START find_nearest_limit]
+    let results = try await db.pipeline()
+      .collection("cities")
+      .findNearest(
+        field: Field("embedding"),
+        vectorValue: VectorValue([1.5, 2.345]),
+        distanceMeasure: .euclidean,
+        limit: 10
+      )
+      .execute()
+    // [END find_nearest_limit]
+    print(results)
+  }
+
+  func findNearestDistanceDataExample() async throws {
+    // [START find_nearest_distance_data]
+    try await db.collection("cities").document("SF").setData(["name": "San Francisco", "embedding": [1.0, -1.0]])
+    try await db.collection("cities").document("TO").setData(["name": "Toronto", "embedding": [5.0, -10.0]])
+    try await db.collection("cities").document("AT").setData(["name": "Atlantis", "embedding": [2.0, -4.0]])
+    // [END find_nearest_distance_data]
+  }
+
+  func findNearestDistanceExample() async throws {
+    // [START find_nearest_distance]
+    let results = try await db.pipeline()
+      .collection("cities")
+      .findNearest(
+        field: Field("embedding"),
+        vectorValue: VectorValue([1.3, 2.345]),
+        distanceMeasure: .euclidean,
+        distanceField: "computedDistance"
+      )
+      .execute()
+    // [END find_nearest_distance]
+    print(results)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/offset
+
+  func offsetSyntaxExample() async throws {
+    // [START offset_syntax]
+    let results = try await db.pipeline()
+      .collection("cities")
+      .offset(10)
+      .execute()
+    // [END offset_syntax]
+    print(results)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/add_fields
+
+  func addFieldsSyntaxExample() async throws {
+    // [START add_fields_syntax]
+    let results = try await db.pipeline()
+      .collection("users")
+      .addFields([Field("firstName").concat([" ", Field("lastName")]).as("fullName")])
+      .execute()
+    // [END add_fields_syntax]
+    print(results)
+  }
+
+  func addFieldsOverlapExample() async throws {
+    // [START add_fields_overlap]
+    let results = try await db.pipeline()
+      .collection("users")
+      .addFields([Field("age").abs().as("age")])
+      .addFields([Field("age").add(10).as("age")])
+      .execute()
+    // [END add_fields_overlap]
+    print(results)
+  }
+
+  func addFieldsNestingExample() async throws {
+    // [START add_fields_nesting]
+    let results = try await db.pipeline()
+      .collection("users")
+      .addFields([Field("address.city").toLower().as("address.city")])
+      .execute()
+    // [END add_fields_nesting]
+    print(results)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/input/collection
+
+  func collectionInputSyntaxExample() async throws {
+    // [START collection_input_syntax]
+    let results = try await db.pipeline()
+      .collection("cities/SF/departments")
+      .execute()
+    // [END collection_input_syntax]
+    print(results)
+  }
+
+  func collectionInputExampleData() async throws {
+    // [START collection_input_data]
+    try await db.collection("cities").document("SF").setData(["name": "San Francsico", "state": "California"])
+    try await db.collection("cities").document("NYC").setData(["name": "New York City", "state": "New York"])
+    try await db.collection("cities").document("CHI").setData(["name": "Chicago", "state": "Illinois"])
+    try await db.collection("states").document("CA").setData(["name": "California"])
+    // [END collection_input_data]
+  }
+
+  func collectionInputExample() async throws {
+    // [START collection_input]
+    let results = try await db.pipeline()
+      .collection("cities")
+      .sort([Field("name").ascending()])
+      .execute()
+    // [END collection_input]
+    print(results)
+  }
+
+  func subcollectionInputExampleData() async throws {
+    // [START subcollection_input_data]
+    try await db.collection("cities/SF/departments").document("building")
+      .setData(["name": "SF Building Deparment", "employees": 750])
+    try await db.collection("cities/NY/departments").document("building")
+      .setData(["name": "NY Building Deparment", "employees": 1000])
+    try await db.collection("cities/CHI/departments").document("building")
+      .setData(["name": "CHI Building Deparment", "employees": 900])
+    try await db.collection("cities/NY/departments").document("finance")
+      .setData(["name": "NY Finance Deparment", "employees": 1200])
+    // [END subcollection_input_data]
+  }
+
+  func subcollectionInputExample() async throws {
+    // [START subcollection_input]
+    let results = try await db.pipeline()
+      .collection("cities/NY/departments")
+      .sort([Field("employees").ascending()])
+      .execute()
+    // [END subcollection_input]
+    print(results)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/input/collection_group
+
+  func collectionGroupInputSyntaxExample() async throws {
+    // [START collection_group_input_syntax]
+    let results = try await db.pipeline()
+      .collectionGroup("departments")
+      .execute()
+    // [END collection_group_input_syntax]
+    print(results)
+  }
+
+  func collectionGroupInputExampleData() async throws {
+    // [START collection_group_data]
+    try await db.collection("cities/SF/departments").document("building").setData(["name": "SF Building Deparment", "employees": 750])
+    try await db.collection("cities/NY/departments").document("building").setData(["name": "NY Building Deparment", "employees": 1000])
+    try await db.collection("cities/CHI/departments").document("building").setData(["name": "CHI Building Deparment", "employees": 900])
+    try await db.collection("cities/NY/departments").document("finance").setData(["name": "NY Finance Deparment", "employees": 1200])
+    // [END collection_group_data]
+  }
+
+  func collectionGroupInputExample() async throws {
+    // [START collection_group_input]
+    let results = try await db.pipeline()
+      .collectionGroup("departments")
+      .sort([Field("employees").ascending()])
+      .execute()
+    // [END collection_group_input]
+    print(results)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/input/database
+
+  func databaseInputSyntaxExample() async throws {
+    // [START database_syntax]
+    let results = try await db.pipeline()
+      .database()
+      .execute()
+    // [END database_syntax]
+    print(results)
+  }
+
+  func databaseInputSyntaxExampleData() async throws {
+    // [START database_input_data]
+    try await db.collection("cities").document("SF").setData(["name": "San Francsico", "state": "California", "population": 800000])
+    try await db.collection("states").document("CA").setData(["name": "California", "population": 39000000])
+    try await db.collection("countries").document("USA").setData(["name": "United States of America", "population": 340000000])
+    // [END database_input_data]
+  }
+
+  func databaseInputExample() async throws {
+    // [START database_input]
+    let results = try await db.pipeline()
+      .database()
+      .sort([Field("population").ascending()])
+      .execute()
+    // [END database_input]
+    print(results)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/input/documents
+
+  func documentInputSyntaxExample() async throws {
+    // [START document_input_syntax]
+    let results = try await db.pipeline()
+      .documents([
+        db.collection("cities").document("SF"),
+        db.collection("cities").document("NY")
+      ])
+      .execute()
+    // [END document_input_syntax]
+    print(results)
+  }
+
+  func documentInputExampleData() async throws {
+    // [START document_input_data]
+    try await db.collection("cities").document("SF").setData(["name": "San Francsico", "state": "California"])
+    try await db.collection("cities").document("NYC").setData(["name": "New York City", "state": "New York"])
+    try await db.collection("cities").document("CHI").setData(["name": "Chicago", "state": "Illinois"])
+    // [END document_input_data]
+  }
+
+  func documentInputExample() async throws {
+    // [START document_input]
+    let results = try await db.pipeline()
+      .documents([
+        db.collection("cities").document("SF"),
+        db.collection("cities").document("NYC")
+      ])
+      .sort([Field("name").ascending()])
+      .execute()
+    // [END document_input]
+    print(results)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/union
+
+  func unionSyntaxExample() async throws {
+    // [START union_syntax]
+    let results = try await db.pipeline()
+      .collection("cities/SF/restaurants")
+      .union(with: db.pipeline().collection("cities/NYC/restaurants"))
+      .execute()
+    // [END union_syntax]
+    print(results)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/aggregate
+
+  func aggregateSyntaxExample() async throws {
+    // [START aggregate_syntax]
+    let cities = try await db.pipeline()
+      .collection("cities")
+      .aggregate([
+        CountAll().as("total"),
+        Field("population").average().as("averagePopulation")
+      ]).execute()
+    // [END aggregate_syntax]
+    print(cities)
+  }
+
+  func aggregateGroupSyntax() async throws {
+    // [START aggregate_group_syntax]
+    let result = try await db.pipeline()
+      .collectionGroup("cities")
+      .aggregate([
+        CountAll().as("cities"),
+        Field("population").sum().as("totalPopulation")
+      ], groups: [
+        Field("location.state").as("state")
+      ])
+      .execute()
+    // [END aggregate_group_syntax]
+    print(result)
+  }
+
+  func aggregateExampleData() async throws {
+    // [START aggregate_data]
+    try await db.collection("cities").document("SF").setData(["name": "San Francisco", "state": "CA", "country": "USA", "population": 870000])
+    try await db.collection("cities").document("LA").setData(["name": "Los Angeles", "state": "CA", "country": "USA", "population": 3970000])
+    try await db.collection("cities").document("NY").setData(["name": "New York", "state": "NY", "country": "USA", "population": 8530000])
+    try await db.collection("cities").document("TOR").setData(["name": "Toronto", "state": NSNull(), "country": "Canada", "population": 2930000])
+    try await db.collection("cities").document("MEX").setData(["name": "Mexico City", "state": NSNull(), "country": "Mexico", "population": 9200000])
+    // [END aggregate_data]
+  }
+
+  func aggregateWithoutGroupExample() async throws {
+    // [START aggregate_without_group]
+    let cities = try await db.pipeline()
+      .collection("cities")
+      .aggregate([
+        CountAll().as("total"),
+        Field("population").average().as("averagePopulation")
+      ]).execute()
+    // [END aggregate_without_group]
+    print(cities)
+  }
+
+  func aggregateGroupExample() async throws {
+    // [START aggregate_group_example]
+    let cities = try await db.pipeline()
+      .collection("cities")
+      .aggregate([
+        CountAll().as("numberOfCities"),
+        Field("population").maximum().as("maxPopulation")
+      ], groups: [
+        Field("country"), Field("state")
+      ])
+      .execute()
+    // [END aggregate_group_example]
+    print(cities)
+  }
+
+  func aggregateGroupComplexExample() async throws {
+    // [START aggregate_group_complex]
+    let cities = try await db.pipeline()
+      .collection("cities")
+      .aggregate([
+        Field("population").sum().as("totalPopulation")
+      ], groups: [
+        Field("state").equal(NSNull()).as("stateIsNull")
+      ])
+      .execute()
+    // [END aggregate_group_complex]
+    print(cities)
+  }
+
+  // https://cloud.google.com/firestore/docs/pipeline/stages/transformation/distinct
+
+  func distinctSyntaxExample() async throws {
+    // [START distinct_syntax]
+    var cities = try await db.pipeline()
+      .collection("cities")
+      .distinct(["country"])
+      .execute()
+
+    cities = try await db.pipeline()
+      .collection("cities")
+      .distinct([
+        Field("state").toLower().as("normalizedState"),
+        Field("country")
+      ])
+      .execute()
+    // [END distinct_syntax]
+    print(cities)
+  }
+
+  func distinctExampleData() async throws {
+    // [START distinct_data]
+    try await db.collection("cities").document("SF").setData(["name": "San Francisco", "state": "CA", "country": "USA"])
+    try await db.collection("cities").document("LA").setData(["name": "Los Angeles", "state": "CA", "country": "USA"])
+    try await db.collection("cities").document("NY").setData(["name": "New York", "state": "NY", "country": "USA"])
+    try await db.collection("cities").document("TOR").setData(["name": "Toronto", "state": NSNull(), "country": "Canada"])
+    try await db.collection("cities").document("MEX").setData(["name": "Mexico City", "state": NSNull(), "country": "Mexico"])
+    // [END distinct_data]
+  }
+
+  func distinctExample() async throws {
+    // [START distinct_example]
+    let cities = try await db.pipeline()
+      .collection("cities")
+      .distinct(["country"])
+      .execute()
+    // [END distinct_example]
+    print(cities)
+  }
+
+  func distinctExpressionsExample() async throws {
+    // [START distinct_expressions]
+    let cities = try await db.pipeline()
+      .collection("cities")
+      .distinct([
+        Field("state").toLower().as("normalizedState"),
+        Field("country")
+      ])
+      .execute()
+    // [END distinct_expressions]
+    print(cities)
   }
 }
