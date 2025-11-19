@@ -1,9 +1,5 @@
-on: 
-  pull_request:
-    paths:
-      - '**/*.h'
-      - '**/*.m'
-      - '**/*.swift'
+on: pull_request
+
 name: Check for snippet deletes
 jobs:
   deletes-check:
