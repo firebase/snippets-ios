@@ -1,0 +1,14 @@
+on: pull_request
+
+name: Check for snippet deletes
+jobs:
+  deletes-check:
+    name: deletes-check
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+        run: git fetch origin main
+      - name: Check for deleted start or end tags
+        run: bash delete-check.sh
+        continue-on-error: true
