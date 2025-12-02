@@ -441,7 +441,7 @@ class MessagingAppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, 
     print("FCM token: \(token ?? "")")
     // [END log_fcm_reg_token]
 
-    // [START log_iid_reg_token]
+    // [START log_reg_token]
     Messaging.messaging().token { token, error in
       if let error = error {
         print("Error fetching remote FCM registration token: \(error)")
@@ -449,7 +449,7 @@ class MessagingAppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, 
         print("Remote instance ID token: \(token)")
       }
     }
-    // [END log_iid_reg_token]
+    // [END log_reg_token]
   }
 
   func subscribeToTopic() {

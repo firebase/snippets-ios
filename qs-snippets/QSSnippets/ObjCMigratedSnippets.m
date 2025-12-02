@@ -328,7 +328,7 @@
 
   NSString* displayToken = [NSString stringWithFormat:@"Logged FCM token: %@", fcmToken];
 
-  // [START log_iid_reg_token]
+  // [START log_reg_token]
   [[FIRMessaging messaging] tokenWithCompletion:^(NSString * _Nullable token, NSError * _Nullable error) {
     if (error != nil) {
       NSLog(@"Error fetching the remote FCM registration token: %@", error);
@@ -340,7 +340,7 @@
       NSLog(@"%@", message);
     }
   }];
-  // [END log_iid_reg_token]
+  // [END log_reg_token]
   NSLog(@"%@", displayToken);
 }
 
