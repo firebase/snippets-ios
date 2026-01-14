@@ -27,6 +27,29 @@ public class PipelineSnippets {
     pipelineConcepts()
   }
 
+  func typeAndGenericExample() async throws {
+    // [START type_function]
+    let typeOfField = Field("rating").type()
+    // [END type_function]
+
+    // [START concat_function]
+    let displayString = Constant("Author ID: ").concat([Field("authorId")]);
+    // [END concat_function]
+
+    // [START length_function]
+    let tagsCount = Field("tags").length();
+    // [END length_function]
+
+    // [START reverse_function]
+    let reversedTags = Field("tags").reverse();
+    // [END reverse_function]
+
+    print(typeOfField)
+    print(displayString)
+    print(tagsCount)
+    print(reversedTags)
+  }
+
   func stagesExpressionsExample() async throws {
     // [START stages_expressions_example]
     guard let cutoffDate = Calendar.current.date(byAdding: .month, value: -1, to: Date()) else {
@@ -484,7 +507,8 @@ public class PipelineSnippets {
     let result = try await db.pipeline()
       .collection("books")
       .aggregate([
-        AggregateFunction("count_if", [Field("rating").greaterThan(4)]).as("filteredCount")
+        AggregateFunction(functionName: "count_if",
+                          args: [Field("rating").greaterThan(4)]).as("filteredCount")
       ])
       .execute()
     // [END count_if]
@@ -496,7 +520,8 @@ public class PipelineSnippets {
     // [START count_distinct]
     let result = try await db.pipeline()
       .collection("books")
-      .aggregate([AggregateFunction("count_distinct", [Field("author")]).as("unique_authors")])
+      .aggregate([AggregateFunction(functionName: "count_distinct",
+                                    args: [Field("author")]).as("unique_authors")])
       .execute()
     // [END count_distinct]
     print(result)
