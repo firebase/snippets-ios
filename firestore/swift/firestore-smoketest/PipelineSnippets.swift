@@ -33,15 +33,15 @@ public class PipelineSnippets {
     // [END type_function]
 
     // [START concat_function]
-    let displayString = Constant("Author ID: ").concat([Field("authorId")]);
+    let displayString = Constant("Author ID: ").concat([Field("authorId")])
     // [END concat_function]
 
     // [START length_function]
-    let tagsCount = Field("tags").length();
+    let tagsCount = Field("tags").length()
     // [END length_function]
 
     // [START reverse_function]
-    let reversedTags = Field("tags").reverse();
+    let reversedTags = Field("tags").reverse()
     // [END reverse_function]
 
     print(typeOfField)
