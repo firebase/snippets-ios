@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D7951BA2D28B078000FD694 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7951B92D28B078000FD694 /* FirebaseFunctions */; };
+		8D7951BC2D28B0C4000FD694 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7951BB2D28B0C4000FD694 /* FirebaseFunctions */; };
 		8D8FA34322F4CAB100213E06 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D8FA34222F4CAB100213E06 /* AppDelegate.m */; };
 		8D8FA34622F4CAB100213E06 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D8FA34522F4CAB100213E06 /* ViewController.m */; };
 		8D8FA34922F4CAB100213E06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D8FA34722F4CAB100213E06 /* Main.storyboard */; };
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D7951BC2D28B0C4000FD694 /* FirebaseFunctions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,17 +55,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D7951BA2D28B078000FD694 /* FirebaseFunctions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D7951B82D28B078000FD694 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8D8FA33522F4CAB100213E06 = {
 			isa = PBXGroup;
 			children = (
 				8D8FA34022F4CAB100213E06 /* FunctionsExample */,
 				8D8FA35C22F4CAF700213E06 /* FunctionsExampleSwift */,
+				8D7951B82D28B078000FD694 /* Frameworks */,
 				8D8FA33F22F4CAB100213E06 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -148,8 +160,9 @@
 		8D8FA33622F4CAB100213E06 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1610;
 				ORGANIZATIONNAME = Firebase;
 				TargetAttributes = {
 					8D8FA33D22F4CAB100213E06 = {
@@ -169,6 +182,9 @@
 				Base,
 			);
 			mainGroup = 8D8FA33522F4CAB100213E06;
+			packageReferences = (
+				8D7951B72D28B070000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 8D8FA33F22F4CAB100213E06 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -286,6 +302,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -297,6 +314,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -345,6 +363,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -356,6 +375,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -368,6 +388,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -473,6 +494,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D7951B72D28B070000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D7951B92D28B078000FD694 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D7951B72D28B070000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		8D7951BB2D28B0C4000FD694 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D7951B72D28B070000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8D8FA33622F4CAB100213E06 /* Project object */;
 }

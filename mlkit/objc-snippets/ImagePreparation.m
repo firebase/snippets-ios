@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 @import AVFoundation;
-@import Firebase;
+@import FirebaseMLVision;
 
 @interface ImagePreparation : NSObject
 

@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-@import Firebase;
+@import FirebaseFunctions;
 
 #import "ViewController.h"
 
@@ -31,7 +31,7 @@
 
 - (void)emulatorSettings {
   // [START functions_emulator_connect]
-  [[FIRFunctions functions] useFunctionsEmulatorOrigin:@"http://localhost:5001"];
+  [[FIRFunctions functions] useEmulatorWithHost:@"localhost" port:5001];
   // [END functions_emulator_connect]
 }
 

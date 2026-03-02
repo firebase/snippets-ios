@@ -14,7 +14,7 @@
 //  limitations under the License.
 //
 
-@import Firebase;
+@import FirebaseFirestore;
 
 #import "FIRSolutionCountersViewController.h"
 

@@ -16,9 +16,8 @@
 
 #import "ViewController.h"
 
-@import Firebase;
-
-@import FirebaseUI;
+@import FirebaseStorage;
+@import FirebaseStorageUI;
 
 @interface ViewController ()
 
@@ -245,10 +244,10 @@
 
   // [START firstorage_progress]
   // Add a progress observer to an upload task
-  FIRStorageHandle observer = [uploadTask observeStatus:FIRStorageTaskStatusProgress
-                                                handler:^(FIRStorageTaskSnapshot *snapshot) {
-                                                  // A progress event occurred
-                                                }];
+  NSString *observer = [uploadTask observeStatus:FIRStorageTaskStatusProgress
+                                          handler:^(FIRStorageTaskSnapshot *snapshot) {
+    // A progress event occurred
+  }];
   // [END firstorage_progress]
 }
 
@@ -260,10 +259,10 @@
 
   // [START firstorage_task]
   // Create a task listener handle
-  FIRStorageHandle observer = [uploadTask observeStatus:FIRStorageTaskStatusProgress
-                                                handler:^(FIRStorageTaskSnapshot *snapshot) {
-                                                  // A progress event occurred
-                                                }];
+  NSString *observer = [uploadTask observeStatus:FIRStorageTaskStatusProgress
+                                         handler:^(FIRStorageTaskSnapshot *snapshot) {
+    // A progress event occurred
+  }];
 
   // Remove an individual observer
   [uploadTask removeObserverWithHandle:observer];
@@ -447,10 +446,10 @@
 
   // [START firstorage_download_observe]
   // Add a progress observer to a download task
-  FIRStorageHandle observer = [downloadTask observeStatus:FIRStorageTaskStatusProgress
-                                                  handler:^(FIRStorageTaskSnapshot *snapshot) {
-                                                    // A progress event occurred
-                                                  }];
+  NSString *observer = [downloadTask observeStatus:FIRStorageTaskStatusProgress
+                                           handler:^(FIRStorageTaskSnapshot *snapshot) {
+    // A progress event occurred
+  }];
   // [END firstorage_download_observe]
 }
 
@@ -461,10 +460,10 @@
 
   // [START firstorage_handle_observer]
   // Create a task listener handle
-  FIRStorageHandle observer = [downloadTask observeStatus:FIRStorageTaskStatusProgress
-                                                  handler:^(FIRStorageTaskSnapshot *snapshot) {
-                                                    // A progress event occurred
-                                                  }];
+  NSString *observer = [downloadTask observeStatus:FIRStorageTaskStatusProgress
+                                           handler:^(FIRStorageTaskSnapshot *snapshot) {
+    // A progress event occurred
+  }];
 
   // Remove an individual observer
   [downloadTask removeObserverWithHandle:observer];
@@ -580,7 +579,7 @@
 
   // [START firstorage_delete_metadata]
   FIRStorageMetadata *newMetadata = [[FIRStorageMetadata alloc] init];
-  newMetadata.contentType = @"";
+  newMetadata.contentType = nil;
 
   // Delete the metadata property
   [forestRef updateMetadata:newMetadata completion:^(FIRStorageMetadata *metadata, NSError *error){

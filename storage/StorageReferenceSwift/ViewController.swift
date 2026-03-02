@@ -16,8 +16,12 @@
 
 import UIKit
 
-import Firebase
-import FirebaseUI
+import FirebaseCore
+import FirebaseStorage
+import FirebaseStorageUI
+
+extension StorageMetadata: @unchecked @retroactive Sendable {}
+extension StorageListResult: @unchecked @retroactive Sendable {}
 
 class ViewController: UIViewController {
 
@@ -108,10 +112,10 @@ class ViewController: UIViewController {
     let spaceRef = imagesRef.child(fileName)
 
     // File path is "images/space.jpg"
-    let path = spaceRef.fullPath;
+    let path = spaceRef.fullPath
 
     // File name is "space.jpg"
-    let name = spaceRef.name;
+    let name = spaceRef.name
 
     // Points to "images"
     let images = spaceRef.parent()
@@ -132,12 +136,12 @@ class ViewController: UIViewController {
     let mountainImagesRef = storageRef.child("images/mountains.jpg")
 
     // While the file names are the same, the references point to different files
-    mountainsRef.name == mountainImagesRef.name;            // true
-    mountainsRef.fullPath == mountainImagesRef.fullPath;    // false
+    mountainsRef.name == mountainImagesRef.name            // true
+    mountainsRef.fullPath == mountainImagesRef.fullPath    // false
     // [END firstorage_upload]
   }
 
-  func storageInMemoryExample() {
+  func storageInMemoryExample() async {
     let storageRef = Storage.storage().reference()
 
     // [START firstorage_memory]
@@ -529,7 +533,7 @@ class ViewController: UIViewController {
     // [END firstorage_download_combined]
   }
 
-  func storageGetMetadataExample() {
+  func storageGetMetadataExample() async {
     let storageRef = Storage.storage().reference()
 
     // [START firstorage_get_metadata]
@@ -537,17 +541,15 @@ class ViewController: UIViewController {
     let forestRef = storageRef.child("images/forest.jpg")
 
     // Get metadata properties
-    forestRef.getMetadata { metadata, error in
-      if let error = error {
-        // Uh-oh, an error occurred!
-      } else {
-        // Metadata now contains the metadata for 'images/forest.jpg'
-      }
+    do {
+      let metadata = try await forestRef.getMetadata()
+    } catch {
+      // ...
     }
     // [END firstorage_get_metadata]
   }
 
-  func storageChangeMetadataExample() {
+  func storageChangeMetadataExample() async {
     let storageRef = Storage.storage().reference()
 
     // [START firstorage_change_metadata]
@@ -556,35 +558,31 @@ class ViewController: UIViewController {
 
     // Create file metadata to update
     let newMetadata = StorageMetadata()
-    newMetadata.cacheControl = "public,max-age=300";
-    newMetadata.contentType = "image/jpeg";
+    newMetadata.cacheControl = "public,max-age=300"
+    newMetadata.contentType = "image/jpeg"
 
     // Update metadata properties
-    forestRef.updateMetadata(newMetadata) { metadata, error in
-      if let error = error {
-        // Uh-oh, an error occurred!
-      } else {
-        // Updated metadata for 'images/forest.jpg' is returned
-      }
+    do {
+      let updatedMetadata = try await forestRef.updateMetadata(newMetadata)
+    } catch {
+      // ...
     }
     // [END firstorage_change_metadata]
   }
 
-  func storageDeleteMetadataExample() {
+  func storageDeleteMetadataExample() async {
     let storageRef = Storage.storage().reference()
     let forestRef = storageRef.child("images/forest.jpg")
 
     // [START firstorage_delete_metadata]
     let newMetadata = StorageMetadata()
-    newMetadata.contentType = "";
+    newMetadata.contentType = nil
 
-    // Delete the metadata property
-    forestRef.updateMetadata(newMetadata) { metadata, error in
-      if let error = error {
-        // Uh-oh, an error occurred!
-      } else {
-        // metadata.contentType should be nil
-      }
+    do {
+      // Delete the metadata property
+      let updatedMetadata = try await forestRef.updateMetadata(newMetadata)
+    } catch {
+      // ...
     }
     // [END firstorage_delete_metadata]
   }
@@ -600,32 +598,28 @@ class ViewController: UIViewController {
     // [END firstorage_custom_metadata]
   }
 
-  func storageDeleteFileExample() {
+  func storageDeleteFileExample() async {
     let storageRef = Storage.storage().reference()
 
     // [START firstorage_delete]
     // Create a reference to the file to delete
     let desertRef = storageRef.child("desert.jpg")
 
-    // Delete the file
-    desertRef.delete { error in
-      if let error = error {
-        // Uh-oh, an error occurred!
-      } else {
-        // File deleted successfully
-      }
+    do {
+      // Delete the file
+      try await desertRef.delete()
+    } catch {
+      // ...
     }
     // [END firstorage_delete]
   }
 
-  func listAllFiles() {
+  func listAllFiles() async {
     let storage = Storage.storage()
     // [START storage_list_all]
     let storageReference = storage.reference().child("files/uid")
-    storageReference.listAll { (result, error) in
-      if let error = error {
-        // ...
-      }
+    do {
+      let result = try await storageReference.listAll()
       for prefix in result.prefixes {
         // The prefixes under storageReference.
         // You may call listAll(completion:) recursively on them.
@@ -633,35 +627,38 @@ class ViewController: UIViewController {
       for item in result.items {
         // The items under storageReference.
       }
+    } catch {
+      // ...
     }
     // [END storage_list_all]
   }
 
   // [START storage_list_paginated]
-  func listAllPaginated(pageToken: String? = nil) {
+  func listAllPaginated(pageToken: String? = nil) async throws {
     let storage = Storage.storage()
     let storageReference = storage.reference().child("files/uid")
 
-    let pageHandler: (StorageListResult, Error?) -> Void = { (result, error) in
-      if let error = error {
-        // ...
-      }
-      let prefixes = result.prefixes
-      let items = result.items
-
-      // ...
-
-      // Process next page
-      if let token = result.pageToken {
-        self.listAllPaginated(pageToken: token)
-      }
-    }
-
+    let listResult: StorageListResult
     if let pageToken = pageToken {
-      storageReference.list(withMaxResults: 100, pageToken: pageToken, completion: pageHandler)
+      listResult = try await storageReference.list(maxResults: 100, pageToken: pageToken)
     } else {
-      storageReference.list(withMaxResults: 100, completion: pageHandler)
+      listResult = try await storageReference.list(maxResults: 100)
+    }
+    let prefixes = listResult.prefixes
+    let items = listResult.items
+    // Handle list result
+    // ...
+
+    // Process next page
+    if let token = listResult.pageToken {
+      try await listAllPaginated(pageToken: token)
     }
   }
   // [END storage_list_paginated]
+
+  func emulatorSettings() { 
+    // [START storage_emulator_connect]
+    Storage.storage().useEmulator(withHost: "127.0.0.1", port: 9199)
+    // [END storage_emulator_connect]
+  }
 }

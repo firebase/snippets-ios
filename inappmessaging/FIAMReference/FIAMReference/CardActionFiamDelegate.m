@@ -40,12 +40,16 @@
 @end
 // [END fiam_card_action_delegate]
 
+@interface ExampleCardActionDelegate: NSObject <FIRInAppMessagingDisplayDelegate>
+@end
+
 
 // [START fiam_card_action_delegate_bundles]
-@implementation CardActionFiamDelegate
+@implementation ExampleCardActionDelegate
 
 - (void)messageClicked:(nonnull FIRInAppMessagingDisplayMessage *)inAppMessage {
-	appData = inAppMessage.appData
+    NSDictionary *appData = inAppMessage.appData;
+    NSLog(@"Message data: %@", appData);
 	// ...
 }
 

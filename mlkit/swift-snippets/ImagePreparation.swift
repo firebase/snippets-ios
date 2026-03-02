@@ -17,7 +17,7 @@
 
 import Foundation
 import AVFoundation
-import Firebase
+import FirebaseMLVision
 
 class ImagePreparation {
     func createImage(uiImage: UIImage) -> VisionImage {

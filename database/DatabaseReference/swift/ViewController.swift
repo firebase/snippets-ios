@@ -16,21 +16,12 @@
 
 import UIKit
 
-import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class ViewController: UIViewController {
 
   var ref: DatabaseReference!
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-  }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
 
   func persistenceReference() {
     // [START keep_synchronized]
@@ -103,37 +94,59 @@ class ViewController: UIViewController {
     // [END clock_skew]
   }
 
-  func writeNewUser(_ user: Firebase.User, withUsername username: String) {
+  func writeNewUser(_ user: FirebaseAuth.User, withUsername username: String) {
     // [START rtdb_write_new_user]
     ref.child("users").child(user.uid).setValue(["username": username])
     // [END rtdb_write_new_user]
   }
 
-  func writeNewUserWithCompletion(_ user: Firebase.User, withUsername username: String) {
+  func writeNewUserWithCompletion(_ user: FirebaseAuth.User, withUsername username: String) async {
     // [START rtdb_write_new_user_completion]
-    ref.child("users").child(user.uid).setValue(["username": username]) {
-      (error:Error?, ref:DatabaseReference) in
-      if let error = error {
-        print("Data could not be saved: \(error).")
-      } else {
-        print("Data saved successfully!")
-      }
+    do {
+      try await ref.child("users").child(user.uid).setValue(["username": username])
+      print("Data saved successfully!")
+    } catch {
+      print("Data could not be saved: \(error).")
     }
     // [END rtdb_write_new_user_completion]
   }
 
-  func emulatorSettings(Database: Database) {
-	// [START rtdb_emulator_connect]
-        // In almost all cases the ns (namespace) is your project ID.
-	let db = Database.database(url:@"http://localhost:9000?ns=YOUR_DATABASE_NAMESPACE")
-	// [END rtdb_emulator_connect]
+  func singleUseFetchData(uid: String) async {
+    let ref = Database.database().reference()
+    // [START single_value_get_data]
+    do {
+      let snapshot = try await ref.child("users/\(uid)/username").getData()
+      let userName = snapshot.value as? String ?? "Unknown"
+    } catch {
+      print(error)
+    }
+    // [END single_value_get_data]
   }
 
-  func flushRealtimeDatabase(Database: Database) { 
-        // [START rtdb_emulator_flush]
+  func emulatorSettings() {
+    // [START rtdb_emulator_connect]
+        // In almost all cases the ns (namespace) is your project ID.
+    let db = Database.database(url:"http://127.0.0.1:9000?ns=YOUR_DATABASE_NAMESPACE")
+    // [END rtdb_emulator_connect]
+  }
+
+  func flushRealtimeDatabase() { 
+    // [START rtdb_emulator_flush]
 	// With a DatabaseReference, write nil to clear the database.
-	Database.database().reference().setValue(nil);
+	Database.database().reference().setValue(nil)
 	// [END rtdb_emulator_flush]  
+  }
+
+  func incrementStars(forPost postID: String, byUser userID: String) {
+    // [START rtdb_post_stars_increment]
+    let updates = [
+      "posts/\(postID)/stars/\(userID)": true,
+      "posts/\(postID)/starCount": ServerValue.increment(1),
+      "user-posts/\(postID)/stars/\(userID)": true,
+      "user-posts/\(postID)/starCount": ServerValue.increment(1)
+    ] as [String : Any]
+    Database.database().reference().updateChildValues(updates)
+    // [END rtdb_post_stars_increment]
   }
 
 }
@@ -151,7 +164,7 @@ func combinedExample() {
 
   connectedRef.observe(.value, with: { snapshot in
     // only handle connection established (or I've reconnected after a loss of connection)
-    guard let connected = snapshot.value as? Bool, connected else { return }
+    guard snapshot.value as? Bool ?? false else { return }
 
     // add this device to my connections list
     let con = myConnectionsRef.childByAutoId()

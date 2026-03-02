@@ -1,0 +1,17 @@
+# AuthenticationExample
+
+use_frameworks!
+platform :ios, '15.0'
+pod 'FirebaseAnalytics'
+pod 'FirebaseAuth'
+
+# These are pods used for the auth providers.
+pod 'FBSDKLoginKit'
+pod 'GoogleSignIn'
+
+target 'AuthenticationExample' do
+end
+target 'AuthenticationExampleSwift' do
+end
+target 'AuthenticationExampleTests' do
+end

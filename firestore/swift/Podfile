@@ -1,5 +1,6 @@
-# Uncomment this line to define a global platform for your project
-# platform :ios, '9.0'
+# No longer used since the project migrated to SPM, but this file still exists
+# for the GeoFire snippet below.
+platform :ios, '14.0'
 
 target 'firestore-smoketest' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
@@ -8,7 +9,10 @@ target 'firestore-smoketest' do
   # Pods for firestore-smoketest
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
-  pod 'FirebaseFirestoreSwift'
+
+  # [START geofire_pod]
+  pod 'GeoFire/Utils'
+  # [END geofire_pod]
 
   target 'firestore-smoketestTests' do
     inherit! :search_paths

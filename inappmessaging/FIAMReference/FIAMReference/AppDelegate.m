@@ -15,7 +15,11 @@
 //
 
 #import "AppDelegate.h"
-@import Firebase;
+
+@import FirebaseCore;
+@import FirebaseInAppMessaging;
+
+#import "CardActionFiamDelegate.h"
 
 @interface AppDelegate ()
 

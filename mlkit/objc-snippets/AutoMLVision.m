@@ -15,7 +15,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@import Firebase;
+@import FirebaseMLVision;
 
 @interface AutoMLVision : NSObject
 

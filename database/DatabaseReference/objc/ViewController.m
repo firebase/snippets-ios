@@ -13,7 +13,9 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-@import Firebase;
+
+@import FirebaseAuth;
+@import FirebaseDatabase;
 
 #import "ViewController.h"
 
@@ -24,16 +26,6 @@
 @end
 
 @implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (void)persistenceReference {
   // [START keep_synchronized]
@@ -159,6 +151,30 @@
     }
   }];
   // [END rtdb_write_new_user_completion]
+}
+
+- (void)singleUseGetDataForUserId:(NSString *)uid {
+  FIRDatabaseReference *ref = [FIRDatabase database].reference;
+  // [START single_value_get_data]
+  NSString *userPath = [NSString stringWithFormat:@"users/%@/username", uid];
+  [[ref child:userPath] getDataWithCompletionBlock:^(NSError * _Nullable error, FIRDataSnapshot * _Nonnull snapshot) {
+    if (error) {
+      NSLog(@"Received an error %@", error);
+      return;
+    }
+    NSString *userName = snapshot.value;
+  }];
+  // [END single_value_get_data]
+}
+
+- (void)incrementStarsForPost:(NSString *)postID byUser: (NSString *) userID {
+  // [START rtdb_post_stars_increment]
+  NSDictionary *updates = @{[NSString stringWithFormat: @"posts/%@/stars/%@", postID, userID]: @TRUE,
+                          [NSString stringWithFormat: @"posts/%@/starCount", postID]: [FIRServerValue increment:@1],
+                          [NSString stringWithFormat: @"user-posts/%@/stars/%@", postID, userID]: @TRUE,
+                          [NSString stringWithFormat: @"user-posts/%@/starCount", postID]: [FIRServerValue increment:@1]};
+  [[[FIRDatabase database] reference] updateChildValues:updates];
+  // [END rtdb_post_stars_increment]
 }
 
 @end

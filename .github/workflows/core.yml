@@ -10,15 +10,16 @@ jobs:
     runs-on: macOS-latest
     strategy:
         matrix:
-          destination: ['platform=iOS Simulator,OS=13.5,name=iPhone 11']
+          destination: ['platform=iOS Simulator,OS=latest,name=iPhone 16']
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Install deps
+        run: brew install xcbeautify
       - name: Build Swift snippets
         run: |
           cp .github/GoogleService-Info-CI.plist firoptions/FiroptionConfiguration/GoogleService-Info.plist
           cd firoptions
-          pod install --repo-update
-          xcodebuild -workspace FiroptionConfiguration.xcworkspace clean build -scheme FiroptionConfiguration -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild -project FiroptionConfiguration.xcodeproj clean build -scheme FiroptionConfiguration -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcbeautify --renderer github-actions
         env: 
          destination: ${{ matrix.destination }}

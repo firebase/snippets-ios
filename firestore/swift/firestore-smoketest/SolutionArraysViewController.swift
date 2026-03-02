@@ -21,94 +21,86 @@ import FirebaseFirestore
 
 class SolutionArraysViewController: UIViewController {
 
-    var db: Firestore!
+  var db: Firestore!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        db = Firestore.firestore()
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    db = Firestore.firestore()
+  }
+
+  func queryInCategory() async {
+    // [START query_in_category]
+    do {
+      let querySnapshot = try await db.collection("posts")
+        .whereField("categories.cats", isEqualTo: true)
+        .getDocuments()
+      // Do something with the snapshot
+      print(querySnapshot)
+    } catch {
+      print("Error: \(error)")
+    }
+    // [END query_in_category]
+  }
+
+  func queryInCategoryTimestamp() {
+    // [START query_in_category_timestamp_invalid]
+    db.collection("posts")
+      .whereField("categories.cats", isEqualTo: true)
+      .order(by: "timestamp")
+    // [END query_in_category_timestamp_invalid]
+
+    // [START query_in_category_timestamp]
+    db.collection("posts")
+      .whereField("categories.cats", isGreaterThan: 0)
+      .order(by: "categories.cats")
+    // [END query_in_category_timestamp]
+  }
+
+  // [START post_with_array]
+  struct PostArray {
+
+    let title: String
+    let categories: [String]
+
+    init(title: String, categories: [String]) {
+      self.title = title
+      self.categories = categories
     }
 
-    func queryInCategory() {
-        // [START query_in_category]
-        db.collection("posts")
-            .whereField("categories.cats", isEqualTo: true)
-            .getDocuments() { (querySnapshot, err) in
+  }
 
-                // ...
+  let myArrayPost = PostArray(title: "My great post",
+                              categories: ["technology", "opinion", "cats"])
+  // [END post_with_array]
 
-        }
-        // [END query_in_category]
-    }
+  // [START post_with_dict]
+  struct PostDict {
 
-    func queryInCategoryTimestamp() {
-        // [START query_in_category_timestamp_invalid]
-        db.collection("posts")
-            .whereField("categories.cats", isEqualTo: true)
-            .order(by: "timestamp")
-        // [END query_in_category_timestamp_invalid]
+    let title: String
+    let categories: [String: Bool]
 
-        // [START query_in_category_timestamp]
-        db.collection("posts")
-            .whereField("categories.cats", isGreaterThan: 0)
-            .order(by: "categories.cats")
-        // [END query_in_category_timestamp]
-    }
+  }
 
-    // [START post_with_array]
-    struct PostArray {
+  let post = PostDict(title: "My great post", categories: [
+    "technology": true,
+    "opinion": true,
+    "cats": true
+  ])
+  // [END post_with_dict]
 
-        let title: String
-        let categories: [String]
+  // [START post_with_dict_advanced]
+  struct PostDictAdvanced {
 
-        init(title: String, categories: [String]) {
-            self.title = title
-            self.categories = categories
-        }
+    let title: String
+    let categories: [String: UInt64]
 
-    }
+  }
 
-    let myArrayPost = PostArray(title: "My great post",
-                                categories: ["technology", "opinion", "cats"])
-    // [END post_with_array]
-
-    // [START post_with_dict]
-    struct PostDict {
-
-        let title: String
-        let categories: [String: Bool]
-
-        init(title: String, categories: [String: Bool]) {
-            self.title = title
-            self.categories = categories
-        }
-
-    }
-
-    let post = PostDict(title: "My great post", categories: [
-        "technology": true,
-        "opinion": true,
-        "cats": true
-    ])
-    // [END post_with_dict]
-
-    // [START post_with_dict_advanced]
-    struct PostDictAdvanced {
-
-        let title: String
-        let categories: [String: UInt64]
-
-        init(title: String, categories: [String: UInt64]) {
-            self.title = title
-            self.categories = categories
-        }
-
-    }
-
-    let dictPost = PostDictAdvanced(title: "My great post", categories: [
-        "technology": 1502144665,
-        "opinion": 1502144665,
-        "cats": 1502144665
-    ])
-    // [END post_with_dict_advanced]
+  let dictPost = PostDictAdvanced(title: "My great post", categories: [
+    "technology": 1502144665,
+    "opinion": 1502144665,
+    "cats": 1502144665
+  ])
+  // [END post_with_dict_advanced]
 
 }

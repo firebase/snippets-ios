@@ -1,0 +1,41 @@
+on: 
+  pull_request:
+    paths:
+      - 'appcheck/**'
+      - '.github/workflows/appcheck.yml'
+name: App Check
+jobs:
+  swift-build:
+    name: Swift build
+    runs-on: macOS-latest
+    strategy:
+        matrix:
+          destination: ['platform=iOS Simulator,OS=latest,name=iPhone 16']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Install deps
+        run: brew install xcbeautify
+      - name: Build Swift snippets
+        run: |
+          cd appcheck
+          xcodebuild -project AppCheckSnippets.xcodeproj clean build -scheme AppCheckSnippetsSwift -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcbeautify --renderer github-actions
+        env: 
+         destination: ${{ matrix.destination }}
+  objc-build:
+    name: ObjC build
+    runs-on: macOS-latest
+    strategy:
+        matrix:
+          destination: ['platform=iOS Simulator,OS=latest,name=iPhone 16']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Install deps
+        run: brew install xcbeautify
+      - name: Build ObjC snippets
+        run: |
+          cd appcheck
+          xcodebuild -project AppCheckSnippets.xcodeproj clean build -scheme AppCheckSnippetsObjC -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcbeautify --renderer github-actions
+        env: 
+         destination: ${{ matrix.destination }}

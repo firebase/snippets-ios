@@ -14,7 +14,8 @@
 //  limitations under the License.
 //
 
-@import Firebase;
+@import FirebaseCore;
+@import FirebaseDatabase;
 
 #import "AppDelegate.h"
 

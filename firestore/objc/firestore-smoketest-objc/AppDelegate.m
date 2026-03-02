@@ -16,7 +16,8 @@
 
 #import "AppDelegate.h"
 
-@import Firebase;
+@import FirebaseCore;
+@import FirebaseFirestore;
 
 @interface AppDelegate ()
 

@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D7951C62D2C8A15000FD694 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 8D7951C52D2C8A15000FD694 /* FirebaseInstallations */; };
 		8DC74B6624A3DABF004C5F44 /* ObjCSnippets.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC74B6524A3DABF004C5F44 /* ObjCSnippets.m */; };
 		8DF2A72824A3D78300737F46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2A72724A3D78300737F46 /* AppDelegate.swift */; };
 		8DF2A72A24A3D78300737F46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2A72924A3D78300737F46 /* SceneDelegate.swift */; };
@@ -49,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D7951C62D2C8A15000FD694 /* FirebaseInstallations in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,11 +64,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8AD735E937155091CB79F9CC /* Pods */ = {
+		8D7951C42D2C8A15000FD694 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8DF2A71B24A3D78300737F46 = {
@@ -74,8 +76,8 @@
 			children = (
 				8DF2A72624A3D78300737F46 /* InstallationsSnippets */,
 				8DF2A73D24A3D78300737F46 /* InstallationsSnippetsTests */,
+				8D7951C42D2C8A15000FD694 /* Frameworks */,
 				8DF2A72524A3D78300737F46 /* Products */,
-				8AD735E937155091CB79F9CC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -166,8 +168,9 @@
 		8DF2A71C24A3D78300737F46 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1610;
 				ORGANIZATIONNAME = Firebase;
 				TargetAttributes = {
 					8DF2A72324A3D78300737F46 = {
@@ -189,6 +192,9 @@
 				Base,
 			);
 			mainGroup = 8DF2A71B24A3D78300737F46;
+			packageReferences = (
+				8D7951C32D2C89F0000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 8DF2A72524A3D78300737F46 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -287,6 +293,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -297,6 +304,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -347,6 +355,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -357,6 +366,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -421,7 +431,6 @@
 		8DF2A74724A3D78300737F46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = InstallationsSnippetsTests/Info.plist;
@@ -442,7 +451,6 @@
 		8DF2A74824A3D78300737F46 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = InstallationsSnippetsTests/Info.plist;
@@ -491,6 +499,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D7951C32D2C89F0000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D7951C52D2C8A15000FD694 /* FirebaseInstallations */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D7951C32D2C89F0000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseInstallations;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8DF2A71C24A3D78300737F46 /* Project object */;
 }

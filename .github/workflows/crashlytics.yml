@@ -1,0 +1,41 @@
+on: 
+  pull_request:
+    paths:
+      - 'crashlytics/**'
+      - '.github/workflows/crashlytics.yml'
+name: Crashlytics
+jobs:
+  swift-build:
+    name: Swift build
+    runs-on: macOS-latest
+    strategy:
+        matrix:
+          destination: ['platform=iOS Simulator,OS=latest,name=iPhone 16']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Install deps
+        run: brew install xcbeautify
+      - name: Build Swift snippets
+        run: |
+          cd crashlytics
+          xcodebuild -project CrashlyticsExample.xcodeproj clean build -scheme CrashlyticsExampleSwift -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcbeautify --renderer github-actions
+        env: 
+         destination: ${{ matrix.destination }}
+  objc-build:
+    name: ObjC build
+    runs-on: macOS-latest
+    strategy:
+        matrix:
+          destination: ['platform=iOS Simulator,OS=latest,name=iPhone 16']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Install deps
+        run: brew install xcbeautify
+      - name: Build ObjC snippets
+        run: |
+          cd crashlytics
+          xcodebuild -project CrashlyticsExample.xcodeproj clean build -scheme CrashlyticsExample -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcbeautify --renderer github-actions
+        env: 
+         destination: ${{ matrix.destination }}
