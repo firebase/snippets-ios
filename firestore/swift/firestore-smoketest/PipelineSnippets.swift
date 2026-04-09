@@ -1377,4 +1377,62 @@ public class PipelineSnippets {
     // [END vector_length]
     print(result)
   }
+
+  // https://firebase.google.com/docs/firestore/pipelines/perform-joins-with-sub-pipelines
+  func defineStage() async throws {
+    // [START define_example]
+    let result = try await db.pipeline().collection("authors")
+      .define([
+        Field("id").as("currentAuthorId")
+      ])
+      // ...
+    // [END define_example]
+      .addFields([
+        db.pipeline().collection("books")
+          .where(Field("author_id").equal(Variable("currentAuthorId")))
+          .aggregate([
+            Field("rating").average().as("avgRating")
+          ])
+          .toScalarExpression()
+          .as("averageBookRating")
+      ])
+      .execute()
+  }
+
+  // https://firebase.google.com/docs/firestore/pipelines/perform-joins-with-sub-pipelines
+  func toArrayExpressionStage() async throws {
+    // [START to_array_expression]
+    let projectsPipeline = db.pipeline().collection("projects")
+      .define([
+        Field("id").as("parentId")
+      ])
+      .addFields([
+        db.pipeline().collection("tasks")
+          .where(Field("project_id").equal(Variable("parentId")))
+          .select([Field("title")])
+          .toArrayExpression()
+          .as("taskTitles")
+      ])
+    // [END to_array_expression]
+  }
+
+  // https://firebase.google.com/docs/firestore/pipelines/perform-joins-with-sub-pipelines
+  func toScalarExpressionStage() async throws {
+    // [START to_scalar_expression]
+    let result = try await db.pipeline().collection("authors")
+      .define([
+        Field("id").as("currentAuthorId")
+      ])
+      .addFields([
+        db.pipeline().collection("books")
+          .where(Field("author_id").equal(Variable("currentAuthorId")))
+          .aggregate([
+            Field("rating").average().as("avgRating")
+          ])
+          .toScalarExpression()
+          .as("averageBookRating")
+      ])
+      .execute()
+    // [END to_scalar_expression]
+  }
 }
