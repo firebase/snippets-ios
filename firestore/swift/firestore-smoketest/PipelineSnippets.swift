@@ -1437,4 +1437,54 @@ public class PipelineSnippets {
       .execute()
     // [END to_scalar_expression]
   }
+
+  func searchBasicQuery() async throws {
+    // [START search_basic_query]
+    let snapshot = try await db.pipeline().collection("restaurants")
+      .search(query: DocumentMatches("waffles"))
+      .execute()
+    // [END search_basic_query]
+    print(snapshot)
+  }
+
+  func searchExactMatch() async throws {
+    // [START search_exact_match]
+    let snapshot = try await db.pipeline().collection("restaurants")
+      .search(query: DocumentMatches("\"belgian waffles\""))
+      .execute()
+    // [END search_exact_match]
+    print(snapshot)
+  }
+
+  func searchTwoTerms() async throws {
+    // [START search_two_terms]
+    let snapshot = try await db.pipeline().collection("restaurants")
+      .search(query: DocumentMatches("waffles eggs"))
+      .execute()
+    // [END search_two_terms]
+    print(snapshot)
+  }
+
+  func searchExcludeTerm() async throws {
+    // [START search_exclude_term]
+    let snapshot = try await db.pipeline().collection("restaurants")
+      .search(query: DocumentMatches("-waffles"))
+      .execute()
+    // [END search_exclude_term]
+    print(snapshot)
+  }
+
+  func searchScore() async throws {
+    // [START search_score]
+    let snapshot = try await db.pipeline().collection("restaurants")
+      .search(
+        query: DocumentMatches("waffles"),
+        addFields: [
+          Score().as("score")
+        ]
+      )
+      .execute()
+    // [END search_score]
+    print(snapshot)
+  }
 }
