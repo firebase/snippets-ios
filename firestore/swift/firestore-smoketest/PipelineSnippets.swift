@@ -1471,7 +1471,7 @@ public class PipelineSnippets {
   func searchExcludeTerm() async throws {
     // [START search_exclude_term]
     let snapshot = try await db.pipeline().collection("restaurants")
-      .search(query: DocumentMatches("-waffles"))
+      .search(query: DocumentMatches("coffee -waffles"))
       .execute()
     // [END search_exclude_term]
     print(snapshot)
