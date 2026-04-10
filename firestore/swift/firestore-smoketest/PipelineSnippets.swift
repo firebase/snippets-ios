@@ -1399,6 +1399,7 @@ public class PipelineSnippets {
           .as("averageBookRating")
       ])
       .execute()
+    print(result)
   }
 
   // https://firebase.google.com/docs/firestore/pipelines/perform-joins-with-sub-pipelines
@@ -1416,6 +1417,7 @@ public class PipelineSnippets {
           .as("taskTitles")
       ])
     // [END to_array_expression]
+    print(projectsPipeline)
   }
 
   // https://firebase.google.com/docs/firestore/pipelines/perform-joins-with-sub-pipelines
@@ -1436,6 +1438,7 @@ public class PipelineSnippets {
       ])
       .execute()
     // [END to_scalar_expression]
+    print(result)
   }
 
   func searchBasicQuery() async throws {
