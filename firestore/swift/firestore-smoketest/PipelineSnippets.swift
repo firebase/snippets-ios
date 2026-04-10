@@ -484,7 +484,8 @@ public class PipelineSnippets {
     let result = try await db.pipeline()
       .collection("books")
       .aggregate([
-        AggregateFunction("count_if", [Field("rating").greaterThan(4)]).as("filteredCount")
+        AggregateFunction(functionName: "count_if",
+                          args: [Field("rating").greaterThan(4)]).as("filteredCount")
       ])
       .execute()
     // [END count_if]
@@ -496,7 +497,8 @@ public class PipelineSnippets {
     // [START count_distinct]
     let result = try await db.pipeline()
       .collection("books")
-      .aggregate([AggregateFunction("count_distinct", [Field("author")]).as("unique_authors")])
+      .aggregate([AggregateFunction(functionName: "count_distinct",
+                                    args: [Field("author")]).as("unique_authors")])
       .execute()
     // [END count_distinct]
     print(result)
