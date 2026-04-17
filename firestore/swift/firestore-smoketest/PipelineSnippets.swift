@@ -1380,6 +1380,15 @@ public class PipelineSnippets {
     print(result)
   }
 
+  func defineStageData() async throws {
+    // [START define_stage_data]
+    try await db.collection("authors").document("author_123").setData([
+      "id": "author_123",
+      "name": "Jane Austen"
+    ])
+    // [END define_stage_data]
+  }
+
   // https://firebase.google.com/docs/firestore/pipelines/perform-joins-with-sub-pipelines
   func defineStage() async throws {
     // [START define_example]
@@ -1402,6 +1411,23 @@ public class PipelineSnippets {
     print(result)
   }
 
+  func toArrayExpressionStageData() async throws {
+    // [START to_array_expression_stage_data]
+    try await db.collection("projects").document("project_1").setData([
+      "id": "project_1",
+      "name": "Alpha Build"
+    ])
+    try await db.collection("tasks").document().setData([
+      "project_id": "project_1",
+      "title": "System Architecture"
+    ])
+    try await db.collection("tasks").document().setData([
+      "project_id": "project_1",
+      "title": "Database Schema Design"
+    ])
+    // [END to_array_expression_stage_data]
+  }
+
   // https://firebase.google.com/docs/firestore/pipelines/perform-joins-with-sub-pipelines
   func toArrayExpressionStage() async throws {
     // [START to_array_expression]
@@ -1418,6 +1444,25 @@ public class PipelineSnippets {
       ])
     // [END to_array_expression]
     print(projectsPipeline)
+  }
+
+  func toScalarExpressionStageData() async throws {
+    // [START to_scalar_expression_stage_data]
+    try await db.collection("authors").document("author_202").setData([
+      "id": "author_202",
+      "name": "Charles Dickens"
+    ])
+    try await db.collection("books").document().setData([
+      "author_id": "author_202",
+      "title": "Great Expectations",
+      "rating": 4.8
+    ])
+    try await db.collection("books").document().setData([
+      "author_id": "author_202",
+      "title": "Oliver Twist",
+      "rating": 4.5
+    ])
+    // [END to_scalar_expression_stage_data]
   }
 
   // https://firebase.google.com/docs/firestore/pipelines/perform-joins-with-sub-pipelines
@@ -1441,6 +1486,15 @@ public class PipelineSnippets {
     print(result)
   }
 
+  func searchBasicQueryData() async throws {
+    // [START search_basic_query_data]
+    try await db.collection("restaurants").document().setData([
+      "name": "Waffle Place",
+      "description": "A cozy place for fresh waffles."
+    ])
+    // [END search_basic_query_data]
+  }
+
   func searchBasicQuery() async throws {
     // [START search_basic_query]
     let snapshot = try await db.pipeline().collection("restaurants")
@@ -1448,6 +1502,15 @@ public class PipelineSnippets {
       .execute()
     // [END search_basic_query]
     print(snapshot)
+  }
+
+  func searchExactMatchData() async throws {
+    // [START search_exact_match_data]
+    try await db.collection("restaurants").document().setData([
+      "name": "Waffle Place",
+      "description": "A cozy place for fresh waffles."
+    ])
+    // [END search_exact_match_data]
   }
 
   func searchExactMatch() async throws {
@@ -1459,6 +1522,15 @@ public class PipelineSnippets {
     print(snapshot)
   }
 
+  func searchTwoTermsData() async throws {
+    // [START search_two_terms_data]
+    try await db.collection("restaurants").document().setData([
+      "name": "Morning Diner",
+      "description": "Start your day with waffles and eggs."
+    ])
+    // [END search_two_terms_data]
+  }
+
   func searchTwoTerms() async throws {
     // [START search_two_terms]
     let snapshot = try await db.pipeline().collection("restaurants")
@@ -1468,6 +1540,15 @@ public class PipelineSnippets {
     print(snapshot)
   }
 
+  func searchExcludeTermData() async throws {
+    // [START search_exclude_term_data]
+    try await db.collection("restaurants").document().setData([
+      "name": "City Coffee",
+      "description": "Premium coffee and pastries."
+    ])
+    // [END search_exclude_term_data]
+  }
+
   func searchExcludeTerm() async throws {
     // [START search_exclude_term]
     let snapshot = try await db.pipeline().collection("restaurants")
@@ -1475,6 +1556,15 @@ public class PipelineSnippets {
       .execute()
     // [END search_exclude_term]
     print(snapshot)
+  }
+
+  func searchScoreData() async throws {
+    // [START search_score_data]
+    try await db.collection("restaurants").document().setData([
+      "name": "The Waffle Hub",
+      "description": "Everything waffles!"
+    ])
+    // [END search_score_data]
   }
 
   func searchScore() async throws {
