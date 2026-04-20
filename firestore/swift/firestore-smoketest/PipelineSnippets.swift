@@ -1486,6 +1486,27 @@ public class PipelineSnippets {
     print(result)
   }
 
+  func searchScoreSort() async throws {
+    // [START search_score_sort]
+    let snapshot = try await db.pipeline().collection("restaurants")
+      .search(
+        query: DocumentMatches("waffles"),
+        sort: [Score().descending()]
+      )
+      .execute()
+    // [END search_score_sort]
+    print(snapshot)
+  }
+
+  func searchGeospatial() async throws {
+    // [START search_geospatial]
+    let snapshot = try await db.pipeline().collection("restaurants")
+      .search(query: DocumentMatches("\"belgian waffles\""))
+      .execute()
+    // [END search_geospatial]
+    print(snapshot)
+  }
+
   func searchBasicQueryData() async throws {
     // [START search_basic_query_data]
     try await db.collection("restaurants").document().setData([
