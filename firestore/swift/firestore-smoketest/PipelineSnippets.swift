@@ -1529,7 +1529,7 @@ public class PipelineSnippets {
     // [START search_exact_match_data]
     try await db.collection("restaurants").document().setData([
       "name": "Waffle Place",
-      "description": "A cozy place for fresh waffles."
+      "description": "A cozy place for fresh belgian waffles."
     ])
     // [END search_exact_match_data]
   }
