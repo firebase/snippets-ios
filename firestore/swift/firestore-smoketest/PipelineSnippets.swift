@@ -1712,6 +1712,7 @@ public class PipelineSnippets {
       ])
       .execute()
     // [END pipeline_join_lookup]
+    print(results)
   }
 
   func pipelineJoinArray() async throws {
@@ -1733,6 +1734,7 @@ public class PipelineSnippets {
       ])
       .execute()
     // [END pipeline_join_array]
+    print(results)
   }
 
   func pipelineJoinAggregate() async throws {
@@ -1754,6 +1756,7 @@ public class PipelineSnippets {
       ])
       .execute()
     // [END pipeline_join_aggregate]
+    print(results)
   }
 
   func pipelineJoinLimit() async throws {
@@ -1776,6 +1779,7 @@ public class PipelineSnippets {
       ])
       .execute()
     // [END pipeline_join_limit]
+    print(results)
   }
 
   func pipelineJoinSubcollection() async throws {
@@ -1790,6 +1794,7 @@ public class PipelineSnippets {
       ])
       .execute()
     // [END pipeline_join_subcollection]
+    print(results)
   }
 
   func pipelineJoinMultiField() async throws {
@@ -1811,6 +1816,7 @@ public class PipelineSnippets {
       )
       .execute()
     // [END pipeline_join_multi_field]
+    print(results)
   }
 
   func pipelineJoinAnti() async throws {
@@ -1830,6 +1836,7 @@ public class PipelineSnippets {
       )
       .execute()
     // [END pipeline_join_anti]
+    print(results)
   }
 
   func pipelineJoinUnnest() async throws {
@@ -1850,6 +1857,7 @@ public class PipelineSnippets {
       )
       .execute()
     // [END pipeline_join_unnest]
+    print(results)
   }
 
   func pipelineJoinUncorrelated() async throws {
@@ -1868,6 +1876,7 @@ public class PipelineSnippets {
       .select(["rating", "reviewer_id"])
       .execute()
     // [END pipeline_join_uncorrelated]
+    print(results)
   }
 
   func pipelineForceTableScan() async throws {
@@ -1878,5 +1887,6 @@ public class PipelineSnippets {
       .limit(100)
       .execute()
     // [END pipeline_force_table_scan]
+    print(results)
   }
 }
