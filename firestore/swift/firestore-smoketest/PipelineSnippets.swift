@@ -1601,4 +1601,292 @@ public class PipelineSnippets {
     // [END search_score]
     print(snapshot)
   }
+
+  func pipelineJoinTestData() async throws {
+    // [START pipeline_join_test_data]
+    // Load set of cities.
+    let cities = db.collection("cities")
+
+    try await cities.document("SF").setData([
+      "name": "San Francisco",
+      "state": "CA",
+      "country": "USA"
+    ])
+    try await cities.document("LA").setData([
+      "name": "Los Angeles",
+      "state": "CA",
+      "country": "USA"
+    ])
+    try await cities.document("DC").setData([
+      "name": "Washington, D.C.",
+      "state": NSNull(),
+      "country": "USA"
+    ])
+    try await cities.document("TOK").setData([
+      "name": "Tokyo",
+      "state": NSNull(),
+      "country": "Japan"
+    ])
+
+    // Load restaurants in various cities.
+    let sfRestaurants = db.collection("cities").document("SF").collection("restaurants")
+    let laRestaurants = db.collection("cities").document("LA").collection("restaurants")
+    let dcRestaurants = db.collection("cities").document("DC").collection("restaurants")
+
+    let rest1 = sfRestaurants.document("rest1")
+    try await rest1.setData([
+      "name": "Golden Gate Pizza",
+      "type": "pizza",
+      "owner_id": "Mario Rossi"
+    ])
+    let rest2 = sfRestaurants.document("rest2")
+    try await rest2.setData([
+      "name": "Bay Area Burger",
+      "type": "burger",
+      "owner_id": "Sarah Jenkins"
+    ])
+    let rest3 = sfRestaurants.document("rest3")
+    try await rest3.setData([
+      "name": "Sunset Taco",
+      "type": "mexican",
+      "owner_id": "Edward"
+    ])
+
+    let rest4 = laRestaurants.document("rest4")
+    try await rest4.setData([
+      "name": "Hollywood Sushi",
+      "type": "sushi",
+      "owner_id": "Ken Kenji"
+    ])
+    let rest5 = laRestaurants.document("rest5")
+    try await rest5.setData([
+      "name": "Venice Pizza",
+      "type": "pizza",
+      "owner_id": "Luigi Romano"
+    ])
+
+    let rest6 = dcRestaurants.document("rest6")
+    try await rest6.setData([
+      "name": "Capitol Tacos",
+      "type": "mexican",
+      "owner_id": "Maria Garcia"
+    ])
+    let rest7 = dcRestaurants.document("rest7")
+    try await rest7.setData([
+      "name": "Georgetown Coffee",
+      "type": "cafe",
+      "owner_id": "David Kim"
+    ])
+
+    // Load collection of reviews.
+    let reviews = db.collection("reviews")
+
+    try await reviews.addDocument(data: ["restaurant": rest1, "rating": 5, "reviewer_id": "Alice"])
+    try await reviews.addDocument(data: ["restaurant": rest1, "rating": 4, "reviewer_id": "Bob"])
+    try await reviews.addDocument(data: ["restaurant": rest2, "rating": 4, "reviewer_id": "Charlie"])
+    try await reviews.addDocument(data: ["restaurant": rest3, "rating": 5, "reviewer_id": "Diana"])
+    try await reviews.addDocument(data: ["restaurant": rest3, "rating": 4, "reviewer_id": "Edward"])
+    try await reviews.addDocument(data: ["restaurant": rest3, "rating": 4, "reviewer_id": "Fiona"])
+    // rest4 has 0 reviews
+    try await reviews.addDocument(data: ["restaurant": rest5, "rating": 3, "reviewer_id": "George"])
+    try await reviews.addDocument(data: ["restaurant": rest6, "rating": 5, "reviewer_id": "Hannah"])
+    try await reviews.addDocument(data: ["restaurant": rest6, "rating": 4, "reviewer_id": "Ian"])
+    try await reviews.addDocument(data: ["restaurant": rest7, "rating": 5, "reviewer_id": "Julia"])
+    // [END pipeline_join_test_data]
+  }
+
+  func pipelineJoinLookup() async throws {
+    // [START pipeline_join_lookup]
+    let results = try await db.pipeline()
+      .collectionGroup("reviews")
+      .define([
+        Field("restaurant").as("restaurant_name")
+      ])
+      .addFields([
+        db.pipeline()
+          .collectionGroup("restaurants")
+          .where(Field("__name__").equal(Variable("restaurant_name")))
+          .select(["name", "type"])
+          .toScalarExpression()
+          .as("restaurant")
+      ])
+      .execute()
+    // [END pipeline_join_lookup]
+    print(results)
+  }
+
+  func pipelineJoinArray() async throws {
+    // [START pipeline_join_array]
+    let results = try await db.pipeline()
+      .collectionGroup("restaurants")
+      .where(Field("type").equal("pizza"))
+      .define([
+        Field("__name__").as("restaurant_name")
+      ])
+      .select([
+        Field("name"),
+        db.pipeline()
+          .collectionGroup("reviews")
+          .where(Field("restaurant").equal(Variable("restaurant_name")))
+          .select(["rating", "reviewer_id"])
+          .toArrayExpression()
+          .as("reviews")
+      ])
+      .execute()
+    // [END pipeline_join_array]
+    print(results)
+  }
+
+  func pipelineJoinAggregate() async throws {
+    // [START pipeline_join_aggregate]
+    let results = try await db.pipeline()
+      .collectionGroup("restaurants")
+      .where(Field("type").equal("pizza"))
+      .define([
+        Field("__name__").as("restaurant_name")
+      ])
+      .select([
+        Field("name"),
+        db.pipeline()
+          .collectionGroup("reviews")
+          .where(Field("restaurant").equal(Variable("restaurant_name")))
+          .aggregate([Field("rating").average().as("avg_rating")])
+          .toScalarExpression()
+          .as("avg_rating")
+      ])
+      .execute()
+    // [END pipeline_join_aggregate]
+    print(results)
+  }
+
+  func pipelineJoinLimit() async throws {
+    // [START pipeline_join_limit]
+    let results = try await db.pipeline()
+      .collectionGroup("restaurants")
+      .define([
+        Field("__name__").as("restaurant_name")
+      ])
+      .select([
+        Field("name"),
+        db.pipeline()
+          .collectionGroup("reviews")
+          .where(Field("restaurant").equal(Variable("restaurant_name")))
+          .sort([Field("rating").descending()])
+          .limit(2)
+          .select(["rating", "reviewer_id"])
+          .toArrayExpression()
+          .as("top_reviews")
+      ])
+      .execute()
+    // [END pipeline_join_limit]
+    print(results)
+  }
+
+  func pipelineJoinSubcollection() async throws {
+    // [START pipeline_join_subcollection]
+    let results = try await db.pipeline()
+      .collection("cities")
+      .addFields([
+        Subcollection("restaurants")
+          .toArrayExpression()
+          .arrayLength()
+          .as("restaurant_count")
+      ])
+      .execute()
+    // [END pipeline_join_subcollection]
+    print(results)
+  }
+
+  func pipelineJoinMultiField() async throws {
+    // [START pipeline_join_multi_field]
+    let results = try await db.pipeline()
+      .collectionGroup("restaurants")
+      .define([
+        Field("owner_id").as("owner_id"),
+        Field("__name__").as("__name__")
+      ])
+      .where(
+        db.pipeline()
+          .collectionGroup("reviews")
+          .where(Field("restaurant").equal(Variable("__name__")))
+          .where(Field("reviewer_id").equal(Variable("owner_id")))
+          .aggregate([CountAll().as("c")])
+          .toScalarExpression()
+          .greaterThan(0)
+      )
+      .execute()
+    // [END pipeline_join_multi_field]
+    print(results)
+  }
+
+  func pipelineJoinAnti() async throws {
+    // [START pipeline_join_anti]
+    let results = try await db.pipeline()
+      .collectionGroup("restaurants")
+      .define([
+        Field("__name__").as("restaurant_name")
+      ])
+      .where(
+        db.pipeline()
+          .collectionGroup("reviews")
+          .where(Field("restaurant").equal(Variable("restaurant_name")))
+          .aggregate([CountAll().as("review_count")])
+          .toScalarExpression()
+          .equal(0)
+      )
+      .execute()
+    // [END pipeline_join_anti]
+    print(results)
+  }
+
+  func pipelineJoinUnnest() async throws {
+    // [START pipeline_join_unnest]
+    let results = try await db.pipeline()
+      .collectionGroup("restaurants")
+      .where(Field("type").equal("pizza"))
+      .define([
+        Field("__name__").as("restaurant_name")
+      ])
+      .unnest(
+        db.pipeline()
+          .collectionGroup("reviews")
+          .where(Field("restaurant").equal(Variable("restaurant_name")))
+          .select(["rating", "reviewer_id"])
+          .toArrayExpression()
+          .as("review")
+      )
+      .execute()
+    // [END pipeline_join_unnest]
+    print(results)
+  }
+
+  func pipelineJoinUncorrelated() async throws {
+    // [START pipeline_join_uncorrelated]
+    let results = try await db.pipeline()
+      .collection("reviews")
+      // Average review rating is 4.3
+      .where(
+        Field("rating").greaterThan(
+          db.pipeline()
+            .collection("reviews")
+            .aggregate([Field("rating").average().as("avg")])
+            .toScalarExpression()
+        )
+      )
+      .select(["rating", "reviewer_id"])
+      .execute()
+    // [END pipeline_join_uncorrelated]
+    print(results)
+  }
+
+  func pipelineForceTableScan() async throws {
+    // [START pipeline_force_table_scan]
+    // Force Planner to only do a Full-Table Scan
+    let results = try await db.pipeline()
+      .collectionGroup("customers")
+      .limit(100)
+      .execute()
+    // [END pipeline_force_table_scan]
+    print(results)
+  }
 }
