@@ -27,6 +27,29 @@ public class PipelineSnippets {
     pipelineConcepts()
   }
 
+  func typeAndGenericExample() async throws {
+    // [START type_function]
+    let typeOfField = Field("rating").type()
+    // [END type_function]
+
+    // [START concat_function]
+    let displayString = Constant("Author ID: ").concat([Field("authorId")])
+    // [END concat_function]
+
+    // [START length_function]
+    let tagsCount = Field("tags").length()
+    // [END length_function]
+
+    // [START reverse_function]
+    let reversedTags = Field("tags").reverse()
+    // [END reverse_function]
+
+    print(typeOfField)
+    print(displayString)
+    print(tagsCount)
+    print(reversedTags)
+  }
+
   func stagesExpressionsExample() async throws {
     // [START stages_expressions_example]
     let trailing30Days = Constant(Date().timeIntervalSince1970 * Double(MSEC_PER_SEC))
@@ -482,7 +505,14 @@ public class PipelineSnippets {
     // [START count_if]
     let result = try await db.pipeline()
       .collection("books")
+<<<<<<< HEAD
+      .aggregate([
+        AggregateFunction(functionName: "count_if",
+                          args: [Field("rating").greaterThan(4)]).as("filteredCount")
+      ])
+=======
       .aggregate([Field("rating").greaterThan(4).countIf().as("filteredCount")])
+>>>>>>> master
       .execute()
     // [END count_if]
     print(result)
@@ -493,7 +523,12 @@ public class PipelineSnippets {
     // [START count_distinct]
     let result = try await db.pipeline()
       .collection("books")
+<<<<<<< HEAD
+      .aggregate([AggregateFunction(functionName: "count_distinct",
+                                    args: [Field("author")]).as("unique_authors")])
+=======
       .aggregate([Field("author").countDistinct().as("unique_authors")])
+>>>>>>> master
       .execute()
     // [END count_distinct]
     print(result)

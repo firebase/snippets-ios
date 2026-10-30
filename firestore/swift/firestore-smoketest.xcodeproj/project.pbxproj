@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -261,7 +261,7 @@
 			mainGroup = 3EABFB161E254C8E00F4BBED;
 			packageReferences = (
 				8D7951A62D28ADAE000FD694 /* XCRemoteSwiftPackageReference "geofire-objc" */,
-				8D15627C2EA0474400D3B017 /* XCLocalSwiftPackageReference "../../../firebase-ios-sdk" */,
+				8DE867102F184C90009A6BD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 3EABFB201E254C8F00F4BBED /* Products */;
 			projectDirPath = "";
@@ -630,13 +630,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		8D15627C2EA0474400D3B017 /* XCLocalSwiftPackageReference "../../../firebase-ios-sdk" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../firebase-ios-sdk";
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
 		8D7951A02D28AC75000FD694 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -652,6 +645,14 @@
 			requirement = {
 				branch = master;
 				kind = branch;
+			};
+		};
+		8DE867102F184C90009A6BD8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.8.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
