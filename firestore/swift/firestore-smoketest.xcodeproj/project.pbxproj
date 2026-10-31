@@ -19,7 +19,6 @@
 		3EABFB431E254C8F00F4BBED /* firestore_smoketestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABFB421E254C8F00F4BBED /* firestore_smoketestUITests.swift */; };
 		8D7C36932EA069B70083BAF5 /* PipelineSnippets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7C36922EA069B00083BAF5 /* PipelineSnippets.swift */; };
 		8D864B17260D3947008E85B3 /* SolutionBundles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D864B16260D3947008E85B3 /* SolutionBundles.swift */; };
-		8D864B35260D55C1008E85B3 /* SolutionGeoPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC116F258A2B8E00D080CB /* SolutionGeoPointViewController.swift */; };
 		8DA9B4AB201165C800EC29CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DA9B4AA201165C800EC29CD /* GoogleService-Info.plist */; };
 		8DD78EA92F89892D008FD5B7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD78EA82F89892D008FD5B7 /* FirebaseAuth */; };
 		8DD78EAB2F89892D008FD5B7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD78EAA2F89892D008FD5B7 /* FirebaseFirestore */; };
